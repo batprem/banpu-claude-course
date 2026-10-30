@@ -1,0 +1,15 @@
+%% M2 · Workshop A: PowerPoint with Claude (HITL ระหว่างทุกขั้น)
+%%{init: {"htmlLabels": false, "flowchart": {"htmlLabels": false}}}%%
+flowchart TB
+    subgraph R1["เข้าใจงาน"]
+      direction LR
+      S1["1 Interview<br/>ถามทีละข้อ"]:::ai --> H1{"ยืนยัน brief"}:::human --> S2["2 Use your own words<br/>ทวนเป้าหมาย"]:::ai --> H2{"ตรงไหม?"}:::human --> S3["3 Explore<br/>อ่านไฟล์ในโฟลเดอร์"]:::data --> S4["4 Research<br/>ข้อมูลสาธารณะ"]:::data
+    end
+    subgraph R2["สร้างงาน"]
+      direction LR
+      S5["5 Plan<br/>โครงทีละหน้า"]:::ai --> H3{"อนุมัติโครง"}:::human --> S6["6 Prototype ×3<br/>3 สไตล์"]:::ai --> H4{"เลือกสไตล์"}:::human --> S7["7 Review<br/>ตรวจตัวเลข/ที่มา"]:::ai --> H5{"ตรวจเนื้อหา"}:::human --> S8["8 Build<br/>deck.pptx"]:::data
+    end
+    R1 --> R2
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;

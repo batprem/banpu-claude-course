@@ -1,0 +1,15 @@
+%% M2 · Human-in-the-Loop: Plan → Approve → Execute
+%%{init: {"htmlLabels": false, "flowchart": {"htmlLabels": false}}}%%
+flowchart TB
+    subgraph R1["ก่อนลงมือ"]
+      direction LR
+      G["เป้าหมาย +<br/>copy-before-write"]:::human --> PL["Plan<br/>Claude เสนอแผน"]:::ai --> AP{"Approve?"}:::human
+    end
+    subgraph R2["ลงมือ (เมื่ออนุมัติ)"]
+      direction LR
+      EX["Execute<br/>ทำในโฟลเดอร์สำเนา"]:::ai --> FD["ไฟล์ผลลัพธ์ + log"]:::data --> CK["คนตรวจผล<br/>ก่อนใช้จริง"]:::human
+    end
+    R1 -->|"อนุมัติ · ถ้าไม่ ให้แก้แผน"| R2
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;

@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M2 Excel Detective</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--human:#E4572E;--ai:#2E86AB;--data:#3BA55C;--ink:#1F2933;--paper:#FAF8F3;--warn:#F2A541;--line:#e2dccd}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 'IBM Plex Sans Thai',sans-serif}
+header{background:var(--ink);color:#fff;padding:16px}
+header .in{max-width:1080px;margin:0 auto;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+header h1{margin:0;font-size:24px;flex:1;min-width:220px}
+.rank{background:var(--warn);color:var(--ink);border-radius:999px;padding:4px 14px;font-weight:700}
+.layout{max-width:1080px;margin:0 auto;padding:16px;display:grid;grid-template-columns:300px 1fr;gap:16px}
+aside .card{position:sticky;top:12px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:14px}
+.files{list-style:none;padding:0;margin:0;font-size:14px}
+.files li{padding:4px 6px;border-radius:6px;display:flex;gap:6px;cursor:pointer}
+.files li:hover{background:#f3efe6}
+.files li.use::before{content:"🟩"}.files li.drop::before{content:"⛔"}.files li.unk::before{content:"❔"}
+.files li.drop span{text-decoration:line-through;opacity:.6}
+.mission h2{margin:0;font-size:19px}
+.mission .n{display:inline-block;background:var(--ai);color:#fff;border-radius:8px;padding:0 8px;margin-right:6px}
+.mission.solved{border-color:var(--data);box-shadow:0 0 0 2px var(--data) inset}
+.mission.solved .n{background:var(--data)}
+.opts{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.opts button,.ctl button{border:2px solid var(--ai);background:#fff;color:var(--ai);border-radius:8px;padding:4px 12px;font:600 14px 'IBM Plex Sans Thai';cursor:pointer}
+.opts button.right{background:var(--data);border-color:var(--data);color:#fff}
+.opts button.wrong{background:var(--human);border-color:var(--human);color:#fff}
+.hint,.explain{display:none;border-radius:8px;padding:6px 12px;margin-top:6px}
+.hint{background:#fff6e6;border-left:5px solid var(--warn)}
+.explain{background:#eaf6ee;border-left:5px solid var(--data)}
+.show{display:block}
+.ctl{display:flex;gap:8px;flex-wrap:wrap}
+.ctl button.ghost{border-color:#bbb;color:#555}
+.pts{float:right;font-weight:700;color:var(--ai)}
+.claude{font-size:14px;display:flex;gap:6px;align-items:center;margin-top:6px}
+.board{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:8px}
+.board div{height:10px;border-radius:5px;background:#e7e2d6}.board div.on{background:var(--data)}
+footer{font-size:13px;opacity:.7;text-align:center;padding:16px}
+@media (max-width:820px){.layout{grid-template-columns:1fr}aside .card{position:static}}
+</style>
+<!-- Export PDF snippet (materials/_shared/export-pdf.html) -->
+<style>
+  .export-pdf-btn{font:600 14px 'IBM Plex Sans Thai',sans-serif;background:#1F2933;color:#fff;border:0;border-radius:8px;padding:8px 14px;cursor:pointer}
+  .export-pdf-btn:hover{background:#2E86AB}
+  @media print{
+    @page{size:A4;margin:12mm}
+    body{background:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .no-print,.export-pdf-btn,button,nav{display:none!important}
+    .print-expand,[hidden].print-expand,details{display:block!important;height:auto!important;overflow:visible!important}
+    section,.card{break-inside:avoid}
+  }
+</style>
+<style>@media print{.layout{display:block}header{background:#fff;color:var(--ink)}.explain.print-expand{display:block!important}.hint{display:none!important}}
+.export-pdf-btn{border:1px solid #fff}</style>
+</head>
+<body>
+<header><div class="in">
+  <h1>🕵️ Excel Detective · คดีไฟล์กระจัดกระจาย 6 ไซต์</h1>
+  <span class="rank" id="rank">ยศ: นักสืบฝึกหัด · 0 แต้ม</span>
+  <button class="export-pdf-btn no-print" onclick="window.print()" title="บันทึกเป็น PDF (เลือก Save as PDF)">⬇ Export PDF</button>
+</div></header>
+<div class="layout">
+<aside>
+  <div class="card">
+    <b>📁 แฟ้มคดี: workshop_b_scattered/</b>
+    <p style="font-size:13px;margin:4px 0">คลิกไฟล์เพื่อทำเครื่องหมาย ❔ → 🟩 ใช้ → ⛔ ไม่ใช้</p>
+    <ul class="files" id="files"></ul>
+    <div class="board" id="board"></div>
+    <p style="font-size:13px;margin:8px 0 0">ข้อมูลจำลองทั้งหมด · ไซต์สมมติ · บุคคลสมมติ</p>
+  </div>
+</aside>
+<main>
+  <section class="card">
+    <b>ภารกิจ:</b> ผู้บริหาร (สมมติ) ขอ <b>Budget vs Actual ทุกไซต์ ปี 2566–2568</b> ให้ Claude ใน Cowork ทำงานตาม Workshop B แล้วใช้หน้านี้ <b>ตรวจว่า Claude จับกับดักครบไหม</b> — คุณคือ Human-in-the-Loop
+    <div class="claude">ติ๊ก <b>🤖 Claude เจอเอง</b> ในแต่ละภารกิจ ถ้า Claude ชี้ประเด็นนั้นได้โดยไม่ต้องบอก</div>
+  </section>
+  <div id="missions"></div>
+</main>
+</div>
+<footer>Banpu · Claude for Business (หลักสูตรอบรม) · M2 Workshop B · เฉลยตรงกับ data/answer_key/insights.md · ไม่มีการเรียก AI จากหน้านี้</footer>
+<script>
+const FILES=[
+ ["SiteA_ภูผาทอง_2566.xlsx","use"],["SiteA_ภูผาทอง_2567.xlsx","use"],["SiteA_ภูผาทอง_2568_final.xlsx","drop"],["SiteA_ภูผาทอง_2568_final_v2.xlsx","use"],
+ ["DoiHinDam_Production_2023-2025.xlsx","use"],["ผาแดง รายงานรายเดือน.xlsx","use"],["LNS_power_monthly.xlsx","use"],["Copy of LNS_power_monthly.xlsx","drop"],
+ ["ทุ่งทอง_gen_cost.csv","use"],["solar_F_2023_2025.xlsx","use"],["Budget_FY2566-2568_ทุกไซต์.xlsx","use"],["เก่า_ไม่ใช้/SiteA_2565.xlsx","drop"],["อ่านก่อน.txt","info"]];
+const M=[
+ {q:"ในโฟลเดอร์มี 13 ไฟล์ ต้องใช้ไฟล์ข้อมูลกี่ไฟล์ในการทำ Budget vs Actual?",o:["13","12","9","6"],a:2,
+  h:"ตัดไฟล์ซ้ำ เวอร์ชันเก่า ไฟล์นอกช่วงปี และไฟล์ข้อความออก",e:"ใช้ 9 ไฟล์: Site A ×3 (2566, 2567, 2568_final_v2) · B · C · D · E · F · Budget — ตัดทิ้ง 3 ไฟล์ + อ่านก่อน.txt เป็นแค่บันทึก"},
+ {q:"Site A ปี 2568 มี 2 ไฟล์: _final กับ _final_v2 ควรใช้ไฟล์ไหน?",o:["_final (ชื่อบอกว่า final)","_final_v2","รวมทั้งสองไฟล์","ใช้ไฟล์ที่ใหญ่กว่า"],a:1,
+  h:"เปิดดูจำนวนเดือนในแต่ละไฟล์",e:"_final_v2 มีครบ 12 เดือน ส่วน _final ไม่มี ธ.ค. และ พ.ย. ตัวเลขต่างกัน → ถ้าไม่แน่ใจ ต้องถามเจ้าของไฟล์ (HITL) ไม่ใช่เดา"},
+ {q:"Copy of LNS_power_monthly.xlsx ควรทำอย่างไร?",o:["รวมเข้าไปด้วย","ตัดทิ้ง เพราะเนื้อหาซ้ำกับ LNS_power_monthly.xlsx","ลบไฟล์ทันที"],a:1,
+  h:"เทียบเนื้อหาสองไฟล์",e:"ไฟล์ซ้ำ ถ้ารวมจะนับ Site D สองเท่า · \"ตัดออกจากการวิเคราะห์\" ไม่เท่ากับ \"ลบไฟล์\" — การลบต้องให้คนอนุมัติ"},
+ {q:"ไฟล์ DoiHinDam: header อยู่แถวไหน และต้นทุนต้องแปลงอย่างไร?",o:["แถว 1 · ไม่ต้องแปลง","แถว 4 · บาท ÷ 1,000,000 = ล้านบาท","แถว 4 · ×1,000","แถว 2 · ÷1,000"],a:1,
+  h:"ดูแถวบน ๆ ที่เป็นชื่อรายงาน และหัวคอลัมน์ Cost_THB",e:"3 แถวแรกเป็นชื่อรายงาน/ผู้จัดทำ/แถวว่าง · Cost_THB เป็นบาท ต้อง ÷ 1,000,000 ให้ตรงกับไซต์อื่น (ล้านบาท)"},
+ {q:"ไฟล์ LNS (ลำน้ำใส) ต้องแปลงอะไรบ้าง?",o:["GWh × 1,000 → MWh · พันบาท ÷ 1,000 → ล้านบาท · พ.ศ. − 543 → ค.ศ.","ไม่ต้องแปลง","GWh ÷ 1,000 · พันบาท × 1,000"],a:0,
+  h:"ดูหัวคอลัมน์ Net_Generation_GWh, Cost_kTHB, period_BE",e:"แปลง 3 อย่างพร้อมกัน — ถ้าพลาดตัวเดียว ต้นทุนต่อหน่วยจะผิด 1,000 เท่า"},
+ {q:"ไฟล์ ทุ่งทอง_gen_cost.csv มีกับดักอะไร? (เลือกที่ครบที่สุด)",o:["ไม่มี","ตัวคั่น ; · วันที่ dd/mm/yyyy · ตัวเลขมีคอมมา · ชื่อไซต์ 4 แบบ","แค่ตัวคั่น ;"],a:1,
+  h:"เปิดเป็น text ดู",e:"ชื่อไซต์ \"ทุ่งทอง\", \"ทุ่งทอง \" (มีช่องว่าง), \"Site E\", \"โรงไฟฟ้าทุ่งทอง\" = ไซต์เดียวกัน ต้อง map เป็น Site E"},
+ {q:"ข้อมูลเดือนไหนหายไป และควรทำอย่างไร?",o:["ไม่มีข้อมูลหาย","ผาแดง พ.ย. 2567 · บันทึกใน issues และแจ้ง ไม่เดาเติม","ผาแดง พ.ย. 2567 · เติมค่าเฉลี่ยเดือนข้างเคียง"],a:1,
+  h:"ดู sheet 2024 ของไฟล์ผาแดง",e:"เดาเติมโดยไม่บอก = ตัวเลขที่ดูน่าเชื่อแต่ผิด · ถ้าจำเป็นต้องประมาณ ต้องให้คนตัดสินใจและระบุชัดในรายงาน"},
+ {q:"ไซต์และปีไหน ผลิตต่ำกว่างบมากที่สุด?",o:["Site D ลำน้ำใส 2568","Site B ดอยหินดำ 2567","Site C ผาแดง 2568","Site A ภูผาทอง 2567"],a:1,
+  h:"ดูคอลัมน์ Remark ในไฟล์ DoiHinDam",e:"Site B 2567: −7.5% (Budget 3,377,060 ตัน · Actual 3,123,430 ตัน) — ก.ย.–ต.ค. 2567 น้ำท่วมถนนขนส่ง · อันดับสอง Site D 2568 −6.1% (overhaul มี.ค. 2568 ที่ไม่ได้อยู่ในงบ)"},
+ {q:"ไซต์ไหนต้นทุนเกินงบมากที่สุดในปี 2568 ทั้งที่ผลิตได้ตามแผน?",o:["Site A ภูผาทอง","Site C ผาแดง","Site E ทุ่งทอง","Site F แสงตะวัน"],a:1,
+  h:"เทียบต้นทุนต่อหน่วยรายเดือนปี 2568",e:"Site C 2568: ต้นทุนจริง 3,863.3 ล้านบาท vs งบ 3,290.0 (+17.4%) · ต้นทุนต่อหน่วยไต่จาก 1,408 (ม.ค.) → 1,809 บาท/ตัน (ธ.ค.) — insight ที่ควรขึ้นสไลด์ใน Workshop A"}
+];
+let st={files:{},m:{}}; try{st=Object.assign(st,JSON.parse(localStorage.getItem("m2-detective")||"{}"))}catch(e){}
+const save=()=>{try{localStorage.setItem("m2-detective",JSON.stringify(st))}catch(e){}};
+const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fl=document.getElementById("files"), cycle=["unk","use","drop"];
+FILES.forEach(([n],i)=>{const li=document.createElement("li");li.innerHTML=`<span>${esc(n)}</span>`;li.className=st.files[i]||"unk";
+  li.onclick=()=>{li.className=cycle[(cycle.indexOf(li.className)+1)%3];st.files[i]=li.className;save();rank()};fl.appendChild(li)});
+const wrap=document.getElementById("missions");
+M.forEach((m,i)=>{const s=document.createElement("section");s.className="card mission";s.id="m"+i;
+  s.innerHTML=`<span class="pts" id="p${i}"></span><h2><span class="n">${i+1}</span>${esc(m.q)}</h2>
+  <div class="opts no-print">${m.o.map((o,k)=>`<button data-i="${i}" data-k="${k}">${esc(o)}</button>`).join("")}</div>
+  <div class="ctl no-print"><button class="ghost" data-hint="${i}">💡 คำใบ้ (−1 แต้ม)</button>
+  <label class="claude"><input type="checkbox" data-claude="${i}"> 🤖 Claude เจอเอง</label></div>
+  <div class="hint" id="h${i}">${esc(m.h)}</div><div class="explain print-expand" id="e${i}"><b>เฉลย:</b> ${esc(m.e)}</div>`;
+  wrap.appendChild(s)});
+function apply(i){const r=st.m[i]||{};if(r.hint)document.getElementById("h"+i).classList.add("show");
+  wrap.querySelector(`[data-claude="${i}"]`).checked=!!r.claude;
+  if(r.done){document.getElementById("e"+i).classList.add("show");document.getElementById("m"+i).classList.add("solved");
+    wrap.querySelectorAll(`button[data-i="${i}"]`).forEach(b=>{if(+b.dataset.k===M[i].a)b.classList.add("right");else if((r.wrong||[]).includes(+b.dataset.k))b.classList.add("wrong")});
+    document.getElementById("p"+i).textContent="+"+pts(i)}
+  else (r.wrong||[]).forEach(k=>wrap.querySelector(`button[data-i="${i}"][data-k="${k}"]`).classList.add("wrong"))}
+function pts(i){const r=st.m[i]||{};if(!r.done)return 0;return Math.max(1,3-(r.wrong||[]).length-(r.hint?1:0))}
+wrap.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;
+  if(b.dataset.hint){const i=b.dataset.hint;st.m[i]=Object.assign(st.m[i]||{},{hint:true});save();apply(i);rank();return}
+  const i=+b.dataset.i,k=+b.dataset.k,r=st.m[i]=st.m[i]||{};if(r.done)return;
+  if(k===M[i].a)r.done=true;else{r.wrong=r.wrong||[];if(!r.wrong.includes(k))r.wrong.push(k)}save();apply(i);rank()});
+wrap.addEventListener("change",e=>{const i=e.target.dataset.claude;if(i===undefined)return;st.m[i]=Object.assign(st.m[i]||{},{claude:e.target.checked});save();rank()});
+function rank(){const total=M.reduce((a,_,i)=>a+pts(i),0),solved=M.filter((_,i)=>(st.m[i]||{}).done).length;
+  const fileOk=FILES.filter(([n,t],i)=>t==="info"||st.files[i]===t).length===FILES.length;
+  const claude=M.filter((_,i)=>(st.m[i]||{}).claude).length;
+  const title=solved===M.length&&fileOk?"🏅 นักสืบอาวุโส":solved>=6?"นักสืบ":solved>=3?"ผู้ช่วยนักสืบ":"นักสืบฝึกหัด";
+  document.getElementById("rank").textContent=`ยศ: ${title} · ${total} แต้ม · ${solved}/${M.length} ภารกิจ${fileOk?" · แฟ้มถูกต้อง":""} · Claude เจอเอง ${claude}`;
+  document.getElementById("board").innerHTML=M.map((_,i)=>`<div class="${(st.m[i]||{}).done?"on":""}"></div>`).join("")}
+M.forEach((_,i)=>apply(i));rank();
+</script>
+</body>
+</html>

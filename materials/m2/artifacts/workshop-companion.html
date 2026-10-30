@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M2 Workshop Companion</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--human:#E4572E;--ai:#2E86AB;--data:#3BA55C;--ink:#1F2933;--paper:#FAF8F3;--warn:#F2A541;--line:#e2dccd}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 'IBM Plex Sans Thai',sans-serif}
+header{position:sticky;top:0;z-index:5;background:var(--ink);color:#fff;padding:12px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+header h1{font-size:18px;margin:0;flex:1;min-width:200px}
+.bar{height:8px;background:#ffffff33;border-radius:8px;overflow:hidden;width:100%;order:3}
+.bar i{display:block;height:100%;width:0;background:var(--data);transition:width .3s}
+#pct{font-weight:700}
+main{max-width:920px;margin:0 auto;padding:16px}
+nav.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+nav.tabs button{border:2px solid var(--ai);background:#fff;color:var(--ai);border-radius:999px;padding:4px 12px;font:600 14px 'IBM Plex Sans Thai';cursor:pointer}
+nav.tabs button.on{background:var(--ai);color:#fff}
+nav.tabs button.done::after{content:" ✓"}
+section.step{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:14px}
+section.step[hidden]{display:none}
+.meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:6px}
+.chip{font-size:13px;font-weight:600;border-radius:999px;padding:2px 10px;color:#fff}
+.chip.h{background:var(--human)}.chip.a{background:var(--ai)}.chip.d{background:var(--data)}.chip.t{background:var(--ink)}
+h2{margin:4px 0 8px;font-size:22px}
+.goal{background:#eef6fa;border-left:5px solid var(--ai);padding:6px 12px;border-radius:6px}
+.prompt{margin:12px 0;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.prompt .ph{display:flex;justify-content:space-between;align-items:center;background:#efeadf;padding:6px 10px;font-weight:600;font-size:14px}
+.prompt pre{margin:0;padding:10px 12px;white-space:pre-wrap;font:14px/1.55 'IBM Plex Sans Thai',monospace;background:#1F2933;color:#f4f4f4}
+.copy{border:0;background:var(--ai);color:#fff;border-radius:6px;padding:3px 10px;font:600 13px 'IBM Plex Sans Thai';cursor:pointer}
+.copy.ok{background:var(--data)}
+ul.check{list-style:none;padding:0;margin:8px 0}
+ul.check li{padding:6px 8px;border-radius:8px;display:flex;gap:10px;align-items:flex-start}
+ul.check li:hover{background:#fbf4ec}
+ul.check input{width:20px;height:20px;accent-color:var(--human);margin-top:3px;flex:none}
+ul.check li.hitl::before{content:"🟧";flex:none}
+.timer{display:flex;align-items:center;gap:8px;margin-left:auto}
+.timer b{font-variant-numeric:tabular-nums;font-size:18px;min-width:56px;text-align:right}
+.timer button{border:1px solid var(--ink);background:#fff;border-radius:6px;padding:2px 8px;cursor:pointer;font:600 13px 'IBM Plex Sans Thai'}
+.timer.over b{color:var(--human)}
+.tip{background:#fff6e6;border-left:5px solid var(--warn);padding:6px 12px;border-radius:6px;margin-top:8px}
+.badge{display:none;text-align:center;background:var(--data);color:#fff;border-radius:14px;padding:16px;font-size:20px;font-weight:700;margin:12px 0}
+.badge.show{display:block}
+footer{font-size:13px;opacity:.7;text-align:center;padding:16px}
+@media (max-width:600px){.timer{margin-left:0}}
+</style>
+<!-- Export PDF snippet (materials/_shared/export-pdf.html) -->
+<style>
+  .export-pdf-btn{font:600 14px 'IBM Plex Sans Thai',sans-serif;background:#1F2933;color:#fff;border:0;border-radius:8px;padding:8px 14px;cursor:pointer}
+  .export-pdf-btn:hover{background:#2E86AB}
+  @media print{
+    @page{size:A4;margin:12mm}
+    body{background:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .no-print,.export-pdf-btn,button,nav{display:none!important}
+    .print-expand,[hidden].print-expand,details{display:block!important;height:auto!important;overflow:visible!important}
+    section,.card{break-inside:avoid}
+  }
+</style>
+<style>
+  @media print{header{position:static;background:#fff;color:var(--ink);border-bottom:2px solid var(--ink)}.bar{border:1px solid #ccc}.prompt pre{background:#f3f3f3!important;color:#111!important}section.step{break-inside:auto}}
+  .export-pdf-btn{border:1px solid #fff}
+</style>
+</head>
+<body>
+<header>
+  <h1>M2 Workshop Companion · Cowork + Prompt Patterns</h1>
+  <span>ความคืบหน้า <span id="pct">0%</span></span>
+  <button class="export-pdf-btn no-print" onclick="window.print()" title="บันทึกเป็น PDF (เลือก Save as PDF)">⬇ Export PDF</button>
+  <div class="bar"><i id="barfill"></i></div>
+</header>
+<main>
+  <p style="margin:4px 0 12px">30 นาที 6 ขั้น · กด <b>Copy</b> แล้ววางใน Cowork · ติ๊ก ✅ เมื่อ <b>คนตรวจแล้ว</b> · ข้อมูลทั้งหมดเป็นข้อมูลจำลอง
+  <span class="chip h">🟧 คน (HITL)</span> <span class="chip a">🟦 AI</span> <span class="chip d">🟩 Data</span></p>
+  <nav class="tabs no-print" id="tabs"></nav>
+  <div id="steps"></div>
+  <div class="badge" id="badge">🏅 ครบ 6 ขั้น! คุณใช้ Plan → Approve → Execute ได้แล้ว — ไปต่อ M3</div>
+</main>
+<footer>Banpu · Claude for Business (หลักสูตรอบรม) · M2 · ข้อมูลจำลองทั้งหมด · ความคืบหน้าเก็บในเบราว์เซอร์นี้เท่านั้น</footer>
+
+<script>
+const STEPS = [
+ {t:"1 · เตรียมโฟลเดอร์ทำงาน", min:3, tag:"d", goal:"Cowork เห็นเฉพาะโฟลเดอร์สำเนาของ workshop นี้ (copy-before-write)",
+  prompts:[["M2-P02 (ย่อ) · ทดสอบสิทธิ์","บอกรายชื่อโฟลเดอร์ย่อยและจำนวนไฟล์ในโฟลเดอร์ที่คุณเข้าถึงได้ ห้ามสร้าง แก้ ย้าย หรือลบไฟล์ใด ๆ"]],
+  checks:[["คัดลอก Sample Data Pack ไปที่ Documents/Claude-Workshop/M2/input/",0],["สร้างโฟลเดอร์ output/ ว่าง",0],["เลือกโฟลเดอร์ M2 ใน Cowork (ไม่ใช่ทั้ง Documents)",1],["Claude นับได้ 13 ไฟล์ใน workshop_b_scattered/",1]],
+  tip:"ถ้า Claude เห็นไฟล์งานจริงของคุณ แปลว่าเลือกโฟลเดอร์กว้างเกินไป"},
+ {t:"2 · Workshop B: Explore → Find → Align", min:6, tag:"a", goal:"รู้ว่าไฟล์ไหนใช้/ไม่ใช้ และ map คอลัมน์ หน่วย ชื่อไซต์ ให้ตรงกัน",
+  prompts:[["M2-P06 · Explore + Find files",`Input: โฟลเดอร์ input/workshop_b_scattered/ (รวมโฟลเดอร์ย่อย)
+Process: สำรวจทุกไฟล์ แล้วทำตาราง inventory: ชื่อไฟล์ · ชนิด · sheet · ไซต์ · ช่วงเวลา · หน่วย · คอลัมน์หลัก · ปัญหาที่เห็น
+จากนั้นแนะนำว่าไฟล์ใด "ใช้" และไฟล์ใด "ไม่ใช้" (ไฟล์ซ้ำ เวอร์ชันเก่า นอกช่วงปี 2566–2568) พร้อมเหตุผล
+Output: ตาราง inventory ในแชต — ยังไม่ต้องรวมข้อมูล ยังไม่สร้างไฟล์ รอฉันยืนยันรายการไฟล์`],
+   ["M2-P07 · Align schemas",`ใช้เฉพาะไฟล์ที่ฉันยืนยันแล้ว
+เสนอ schema กลาง: period (YYYY-MM ค.ศ.) · site_code (A–F) · site_name · unit · actual_volume · actual_cost_mthb · budget_volume · budget_cost_mthb
+ทำตาราง mapping ต่อไฟล์: คอลัมน์เดิม → คอลัมน์ใหม่ · การแปลงหน่วย (เช่น บาท→ล้านบาท, GWh→MWh) · การแปลงวันที่ (พ.ศ.→ค.ศ.) · การแก้ชื่อไซต์
+ห้ามรวมข้อมูลจนกว่าฉันจะอนุมัติ mapping`]],
+  checks:[["เทียบ inventory กับ Excel Detective ภารกิจ 1–3",1],["ยืนยันรายการไฟล์ที่ใช้ (ตัดไฟล์ซ้ำ/เก่า/นอกช่วงปี)",1],["ตรวจตัวคูณแปลงหน่วยใน mapping (ภารกิจ 4–6)",1],["พิมพ์ \"อนุมัติ mapping\" เมื่อถูกต้องแล้วเท่านั้น",1]],
+  tip:"Plan → Approve → Execute: Claude ต้องรอเราก่อนรวมข้อมูลทุกครั้ง"},
+ {t:"3 · Workshop B: Merge → Analyse → Insight", min:6, tag:"a", goal:"ได้ตารางรวม + insight ที่ตรวจกับไฟล์ต้นทางแล้ว (เป็น Input ของ Workshop A)",
+  prompts:[["M2-P08 · Merge + issue log",`อนุมัติ mapping แล้ว
+รวมข้อมูลเป็นตารางเดียวตาม schema กลาง บันทึกเป็น output/ops_merged.xlsx (sheet: data, issues)
+sheet issues: ทุกปัญหาที่เจอ เช่น ข้อมูลหาย ค่าผิดปกติ ไฟล์ที่ตัดทิ้ง — ห้ามเดาเติมค่าที่หายไป
+ตรวจผล: จำนวนแถวต่อไซต์ต่อปีควรเป็น 12 ถ้าไม่ครบให้บอกว่าขาดเดือนไหน`],
+   ["M2-P09 · Analyse + Insight / Dashboard",`Input: output/ops_merged.xlsx
+Process: เทียบ Budget vs Actual รายไซต์รายปี (ปริมาณ ต้นทุน ต้นทุนต่อหน่วย) หา 3–5 insight ที่ผู้บริหารควรรู้ พร้อมตัวเลขอ้างอิงและเดือนที่เกิด
+Output:
+1) output/ops_insight.xlsx (sheet สรุป + กราฟ)
+2) Artifact dashboard 1 หน้า (การ์ดตัวเลข + กราฟ Budget vs Actual + ตาราง insight) ที่มีปุ่ม Export PDF
+3) สรุป insight 5 บรรทัดในแชต (จะใช้เป็น input ของ Workshop A)
+ทุกตัวเลขต้องมาจากไฟล์ ถ้าไม่แน่ใจให้ระบุ`]],
+  checks:[["ได้ 216 แถว (หรือ 215 + บันทึกเดือนที่หาย)",1],["sheet issues มี \"ผาแดง พ.ย. 2567 ไม่มีข้อมูล\" และไม่ถูกเดาเติม",1],["สุ่ม 1 ตัวเลขกลับไปเทียบไฟล์ต้นทาง",1],["insight ตรงกับ Excel Detective ภารกิจ 7–9",1],["มีสรุป insight 5 บรรทัด พร้อมส่งต่อ Workshop A",0]],
+  tip:"เวลาไม่พอ? ข้าม dashboard ให้ Claude สรุป insight 5 บรรทัดอย่างเดียว"},
+ {t:"4 · Workshop A: Interview → Use your own words → Explore → Research", min:6, tag:"h", goal:"ได้ brief ที่ถูกต้องก่อนทำสไลด์ 5–7 หน้า",
+  prompts:[["M2-P10 · Interview + Use your own words",`ฉันต้องทำสไลด์ 5–7 หน้า จากผลวิเคราะห์ใน output/ops_insight.xlsx
+สัมภาษณ์ฉันทีละ 1 คำถาม (ไม่เกิน 6 ข้อ) เรื่อง ผู้ฟัง · การตัดสินใจที่อยากได้จากผู้ฟัง · ข้อความหลัก · ความยาว · ข้อห้าม
+เมื่อครบ ให้ทวนเป้าหมายด้วยคำของคุณเอง 3 บรรทัด + brief สั้น แล้วรอฉันยืนยัน`],
+   ["M2-P11 · Explore + Research",`brief ยืนยันแล้ว
+Explore: อ่าน output/ops_insight.xlsx และ ops_merged.xlsx สรุปตัวเลขที่จะใช้ในสไลด์เป็นตาราง (ตัวเลข · มาจาก sheet/เซลล์ไหน)
+Research: หาข้อมูลสาธารณะเสริม 1–2 เรื่องที่ช่วยอธิบาย insight (เช่น แนวโน้มราคาน้ำมันดีเซลในไทย) ใช้เฉพาะแหล่งสาธารณะที่น่าเชื่อถือ ใส่ลิงก์และวันที่ทุกแหล่ง
+ห้ามใส่ข้อมูลภายในองค์กรจริงใด ๆ`]],
+  checks:[["Claude ถามทีละ 1 ข้อจริง",1],["brief ครบ: เป้าหมาย · ผู้ฟัง · Input · Output · ข้อห้าม · เกณฑ์ว่าเสร็จ",1],["การทวนเป้าหมาย 3 บรรทัดตรงกับที่ฉันคิด (ถ้าไม่ตรง แก้แล้ว)",1],["ข้อมูลภายนอกมีลิงก์ + วันที่ ไม่มีข้อมูลภายในจริง",1]],
+  tip:"บทบาทสมมติ: ผู้ฟัง = ผู้บริหารสายปฏิบัติการ · อยากได้ = อนุมัติงบแก้ถนนขนส่งดอยหินดำ + ตรวจต้นทุนผาแดง"},
+ {t:"5 · Workshop A: Plan → Prototype ×3 → Review → Build", min:6, tag:"a", goal:"เลือกสไตล์จากตัวอย่าง 3 แบบ แล้วจึงสร้าง deck.pptx ฉบับเต็ม",
+  prompts:[["M2-P12 · Plan",`เสนอโครงสไลด์ทีละหน้า: หัวข้อ (เป็นประโยคข้อสรุป) · เนื้อหา 2–3 bullet · กราฟ/ตารางที่ใช้ · แหล่งตัวเลข
+ยังไม่สร้างไฟล์ รอฉันอนุมัติโครง`],
+   ["M2-P13 · Prototype ×3",`อนุมัติโครงแล้ว
+ทำสไลด์หน้า 2 (ภาพรวม Budget vs Actual) เป็นตัวอย่าง 3 สไตล์: Executive · Visual · Detailed
+บันทึกเป็น output/prototype_styles.pptx (3 หน้า หน้าละสไตล์) แล้วรอฉันเลือก`],
+   ["M2-P14 · Review",`ฉันเลือกสไตล์ [1/2/3] (ปรับ: [ถ้ามี])
+ก่อน build ให้ตรวจตัวเอง: ตัวเลขทุกตัวตรงกับไฟล์ต้นทางไหม · หน่วยถูกไหม · มีข้อความที่อ้างโดยไม่มีแหล่งไหม · มีชื่อคนหรือข้อมูลที่ไม่ควรอยู่ในสไลด์ไหม
+รายงานเป็นตาราง ✅/⚠️ แล้วรอฉันตรวจ`],
+   ["M2-P15 · Build",`สร้าง output/deck.pptx ฉบับเต็มตามโครงที่อนุมัติ ใช้สไตล์ที่เลือก ใส่ speaker notes ทุกหน้า และหน้าสุดท้ายเป็นแหล่งที่มา
+ห้ามเขียนทับไฟล์เดิม ถ้าชื่อซ้ำให้ใช้ deck_v2.pptx`]],
+  checks:[["อนุมัติโครงสไลด์ (หัวข้อเป็นประโยคข้อสรุป)",1],["โหวตสไตล์ใน Prototype Gallery + เหตุผล 1 บรรทัด",1],["สุ่มตรวจ 2 ตัวเลขกับ ops_merged.xlsx",1],["deck.pptx ไม่เขียนทับไฟล์เดิม มี notes + แหล่งที่มา",0]],
+  tip:"Build ยังไม่เสร็จก็ไม่เป็นไร — ต่อยอดใน M4 Document Factory"},
+ {t:"6 · ลองเอง: จัดโฟลเดอร์แบบ Plan only + สรุป", min:3, tag:"h", goal:"สั่งให้ Claude เสนอโครงสร้างโฟลเดอร์ แต่ไม่ลงมือ — คนเป็นคนตัดสินใจ",
+  prompts:[["M2-P16 · วิเคราะห์ + เสนอโครงสร้าง (Plan only)",`Input: โฟลเดอร์ input/messy_folder_sample (สำเนา ห้ามแตะต้นฉบับ)
+Process:
+1) ทำ inventory สรุป: จำนวนไฟล์ตามปี (พ.ศ.) · ชนิดไฟล์ · หัวข้อ/ไซต์ที่เดาได้จากชื่อ · ไฟล์ที่น่าจะซ้ำ (ชื่อคล้าย/ขนาดเท่ากัน)
+2) เสนอโครงสร้างโฟลเดอร์ใหม่ 2 ทางเลือก (เช่น ปี → ประเภท vs ไซต์ → ปี) พร้อมข้อดีข้อเสีย
+3) เสนอกฎตั้งชื่อไฟล์ เช่น YYYY-MM_ไซต์_หัวข้อ_vN
+4) ทำไฟล์ output/move_plan.csv: path เดิม · path ใหม่ · ชื่อใหม่ · เหตุผล · ความมั่นใจ (สูง/กลาง/ต่ำ)
+Output: สรุปในแชต + move_plan.csv
+ห้ามย้าย เปลี่ยนชื่อ หรือลบไฟล์ใด ๆ — ไฟล์ที่ไม่แน่ใจให้จัดไป _ตรวจด้วยคน/ ในแผน ไม่ลบ`]],
+  checks:[["Claude ไม่ได้ย้าย/เปลี่ยนชื่อไฟล์ใดเลย",1],["ฉันเลือก 1 ใน 2 โครงสร้าง และบอกเหตุผลได้",1],["ไฟล์ที่ไม่มั่นใจไปอยู่ _ตรวจด้วยคน/ ไม่ถูกลบ",1],["ฉันเลือกได้ว่าเมื่อไรใช้ Upload / Project / Cowork folder",0],["ฉันใช้ Use your own words · Interview · Prototype first ได้",0],["ฉันรู้วิธีรับมือไฟล์ใหญ่: ดูโครงก่อน · แบ่ง · สคริปต์ · ขอเลขหน้า",0]],
+  tip:"ต่อไป M3: SharePoint + Outlook (AI → Connect → Data → Execute)"}
+];
+const KEY="m2-companion-v1";
+let state={}; try{state=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){state={}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
+const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const tabs=document.getElementById("tabs"), wrap=document.getElementById("steps");
+const tagName={h:"🟧 HITL",a:"🟦 AI",d:"🟩 Data"};
+STEPS.forEach((s,i)=>{
+  const b=document.createElement("button"); b.textContent="ขั้น "+(i+1); b.onclick=()=>show(i); tabs.appendChild(b);
+  const sec=document.createElement("section"); sec.className="step print-expand"; sec.id="st"+i;
+  sec.innerHTML=`<div class="meta"><span class="chip t">⏱ ${s.min} นาที</span><span class="chip ${s.tag}">${tagName[s.tag]}</span>
+    <div class="timer no-print" data-min="${s.min}"><b>${s.min}:00</b><button>▶ เริ่ม</button><button>↺</button></div></div>
+    <h2>${esc(s.t)}</h2><div class="goal"><b>เป้าหมาย:</b> ${esc(s.goal)}</div>
+    ${s.prompts.map((p,j)=>`<div class="prompt"><div class="ph"><span>${esc(p[0])}</span><button class="copy no-print" data-i="${i}" data-j="${j}">Copy</button></div><pre>${esc(p[1])}</pre></div>`).join("")}
+    <b>✅ Checkpoint</b><ul class="check">${s.checks.map((c,k)=>`<li class="${c[1]?'hitl':''}"><input type="checkbox" id="c${i}_${k}" data-k="${i}_${k}"><label for="c${i}_${k}">${esc(c[0])}</label></li>`).join("")}</ul>
+    <div class="tip">💡 ${esc(s.tip)}</div>`;
+  wrap.appendChild(sec);
+});
+wrap.addEventListener("click",async e=>{
+  const c=e.target.closest(".copy"); if(!c) return;
+  const txt=STEPS[c.dataset.i].prompts[c.dataset.j][1];
+  try{await navigator.clipboard.writeText(txt)}catch(err){const t=document.createElement("textarea");t.value=txt;document.body.appendChild(t);t.select();try{document.execCommand("copy")}catch(_){}t.remove()}
+  c.textContent="Copied ✓"; c.classList.add("ok"); setTimeout(()=>{c.textContent="Copy";c.classList.remove("ok")},1500);
+});
+wrap.addEventListener("change",e=>{if(e.target.dataset.k){state[e.target.dataset.k]=e.target.checked;save();progress()}});
+document.querySelectorAll("input[data-k]").forEach(x=>x.checked=!!state[x.dataset.k]);
+document.querySelectorAll(".timer").forEach(t=>{
+  let left=t.dataset.min*60, h=null; const out=t.querySelector("b"), [go,reset]=t.querySelectorAll("button");
+  const draw=()=>{const a=Math.abs(left);out.textContent=(left<0?"-":"")+Math.floor(a/60)+":"+String(a%60).padStart(2,"0");t.classList.toggle("over",left<0)};
+  go.onclick=()=>{if(h){clearInterval(h);h=null;go.textContent="▶ เริ่ม"}else{h=setInterval(()=>{left--;draw()},1000);go.textContent="⏸ พัก"}};
+  reset.onclick=()=>{clearInterval(h);h=null;left=t.dataset.min*60;go.textContent="▶ เริ่ม";draw()};
+});
+function progress(){
+  const all=document.querySelectorAll("input[data-k]"), done=[...all].filter(x=>x.checked).length;
+  const p=Math.round(100*done/all.length); document.getElementById("pct").textContent=p+"%"; document.getElementById("barfill").style.width=p+"%";
+  STEPS.forEach((s,i)=>{const boxes=document.querySelectorAll(`#st${i} input`);tabs.children[i].classList.toggle("done",[...boxes].every(x=>x.checked))});
+  document.getElementById("badge").classList.toggle("show",p===100);
+}
+function show(i){document.querySelectorAll("section.step").forEach((s,j)=>s.hidden=j!==i);[...tabs.children].forEach((b,j)=>b.classList.toggle("on",j===i));state.cur=i;save()}
+show(state.cur||0); progress();
+window.addEventListener("beforeprint",()=>document.querySelectorAll("section.step").forEach(s=>s.hidden=false));
+window.addEventListener("afterprint",()=>show(state.cur||0));
+</script>
+</body>
+</html>

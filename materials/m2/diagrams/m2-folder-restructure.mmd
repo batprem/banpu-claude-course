@@ -1,0 +1,15 @@
+%% M2 · Demo: จัดโครงสร้างโฟลเดอร์ ~1,500 ไฟล์ (2562–2569)
+%%{init: {"htmlLabels": false, "flowchart": {"htmlLabels": false}}}%%
+flowchart TB
+    subgraph R1["Plan: เสนอเท่านั้น ยังไม่ย้าย"]
+      direction LR
+      SRC["โฟลเดอร์ 8 ปี<br/>~1,500 ไฟล์"]:::data --> CP["copy-before-write"]:::human --> AN["Claude วิเคราะห์<br/>ปี ประเภท ไฟล์ซ้ำ"]:::ai --> PR["เสนอโครงสร้าง<br/>+ move_plan.csv"]:::ai
+    end
+    subgraph R2["Approve → Execute"]
+      direction LR
+      DEC{"คนตัดสินใจ"}:::human --> PI["Pilot<br/>1 โฟลเดอร์ย่อย"]:::ai --> EX["Execute ทั้งหมด<br/>+ move log"]:::ai --> CK["คนสุ่มตรวจ<br/>เก็บ log ย้อนกลับ"]:::human
+    end
+    R1 --> R2
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;

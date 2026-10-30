@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M2 Prompt Playground</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--human:#E4572E;--ai:#2E86AB;--data:#3BA55C;--ink:#1F2933;--paper:#FAF8F3;--warn:#F2A541;--line:#e2dccd}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 'IBM Plex Sans Thai',sans-serif}
+header{background:var(--ai);color:#fff;padding:18px 16px}
+header .in{max-width:980px;margin:0 auto;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+header h1{margin:0;font-size:24px;flex:1;min-width:220px}
+main{max-width:980px;margin:0 auto;padding:16px}
+.score{background:#fff;border-radius:999px;color:var(--ink);padding:4px 14px;font-weight:700}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:16px}
+.card h2{margin:0 0 4px;font-size:20px}
+.pat{display:inline-block;font-size:13px;font-weight:600;border-radius:999px;padding:1px 10px;background:#eef6fa;color:var(--ai);margin-right:6px}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
+.box{border-radius:10px;padding:10px 12px;white-space:pre-wrap;font-size:15px}
+.box h3{margin:0 0 6px;font-size:15px}
+.before{background:#fdecea;border:2px dashed var(--human)}
+.after{background:#eaf6ee;border:2px solid var(--data)}
+.after.locked{filter:blur(5px);user-select:none}
+.quiz{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.quiz button,.btn{border:2px solid var(--ai);background:#fff;color:var(--ai);border-radius:8px;padding:4px 12px;font:600 14px 'IBM Plex Sans Thai';cursor:pointer}
+.quiz button.right{background:var(--data);border-color:var(--data);color:#fff}
+.quiz button.wrong{background:var(--human);border-color:var(--human);color:#fff}
+.why{display:none;margin-top:8px;background:#fff6e6;border-left:5px solid var(--warn);padding:6px 12px;border-radius:6px}
+.why.show{display:block}
+.tags span{display:inline-block;font-size:12px;border:1px solid var(--ink);border-radius:6px;padding:0 6px;margin:2px}
+#builder label{display:block;font-weight:600;margin-top:8px}
+#builder textarea{width:100%;font:15px 'IBM Plex Sans Thai';border:1px solid var(--line);border-radius:8px;padding:8px;min-height:54px}
+#builder .opts label{display:flex;gap:8px;font-weight:400;align-items:center}
+#out{background:var(--ink);color:#f4f4f4;border-radius:10px;padding:12px;white-space:pre-wrap;min-height:80px;margin-top:10px}
+.meter{height:10px;border-radius:10px;background:#eee;overflow:hidden;margin-top:8px}.meter i{display:block;height:100%;background:var(--data);width:0;transition:width .3s}
+footer{font-size:13px;opacity:.7;text-align:center;padding:16px}
+@media (max-width:700px){.pair{grid-template-columns:1fr}}
+</style>
+<!-- Export PDF snippet (materials/_shared/export-pdf.html) -->
+<style>
+  .export-pdf-btn{font:600 14px 'IBM Plex Sans Thai',sans-serif;background:#1F2933;color:#fff;border:0;border-radius:8px;padding:8px 14px;cursor:pointer}
+  .export-pdf-btn:hover{background:#2E86AB}
+  @media print{
+    @page{size:A4;margin:12mm}
+    body{background:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .no-print,.export-pdf-btn,button,nav{display:none!important}
+    .print-expand,[hidden].print-expand,details{display:block!important;height:auto!important;overflow:visible!important}
+    section,.card{break-inside:avoid}
+  }
+</style>
+<style>@media print{.after.locked{filter:none!important}.why{display:block!important}header{background:#fff;color:var(--ink)}}</style>
+</head>
+<body>
+<header><div class="in">
+  <h1>🧪 Prompt Playground · Before / After</h1>
+  <span class="score" id="score">คะแนน 0 / 6</span>
+  <button class="export-pdf-btn no-print" onclick="window.print()" title="บันทึกเป็น PDF (เลือก Save as PDF)">⬇ Export PDF</button>
+</div></header>
+<main>
+  <p>อ่าน <b>Before</b> แล้วเดาว่าจุดอ่อนหลักคืออะไร → กดคำตอบ → ดู <b>After</b> ที่แก้แล้ว · ตัวอย่างทั้งหมดใช้ข้อมูลจำลอง</p>
+  <div id="cards"></div>
+
+  <section class="card" id="builder">
+    <h2>🛠 ลองประกอบ prompt ของคุณ (Input → Process → Output)</h2>
+    <label for="fi">Input — ไฟล์/โฟลเดอร์ไหน ข้อมูลอะไร</label><textarea id="fi" placeholder="เช่น ไฟล์ทั้งหมดใน input/workshop_b_scattered/"></textarea>
+    <label for="fp">Process — ให้ Claude ทำอะไร</label><textarea id="fp" placeholder="เช่น รวมเป็นตารางเดียว เทียบ Budget vs Actual รายไซต์รายปี"></textarea>
+    <label for="fo">Output — รูปแบบ ที่เก็บ ชื่อไฟล์</label><textarea id="fo" placeholder="เช่น Excel ใน output/ ชื่อ ops_summary.xlsx + สรุป 5 บรรทัด"></textarea>
+    <div class="opts">
+      <label><input type="checkbox" id="o1"> Use your own words — ทวนเป้าหมายก่อน</label>
+      <label><input type="checkbox" id="o2"> Interview — ถามฉันทีละ 1 ข้อก่อน</label>
+      <label><input type="checkbox" id="o3"> Prototype first — ทำตัวอย่าง 3 แบบก่อน</label>
+      <label><input type="checkbox" id="o4"> Plan → Approve → Execute — ห้ามแตะไฟล์จนกว่าจะอนุมัติ</label>
+      <label><input type="checkbox" id="o5"> ห้ามเดา — ถ้าข้อมูลไม่พอให้บอก</label>
+    </div>
+    <div class="meter" title="ความครบของ prompt"><i id="meter"></i></div>
+    <div id="out"></div>
+    <p class="no-print"><button class="btn" id="copy">Copy prompt</button></p>
+  </section>
+</main>
+<footer>Banpu · Claude for Business (หลักสูตรอบรม) · M2 · ข้อมูลจำลองทั้งหมด · ไม่มีการเรียก AI จากหน้านี้</footer>
+<script>
+const PAIRS=[
+ {pat:"Input → Process → Output",title:"สรุปไฟล์ในโฟลเดอร์",before:"วิเคราะห์ไฟล์ในโฟลเดอร์นี้ให้หน่อย",
+  after:"Input: ไฟล์ Excel ทั้งหมดใน input/workshop_b_scattered/\nProcess: ทำตาราง inventory (ไฟล์ · ไซต์ · ช่วงเวลา · หน่วย · ปัญหา) แล้วแนะนำไฟล์ที่ควรใช้\nOutput: ตารางในแชต ยังไม่สร้างไฟล์",
+  opts:["ไม่บอก Input","ไม่บอก Output","ไม่บอกทั้ง Process ที่ชัด และ Output"],ans:2,why:"\"วิเคราะห์\" กว้างเกินไป Claude จะเดาเองว่าจะวิเคราะห์อะไรและส่งผลแบบไหน",tags:["Input","Process","Output"]},
+ {pat:"Plan → Approve → Execute",title:"ย้ายไฟล์",before:"จัดไฟล์ในโฟลเดอร์ให้เป็นระเบียบ",
+  after:"เสนอโครงสร้างโฟลเดอร์ใหม่และตาราง ย้ายจาก→ไป ก่อน\nห้ามย้าย เปลี่ยนชื่อ หรือลบไฟล์ใด ๆ จนกว่าฉันจะพิมพ์ว่า \"อนุมัติ\"\nไฟล์ที่ไม่แน่ใจให้ไป _ตรวจด้วยคน/ ห้ามลบ",
+  opts:["ไม่มีจุดให้คนอนุมัติก่อนลงมือ","ภาษาไม่สุภาพ","ไม่บอกจำนวนไฟล์"],ans:0,why:"งานย้าย/ลบ/เขียนทับ ต้องมี Plan → Approve → Execute เสมอ ไม่งั้นย้อนกลับยาก",tags:["HITL","copy-before-write"]},
+ {pat:"Use your own words",title:"ทำสไลด์",before:"ทำสไลด์สรุปผลผลิตให้หน่อย",
+  after:"ทำสไลด์สรุปผลผลิตจาก output/ops_insight.xlsx\nก่อนเริ่ม ให้ทวนเป้าหมายด้วยคำของคุณเอง 3 บรรทัด: ทำเพื่อใคร ใช้ไฟล์ไหน ได้อะไรออกมา แล้วรอฉันยืนยัน",
+  opts:["ควรขอให้ทำ 20 หน้า","ไม่มีการเช็กว่า Claude เข้าใจเป้าหมายตรงกันก่อน","ควรใช้ภาษาอังกฤษ"],ans:1,why:"ให้ Claude ทวนเป้าหมายก่อน = จับความเข้าใจผิด (ผู้ฟัง ช่วงเวลา หน่วย) ตั้งแต่ 30 วินาทีแรก",tags:["Use your own words"]},
+ {pat:"Interview pattern",title:"งานที่บริบทยังไม่ชัด",before:"ช่วยเขียนข้อเสนอโครงการปรับปรุงถนนขนส่ง ให้ครบทุกเรื่อง ตอบคำถามเหล่านี้ด้วย: งบเท่าไร ใครอนุมัติ เมื่อไร ความเสี่ยงอะไร ผู้ฟังคือใคร...",
+  after:"ฉันต้องการข้อเสนอโครงการปรับปรุงถนนขนส่ง (ไซต์สมมติ ดอยหินดำ)\nสัมภาษณ์ฉันทีละ 1 คำถาม จนเข้าใจ เป้าหมาย ผู้ฟัง ข้อมูล ข้อจำกัด\nเมื่อครบ เขียน brief 1 หน้าให้ฉันยืนยันก่อนเขียนฉบับเต็ม",
+  opts:["ถามหลายเรื่องพร้อมกัน ทำให้ตอบไม่ลึก และไม่มี brief ให้ยืนยัน","สั้นเกินไป","ไม่ได้ใส่ชื่อไฟล์"],ans:0,why:"แนวคิด \"grill me\" ของ Matt Pocock: ถามทีละข้อ คำถามถัดไปปรับตามคำตอบ แล้วสรุปเป็น brief",tags:["Interview","brief"]},
+ {pat:"Prototype first",title:"เลือกสไตล์ก่อนทำจริง",before:"ทำ deck 15 หน้าจากข้อมูลนี้ สวย ๆ",
+  after:"ก่อนทำฉบับเต็ม ให้ทำสไลด์หน้า \"ภาพรวม Budget vs Actual\" 3 สไตล์: Executive · Visual · Detailed\nบอกจุดเด่น/จุดอ่อนแบบละ 1 บรรทัด แล้วรอฉันเลือก",
+  opts:["\"สวย ๆ\" ไม่มีเกณฑ์ และต้องแก้ทั้ง 15 หน้าถ้าไม่ชอบ","ควรขอ 30 หน้า","ไม่ได้บอกฟอนต์"],ans:0,why:"เลือกจากตัวอย่าง 1 หน้า ถูกกว่าแก้ deck ทั้งชุด ทั้งเวลาและ usage",tags:["Prototype first","usage"]},
+ {pat:"ไฟล์ใหญ่",title:"PDF 320 หน้า",before:"อ่าน PDF นี้ทั้งหมดแล้วบอกค่าปรับส่งของล่าช้า",
+  after:"ขั้นที่ 1: ทำสารบัญ (บท · ช่วงหน้า)\nขั้นที่ 2: อ่านเฉพาะบท Supplier contracts แล้วตอบว่าค่าปรับส่งของล่าช้าคือเท่าไร\nระบุเลขหน้าและยกประโยคต้นฉบับ ถ้าไม่เจอให้บอกว่าไม่เจอ อย่าเดา",
+  opts:["ไม่ขอเลขหน้า/หลักฐาน และให้อ่านทั้งเล่มในครั้งเดียว","ควรแปลเป็นอังกฤษก่อน","ควรถามเป็นข้อ ๆ"],ans:0,why:"ไฟล์ใหญ่: ดูโครงก่อน → แบ่งอ่าน → ขอเลขหน้า เพื่อให้คนตรวจกลับได้ (คำตอบในไฟล์จำลองอยู่หน้า 47)",tags:["limits","cite"]}
+];
+let st={}; try{st=JSON.parse(localStorage.getItem("m2-playground")||"{}")}catch(e){}
+const save=()=>{try{localStorage.setItem("m2-playground",JSON.stringify(st))}catch(e){}};
+const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const cards=document.getElementById("cards");
+PAIRS.forEach((p,i)=>{
+  const c=document.createElement("section"); c.className="card";
+  c.innerHTML=`<span class="pat">${esc(p.pat)}</span><h2>${i+1}. ${esc(p.title)}</h2>
+   <div class="pair"><div class="box before"><h3>❌ Before</h3>${esc(p.before)}</div>
+   <div class="box after locked" id="a${i}"><h3>✅ After</h3>${esc(p.after)}</div></div>
+   <div class="quiz no-print"><b>จุดอ่อนหลักของ Before?</b>${p.opts.map((o,k)=>`<button data-i="${i}" data-k="${k}">${esc(o)}</button>`).join("")}</div>
+   <div class="why" id="w${i}">💡 ${esc(p.why)} <span class="tags">${p.tags.map(t=>`<span>${esc(t)}</span>`).join("")}</span></div>`;
+  cards.appendChild(c);
+});
+function reveal(i,k){
+  const p=PAIRS[i]; document.getElementById("a"+i).classList.remove("locked"); document.getElementById("w"+i).classList.add("show");
+  document.querySelectorAll(`.quiz button[data-i="${i}"]`).forEach(b=>{b.disabled=true;if(+b.dataset.k===p.ans)b.classList.add("right");else if(+b.dataset.k===k)b.classList.add("wrong")});
+}
+cards.addEventListener("click",e=>{const b=e.target.closest("button[data-i]");if(!b||b.disabled)return;
+  const i=+b.dataset.i,k=+b.dataset.k; st[i]={k,ok:k===PAIRS[i].ans}; save(); reveal(i,k); score()});
+function score(){const n=Object.values(st).filter(x=>x&&x.ok).length;document.getElementById("score").textContent=`คะแนน ${n} / ${PAIRS.length}`}
+Object.entries(st).forEach(([i,v])=>{if(v&&PAIRS[i])reveal(+i,v.k)}); score();
+
+const F=["fi","fp","fo","o1","o2","o3","o4","o5"].reduce((a,id)=>(a[id]=document.getElementById(id),a),{});
+function build(){
+  const v=id=>F[id].value.trim(), on=id=>F[id].checked;
+  let t=`Input: ${v("fi")||"[ไฟล์/โฟลเดอร์]"}\nProcess: ${v("fp")||"[ทำอะไร]"}\nOutput: ${v("fo")||"[รูปแบบ + ที่เก็บ + ชื่อไฟล์]"}`;
+  if(on("o2")) t="สัมภาษณ์ฉันทีละ 1 คำถามก่อนเริ่ม จนเข้าใจเป้าหมาย ผู้ฟัง และรูปแบบผลลัพธ์ แล้วเขียน brief ให้ยืนยัน\n\n"+t;
+  if(on("o1")) t+="\nก่อนเริ่ม ให้ทวนเป้าหมายด้วยคำของคุณเอง 3 บรรทัด แล้วรอฉันยืนยัน";
+  if(on("o3")) t+="\nก่อนทำฉบับเต็ม ให้ทำตัวอย่าง 3 แบบที่ต่างกันชัดเจน แล้วรอฉันเลือก";
+  if(on("o4")) t+="\nเสนอแผนก่อน ห้ามสร้าง แก้ ย้าย หรือลบไฟล์ใด ๆ จนกว่าฉันจะพิมพ์ว่า \"อนุมัติ\"";
+  if(on("o5")) t+="\nใช้เฉพาะข้อมูลในไฟล์ ถ้าข้อมูลไม่พอให้บอก อย่าเดา";
+  document.getElementById("out").textContent=t;
+  const pts=["fi","fp","fo"].filter(id=>v(id)).length*2+["o1","o2","o3","o4","o5"].filter(on).length;
+  document.getElementById("meter").style.width=Math.min(100,pts/11*100)+"%";
+}
+Object.values(F).forEach(x=>x.addEventListener("input",build)); build();
+document.getElementById("copy").onclick=async e=>{const t=document.getElementById("out").textContent;
+  try{await navigator.clipboard.writeText(t)}catch(_){} e.target.textContent="Copied ✓";setTimeout(()=>e.target.textContent="Copy prompt",1500)};
+</script>
+</body>
+</html>

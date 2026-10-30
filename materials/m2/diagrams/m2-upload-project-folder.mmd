@@ -1,0 +1,14 @@
+%% M2 · เลือกวิธีให้ข้อมูล Claude: Upload vs Project vs Cowork folder
+%%{init: {"htmlLabels": false, "flowchart": {"htmlLabels": false}}}%%
+flowchart LR
+    Q{"งานนี้ใช้ไฟล์แบบไหน?"}:::human
+    U["Upload ไฟล์ในแชต<br/>ครั้งเดียว ไม่กี่ไฟล์"]:::data
+    P["Project<br/>เอกสารอ้างอิงที่ใช้ซ้ำ + คำสั่งประจำ"]:::data
+    F["ให้ Cowork เข้าถึงโฟลเดอร์<br/>หลายไฟล์ อ่าน/สร้าง/ย้ายได้"]:::data
+    C["Claude ทำงาน"]:::ai
+    Q -->|"ถามครั้งเดียว"| U --> C
+    Q -->|"ใช้ซ้ำทุกสัปดาห์"| P --> C
+    Q -->|"ไฟล์เยอะ ต้องสร้างไฟล์ใหม่"| F --> C
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;

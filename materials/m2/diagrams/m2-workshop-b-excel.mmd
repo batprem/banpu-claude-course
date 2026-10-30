@@ -1,0 +1,15 @@
+%% M2 · Workshop B: Excel กระจัดกระจาย → Insight (output ส่งต่อ Workshop A)
+%%{init: {"htmlLabels": false, "flowchart": {"htmlLabels": false}}}%%
+flowchart TB
+    subgraph R1["เตรียมข้อมูล"]
+      direction LR
+      D["โฟลเดอร์ 13 ไฟล์<br/>หลายรูปแบบ"]:::data --> E["1 Explore<br/>สำรวจไฟล์"]:::ai --> F["2 Find files<br/>ตัดไฟล์ซ้ำ/เก่า"]:::ai --> H1{"ยืนยันไฟล์"}:::human --> A["3 Align schemas<br/>คอลัมน์ หน่วย ชื่อไซต์"]:::ai --> H2{"ยืนยัน map"}:::human
+    end
+    subgraph R2["วิเคราะห์"]
+      direction LR
+      M["4 Merge<br/>ตารางเดียว + log"]:::ai --> N["5 Analyse<br/>Budget vs Actual"]:::ai --> I["6 Insight / Dashboard"]:::data --> H3{"ตรวจต้นทาง"}:::human --> W["Input ของ Workshop A"]:::data
+    end
+    R1 --> R2
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;

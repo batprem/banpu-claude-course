@@ -1,0 +1,19 @@
+%% M2 · Prompt Patterns 3 แบบ (ใช้ต่อกันได้)
+%%{init: {"htmlLabels": false, "flowchart": {"htmlLabels": false}}}%%
+flowchart LR
+    subgraph P1["1 Use your own words"]
+      direction TB
+      A1["เราสั่งงาน"]:::human --> A2["Claude ทวนเป้าหมาย<br/>ด้วยคำของตัวเอง"]:::ai --> A3{"ตรงไหม?"}:::human
+    end
+    subgraph P2["2 Interview pattern"]
+      direction TB
+      B1["Claude ถามทีละ 1 ข้อ"]:::ai --> B2["เราตอบ (วนจนครบ)"]:::human --> B3["Claude เขียน brief"]:::ai --> B4{"ยืนยัน"}:::human
+    end
+    subgraph P3["3 Prototype first"]
+      direction TB
+      C1["Claude ทำตัวอย่าง 3 แบบ"]:::ai --> C2{"เลือก 1"}:::human --> C3["ทำฉบับเต็ม"]:::ai
+    end
+    P1 --> P2 --> P3
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;

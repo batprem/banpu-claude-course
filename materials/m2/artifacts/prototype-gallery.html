@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M2 Prototype Gallery</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--human:#E4572E;--ai:#2E86AB;--data:#3BA55C;--ink:#1F2933;--paper:#FAF8F3;--warn:#F2A541;--line:#e2dccd}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 'IBM Plex Sans Thai',sans-serif}
+header{background:var(--human);color:#fff;padding:16px}
+header .in{max-width:1180px;margin:0 auto;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+header h1{margin:0;font-size:24px;flex:1;min-width:220px}
+main{max-width:1180px;margin:0 auto;padding:16px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.opt{background:#fff;border:2px solid var(--line);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:8px}
+.opt.mine{border-color:var(--human);box-shadow:0 0 0 3px #e4572e33}
+.opt h2{margin:0;font-size:18px}
+.slide{aspect-ratio:16/9;border-radius:8px;overflow:hidden;border:1px solid #ddd;background:#fff;padding:10px 12px;font-size:11px;line-height:1.35;position:relative}
+.slide .t{font-weight:700;font-size:13px;margin-bottom:6px}
+.exec{background:#1F2933;color:#fff}
+.exec .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:8px}
+.exec .k b{display:block;font-size:22px;color:var(--warn)}
+.exec .k{background:#ffffff14;border-radius:6px;padding:6px}
+.detail table{width:100%;border-collapse:collapse;font-size:9.5px}
+.detail th,.detail td{border-bottom:1px solid #e6e1d5;padding:1px 3px;text-align:right}
+.detail th:first-child,.detail td:first-child{text-align:left}
+.detail ul{margin:4px 0 0 14px;padding:0}
+.neg{color:var(--human);font-weight:700}
+.pros{font-size:14px}
+.vote{border:0;background:var(--human);color:#fff;border-radius:8px;padding:8px;font:700 15px 'IBM Plex Sans Thai';cursor:pointer}
+.bar{height:12px;border-radius:6px;background:#eee;overflow:hidden}.bar i{display:block;height:100%;background:var(--ai);width:0;transition:width .4s}
+.count{font-size:14px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-top:16px}
+textarea{width:100%;min-height:60px;font:15px 'IBM Plex Sans Thai';border:1px solid var(--line);border-radius:8px;padding:8px}
+.reasons{list-style:none;padding:0;margin:8px 0 0;font-size:14px}
+.reasons li{border-left:4px solid var(--ai);padding:2px 8px;margin:4px 0;background:#f6f9fb}
+.mode{font-size:13px;opacity:.85}
+footer{font-size:13px;opacity:.7;text-align:center;padding:16px}
+@media (max-width:860px){.grid{grid-template-columns:1fr}}
+</style>
+<!-- Export PDF snippet (materials/_shared/export-pdf.html) -->
+<style>
+  .export-pdf-btn{font:600 14px 'IBM Plex Sans Thai',sans-serif;background:#1F2933;color:#fff;border:0;border-radius:8px;padding:8px 14px;cursor:pointer}
+  .export-pdf-btn:hover{background:#2E86AB}
+  @media print{
+    @page{size:A4;margin:12mm}
+    body{background:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .no-print,.export-pdf-btn,button,nav{display:none!important}
+    .print-expand,[hidden].print-expand,details{display:block!important;height:auto!important;overflow:visible!important}
+    section,.card{break-inside:avoid}
+  }
+</style>
+<style>@media print{header{background:#fff;color:var(--ink)}.grid{grid-template-columns:repeat(3,1fr)}textarea{display:none}}</style>
+</head>
+<body>
+<header><div class="in">
+  <h1>🎨 Prototype Gallery · เลือก 1 สไตล์ก่อนสร้างทั้ง deck</h1>
+  <span class="mode" id="mode"></span>
+  <button class="export-pdf-btn no-print" onclick="window.print()" title="บันทึกเป็น PDF (เลือก Save as PDF)">⬇ Export PDF</button>
+</div></header>
+<main>
+  <p>สไลด์เดียวกัน (<b>ภาพรวม Budget vs Actual ปี 2568</b>, ข้อมูลจำลอง) 3 สไตล์ · ผู้ฟังสมมติ: คณะผู้บริหารสายปฏิบัติการ มีเวลา 10 นาที · โหวต 1 แบบ แล้วเขียนเหตุผล 1 บรรทัด</p>
+  <div class="grid" id="grid"></div>
+  <section class="card">
+    <b>เหตุผลของคุณ (1 บรรทัด)</b>
+    <textarea id="why" placeholder="เช่น ผู้บริหารมีเวลาน้อย ต้องเห็นตัวเลขที่ต้องตัดสินใจทันที"></textarea>
+    <p class="no-print"><button class="vote" id="send" style="background:var(--ai)">บันทึกเหตุผล</button></p>
+    <b>เหตุผลล่าสุดจากห้อง</b>
+    <ul class="reasons" id="reasons"></ul>
+  </section>
+  <section class="card">
+    <b>💡 Prototype first</b> — เลือกจาก 1 หน้าแล้วค่อย build ทั้ง deck ถูกกว่าแก้ 15 หน้า · ผสมได้ เช่น "ใช้หัวข้อแบบ Executive + กราฟแบบ Visual" แล้วสั่ง Claude ด้วย prompt M2-P14
+  </section>
+</main>
+<footer>Banpu · Claude for Business (หลักสูตรอบรม) · M2 Workshop A · ตัวเลขจำลองจาก data/answer_key/insights.md · ไม่มีการเรียก AI จากหน้านี้</footer>
+<script>
+// 2568 Budget vs Actual cost (million THB), synthetic
+const SITES=[["A ภูผาทอง",5980.6,6066.3],["B ดอยหินดำ",4482.6,4525.7],["C ผาแดง",3290.0,3863.3],["D ลำน้ำใส",12155.7,11631.5],["E ทุ่งทอง",8863.9,8847.3],["F แสงตะวัน",86.6,89.8]];
+const pct=(b,a)=>(100*(a-b)/b);
+function bars(){const max=12500,W=300,H=120,bw=18;let s=`<svg viewBox="0 0 ${W} ${H+28}" width="100%" role="img" aria-label="กราฟ Budget vs Actual">`;
+  SITES.forEach(([n,b,a],i)=>{const x=14+i*48,hb=b/max*H,ha=a/max*H;
+    s+=`<rect x="${x}" y="${H-hb}" width="${bw}" height="${hb}" fill="#c9c3b5"/><rect x="${x+bw+2}" y="${H-ha}" width="${bw}" height="${ha}" fill="${a>b*1.05?'#E4572E':'#2E86AB'}"/>
+    <text x="${x+bw}" y="${H+12}" font-size="9" text-anchor="middle">${n.split(" ")[0]}</text>`});
+  return s+`<text x="4" y="${H+25}" font-size="8">■ เทา = Budget · ฟ้า = Actual · ส้ม = เกินงบ >5%</text></svg>`}
+const STYLES=[
+ {id:"exec",name:"1 · Executive",pros:"ตัวเลขใหญ่ อ่าน 5 วินาทีจบ · ไม่มีรายละเอียดให้ถามต่อ",
+  html:`<div class="slide exec"><div class="t">ต้นทุนรวมปี 2568 ใกล้งบ แต่ผาแดงเกินงบ 17%</div>
+   <div class="kpis"><div class="k"><b>35.0k</b>ล้านบาท ต้นทุนจริงรวม</div><div class="k"><b>+0.5%</b>เทียบงบรวม</div><div class="k"><b style="color:#ff8a65">+17.4%</b>ผาแดง เกินงบ</div></div>
+   <div style="margin-top:8px">➜ ขออนุมัติ: ตรวจสอบต้นทุนขนส่งไซต์ผาแดง</div></div>`},
+ {id:"visual",name:"2 · Visual",pros:"เห็นภาพเทียบทุกไซต์ · ไซต์เล็ก (F) มองแทบไม่เห็นในสเกลเดียวกัน",
+  html:`<div class="slide"><div class="t">ผาแดงเป็นไซต์เดียวที่ต้นทุนเกินงบเกิน 5% ในปี 2568</div>${bars()}</div>`},
+ {id:"detail",name:"3 · Detailed",pros:"ครบทุกตัวเลข ตรวจสอบได้ · ตัวหนังสือเล็ก ไม่เหมาะฉายให้ผู้บริหาร",
+  html:`<div class="slide detail"><div class="t">Budget vs Actual ต้นทุน ปี 2568 (ล้านบาท)</div>
+   <table><tr><th>ไซต์</th><th>Budget</th><th>Actual</th><th>%</th></tr>${SITES.map(([n,b,a])=>{const p=pct(b,a);return `<tr><td>${n}</td><td>${b.toLocaleString()}</td><td>${a.toLocaleString()}</td><td class="${p>5?'neg':''}">${p>0?'+':''}${p.toFixed(1)}</td></tr>`}).join("")}</table>
+   <ul><li>ผาแดง: ต้นทุนต่อหน่วย 1,408 → 1,809 บาท/ตัน (ม.ค.–ธ.ค.)</li><li>ลำน้ำใส: overhaul มี.ค. ไม่อยู่ในงบ</li></ul></div>`}
+];
+const grid=document.getElementById("grid");
+STYLES.forEach(s=>{const d=document.createElement("section");d.className="opt";d.id="o-"+s.id;
+  d.innerHTML=`<h2>${s.name}</h2>${s.html}<div class="pros">${s.pros}</div>
+  <button class="vote no-print" data-v="${s.id}">โหวตแบบนี้</button><div class="bar"><i id="b-${s.id}"></i></div><div class="count" id="c-${s.id}">0 โหวต</div>`;grid.appendChild(d)});
+
+// Storage: shared Artifact storage if the host provides it (claude.ai window.storage), otherwise this browser only.
+const shared=typeof window.storage==="object"&&window.storage&&typeof window.storage.set==="function";
+document.getElementById("mode").textContent=shared?"🔗 ผลโหวตรวมทั้งห้อง":"💻 ผลโหวตเฉพาะเครื่องนี้";
+let me; try{me=localStorage.getItem("m2-gallery-id")}catch(e){} if(!me){me=Math.random().toString(36).slice(2,10);try{localStorage.setItem("m2-gallery-id",me)}catch(e){}}
+const local={get(){try{return JSON.parse(localStorage.getItem("m2-gallery")||"{}")}catch(e){return {}}},set(o){try{localStorage.setItem("m2-gallery",JSON.stringify(o))}catch(e){}}};
+async function put(field,val){
+  if(shared){try{const r=await window.storage.get("v:"+me,true).catch(()=>null);const o=r&&r.value?JSON.parse(r.value):{};o[field]=val;await window.storage.set("v:"+me,JSON.stringify(o),true);return}catch(e){}}
+  const all=local.get();all[me]=Object.assign(all[me]||{},{[field]:val});local.set(all)}
+async function readAll(){
+  if(shared){try{const l=await window.storage.list("v:",true);const keys=(l&&l.keys)||[];const out=[];
+    for(const k of keys){const r=await window.storage.get(typeof k==="string"?k:k.key,true).catch(()=>null);if(r&&r.value)out.push(JSON.parse(r.value))}return out}catch(e){}}
+  return Object.values(local.get())}
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+async function draw(){const all=await readAll();const n=Math.max(1,all.filter(x=>x.vote).length);
+  STYLES.forEach(s=>{const c=all.filter(x=>x.vote===s.id).length;document.getElementById("b-"+s.id).style.width=(100*c/n)+"%";document.getElementById("c-"+s.id).textContent=c+" โหวต"});
+  const mine=(all.find(x=>x.id===me)||{}).vote; document.querySelectorAll(".opt").forEach(o=>o.classList.toggle("mine",o.id==="o-"+mine));
+  document.getElementById("reasons").innerHTML=all.filter(x=>x.why).slice(-8).reverse().map(x=>`<li><b>${esc((STYLES.find(s=>s.id===x.vote)||{name:"—"}).name)}</b> · ${esc(x.why)}</li>`).join("")||"<li>ยังไม่มี</li>"}
+grid.addEventListener("click",async e=>{const b=e.target.closest("button[data-v]");if(!b)return;await put("id",me);await put("vote",b.dataset.v);draw()});
+document.getElementById("send").onclick=async()=>{const t=document.getElementById("why").value.trim().slice(0,140);if(!t)return;await put("id",me);await put("why",t);draw()};
+draw(); if(shared) setInterval(draw,5000);
+</script>
+</body>
+</html>

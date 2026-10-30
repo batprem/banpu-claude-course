@@ -1,0 +1,12 @@
+%% M2 · Prompt Framework: Input → Process → Output
+%%{init: {"htmlLabels": false, "flowchart": {"htmlLabels": false}}}%%
+flowchart LR
+    I["Input<br/>ไฟล์/โฟลเดอร์ไหน ข้อมูลอะไร"]:::data
+    P["Process<br/>ให้ Claude ทำอะไร ทีละขั้น"]:::ai
+    O["Output<br/>รูปแบบ ที่เก็บ ชื่อไฟล์"]:::data
+    H["คนตรวจผล<br/>ตรงเป้าหมายไหม"]:::human
+    I --> P --> O --> H
+    H -.->|"ปรับ prompt"| I
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;
