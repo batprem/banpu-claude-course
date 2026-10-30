@@ -1,4 +1,4 @@
-# Course materials plan (draft, not approved yet)
+# Course materials plan (approved by Prem, 30 Oct 2026)
 
 ## Modules (from proposal)
 M1 Foundation & Security First · M2 Cowork with files and folders · M3 M365 Connectors · M4 Document Factory & Artifacts
