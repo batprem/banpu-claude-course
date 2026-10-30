@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="th"><head><meta charset="utf-8">
+<title>ข้อเสนอหลักสูตร Claude for Business – บ้านปู</title>
+<style>
+@page { size: A4; margin: 18mm 17mm 18mm 17mm;
+  @bottom-left { content: "ข้อเสนอหลักสูตร Claude for Business | Data Karate"; font-family: Sarabun; font-size: 8.5pt; color: #6b7a90; }
+  @bottom-right { content: "หน้า " counter(page) " / " counter(pages); font-family: Sarabun; font-size: 8.5pt; color: #6b7a90; }
+}
+@page :first { margin: 0; @bottom-left{content:none} @bottom-right{content:none} }
+:root { --navy:#0b2a5b; --blue:#1565c0; --light:#e8f0fb; --line:#c9d6ea; --accent:#00a3e0; }
+* { box-sizing: border-box; }
+body { font-family: 'Sarabun', sans-serif; font-size: 10.5pt; line-height: 1.55; color: #1e2a3a; margin:0; }
+h1,h2,h3 { font-family: 'Prompt','Sarabun',sans-serif; color: var(--navy); font-weight:600; line-height:1.35; }
+h2 { font-size: 15pt; margin: 0 0 8px; break-after: avoid; padding: 4px 0 6px 12px; border-left: 6px solid var(--blue); background: linear-gradient(90deg,var(--light),#fff); }
+h3 { font-size: 11.5pt; margin: 12px 0 4px; color: var(--blue); }
+p { margin: 4px 0 8px; }
+ul { margin: 2px 0 8px; padding-left: 20px; } li { margin: 1px 0; }
+.section { margin-bottom: 14px; }
+.pb { break-before: page; }
+table { width:100%; border-collapse: collapse; margin: 6px 0 10px; font-size: 9.6pt; }
+th { background: var(--navy); color:#fff; font-weight:600; padding:5px 6px; text-align:left; }
+td { border-bottom: 1px solid var(--line); padding:4px 6px; vertical-align: top; }
+tr:nth-child(even) td { background:#f6f9fd; }
+tr { break-inside: avoid; }
+.break td { background:#fff4e0 !important; color:#7a4b00; font-style: italic; }
+.tag { display:inline-block; padding:0 6px; border-radius:8px; font-size:8.5pt; font-weight:600; white-space:nowrap; }
+.must { background:#dbe8fb; color:#0b2a5b; } .should { background:#e3f5ea; color:#1b5e20; } .aw { background:#f1e6fb; color:#5b2a86; }
+.ho { background:#0b2a5b; color:#fff; } .demo { background:#1565c0; color:#fff; } .awd { background:#8e99ab; color:#fff; }
+.box { border:1px solid var(--line); background: var(--light); border-radius:6px; padding:8px 12px; margin:8px 0; break-inside: avoid; }
+.warn { border-left:5px solid #d32f2f; background:#fdecec; border-radius:4px; padding:7px 12px; margin:8px 0; break-inside: avoid; }
+.mod { border:1px solid var(--line); border-radius:6px; margin:8px 0; break-inside: avoid; overflow:hidden; }
+.mod .hd { background: var(--navy); color:#fff; padding:5px 10px; font-family:Prompt,Sarabun; font-weight:500; display:flex; justify-content:space-between; }
+.mod .hd span.t { color:#9fd8ff; font-size:9.5pt; }
+.mod .bd { padding:6px 10px 4px; font-size:9.8pt; }
+.mod .bd b.l { color: var(--blue); }
+.req { font-size:9pt; color:#5b6b82; }
+.grid2 { display:grid; grid-template-columns: 1fr 1fr; gap:10px; }
+/* cover */
+.cover { height: 297mm; width:210mm; position:relative; background: linear-gradient(160deg, #0b2a5b 0%, #12407f 55%, #1565c0 100%); color:#fff; padding: 30mm 22mm; }
+.cover .band { position:absolute; left:0; right:0; bottom:0; height:62mm; background:#fff; color:#1e2a3a; padding: 12mm 22mm; }
+.cover .kicker { font-family:Prompt; letter-spacing:1px; color:#9fd8ff; font-size:11pt; }
+.cover h1 { color:#fff; font-size: 30pt; margin: 10mm 0 3mm; line-height:1.25; }
+.cover .sub { font-size: 16pt; font-family:Prompt; font-weight:300; color:#dce9fb; }
+.cover .line { width:40mm; height:4px; background: var(--accent); margin: 10mm 0; }
+.cover .meta { font-size:12pt; line-height:1.9; }
+.cover .ver { display:inline-block; margin-top:6mm; border:1px solid #9fd8ff; color:#9fd8ff; padding:2px 12px; border-radius:14px; font-size:10.5pt; }
+.cover .band b { color: var(--navy); }
+</style></head><body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="kicker">PROPOSAL · IN-HOUSE TRAINING · BANPU HI-I TEAM</div>
+  <h1>หลักสูตร Claude for Business<br>สำหรับพนักงานบ้านปู</h1>
+  <div class="sub">หลักสูตร 1 วัน (09:00–17:00) · Claude Desktop / Cowork</div>
+  <div class="line"></div>
+  <div class="meta">
+    เสนอต่อ: ทีม Hi-I (AI Transformation Working Group)<br>
+    บริษัท บ้านปู จำกัด (มหาชน)<br>
+    วันที่: 15 ตุลาคม 2569 (October 2026)
+  </div>
+  <div class="ver">ฉบับปรับปรุงหลังประชุม 15 ต.ค.</div>
+  <div class="band">
+    <div style="font-family:Prompt;font-size:10pt;color:#6b7a90;">จัดทำและนำเสนอโดย</div>
+    <div style="font-family:Prompt;font-size:17pt;color:#0b2a5b;font-weight:600;margin:2px 0;">Prem Chotepanit (เปรม) · Data Karate</div>
+    <div style="font-size:10.5pt;line-height:1.7;">Claude Certified Architect – Foundations (CCAR-F) &amp; Professional (CCAR-P) · NVIDIA Certified Professional (Agentic AI) · Kaggle Grandmaster<br>
+    <span style="color:#6b7a90;">เอกสารนี้เป็นข้อเสนอด้านเนื้อหาและรูปแบบการอบรม · ใบเสนอราคาแยกต่างหาก</span></div>
+  </div>
+</div>
+
+<!-- 1-2 -->
+<div class="section">
+<h2>1. ความเป็นมาและวัตถุประสงค์</h2>
+<p>บ้านปูได้เปิดใช้ Claude ผ่าน <b>Team License</b> สำหรับพนักงานกว่า 200 คน ภายใต้การขับเคลื่อนของทีม Hi-I (AI Transformation Working Group) โดยมีเป้าหมายให้พนักงานทุกคนใช้ AI ได้อย่างมีประสิทธิภาพและปลอดภัยภายในสิ้นปีนี้ จากการประชุมเมื่อวันที่ 15 ต.ค. 2569 ทีม Hi-I ได้ให้ข้อกำหนด (requirements) 16 ข้อ ซึ่งเน้นการใช้งานจริงในบริบท Microsoft 365 ของบ้านปู ความปลอดภัยของข้อมูล และการสร้างงานอัตโนมัติที่มีคนตรวจสอบในจุดสำคัญ</p>
+<p>เอกสารฉบับนี้ปรับปรุงจากโครงร่างเดิม 6 โมดูล ให้เป็น <b>8 โมดูลใน 1 วัน</b> โดยแยก <b>Automation</b> ออกเป็นโมดูลเฉพาะตามความต้องการเพิ่มเติมของลูกค้า และครอบคลุม requirement ครบทั้ง 16 ข้อ (ดูตารางในหัวข้อที่ 5)</p>
+<h3>วัตถุประสงค์ของหลักสูตร</h3>
+<ul>
+<li>ให้พนักงานเข้าใจว่า Claude / Cowork ทำงานแบบ “Agent” อย่างไร และเลือกใช้ Chat, Project, Skill, Agent และ Artifacts ได้เหมาะกับงาน</li>
+<li>สร้างวินัยด้าน <b>Security &amp; Sensitive Data</b> เป็นพื้นฐานบังคับ: ข้อมูลอ่อนไหวต้องไปที่เครื่องมือที่บริษัทกำหนดสำหรับข้อมูลอ่อนไหวเท่านั้น ไม่ใช่ Claude</li>
+<li>ฝึกใช้ Claude กับไฟล์และ Connector ของ Microsoft 365 ที่ IT อนุมัติ (SharePoint, Outlook) อย่างปลอดภัย รวมถึงหลัก <b>copy-before-write</b></li>
+<li>สร้างงานเอกสารจริงแบบ Document Factory จากหลายแหล่งข้อมูลหลายรูปแบบ และต่อยอดเป็นงานอัตโนมัติที่มี Human-in-the-Loop</li>
+<li>รู้ข้อจำกัดจริงของเครื่องมือ (ขนาดไฟล์ usage limit ของ Team plan) และวิธีแก้ เพื่อให้นำกลับไปใช้กับงานจริงได้ทันที</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>2. กลุ่มเป้าหมายและสิ่งที่ต้องเตรียม</h2>
+<div class="grid2">
+<div class="box"><b>กลุ่มเป้าหมาย</b>
+<ul><li>พนักงานบ้านปูทุกระดับที่ได้รับ Claude Team License (ประมาณ 200+ คน)</li>
+<li>ไม่ต้องมีพื้นฐานการเขียนโปรแกรม</li>
+<li>แนะนำรุ่นละไม่เกิน 30–40 คน เพื่อให้ workshop ดูแลได้ทั่วถึง</li>
+<li>ขอบเขต: Claude เท่านั้น (Copilot มีหลักสูตรแยก 2 วันโดยวิทยากรท่านอื่น)</li></ul></div>
+<div class="box"><b>สิ่งที่ผู้เรียนต้องเตรียม (Prerequisites)</b>
+<ul><li>Laptop ที่ติดตั้ง <b>Claude Desktop</b> (เวอร์ชันล่าสุด เปิดใช้ Cowork ได้)</li>
+<li>บัญชี <b>Claude Team</b> ที่ login ได้แล้ว</li>
+<li>สิทธิ์เข้าใช้ <b>Microsoft 365</b> (Outlook, SharePoint/OneDrive)</li>
+<li><b>Sample Data Pack</b> ที่วิทยากรจัดเตรียม (ดาวน์โหลดก่อนวันอบรม)</li>
+<li>ทดสอบ login และ connector ล่วงหน้าตาม checklist ที่ส่งให้</li></ul></div>
+</div>
+</div>
+
+<div class="section">
+<h2>3. ผลลัพธ์การเรียนรู้ (Learning Outcomes)</h2>
+<p>เมื่อจบหลักสูตร ผู้เรียนจะสามารถ:</p>
+<table>
+<tr><th style="width:6%">#</th><th>ผู้เรียนทำได้</th></tr>
+<tr><td>1</td><td>แยกแยะประเภทข้อมูล (ใช้ได้ / ต้องระวัง / ห้ามใส่ Claude) และอธิบายความต่างของ Personal, Team และ Enterprise ได้</td></tr>
+<tr><td>2</td><td>เลือกใช้ Chat, Project, Skill, Agent (Cowork) และ Artifacts ได้เหมาะกับลักษณะงาน</td></tr>
+<tr><td>3</td><td>ใช้ Cowork จัดการไฟล์และโฟลเดอร์แบบ Plan → Approve → Execute โดยมีจุดหยุดให้คนตรวจสอบ</td></tr>
+<tr><td>4</td><td>เชื่อม SharePoint และ Outlook ตามแนวคิด AI → Connect → Data → Execute พร้อมเข้าใจความเสี่ยงของการเขียนกลับ (write-back)</td></tr>
+<tr><td>5</td><td>รวมข้อมูลจาก PDF, CSV, Excel, Email และ SharePoint List (ภายใน + ภายนอก) เป็นรายงานเดียวในรูปแบบ Word / Excel / PDF / PPT หรือ Artifact</td></tr>
+<tr><td>6</td><td>สร้างและแชร์ Skill ภายในทีม พร้อมตรวจความปลอดภัยของ Skill จากภายนอกก่อนใช้</td></tr>
+<tr><td>7</td><td>ออกแบบงานอัตโนมัติ (scheduled task) เช่น รายงานประจำสัปดาห์และ Daily/Weekly Insight ที่มีจุด Human-in-the-Loop</td></tr>
+<tr><td>8</td><td>ใช้งานอย่างคุ้มค่าภายใต้ usage limit รายสัปดาห์ของ Team plan และรู้วิธีแก้เมื่อเจอข้อจำกัดจริง</td></tr>
+<tr><td>9</td><td>วิเคราะห์ use case จริงของตนเอง (data, connector, output, trade-off) และมีแผนใช้งาน 30 วันหลังอบรม</td></tr>
+</table>
+</div>
+
+<!-- 4 AGENDA -->
+<div class="section pb">
+<h2>4. กำหนดการและรายละเอียดหลักสูตร (09:00–17:00)</h2>
+<table>
+<tr><th style="width:15%">เวลา</th><th>โมดูล / กิจกรรม</th><th style="width:22%">Requirement ที่ครอบคลุม</th></tr>
+<tr><td>09:00–09:15</td><td>เปิดการอบรม · เป้าหมายของวัน · ตรวจความพร้อม (login, Cowork, connector)</td><td>–</td></tr>
+<tr><td>09:15–10:15</td><td><b>M1</b> Claude Foundation &amp; Security First (บังคับ)</td><td>2, 8, 9, 13</td></tr>
+<tr class="break"><td>10:15–10:30</td><td>พักเบรก</td><td></td></tr>
+<tr><td>10:30–11:15</td><td><b>M2</b> Cowork กับไฟล์และโฟลเดอร์ในงานจริง</td><td>1, 4, 5, 7, 12</td></tr>
+<tr><td>11:15–12:00</td><td><b>M3</b> Microsoft 365 Connectors อย่างปลอดภัย</td><td>1, 3, 4, 5, 7</td></tr>
+<tr class="break"><td>12:00–13:00</td><td>พักรับประทานอาหารกลางวัน</td><td></td></tr>
+<tr><td>13:00–13:40</td><td><b>M4</b> Document Factory &amp; Artifact as Output Layer</td><td>1, 4, 6, 7, 11</td></tr>
+<tr><td>13:40–14:10</td><td><b>M5</b> Skills &amp; Plugins</td><td>8, 9, 13</td></tr>
+<tr><td>14:10–14:45</td><td><b>M6</b> Automation</td><td>5, 6, 10, 15, 16</td></tr>
+<tr class="break"><td>14:45–15:00</td><td>พักเบรก</td><td></td></tr>
+<tr><td>15:00–16:15</td><td><b>M7</b> Capstone: Use Case จริงของผู้เรียน</td><td>14 (+ ประยุกต์ 1–7)</td></tr>
+<tr><td>16:15–17:00</td><td><b>M8</b> Security Recap, Quiz &amp; แผน 30 วัน</td><td>2, 3, 9, 13</td></tr>
+</table>
+
+<div class="mod"><div class="hd">M1 · Claude Foundation &amp; Security First (บังคับ) <span class="t">09:15–10:15 · 60 นาที</span></div><div class="bd">
+<b class="l">Lecture:</b> Claude / Cowork คืออะไร แนวคิด Agent (คิด → วางแผน → ลงมือ) · Chat vs Skill vs Project vs Agent vs Artifacts ใช้เมื่อไร · <b>Personal vs Team vs Enterprise</b> และข้อจำกัดด้าน Governance/Audit ของ Team license · นโยบายบ้านปู: <b>ข้อมูลอ่อนไหวไม่ใส่ Claude</b> ให้ใช้เครื่องมืออื่นที่บริษัทกำหนด และห้ามใช้ Personal AI กับข้อมูลบริษัท · ภาพรวมการเลือก model และ usage limit รายสัปดาห์<br>
+<b class="l">Demo:</b> Chat ธรรมดา vs Cowork ทำงานเดียวกัน (สร้าง HTML Dashboard จาก Excel) ให้เห็นความต่าง<br>
+<b class="l">Workshop:</b> “Data Traffic Light” จัดประเภทตัวอย่างข้อมูล 15 รายการ เป็น เขียว (ใช้ได้) / เหลือง (ต้อง anonymize) / แดง (ห้ามใส่ Claude)
+<div class="req">Requirement: 2 (Hands-on), 8 (Demo + Lecture), 9 (แนะนำแนวคิด), 13 (แนะนำแนวคิด)</div></div></div>
+
+<div class="mod"><div class="hd">M2 · Cowork กับไฟล์และโฟลเดอร์ในงานจริง <span class="t">10:30–11:15 · 45 นาที</span></div><div class="bd">
+<b class="l">Lecture:</b> Upload vs Project vs ให้ Cowork เข้าถึงโฟลเดอร์ · Prompt Framework: Input → Process → Output · จุด <b>Human-in-the-Loop</b> (Plan → Approve → Execute) · ข้อจำกัดเมื่อไฟล์ใหญ่หรือจำนวนมาก<br>
+<b class="l">Demo:</b> โฟลเดอร์งานสะสมหลายปี (~1,500 ไฟล์) → Claude วิเคราะห์ → เสนอโครงสร้างใหม่ → <b>ผู้ใช้ตัดสินใจก่อน execute</b><br>
+<b class="l">Workshop:</b> รวม PDF + CSV + Excel ใน Sample Pack สร้างเอกสาร Word / Excel / PPTX บริบท Microsoft 365 ของบ้านปู
+<div class="req">Requirement: 1, 4, 5, 12 (Hands-on/Demo), 7 (Demo ข้อจำกัดด้านปริมาณ)</div></div></div>
+
+<div class="mod"><div class="hd">M3 · Microsoft 365 Connectors อย่างปลอดภัย <span class="t">11:15–12:00 · 45 นาที</span></div><div class="bd">
+<b class="l">Lecture:</b> แนวคิด <b>AI → Connect → Data → Execute</b> · ใช้เฉพาะ connector ที่เปิดใช้ (SharePoint, Outlook; <b>ไม่อนุญาต Google Drive</b>) · พฤติกรรม Read vs Write และความเสี่ยงของการเขียนกลับ เช่น Excel ที่หลายคนแก้พร้อมกัน · หลัก <b>copy-before-write</b><br>
+<b class="l">Demo:</b> ดึงอีเมลจาก Outlook + ไฟล์และ SharePoint List → สรุปเป็นรายงาน · ตัวอย่างความผิดพลาดเมื่อเขียนทับไฟล์ที่แชร์ และวิธีป้องกัน<br>
+<b class="l">Workshop:</b> ผู้เรียนเชื่อม SharePoint/Outlook ด้วยบัญชีทดสอบ ค้นหาข้อมูลข้ามแหล่ง ทำสำเนาไฟล์ก่อนให้ Claude แก้ และตรวจผลก่อนบันทึก
+<div class="req">Requirement: 1, 3, 4 (Hands-on), 5 (จุดอนุมัติก่อน write), 7 (ข้อจำกัดของ connector)</div></div></div>
+
+<div class="mod"><div class="hd">M4 · Document Factory &amp; Artifact as Output Layer <span class="t">13:00–13:40 · 40 นาที</span></div><div class="bd">
+<b class="l">Lecture:</b> Document Factory: <b>Multiple Sources → Process → Report → (Schedule/Distribution ใน M6)</b> · Artifact เป็น output layer (Dashboard, App, Prototype, Diagram) และการ iterate หลายเวอร์ชัน · เมื่อไรควรใช้ Word/Excel/PDF/PPT แทน Artifact · ข้อจำกัดจริง เช่น รายงานใหญ่เกินกว่าจะบันทึกหรือแนบอีเมลได้ และ workaround (แบ่งไฟล์, สรุป + ลิงก์ SharePoint, ลดขนาดรูป/ข้อมูล)<br>
+<b class="l">Workshop:</b> สร้าง “Monthly Operations Report” จาก 5 แหล่งข้อมูล (ภายใน + ข้อมูลสาธารณะภายนอก) ทั้งแบบ Word/PPTX และ Artifact Dashboard ใช้ไฟล์ขนาดจริง
+<div class="req">Requirement: 1, 4, 6, 11 (Hands-on), 7 (Hands-on กับปริมาณข้อมูลจริง)</div></div></div>
+
+<div class="mod"><div class="hd">M5 · Skills &amp; Plugins <span class="t">13:40–14:10 · 30 นาที</span></div><div class="bd">
+<b class="l">Lecture:</b> Skill คืออะไร ต่างจาก Project/Prompt อย่างไร · Plugins · การแชร์ Skill ภายในทีม · <b>Third-party Skill Security</b>: Skill จากภายนอกอาจยังไม่ผ่าน audit, checklist ก่อนติดตั้ง (ที่มา, สิทธิ์, script, การส่งข้อมูลออก) · Skill ช่วยลด token/usage ได้อย่างไร<br>
+<b class="l">Workshop:</b> สร้าง Skill “รายงานมาตรฐานบ้านปู” (รูปแบบ, โทน, โครงสร้าง) แล้วทดสอบกับข้อมูลชุดใหม่ · ฝึกตรวจ Skill ตัวอย่างจากภายนอกตาม checklist
+<div class="req">Requirement: 8 (Hands-on), 9 (Hands-on), 13 (Lecture)</div></div></div>
+
+<div class="mod"><div class="hd">M6 · Automation <span class="t">14:10–14:45 · 35 นาที</span></div><div class="bd">
+<b class="l">Lecture:</b> Scheduled / recurring tasks ใน Cowork และเงื่อนไขการทำงาน (เช่น เครื่องและแอปต้องเปิดอยู่) · ต่อ Document Factory ให้ครบวงจร: <b>Schedule/Distribution</b> · <b>Automatic Monitoring</b>: Web + Email + Meeting → Daily/Weekly Insight · <b>Human-in-the-Loop checkpoints</b> ในงานอัตโนมัติ (ร่างให้ตรวจก่อนส่ง, ไม่ส่งออกเองโดยไม่มีคนอนุมัติ) · Awareness: <b>Dashboard refresh</b> แบบ real-time vs scheduled refresh · Awareness: <b>Sub-agent / Multi-agent</b> (แนวคิดเท่านั้น)<br>
+<b class="l">Demo:</b> ตั้ง Weekly Insight อัตโนมัติ: ข่าวพลังงานภายนอก + อีเมล + บันทึกการประชุม → สรุปรายสัปดาห์ → หยุดรอคนตรวจก่อนส่ง<br>
+<b class="l">Workshop:</b> ผู้เรียนตั้ง scheduled task ของตัวเอง 1 งาน (เช่น รายงานประจำสัปดาห์จาก M4) พร้อมกำหนดจุด checkpoint
+<div class="req">Requirement: 5, 6, 10 (Hands-on/Demo), 15, 16 (Awareness)</div></div></div>
+
+<div class="mod"><div class="hd">M7 · Capstone: Use Case จริงของผู้เรียน <span class="t">15:00–16:15 · 75 นาที</span></div><div class="bd">
+ใช้ use case จริง 3–5 เรื่องที่ทีม Hi-I ส่งมาล่วงหน้า (ปรับเป็นข้อมูลจำลอง) ผู้เรียนทำงานเป็นกลุ่ม วิเคราะห์ <b>Data → Connector → Output → Trade-off</b> (ความปลอดภัย, ข้อจำกัด, usage) ลงมือสร้างต้นแบบด้วย Cowork และนำเสนอกลุ่มละ 3–5 นาที พร้อมคำแนะนำจากวิทยากร
+<div class="req">Requirement: 14 (Hands-on) และประยุกต์ใช้ 1–7</div></div></div>
+
+<div class="mod"><div class="hd">M8 · Security Recap, Quiz &amp; แผน 30 วัน <span class="t">16:15–17:00 · 45 นาที</span></div><div class="bd">
+ทบทวนกฎความปลอดภัยสำคัญ (Sensitive Data, Personal vs Team, approved connectors, copy-before-write, third-party Skill) · เคล็ดลับใช้งานคุ้มค่าภายใต้ usage limit · Quiz ประเมินผล · ผู้เรียนเขียนแผนใช้งาน 30 วัน · ถาม-ตอบ และปิดการอบรม
+<div class="req">Requirement: 2, 3, 9 (ย้ำ), 13 (Hands-on: เลือก model/วิธีให้คุ้ม)</div></div></div>
+</div>
+
+<!-- 5 TRACEABILITY -->
+<div class="section">
+<h2>5. ตาราง Requirement Traceability</h2>
+<p>ตารางนี้ระบุว่า requirement ทั้ง 16 ข้อจากการประชุมวันที่ 15 ต.ค. อยู่ในโมดูลใดและเรียนในระดับใด <span class="tag ho">Hands-on</span> = ผู้เรียนลงมือ · <span class="tag demo">Demo</span> = วิทยากรสาธิต · <span class="tag awd">Awareness</span> = ให้แนวคิด</p>
+<table>
+<tr><th style="width:5%">#</th><th>Requirement</th><th style="width:11%">ระดับ</th><th style="width:16%">โมดูล</th><th style="width:20%">ความลึก</th></tr>
+<tr><td>1</td><td>Microsoft 365 / Power Platform First – ตัวอย่างและ workshop ในบริบทที่บ้านปูใช้จริง</td><td><span class="tag must">ต้องมี</span></td><td>M2, M3, M4</td><td><span class="tag ho">Hands-on</span></td></tr>
+<tr><td>2</td><td>Security &amp; Sensitive Data เป็นบทเรียนบังคับ; Personal vs Team vs Enterprise; ข้อจำกัด Governance/Audit ของ Team; ห้าม Personal AI กับข้อมูลบริษัท</td><td><span class="tag must">ต้องมี</span></td><td>M1, M8</td><td><span class="tag ho">Hands-on</span></td></tr>
+<tr><td>3</td><td>M365 Connectors เฉพาะที่เปิดใช้ (SharePoint, Outlook); AI → Connect → Data → Execute; Read/Write และความเสี่ยงการเขียนกลับ; copy-before-write</td><td><span class="tag must">ต้องมี</span></td><td>M3, M8</td><td><span class="tag ho">Hands-on</span></td></tr>
+<tr><td>4</td><td>Multiple Sources + Multiple Formats ภายใน + ภายนอก (PDF, CSV, Excel, Email, SharePoint List) → output เดียว</td><td><span class="tag must">ต้องมี</span></td><td>M2, M3, M4</td><td><span class="tag ho">Hands-on</span></td></tr>
+<tr><td>5</td><td>Human-in-the-Loop – จุดที่ AI ต้องหยุดรอคนตรวจ/อนุมัติ</td><td><span class="tag must">ต้องมี</span></td><td>M2, M3, M6</td><td><span class="tag ho">Hands-on</span></td></tr>
+<tr><td>6</td><td>Real-world Document Factory: Multiple Sources → Process → Report → Schedule/Distribution</td><td><span class="tag must">ต้องมี</span></td><td>M4, M6</td><td><span class="tag ho">Hands-on</span> + <span class="tag demo">Demo</span></td></tr>
+<tr><td>7</td><td>ข้อจำกัดและ workaround (เช่น รายงานใหญ่เกินบันทึก/แนบอีเมล) ด้วยปริมาณข้อมูลจริง</td><td><span class="tag must">ต้องมี</span></td><td>M2, M3, M4</td><td><span class="tag ho">Hands-on</span> + <span class="tag demo">Demo</span></td></tr>
+<tr><td>8</td><td>Chat vs Skill vs Project vs Agent vs Artifacts – ใช้เมื่อไร</td><td><span class="tag must">ต้องมี</span></td><td>M1, M5</td><td><span class="tag ho">Hands-on</span> + <span class="tag demo">Demo</span></td></tr>
+<tr><td>9</td><td>Third-party Skill Security – Skill ภายนอกอาจยังไม่ผ่าน audit</td><td><span class="tag must">ต้องมี</span></td><td>M1, M5, M8</td><td><span class="tag ho">Hands-on</span></td></tr>
+<tr><td>10</td><td>Automatic Monitoring ภายใน + ภายนอก: Web + Email + Meeting → Daily/Weekly Insight</td><td><span class="tag should">ควรมี</span></td><td>M6</td><td><span class="tag demo">Demo</span> + <span class="tag ho">Hands-on</span></td></tr>
+<tr><td>11</td><td>Artifact as Output Layer: Dashboard/App/Prototype/Diagram, iterate หลายเวอร์ชัน, เมื่อไรใช้ Word/Excel/PDF/PPT</td><td><span class="tag should">ควรมี</span></td><td>M1, M4</td><td><span class="tag ho">Hands-on</span></td></tr>
+<tr><td>12</td><td>Complex folder restructure: วิเคราะห์โฟลเดอร์หลายปี → เสนอโครงสร้าง → ผู้ใช้ตัดสินใจก่อน execute</td><td><span class="tag should">ควรมี</span></td><td>M2</td><td><span class="tag demo">Demo</span> + <span class="tag ho">Hands-on</span></td></tr>
+<tr><td>13</td><td>Cost / usage efficiency: เลือก model และวิธีให้เหมาะ ไม่ชน weekly limit ของ Team plan</td><td><span class="tag should">ควรมี</span></td><td>M1, M5, M8</td><td><span class="tag ho">Hands-on</span> (เบา)</td></tr>
+<tr><td>14</td><td>Capstone จาก use case จริงของผู้เรียน: data, connector, output, trade-off</td><td><span class="tag should">ควรมี</span></td><td>M7</td><td><span class="tag ho">Hands-on</span></td></tr>
+<tr><td>15</td><td>Dashboard refresh: real-time หรือไม่ และแนวคิด scheduled refresh</td><td><span class="tag aw">Awareness</span></td><td>M6</td><td><span class="tag awd">Awareness</span></td></tr>
+<tr><td>16</td><td>Sub-agent / Multi-agent – รู้แนวคิด ไม่มี hands-on</td><td><span class="tag aw">Awareness</span></td><td>M6</td><td><span class="tag awd">Awareness</span></td></tr>
+</table>
+<div class="box"><b>สรุปความครอบคลุม:</b> ต้องมี 9/9 ข้อเป็น Hands-on · ควรมี 5/5 ข้อเป็น Demo/Hands-on · Awareness 2/2 ข้อ · <b>ครบ 16/16 ข้อ</b> · ไม่มีเนื้อหา Copilot (อยู่ในหลักสูตรแยก)</div>
+</div>
+
+<!-- 6 DATA -->
+<div class="section">
+<h2>6. แผน Workshop และชุดข้อมูลตัวอย่าง (Sample Data Pack)</h2>
+<p>ทุก workshop ใช้<b>ข้อมูลจำลอง (dummy data) ที่ออกแบบให้ใกล้เคียงบริบทธุรกิจพลังงานของบ้านปู</b> ไม่มีข้อมูลจริงหรือข้อมูลอ่อนไหวของบริษัท และใช้ปริมาณข้อมูลขนาดจริงในบทเรียนข้อจำกัด เพื่อไม่ให้ผู้เรียนเห็นแต่กรณีสาธิตที่ “สวยเกินจริง”</p>
+<table>
+<tr><th style="width:22%">ชุดข้อมูล</th><th>รายละเอียด (จำลอง)</th><th style="width:17%">ใช้ในโมดูล</th></tr>
+<tr><td>Excel / CSV ปฏิบัติการ</td><td>ข้อมูลผลผลิตและต้นทุนรายเดือนของเหมือง/โรงไฟฟ้าสมมติ 5–8 site ย้อนหลัง 3 ปี; Budget vs Actual</td><td>M1, M2, M4</td></tr>
+<tr><td>PDF</td><td>รายงานตลาดพลังงานสาธารณะ, สัญญา supplier สมมติ, รายงานประจำปีตัวอย่าง (รวมไฟล์หลายร้อยหน้า)</td><td>M2, M4</td></tr>
+<tr><td>Email (Outlook)</td><td>ชุดอีเมลจำลองในกล่องจดหมายทดสอบ: อัปเดตโครงการ, คำขออนุมัติ, สรุปการประชุม</td><td>M3, M6</td></tr>
+<tr><td>SharePoint List / Site</td><td>Project Tracker, Issue Log และ Excel ที่ “หลายคนแก้พร้อมกัน” สำหรับสาธิต copy-before-write</td><td>M3, M4</td></tr>
+<tr><td>Meeting notes</td><td>บันทึก/สรุปการประชุมจำลองสำหรับ Weekly Insight</td><td>M6</td></tr>
+<tr><td>ข้อมูลภายนอก</td><td>ข่าวและราคาพลังงานจากเว็บสาธารณะ</td><td>M4, M6</td></tr>
+<tr><td><b>ชุดข้อมูลขนาดจริง</b></td><td>CSV ~200,000 แถว, PDF 300+ หน้า, โฟลเดอร์ ~1,500 ไฟล์ ปี 2562–2569 ที่ตั้งชื่อไม่เป็นระบบ, รายงานที่ใหญ่เกินแนบอีเมล</td><td>M2, M4 (ข้อจำกัด)</td></tr>
+<tr><td>Data Traffic Light cards</td><td>ตัวอย่างข้อมูล 15 รายการสำหรับฝึกจัดประเภทความอ่อนไหว</td><td>M1, M8</td></tr>
+</table>
+<p>ใช้ <b>SharePoint site และ mailbox สำหรับทดสอบ</b> (ถ้า IT จัดให้ได้) เพื่อไม่ให้ workshop เขียนข้อมูลลงพื้นที่ทำงานจริง หากไม่มี จะใช้โฟลเดอร์ส่วนตัวของผู้เรียนพร้อมไฟล์จาก Sample Pack แทน</p>
+</div>
+
+<!-- 7 GOVERNANCE -->
+<div class="section">
+<h2>7. แนวทาง Governance และ Security</h2>
+<div class="warn"><b>หลักการสูงสุด:</b> ข้อมูลอ่อนไหว (เช่น ข้อมูลส่วนบุคคล, ข้อมูลลับทางการค้า, ข้อมูลการเงินที่ยังไม่เปิดเผย) <b>ไม่ใส่ใน Claude</b> ให้ใช้เครื่องมือที่บริษัทกำหนดสำหรับข้อมูลอ่อนไหวตามนโยบาย IT ของบ้านปู และห้ามใช้บัญชี AI ส่วนตัว (Personal) กับข้อมูลบริษัท</div>
+<table>
+<tr><th style="width:24%">ประเด็น</th><th>แนวทางในหลักสูตร</th></tr>
+<tr><td>ข้อจำกัดของ Team License</td><td>อธิบายความต่าง Personal / Team / Enterprise อย่างตรงไปตรงมา โดยเฉพาะการควบคุมของผู้ดูแล การเก็บ log และการ audit ที่ Team มีน้อยกว่า Enterprise ทำให้ <b>ความรับผิดชอบส่วนหนึ่งอยู่ที่วินัยของผู้ใช้</b></td></tr>
+<tr><td>Approved connectors เท่านั้น</td><td>สอนและสาธิตเฉพาะ connector ที่ IT ยืนยัน (SharePoint, Outlook) ไม่สอน Google Drive หรือ connector ที่ไม่ได้รับอนุญาต</td></tr>
+<tr><td>Copy-before-write</td><td>ก่อนให้ Claude แก้ไฟล์ ให้ทำสำเนาก่อนเสมอ โดยเฉพาะไฟล์บน SharePoint ที่หลายคนแก้พร้อมกัน ตรวจผลแล้วจึงแทนที่</td></tr>
+<tr><td>Human-in-the-Loop</td><td>ทุก flow ที่มีการลบ ย้าย เขียนทับ หรือส่งออกภายนอก ต้องมีจุดให้คนอนุมัติ (Plan → Approve → Execute)</td></tr>
+<tr><td>Third-party Skill policy</td><td>แนะนำให้ใช้ Skill ที่สร้างหรือรับรองภายในก่อน Skill จากภายนอกต้องตรวจที่มา สิทธิ์ script และการส่งข้อมูลออก ตาม checklist และควรมีผู้อนุมัติ (เช่น ทีม Hi-I / IT)</td></tr>
+<tr><td>Automation</td><td>งานอัตโนมัติให้ “ร่างและรอตรวจ” ก่อนส่ง ไม่ส่งอีเมลหรือเผยแพร่เองโดยไม่มีคนอนุมัติ และกำหนดเจ้าของงานที่ชัดเจน</td></tr>
+<tr><td>Usage efficiency</td><td>เลือก model ให้เหมาะกับงาน แบ่งงานใหญ่ ใช้ Project/Skill เพื่อลดการส่ง context ซ้ำ ไม่ให้ทีมชน weekly limit</td></tr>
+</table>
+<div class="box"><b>ข้อเสนอแนะ (Awareness): Microsoft Agent 365</b><br>
+Microsoft Agent 365 รองรับการเชื่อมต่อกับ Anthropic Claude ในฐานะ “connected platform” ทำให้ผู้ดูแลเห็นรายการ agent และ activity ของ agent ได้จาก Microsoft 365 admin center เพื่อช่วยด้าน governance/audit ปัจจุบันการเชื่อมต่อนี้ยังเป็น <b>preview</b> และรองรับ <b>Claude Managed Agents</b> ที่อยู่ใน Claude workspace (ใช้ workspace ID และ API key) ไม่ใช่การใช้งาน Claude Desktop แบบ Team โดยตรง เราจึงแนะนำให้ทีม IT/Hi-I ประเมินเรื่องนี้เป็นส่วนหนึ่งของแผน governance ระยะต่อไป<br>
+<span style="font-size:9pt;color:#5b6b82;">อ้างอิง: learn.microsoft.com/en-us/microsoft-agent-365/admin/connected-platforms-anthropic-claude</span></div>
+</div>
+
+<!-- 8 LOGISTICS -->
+<div class="section">
+<h2>8. Logistics และสิ่งที่ขอจากบ้านปู</h2>
+<table>
+<tr><th style="width:28%">รายการ</th><th>รายละเอียด</th></tr>
+<tr><td>วันอบรม (รอยืนยัน)</td><td>เลือกจากวันที่เสนอ: <b>26, 30 ต.ค. · 2, 5, 6, 10, 16, 20 พ.ย. 2569</b> (จัดได้หลายรุ่นเพื่อให้ครบทุกคนก่อนสิ้นปี)</td></tr>
+<tr><td>จำนวนผู้เรียน</td><td>ยืนยันจำนวนรวมและการแบ่งรุ่น (แนะนำรุ่นละ 30–40 คน)</td></tr>
+<tr><td>ห้องและอุปกรณ์</td><td>ห้องอบรม, projector/จอใหญ่, ปลั๊กไฟทุกโต๊ะ, Wi-Fi ที่เข้าถึง Claude และ M365 ได้, ไมโครโฟน</td></tr>
+<tr><td>บัญชีผู้ใช้</td><td>บัญชี Claude Team ของผู้เรียนพร้อมใช้, ติดตั้ง Claude Desktop ล่วงหน้า และบัญชี M365 สำหรับ workshop</td></tr>
+<tr><td>การยืนยันจาก IT</td><td>รายการ connector ที่เปิดใช้ (SharePoint, Outlook), สิทธิ์ read/write, การใช้ Cowork และ scheduled tasks, SharePoint site / mailbox ทดสอบ (ถ้ามี)</td></tr>
+<tr><td>Use case จริง</td><td>ทีม Hi-I ส่ง <b>use case จริง 3–5 เรื่อง</b> ก่อนอบรมอย่างน้อย 1 สัปดาห์ เพื่อนำมาปรับเป็นข้อมูลจำลองสำหรับ Capstone</td></tr>
+<tr><td>ผู้ประสานงาน</td><td>ผู้ประสานงานจากทีม Hi-I และ IT support ในวันอบรม</td></tr>
+<tr><td>ค่าใช้จ่าย</td><td><b>ใบเสนอราคาแยกต่างหาก</b></td></tr>
+</table>
+<p><b>สิ่งที่ผู้สอนจัดเตรียม:</b> เอกสารประกอบการอบรม, Sample Data Pack, pre-training checklist, Skill ตัวอย่าง, quiz และแบบฟอร์มแผน 30 วัน</p>
+</div>
+
+<!-- 9 TRAINER -->
+<div class="section">
+<h2>9. ประวัติวิทยากร</h2>
+<div class="mod"><div class="hd">Prem Chotepanit (เปรม) · Owner, Data Karate <span class="t">วิทยากรหลัก</span></div><div class="bd">
+<ul>
+<li><b>Claude Certified Architect</b> – Foundations (CCAR-F) และ Professional (CCAR-P)</li>
+<li><b>NVIDIA Certified Professional</b> (Agentic AI)</li>
+<li><b>Kaggle Grandmaster</b></li>
+<li>ประสบการณ์สอนหลักสูตร in-house และ public ให้กับ SCP Academy, จุฬาลงกรณ์มหาวิทยาลัย, IRPC และ Siam Food Service</li>
+<li>ทำงานร่วมกับอาจารย์ก๊อฟ ในการพัฒนาและจัดการอบรม</li>
+</ul></div></div>
+<p style="margin-top:14px;color:#5b6b82;font-size:9.5pt;">เอกสารฉบับนี้เป็นฉบับปรับปรุงหลังการประชุมวันที่ 15 ต.ค. 2569 เนื้อหาและเวลาสามารถปรับให้เหมาะกับผลการยืนยันจาก IT และ use case ของทีม Hi-I ได้</p>
+</div>
+</body></html>
