@@ -13,3 +13,6 @@ Language: Thai for learner-facing content; technical terms may stay in English.
 
 ## Status
 Planning phase. See PLAN.md. Don't build workshops until Prem approves the plan.
+
+## Concurrency
+At most 1 Claude module agent runs at a time besides the course-orchestrator leader.
