@@ -24,3 +24,27 @@ Workshop Companion (steps, checklist, copy-prompt) · Prompt Playground (before/
 
 ## Checks
 Artifact sharing needs company Claude accounts · Artifacts that call AI use up Team plan usage.
+
+## Added requirements (30 Oct)
+- Every learner Artifact must have an "Export PDF" option (print-to-PDF with print CSS).
+- Page budget: Lecture = 1 slide per minute; Workshop = 1 page per 5 minutes.
+- Visuals: infographics/diagrams can be made with the Codex agent, but use real photos/screenshots/references too
+  (e.g. Interview pattern → Matt Pocock and his "grill me" skill). Cite every external image/source in materials/SOURCES.md and check usage rights.
+- Use stories and real cases where they fit (each module: at least 1 story or case, with its source).
+
+## Agent setup (Claude Code subagents in .claude/agents/)
+- course-orchestrator: delegates 1 module per agent, checks page budgets, keeps style and terminology consistent, merges.
+- module-m1 … module-m8: each builds its module's slides + materials (handout, prompts, diagrams, Artifact spec) inside materials/<module>/.
+
+## Page budget per module (from agenda)
+| Module | Time | Split (lecture/workshop min) | Slides | Workshop pages |
+|---|---|---|---|---|
+| M1 Foundation & Security | 60 | 40 / 20 | 40 | 4 |
+| M2 Files & Folders + Prompt Patterns | 45 | 15 / 30 | 15 | 6 |
+| M3 M365 Connectors | 45 | 15 / 30 | 15 | 6 |
+| M4 Document Factory & Artifacts | 40 | 15 / 25 | 15 | 5 |
+| M5 Skills & Plugins | 30 | 10 / 20 | 10 | 4 |
+| M6 Automation | 35 | 15 / 20 | 15 | 4 |
+| M7 Capstone | 75 | 10 / 65 | 10 | 13 |
+| M8 Security recap & plan | 45 | 20 / 25 | 20 | 5 |
+The split is a first draft; the orchestrator can adjust it but must keep the totals honest.
