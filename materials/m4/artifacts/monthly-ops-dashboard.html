@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M4 Monthly Ops Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--human:#E4572E;--ai:#2E86AB;--data:#3BA55C;--ink:#1F2933;--paper:#FAF8F3;--warn:#F2A541;--line:#e2dccd;--muted:#5d6b78}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.55 'IBM Plex Sans Thai',sans-serif}
+header{background:var(--ai);color:#fff;padding:14px 16px}
+header .in{max-width:1180px;margin:0 auto;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+header h1{margin:0;font-size:22px;flex:1;min-width:240px}
+header small{display:block;font-weight:400;font-size:13px;opacity:.9}
+.ver{display:flex;background:#ffffff26;border-radius:8px;padding:3px}
+.ver button{border:0;background:none;color:#fff;font:600 14px 'IBM Plex Sans Thai';padding:6px 12px;border-radius:6px;cursor:pointer}
+.ver button.on{background:#fff;color:var(--ai)}
+main{max-width:1180px;margin:0 auto;padding:16px;display:grid;gap:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.card h2{margin:0 0 10px;font-size:17px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.kpi b{display:block;font-size:28px;line-height:1.2}
+.kpi span{font-size:13px;color:var(--muted)}
+.kpi.bad b{color:var(--human)}
+.sites{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.site{border:2px solid var(--line);border-radius:12px;padding:10px 12px;cursor:pointer;background:#fff;text-align:left;font:inherit;color:inherit;position:relative}
+.site:hover,.site:focus{border-color:var(--ai);outline:none}
+.site.sel{border-color:var(--ai);box-shadow:0 0 0 3px #2e86ab33}
+.site .nm{font-weight:700}
+.site .ty{font-size:12px;color:var(--muted)}
+.site .v{font-size:24px;font-weight:700}
+.site .row{display:flex;justify-content:space-between;gap:8px;font-size:13px}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:middle}
+.g{background:var(--data)}.y{background:var(--warn)}.r{background:var(--human)}
+.neg{color:var(--human);font-weight:700}.pos{color:var(--data);font-weight:700}
+.cause{margin-top:6px;font-size:12.5px;background:#fdf1ec;border-left:4px solid var(--human);padding:4px 8px;border-radius:4px}
+.two{display:grid;grid-template-columns:1.3fr 1fr;gap:16px}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{border-bottom:1px solid #eee7d8;padding:5px 6px;text-align:left}
+th{background:#f4f0e6;font-weight:600}
+td.n,th.n{text-align:right}
+.tag{font-size:12px;border-radius:999px;padding:1px 8px;color:#fff;white-space:nowrap}
+.tag.r{background:var(--human)}.tag.y{background:var(--warn);color:var(--ink)}.tag.g{background:var(--data)}.tag.n{background:#9aa5b1}
+svg text{font-family:'IBM Plex Sans Thai',sans-serif}
+.check label{display:flex;gap:8px;align-items:flex-start;padding:4px 0;cursor:pointer}
+.check input{margin-top:5px;width:18px;height:18px}
+.badge{display:none;margin-top:8px;background:var(--data);color:#fff;border-radius:10px;padding:8px 12px;font-weight:600}
+.badge.show{display:block}
+.src li{margin:2px 0}
+.note{font-size:13px;color:var(--muted)}
+.legend{font-size:13px;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+footer{font-size:13px;color:var(--muted);text-align:center;padding:8px 16px 24px}
+@media(max-width:860px){.kpis{grid-template-columns:repeat(2,1fr)}.sites{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}}
+@media(max-width:520px){.sites{grid-template-columns:1fr}}
+</style>
+<!-- Export PDF snippet: materials/_shared/export-pdf.html -->
+<style>
+  .export-pdf-btn{font:600 14px 'IBM Plex Sans Thai',sans-serif;background:#1F2933;color:#fff;border:0;border-radius:8px;padding:8px 14px;cursor:pointer}
+  .export-pdf-btn:hover{background:#2E86AB}
+  @media print{
+    @page{size:A4;margin:12mm}
+    body{background:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .no-print,.export-pdf-btn,button,nav{display:none!important}
+    .print-expand,[hidden].print-expand,details{display:block!important;height:auto!important;overflow:visible!important}
+    section,.card{break-inside:avoid}
+  }
+  @media print{
+    header{background:#fff!important;color:var(--ink)!important;border-bottom:4px solid var(--ai)}
+    .sites{grid-template-columns:repeat(3,1fr)!important}
+    .site{display:block!important;border-width:1px}
+    .two{grid-template-columns:1.2fr 1fr!important}
+    .kpis{grid-template-columns:repeat(4,1fr)!important}
+    .print-only{display:block!important}
+  }
+  .print-only{display:none}
+</style>
+</head>
+<body>
+<header>
+  <div class="in">
+    <h1 id="title">Monthly Operations Report<small id="sub"></small></h1>
+    <div class="ver no-print" role="group" aria-label="เวอร์ชัน">
+      <button id="v1" type="button">v1</button><button id="v2" type="button" class="on">v2</button>
+    </div>
+    <button class="export-pdf-btn no-print" onclick="window.print()" title="บันทึกเป็น PDF (เลือก Save as PDF)">⬇ Export PDF</button>
+  </div>
+</header>
+<main>
+  <p class="note no-print" id="vernote" style="margin:0"></p>
+  <section class="kpis" id="kpis"></section>
+
+  <section class="card">
+    <h2>6 ไซต์ · กันยายน 2569 เทียบ Budget <span class="note no-print">(กดการ์ดเพื่อดูรายละเอียด)</span></h2>
+    <div class="legend"><span><i class="dot g"></i>ต่างจาก Budget ไม่เกิน 2%</span><span><i class="dot y"></i>2–5%</span><span><i class="dot r"></i>แย่กว่า Budget เกิน 5%</span></div>
+    <div class="sites" id="sites" style="margin-top:10px"></div>
+  </section>
+
+  <section class="two">
+    <div class="card" id="detail"></div>
+    <div class="card">
+      <h2>ราคาพลังงานโลก (12 เดือน)</h2>
+      <div id="prices"></div>
+      <p class="note">ที่มา: IMF Primary Commodity Prices via FRED, Federal Reserve Bank of St. Louis (ข้อมูลสาธารณะจริง ค่าเฉลี่ยรายเดือน USD) · ดึงข้อมูล 30 ต.ค. 2026</p>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>โครงการที่ต้องจับตา (SharePoint List: Project_Tracker)</h2>
+    <table id="projects"></table>
+    <p class="note" id="issues"></p>
+  </section>
+
+  <section class="two">
+    <div class="card check">
+      <h2>🟧 Human-in-the-Loop: ตรวจ 3 ตัวเลขก่อนส่ง</h2>
+      <div id="checks"></div>
+      <div class="badge" id="badge">✅ ตรวจครบ 3 ตัวเลข พร้อมส่งให้ผู้อนุมัติ</div>
+    </div>
+    <div class="card">
+      <h2>ที่มาของข้อมูล (5 แหล่ง)</h2>
+      <ul class="src" id="sources"></ul>
+      <p class="note" id="bigfile"></p>
+    </div>
+  </section>
+
+  <section class="card print-only" id="printall"></section>
+</main>
+<footer>ข้อมูลสมมติเพื่อการอบรม Banpu · Claude for Business (M4) — ยกเว้นราคาพลังงานซึ่งเป็นข้อมูลสาธารณะ · ไม่ใช่ตัวเลขจริงของบริษัทใด</footer>
+<script>
+/*DATA*/const DATA={"title":"Monthly Operations Report · กันยายน 2569","as_of":"2026-10-24","note":"ข้อมูลสมมติทั้งหมด (ยกเว้นราคาพลังงานสาธารณะ: IMF via FRED)","sites":[{"code":"A","name":"เหมืองสมมติ ภูผาทอง","type":"เหมือง","unit":"ตัน","sep":{"bv":381290,"av":375975,"vol_var":-1.4,"bc":466.54,"ac":459.07,"unit_cost":1221.0,"unit_cost_var":-0.2},"ytd":{"bv":3737040,"av":3727735,"vol_var":-0.2,"bc":4651.2,"ac":4657.5},"trend":[0.6,-2.5,1.4,1.6,0.2,1.7,-2.2,-2.1,-1.4],"shift":{"tonnes":2598962,"coal_t":366805,"diesel_l_per_t":1.097,"downtime_h":1557,"worst_truck":"A-HT10","worst_truck_h":64}},{"code":"B","name":"เหมืองสมมติ ดอยหินดำ","type":"เหมือง","unit":"ตัน","sep":{"bv":264646,"av":250631,"vol_var":-5.3,"bc":352.63,"ac":346.61,"unit_cost":1382.9,"unit_cost_var":3.8},"ytd":{"bv":2601303,"av":2582738,"vol_var":-0.7,"bc":3476.4,"ac":3466.3},"trend":[-0.3,-0.7,-0.8,-0.2,0.0,-0.8,0.3,1.2,-5.3],"shift":{"tonnes":2045550,"coal_t":315467,"diesel_l_per_t":1.104,"downtime_h":3794,"worst_truck":"B-HT07","worst_truck_h":377}},{"code":"C","name":"เหมืองสมมติ ผาแดง","type":"เหมือง","unit":"ตัน","sep":{"bv":181423,"av":170498,"vol_var":-6.0,"bc":259.36,"ac":281.96,"unit_cost":1653.7,"unit_cost_var":15.7},"ytd":{"bv":1804285,"av":1783193,"vol_var":-1.2,"bc":2549.9,"ac":2587.5},"trend":[-0.5,-0.8,-1.5,0.9,-1.7,-1.2,-0.3,0.1,-6.0],"shift":{"tonnes":2518128,"coal_t":378462,"diesel_l_per_t":1.103,"downtime_h":1774,"worst_truck":"C-HT13","worst_truck_h":146}},{"code":"D","name":"โรงไฟฟ้าสมมติ ลำน้ำใส","type":"โรงไฟฟ้า","unit":"MWh","sep":{"bv":459866,"av":382103,"vol_var":-16.9,"bc":1015.13,"ac":960.83,"unit_cost":2514.6,"unit_cost_var":13.9},"ytd":{"bv":4317317,"av":4209736,"vol_var":-2.5,"bc":9546.7,"ac":9520.3},"trend":[-2.0,0.5,1.2,1.2,2.0,0.2,0.1,-10.1,-16.9],"shift":null},{"code":"E","name":"โรงไฟฟ้าสมมติ ทุ่งทอง","type":"โรงไฟฟ้า","unit":"MWh","sep":{"bv":317411,"av":318320,"vol_var":0.3,"bc":752.62,"ac":738.14,"unit_cost":2318.9,"unit_cost_var":-2.2},"ytd":{"bv":2957482,"av":2956303,"vol_var":-0.0,"bc":6972.2,"ac":6964.0},"trend":[0.9,1.7,1.0,-1.7,-1.1,1.4,-2.2,-0.6,0.3],"shift":null},{"code":"F","name":"ฟาร์มโซลาร์สมมติ แสงตะวัน","type":"โซลาร์","unit":"MWh","sep":{"bv":9282,"av":9241,"vol_var":-0.4,"bc":6.45,"ac":6.45,"unit_cost":698.0,"unit_cost_var":0.4},"ytd":{"bv":102103,"av":101368,"vol_var":-0.7,"bc":70.5,"ac":71.2},"trend":[-2.1,-0.8,-1.2,-0.5,-2.3,-1.0,0.5,1.8,-0.4],"shift":null}],"prices":[{"month":"2025-10","coal_aus_usd_per_t":"111.5","brent_usd_per_bbl":"63.98","lng_asia_usd_per_mmbtu":"10.84","source":"IMF Primary Commodity Prices via FRED (fred.stlouisfed.org)"},{"month":"2025-11","coal_aus_usd_per_t":"115.44","brent_usd_per_bbl":"63.69","lng_asia_usd_per_mmbtu":"11.07","source":"IMF Primary Commodity Prices via FRED (fred.stlouisfed.org)"},{"month":"2025-12","coal_aus_usd_per_t":"115.68","brent_usd_per_bbl":"61.81","lng_asia_usd_per_mmbtu":"9.91","source":"IMF Primary Commodity Prices via FRED (fred.stlouisfed.org)"},{"month":"2026-01","coal_aus_usd_per_t":"115.81","brent_usd_per_bbl":"64.59","lng_asia_usd_per_mmbtu":"10.44","source":"IMF Primary Commodity Prices via FRED (fred.stlouisfed.org)"},{"month":"2026-02","coal_aus_usd_per_t":"122.21","brent_usd_per_bbl":"69.41","lng_asia_usd_per_mmbtu":"10.75","source":"IMF Primary Commodity Prices via FRED (fred.stlouisfed.org)"},{"month":"2026-03","coal_aus_usd_per_t":"140.06","brent_usd_per_bbl":"99.41","lng_asia_usd_per_mmbtu":"20.81","source":"IMF Primary Commodity Prices via FRED (fred.stlouisfed.org)"},{"month":"2026-04","coal_aus_usd_per_t":"142.11","brent_usd_per_bbl":"102.81","lng_asia_usd_per_mmbtu":"16.57","source":"IMF Primary Commodity Prices via FRED (fred.stlouisfed.org)"},{"month":"2026-05","coal_aus_usd_per_t":"141.45","brent_usd_per_bbl":"103.84","lng_asia_usd_per_mmbtu":"18.1","source":"IMF Primary Commodity Prices via FRED (fred.stlouisfed.org)"},{"month":"2026-06","coal_aus_usd_per_t":"150.36","brent_usd_per_bbl":"84.49","lng_asia_usd_per_mmbtu":"17.19","source":"IMF Primary Commodity Prices via FRED (fred.stlouisfed.org)"},{"month":"2026-07","coal_aus_usd_per_t":"140.4","brent_usd_per_bbl":"83.73","lng_asia_usd_per_mmbtu":"19.56","source":"IMF Primary Commodity Prices via FRED (fred.stlouisfed.org)"},{"month":"2026-08","coal_aus_usd_per_t":"140.51","brent_usd_per_bbl":"88.07","lng_asia_usd_per_mmbtu":"22.04","source":"IMF Primary Commodity Prices via FRED (fred.stlouisfed.org)"},{"month":"2026-09","coal_aus_usd_per_t":"153.84","brent_usd_per_bbl":"102.02","lng_asia_usd_per_mmbtu":"26.64","source":"IMF Primary Commodity Prices via FRED (fred.stlouisfed.org)"}],"projects":[{"ProjectID":"PRJ-101","Title":"เปลี่ยนสายพานลำเลียง CV-03","Site":"Site A","Budget_MTHB":"48.0","Spent_MTHB":"25.6","DueDate":"2026-12-15","Status":"On track","PercentComplete":"62"},{"ProjectID":"PRJ-102","Title":"ติดตั้งระบบตรวจฝุ่นออนไลน์","Site":"Site A","Budget_MTHB":"12.5","Spent_MTHB":"10.4","DueDate":"2026-11-30","Status":"At risk","PercentComplete":"70"},{"ProjectID":"PRJ-103","Title":"ปรับปรุงถนนขนส่งในเหมือง","Site":"Site B","Budget_MTHB":"31.0","Spent_MTHB":"11.4","DueDate":"2027-02-28","Status":"On track","PercentComplete":"40"},{"ProjectID":"PRJ-104","Title":"ระบบบำบัดน้ำทิ้งเฟส 2","Site":"Site C","Budget_MTHB":"26.4","Spent_MTHB":"11.1","DueDate":"2026-12-31","Status":"Delayed","PercentComplete":"35"},{"ProjectID":"PRJ-105","Title":"Overhaul หม้อไอน้ำ Unit 2","Site":"Site D","Budget_MTHB":"95.0","Spent_MTHB":"61.7","DueDate":"2026-11-20","Status":"On track","PercentComplete":"55"},{"ProjectID":"PRJ-106","Title":"เปลี่ยน DCS โรงไฟฟ้า","Site":"Site E","Budget_MTHB":"72.3","Spent_MTHB":"20.4","DueDate":"2027-03-31","Status":"At risk","PercentComplete":"30"},{"ProjectID":"PRJ-107","Title":"เปลี่ยน inverter ชุด 4–6","Site":"Site F","Budget_MTHB":"18.9","Spent_MTHB":"9.4","DueDate":"2026-12-10","Status":"On track","PercentComplete":"48"},{"ProjectID":"PRJ-108","Title":"ติดตั้งแบตเตอรี่สำรอง (BESS) นำร่อง","Site":"Site F","Budget_MTHB":"64.0","Spent_MTHB":"3.2","DueDate":"2027-06-30","Status":"Not started","PercentComplete":"5"},{"ProjectID":"PRJ-109","Title":"Digital permit-to-work","Site":"Site B","Budget_MTHB":"6.8","Spent_MTHB":"3.9","DueDate":"2026-12-20","Status":"On track","PercentComplete":"58"},{"ProjectID":"PRJ-110","Title":"ปรับปรุงห้องควบคุม Unit 1","Site":"Site D","Budget_MTHB":"22.0","Spent_MTHB":"12.4","DueDate":"2026-12-31","Status":"On track","PercentComplete":"50"},{"ProjectID":"PRJ-111","Title":"ระบบพยากรณ์ผลผลิตโซลาร์","Site":"Site F","Budget_MTHB":"4.2","Spent_MTHB":"1.2","DueDate":"2027-01-31","Status":"On track","PercentComplete":"25"},{"ProjectID":"PRJ-112","Title":"ซ่อมบำรุงใหญ่รถขุด EX-07","Site":"Site C","Budget_MTHB":"15.6","Spent_MTHB":"8.8","DueDate":"2026-11-25","Status":"At risk","PercentComplete":"60"}],"open_issues":{"High":16,"Medium":11,"Low":3},"big_report_mb":36.9,"sources":[["Excel","ops_monthly_2566-2569.xlsx","ภายใน"],["CSV","shift_log_2568-2569.csv (~172,000 แถว)","ภายใน"],["SharePoint List","Project_Tracker · Issue_Log (M3)","ภายใน"],["Outlook","อีเมลอัปเดตโครงการ 20 ฉบับ (M3)","ภายใน"],["Web/CSV","energy_prices_public_2023-2026.csv (IMF via FRED)","ภายนอก สาธารณะ"]],"causes":{"D":{"short":"Overhaul หม้อไอน้ำ Unit 2 (PRJ-105)","long":"Unit 2 หยุดตามแผน overhaul ตั้งแต่ ส.ค. และพบรอยร้าวท่อ superheater เพิ่ม → ขออนุมัติงบเพิ่ม 3.8 ลบ.","ref":"อีเมล [PRJ-105] ขออนุมัติงบเพิ่ม 3.8 ล้านบาท · Project_Tracker PRJ-105"},"C":{"short":"รถขุด EX-07 รออะไหล่ (PRJ-112)","long":"รถขุด EX-07 รออะไหล่ไฮดรอลิก รถขน C-HT11–13 ต้องรอคิว → ปริมาณลดแต่ต้นทุนคงที่ ต้นทุนต่อหน่วยจึงสูง","ref":"อีเมล [PRJ-112] รถขุด EX-07 รออะไหล่ไฮดรอลิก · shift log ก.ย. 2569"},"B":{"short":"ฝนหนัก ก.ย. · รถ B-HT07 หยุดนาน","long":"ฝนตกหนักทั้งเดือน downtime รวมสูงสุดใน 3 เหมือง รถ B-HT07 หยุดนานผิดปกติ ควรตรวจสภาพ","ref":"shift_log_2568-2569.csv (สรุปด้วยสคริปต์)"}}};/*END*/
+</script>
+<script>
+const $=id=>document.getElementById(id);
+const fmt=(n,d=0)=>Number(n).toLocaleString('th-TH',{minimumFractionDigits:d,maximumFractionDigits:d});
+const sg=v=>(v>0?'+':'')+fmt(v,1)+'%';
+const MONTHS=['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.'];
+let ver='v2', sel='D';
+// light = worse of volume shortfall and unit-cost overrun
+const badness=s=>Math.max(-s.sep.vol_var,s.sep.unit_cost_var);
+const light=s=>{const b=badness(s);return b>5?'r':b>2?'y':'g'};
+
+function kpis(){
+  const S=DATA.sites, bad=S.filter(s=>light(s)==='r').length;
+  const bc=S.reduce((a,s)=>a+s.sep.bc,0), ac=S.reduce((a,s)=>a+s.sep.ac,0);
+  const risky=DATA.projects.filter(p=>p.Status==='At risk'||p.Status==='Delayed').length;
+  const P=DATA.prices, last=P[P.length-1], prev=P[P.length-2];
+  const coal=(last.coal_aus_usd_per_t/prev.coal_aus_usd_per_t-1)*100;
+  $('kpis').innerHTML=[
+    [bad+' / '+S.length,'ไซต์ที่แย่กว่า Budget เกิน 5%',bad>0],
+    [fmt(ac,0)+' ลบ.','ต้นทุนรวม ก.ย. ('+sg((ac/bc-1)*100)+' vs Budget '+fmt(bc,0)+')',ac>bc],
+    [risky+' โครงการ','At risk / Delayed จาก '+DATA.projects.length+' โครงการ',risky>0],
+    [fmt(last.coal_aus_usd_per_t,1)+' $/t','ราคาถ่านหินออสเตรเลีย ก.ย. ('+sg(coal)+' จาก ส.ค.)',coal>5]
+  ].map(([b,t,isBad])=>`<div class="kpi${isBad?' bad':''}"><b>${b}</b><span>${t}</span></div>`).join('');
+}
+
+function sites(){
+  let S=[...DATA.sites];
+  if(ver==='v2') S.sort((a,b)=>badness(b)-badness(a));
+  $('sites').innerHTML=S.map(s=>{
+    const l=light(s), cause=ver==='v2'&&DATA.causes[s.code]&&l!=='g'?`<div class="cause">${DATA.causes[s.code].short}</div>`:'';
+    return `<button class="site${s.code===sel?' sel':''}" data-c="${s.code}" type="button">
+      <div class="nm">${ver==='v2'?`<i class="dot ${l}"></i>`:''}Site ${s.code} · ${s.name}</div>
+      <div class="ty">${s.type} · หน่วย ${s.unit}</div>
+      <div class="v ${s.sep.vol_var<-5?'neg':''}">${sg(s.sep.vol_var)}</div>
+      <div class="row"><span>ปริมาณจริง ${fmt(s.sep.av)} ${s.unit}</span></div>
+      <div class="row"><span>ต้นทุน/หน่วย ${fmt(s.sep.unit_cost,0)} บาท</span><span class="${s.sep.unit_cost_var>5?'neg':''}">${sg(s.sep.unit_cost_var)}</span></div>
+      ${cause}</button>`}).join('');
+  document.querySelectorAll('.site').forEach(b=>b.onclick=()=>{sel=b.dataset.c;sites();detail();});
+}
+
+function bars(trend){
+  const W=420,H=170,pad=28,mx=Math.max(6,...trend.map(Math.abs)),bw=(W-pad*2)/trend.length,base=(H-24)/2;
+  const y=v=>base-(v/mx)*(base-14);
+  let g=`<line x1="${pad}" x2="${W-pad}" y1="${base}" y2="${base}" stroke="#1F2933" stroke-width="1"/>`;
+  trend.forEach((v,i)=>{const x=pad+i*bw+4,top=Math.min(y(v),base),h=Math.abs(y(v)-base);
+    g+=`<rect x="${x}" y="${top}" width="${bw-8}" height="${Math.max(h,1)}" fill="${v<-5?'#E4572E':v<0?'#F2A541':'#3BA55C'}"><title>${MONTHS[i]} ${sg(v)}</title></rect>
+    <text x="${x+(bw-8)/2}" y="${v<0?top+h+12:top-4}" font-size="10" text-anchor="middle">${fmt(v,1)}</text>
+    <text x="${x+(bw-8)/2}" y="${H-2}" font-size="11" text-anchor="middle" fill="#5d6b78">${MONTHS[i]}</text>`});
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="% ปริมาณเทียบ Budget รายเดือน">${g}</svg>`;
+}
+
+function detail(){
+  const s=DATA.sites.find(x=>x.code===sel), c=DATA.causes[s.code];
+  const pj=DATA.projects.filter(p=>p.Site==='Site '+s.code);
+  const sh=s.shift?`<tr><td>Shift log ก.ย. (CSV)</td><td class="n" colspan="2">ขนรวม ${fmt(s.shift.tonnes)} ตัน (ถ่านหิน ${fmt(s.shift.coal_t)}) · downtime ${fmt(s.shift.downtime_h)} ชม. · หยุดมากสุด ${s.shift.worst_truck} ${s.shift.worst_truck_h} ชม.</td></tr>`:'';
+  $('detail').innerHTML=`<h2>Site ${s.code} · ${s.name}</h2>
+  <div class="note">% ปริมาณจริงเทียบ Budget · ม.ค.–ก.ย. 2569</div>${bars(s.trend)}
+  <table><tr><th></th><th class="n">ก.ย. 2569</th><th class="n">สะสม ม.ค.–ก.ย.</th></tr>
+  <tr><td>ปริมาณ Budget (${s.unit})</td><td class="n">${fmt(s.sep.bv)}</td><td class="n">${fmt(s.ytd.bv)}</td></tr>
+  <tr><td>ปริมาณจริง (${s.unit})</td><td class="n">${fmt(s.sep.av)} <span class="${s.sep.vol_var<-5?'neg':''}">(${sg(s.sep.vol_var)})</span></td><td class="n">${fmt(s.ytd.av)} (${sg(s.ytd.vol_var)})</td></tr>
+  <tr><td>ต้นทุน Budget / จริง (ลบ.)</td><td class="n">${fmt(s.sep.bc,1)} / ${fmt(s.sep.ac,1)}</td><td class="n">${fmt(s.ytd.bc,1)} / ${fmt(s.ytd.ac,1)}</td></tr>
+  <tr><td>ต้นทุนต่อหน่วยจริง (บาท)</td><td class="n">${fmt(s.sep.unit_cost,0)} <span class="${s.sep.unit_cost_var>5?'neg':''}">(${sg(s.sep.unit_cost_var)})</span></td><td></td></tr>${sh}</table>
+  ${c?`<div class="cause" style="margin-top:10px"><b>สาเหตุ:</b> ${c.long}<br><span class="note">อ้างอิง: ${c.ref}</span></div>`:''}
+  ${pj.length?`<p class="note" style="margin-bottom:0">โครงการในไซต์: ${pj.map(p=>p.ProjectID+' '+p.Title+' ('+p.Status+')').join(' · ')}</p>`:''}`;
+}
+function spark(key,label,unit){
+  const P=DATA.prices, v=P.map(p=>+p[key]), W=340,H=86,pad=6, mn=Math.min(...v), mx=Math.max(...v);
+  const x=i=>pad+i*(W-pad*2)/(v.length-1), y=n=>H-18-(n-mn)/(mx-mn||1)*(H-36);
+  const pts=v.map((n,i)=>x(i)+','+y(n)).join(' '), last=v[v.length-1], ch=(last/v[v.length-2]-1)*100;
+  return `<div style="margin-bottom:8px"><div class="row" style="display:flex;justify-content:space-between"><b>${label}</b>
+    <span>${fmt(last,2)} ${unit} <span class="${ch>5?'neg':''}">${sg(ch)}</span></span></div>
+    <svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="${label} 12 เดือน"><polyline points="${pts}" fill="none" stroke="#2E86AB" stroke-width="2.5"/>
+    <circle cx="${x(v.length-1)}" cy="${y(last)}" r="4" fill="#E4572E"/>
+    <text x="${pad}" y="${H-1}" font-size="10" fill="#5d6b78">${P[0].month}</text><text x="${W-pad}" y="${H-1}" font-size="10" text-anchor="end" fill="#5d6b78">${P[P.length-1].month}</text>
+    <text x="${pad}" y="10" font-size="10" fill="#5d6b78">สูงสุด ${fmt(mx,1)} · ต่ำสุด ${fmt(mn,1)}</text></svg></div>`;
+}
+function prices(){
+  $('prices').innerHTML=spark('coal_aus_usd_per_t','ถ่านหิน ออสเตรเลีย','USD/t')+spark('brent_usd_per_bbl','น้ำมันดิบ Brent','USD/bbl')+spark('lng_asia_usd_per_mmbtu','LNG เอเชีย (ญี่ปุ่น)','USD/MMBtu');
+}
+function projects(){
+  const cls={'At risk':'y','Delayed':'r','On track':'g','Not started':'n'};
+  let P=DATA.projects; if(ver==='v2') P=P.filter(p=>p.Status!=='On track');
+  $('projects').innerHTML=`<tr><th>ID</th><th>โครงการ</th><th>ไซต์</th><th class="n">ใช้งบ (ลบ.)</th><th class="n">คืบหน้า</th><th>กำหนดเสร็จ</th><th>สถานะ</th></tr>`+
+    P.map(p=>`<tr><td>${p.ProjectID}</td><td>${p.Title}</td><td>${p.Site}</td><td class="n">${fmt(p.Spent_MTHB,1)} / ${fmt(p.Budget_MTHB,1)}</td><td class="n">${p.PercentComplete}%</td><td>${p.DueDate}</td><td><span class="tag ${cls[p.Status]||'n'}">${p.Status}</span></td></tr>`).join('');
+  const o=DATA.open_issues;
+  $('issues').textContent=`Issue Log ที่ยังเปิด: High ${o.High} · Medium ${o.Medium} · Low ${o.Low}`+(ver==='v2'?' · v2 แสดงเฉพาะโครงการที่ไม่ใช่ On track':'');
+}
+const CHECKS=[
+  'ปริมาณ Site D ก.ย. vs Budget: เปิด ops_monthly_2566-2569.xlsx ชีต data แถว 2026-09 · D แล้วคำนวณเอง',
+  'ต้นทุนต่อหน่วย Site C: actual_unit_cost_thb เทียบ budget_cost_mthb×1,000,000 ÷ budget_volume',
+  'ราคาถ่านหิน ก.ย. 2026: ตรงกับแถว 2026-09 ใน energy_prices_public_2023-2026.csv'];
+function checks(){
+  $('checks').innerHTML=CHECKS.map((t,i)=>`<label><input type="checkbox" data-i="${i}"> <span>${t}</span></label>`).join('');
+  const boxes=[...document.querySelectorAll('#checks input')];
+  boxes.forEach(b=>b.onchange=()=>$('badge').classList.toggle('show',boxes.every(x=>x.checked)));
+}
+function sources(){
+  $('sources').innerHTML=DATA.sources.map(([f,n,k])=>`<li><b>${f}</b> · ${n} <span class="tag ${k.startsWith('ภายนอก')?'n':'g'}">${k}</span></li>`).join('');
+  $('bigfile').textContent=`ฉบับเต็มพร้อมรูปหน้างาน ~${DATA.big_report_mb} MB ใหญ่เกินแนบอีเมล → เก็บใน SharePoint แล้วส่งลิงก์ (สิทธิ์เฉพาะคนในองค์กรที่เกี่ยวข้อง)`;
+}
+function printAll(){
+  $('printall').innerHTML='<h2>ตารางรวมทุกไซต์ (สำหรับ PDF)</h2><table><tr><th>ไซต์</th><th class="n">% ปริมาณ ก.ย.</th><th class="n">% ต้นทุน/หน่วย</th><th class="n">% ปริมาณ สะสม</th><th>สาเหตุ</th></tr>'+
+    DATA.sites.map(s=>`<tr><td>Site ${s.code} ${s.name}</td><td class="n">${sg(s.sep.vol_var)}</td><td class="n">${sg(s.sep.unit_cost_var)}</td><td class="n">${sg(s.ytd.vol_var)}</td><td>${DATA.causes[s.code]?DATA.causes[s.code].short:'–'}</td></tr>`).join('')+'</table>';
+}
+function setVer(v){
+  ver=v; $('v1').classList.toggle('on',v==='v1'); $('v2').classList.toggle('on',v==='v2');
+  $('vernote').textContent=v==='v1'?'v1: เรียงตามรหัสไซต์ แสดงทุกโครงการ ยังไม่มีสาเหตุ (ลองกด v2 เพื่อดูผลของ feedback 3 ข้อ)'
+    :'v2 (หลัง feedback 3 ข้อ): ① เรียงไซต์จากแย่สุด ② ใส่สาเหตุจากอีเมล/โครงการใต้ไซต์ที่มีปัญหา ③ แสดงเฉพาะโครงการที่ไม่ใช่ On track';
+  sites(); projects();
+}
+$('sub').textContent=`${DATA.title.split('·')[1]||''} · ข้อมูล ณ ${DATA.as_of} · ${DATA.note}`;
+$('v1').onclick=()=>setVer('v1'); $('v2').onclick=()=>setVer('v2');
+kpis(); prices(); checks(); sources(); printAll(); setVer('v2'); detail();
+</script>
+</body>
+</html>

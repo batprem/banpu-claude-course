@@ -1,0 +1,12 @@
+%% M4 · Report too big to attach: 3 workarounds
+flowchart LR
+    R[("รายงาน 37 MB<br/>รูป 14 ภาพ")]:::data --> C{"เกินแนบอีเมล?<br/>(~20–25 MB)"}:::human
+    C -- ไม่ --> OK["แนบได้"]:::data
+    C -- เกิน --> W1["1 ลดขนาดรูป/ข้อมูล<br/>บีบอัด · ตัดคอลัมน์"]:::ai
+    C -- เกิน --> W2["2 แบ่งไฟล์<br/>สรุป + ภาคผนวก"]:::ai
+    C -- เกิน --> W3["3 สรุป 1 หน้า<br/>+ ลิงก์ SharePoint"]:::ai
+    W1 & W2 & W3 --> H{"คนตรวจ: อ่านได้<br/>สิทธิ์ลิงก์ถูกคน"}:::human
+    H --> SP[("SharePoint · Outlook")]:::data
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;

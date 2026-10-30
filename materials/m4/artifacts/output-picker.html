@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M4 Output Picker</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--human:#E4572E;--ai:#2E86AB;--data:#3BA55C;--ink:#1F2933;--paper:#FAF8F3;--warn:#F2A541;--line:#e2dccd;--muted:#5d6b78}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 'IBM Plex Sans Thai',sans-serif}
+header{background:var(--data);color:#fff;padding:14px 16px}
+header .in{max-width:900px;margin:0 auto;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+header h1{margin:0;font-size:22px;flex:1;min-width:220px}
+header small{display:block;font-weight:400;font-size:13px}
+main{max-width:900px;margin:0 auto;padding:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:14px}
+.top{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.pill{background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:14px}
+.prog{height:10px;background:#eee;border-radius:6px;overflow:hidden;margin:10px 0}.prog i{display:block;height:100%;background:var(--ai);width:0;transition:width .3s}
+.who{font-size:13px;color:var(--muted)}
+.q{font-size:20px;font-weight:600;margin:6px 0 12px}
+.opts{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.opts.w3{grid-template-columns:repeat(3,1fr)}
+.opt{border:2px solid var(--line);background:#fff;border-radius:12px;padding:10px 6px;font:600 15px 'IBM Plex Sans Thai';cursor:pointer;color:var(--ink)}
+.opt .ic{display:block;font-size:26px}
+.opt:hover:not(:disabled){border-color:var(--ai)}
+.opt.ok{border-color:var(--data);background:#eaf6ee}.opt.no{border-color:var(--human);background:#fdf1ec}
+.fb{margin-top:12px;padding:10px 12px;border-radius:10px;display:none}
+.fb.show{display:block}.fb.ok{background:#eaf6ee;border-left:5px solid var(--data)}.fb.no{background:#fdf1ec;border-left:5px solid var(--human)}
+.next{margin-top:10px;border:0;background:var(--ai);color:#fff;border-radius:8px;padding:8px 16px;font:600 15px 'IBM Plex Sans Thai';cursor:pointer}
+.rule{font-size:14px;color:var(--muted)}
+.res table{border-collapse:collapse;width:100%;font-size:14px}
+.res th,.res td{border-bottom:1px solid #eee7d8;padding:5px 6px;text-align:left;vertical-align:top}
+.res th{background:#f4f0e6}
+.badge{font-size:40px}
+.big{font-size:28px;font-weight:700}
+footer{font-size:13px;color:var(--muted);text-align:center;padding:8px 16px 24px}
+@media(max-width:640px){.opts{grid-template-columns:repeat(2,1fr)}.opts.w3{grid-template-columns:1fr}}
+</style>
+<!-- Export PDF snippet: materials/_shared/export-pdf.html -->
+<style>
+  .export-pdf-btn{font:600 14px 'IBM Plex Sans Thai',sans-serif;background:#1F2933;color:#fff;border:0;border-radius:8px;padding:8px 14px;cursor:pointer}
+  .export-pdf-btn:hover{background:#2E86AB}
+  @media print{
+    @page{size:A4;margin:12mm}
+    body{background:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .no-print,.export-pdf-btn,button,nav{display:none!important}
+    .print-expand,[hidden].print-expand,details{display:block!important;height:auto!important;overflow:visible!important}
+    section,.card{break-inside:avoid}
+    header{background:#fff!important;color:var(--ink)!important;border-bottom:4px solid var(--data)}
+  }
+</style>
+</head>
+<body>
+<header><div class="in">
+  <h1>🏭 Output Picker: ออกมาเป็นอะไรดี?<small>Word · Excel · PDF · PowerPoint · Artifact และทางออกเมื่อไฟล์ใหญ่เกิน · M4 Document Factory</small></h1>
+  <button class="export-pdf-btn no-print" onclick="window.print()" title="บันทึกเป็น PDF (เลือก Save as PDF)">⬇ Export PDF</button>
+</div></header>
+<main>
+  <section class="card rule print-expand">
+    <b>กฎจำง่าย:</b> ผู้รับต้อง <b>แก้ หรือ เก็บเป็นหลักฐาน</b> → Word / Excel / PDF · ต้อง <b>นำเสนอ</b> → PowerPoint · ต้อง <b>สำรวจ กด ลองเอง</b> → Artifact ·
+    ไฟล์ใหญ่เกินแนบ → <b>สรุป + ลิงก์ SharePoint</b> · ทุกสถานการณ์เป็นเรื่องสมมติ
+  </section>
+  <section class="card no-print" id="play">
+    <div class="top"><span class="pill" id="count"></span><span class="pill" id="score"></span><span class="pill" id="streak"></span></div>
+    <div class="prog"><i id="bar"></i></div>
+    <div class="who" id="who"></div>
+    <div class="q" id="q"></div>
+    <div class="opts" id="opts"></div>
+    <div class="fb" id="fb"></div>
+    <button class="next" id="next" style="display:none" type="button">ข้อต่อไป →</button>
+  </section>
+  <section class="card res" id="result" hidden></section>
+</main>
+<footer>ข้อมูลและสถานการณ์สมมติเพื่อการอบรม Banpu · Claude for Business (M4) · ไม่มีการเรียก AI หรือส่งข้อมูลออกจากหน้านี้</footer>
+<script>
+const FMT={word:['📝','Word'],excel:['📊','Excel'],pdf:['📄','PDF'],ppt:['📽️','PowerPoint'],art:['✨','Artifact']};
+const WA={shrink:['🗜️','ย่อรูป/ข้อมูล'],split:['✂️','แบ่งไฟล์'],link:['🔗','สรุป + ลิงก์ SharePoint']};
+const Q=[
+ {who:'คุณมะลิ ฝึกงาน · ฝ่ายกฎหมายสมมติ',q:'บันทึกข้อตกลงกับ supplier สมมติ ที่ฝ่ายกฎหมายต้องแก้ต่อแบบ track changes',set:FMT,a:'word',why:'ต้องแก้ต่อและติดตามการแก้ไข Word เหมาะที่สุด'},
+ {who:'คุณชัยวัฒน์ · ผู้จัดการฝ่ายปฏิบัติการ (สมมติ)',q:'อยากดูผลผลิต 6 ไซต์ แล้วกดเลือกไซต์เพื่อดูรายละเอียดเอง ก่อนประชุมเช้าวันจันทร์',set:FMT,a:'art',why:'ผู้ดูต้องการ "สำรวจเอง" Artifact Dashboard โต้ตอบได้ และแชร์ภายในองค์กรได้'},
+ {who:'ทีม Finance (สมมติ)',q:'แผนงบประมาณ 2570 ที่ Finance ต้องตรวจสูตรทุกช่องก่อนอนุมัติ',set:FMT,a:'excel',why:'ผู้รับต้องตรวจและคำนวณต่อ Excel เปิดสูตรให้ audit ได้'},
+ {who:'คณะกรรมการบริหาร (สมมติ)',q:'นำเสนอผลการดำเนินงานไตรมาส 3 ในห้องประชุม 15 นาที ตาม template บริษัท',set:FMT,a:'ppt',why:'เล่าเรื่องทีละหน้าในห้องประชุม PowerPoint ตาม template บริษัท'},
+ {who:'หน่วยงานภายนอก (สมมติ)',q:'รายงานความปลอดภัยประจำปีที่ต้องส่งต่อและเก็บถาวร ห้ามมีใครแก้',set:FMT,a:'pdf',why:'หน้าตาเหมือนกันทุกเครื่องและแก้ยาก PDF เหมาะกับการเก็บถาวร'},
+ {who:'ทีมพัฒนาระบบรายงาน (สมมติ)',q:'ยังไม่แน่ใจว่าหน้า "รายงานแบบใหม่" ควรหน้าตาแบบไหน อยากได้ 3 แบบให้ผู้ใช้โหวต',set:FMT,a:'art',why:'นี่คือ Prototype ทำเป็น Artifact หลายเวอร์ชันแล้วให้ผู้ใช้เลือก (Prototype first)'},
+ {who:'วิศวกรไซต์ (สมมติ)',q:'เครื่องคิดต้นทุนต่อตันเมื่อเปลี่ยนราคาดีเซล ให้หัวหน้ากะลองใส่ตัวเลขเอง',set:FMT,a:'art',why:'งานกรอก-คำนวณซ้ำ ๆ ที่อยากให้ใช้ง่าย = Artifact แบบ App (Excel ก็ได้ ถ้าผู้ใช้ถนัดสูตร)',alt:'excel'},
+ {who:'ทีม HSE (สมมติ)',q:'อธิบายขั้นตอนอนุมัติ permit-to-work 7 ขั้นให้พนักงานใหม่เห็นภาพ',set:FMT,a:'art',why:'Diagram Artifact อธิบายขั้นตอนได้ชัด ถ้าจะแปะบอร์ดให้กด Export PDF',alt:'pdf'},
+ {who:'คุณวิไลวรรณ · Project Control (สมมติ)',q:'Monthly Ops Report ฉบับเต็ม 37 MB ต้องส่งผู้บริหาร 12 คน ทุกคนเข้า SharePoint ได้',set:WA,a:'link',why:'ไฟล์อยู่ที่เดียว คุมสิทธิ์ได้ ไม่มีสำเนากระจาย สรุปในอีเมล + ลิงก์ SharePoint'},
+ {who:'ผู้ตรวจสอบภายนอก (สมมติ)',q:'ผู้รับอยู่นอกองค์กร เปิด SharePoint ไม่ได้ ต้องได้ไฟล์จริง แต่ไฟล์ 37 MB เพราะรูป 14 ภาพ',set:WA,a:'shrink',why:'ย่อรูปเหลือ ~6–7 MB แล้วแนบได้ (ทำบนสำเนา) ถ้ายังเกินค่อยแบ่งไฟล์',alt:'split'},
+];
+let i=0,score=0,streak=0,best=0;const log=[];
+const $=id=>document.getElementById(id);
+function render(){
+  const x=Q[i];$('count').textContent=`ข้อ ${i+1} / ${Q.length}`;$('score').textContent=`คะแนน ${score}`;$('streak').textContent=`🔥 ต่อเนื่อง ${streak}`;
+  $('bar').style.width=(i/Q.length*100)+'%';$('who').textContent=(i>=8?'รอบโบนัส · ไฟล์ใหญ่เกินแนบ · ':'')+x.who;$('q').textContent=x.q;
+  $('opts').className='opts'+(x.set===WA?' w3':'');
+  $('opts').innerHTML=Object.entries(x.set).map(([k,[ic,n]])=>`<button class="opt" data-k="${k}" type="button"><span class="ic">${ic}</span>${n}</button>`).join('');
+  $('fb').className='fb';$('next').style.display='none';
+  document.querySelectorAll('.opt').forEach(b=>b.onclick=()=>pick(b.dataset.k));
+}
+function pick(k){
+  const x=Q[i],ok=k===x.a||k===x.alt;
+  document.querySelectorAll('.opt').forEach(b=>{b.disabled=true;if(b.dataset.k===x.a)b.classList.add('ok');else if(b.dataset.k===k&&!ok)b.classList.add('no');});
+  if(ok){score++;streak++;best=Math.max(best,streak);}else streak=0;
+  log.push({q:x.q,you:x.set[k][1],ans:x.set[x.a][1]+(x.alt?' / '+x.set[x.alt][1]:''),ok,why:x.why});
+  $('fb').className='fb show '+(ok?'ok':'no');
+  $('fb').innerHTML=(ok?'✅ ถูก! ':'❌ ยังไม่ใช่ · คำตอบ: <b>'+x.set[x.a][1]+'</b> · ')+x.why;
+  $('score').textContent=`คะแนน ${score}`;$('streak').textContent=`🔥 ต่อเนื่อง ${streak}`;
+  $('next').style.display='inline-block';$('next').textContent=i===Q.length-1?'ดูผลลัพธ์ →':'ข้อต่อไป →';
+}
+$('next').onclick=()=>{i++;if(i<Q.length)render();else done();};
+function done(){
+  $('bar').style.width='100%';
+  const [b,t]=score>=9?['🏆','Output Architect']:score>=7?['🥈','Report Builder']:['🛠️','ฝึกอีกนิด'];
+  $('result').hidden=false;
+  $('result').innerHTML=`<div class="badge">${b}</div><div class="big">${score} / ${Q.length} · ${t}</div><p>ตอบถูกต่อเนื่องสูงสุด ${best} ข้อ · กด Export PDF เพื่อเก็บผล</p>
+  <table><tr><th>#</th><th>สถานการณ์</th><th>คุณเลือก</th><th>คำตอบ</th><th>เหตุผล</th></tr>${log.map((r,n)=>`<tr><td>${n+1}</td><td>${r.q}</td><td>${r.ok?'✅':'❌'} ${r.you}</td><td>${r.ans}</td><td>${r.why}</td></tr>`).join('')}</table>
+  <p class="no-print"><button class="next" type="button" onclick="location.reload()">เล่นอีกครั้ง</button></p>`;
+  $('result').scrollIntoView({behavior:'smooth'});
+}
+render();
+</script>
+</body>
+</html>

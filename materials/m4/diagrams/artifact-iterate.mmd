@@ -1,0 +1,10 @@
+%% M4 · Artifact as output layer: iterate v1 → v2 with human feedback
+flowchart LR
+    B["บรีฟ: ใครดู<br/>ดูเพื่อตัดสินใจอะไร"]:::human --> V1["v1 Dashboard<br/>Artifact"]:::ai
+    V1 --> F{"คนดู + feedback<br/>1–3 ข้อ"}:::human
+    F -- ปรับ --> V2["v2, v3 …<br/>แก้เฉพาะจุด"]:::ai
+    V2 --> F
+    F -- พอแล้ว --> P["Publish / แชร์ในองค์กร<br/>หรือ Export PDF"]:::data
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;

@@ -1,0 +1,16 @@
+%% M4 · Workshop flow: Monthly Operations Report (25 นาที)
+flowchart LR
+    I1(["1 Excel"]):::data
+    I2(["2 CSV ใหญ่"]):::data
+    I3(["3 SharePoint"]):::data
+    I4(["4 Outlook"]):::data
+    I5(["5 ราคาพลังงาน สาธารณะ"]):::data
+    I1 & I2 & I3 & I4 & I5 --> P1["หน้า 2 Plan + รวมข้อมูล<br/>สรุปตัวเลขกันยายน"]:::ai
+    P1 --> H1{"ตรวจ 3 ตัวเลข<br/>กับต้นทาง"}:::human
+    H1 --> O1["หน้า 3 Word / PPTX"]:::ai
+    H1 --> O2["หน้า 4 Artifact Dashboard<br/>v1 → v2"]:::ai
+    O1 & O2 --> H2{"หน้า 5 ไฟล์ใหญ่เกิน?<br/>เลือก workaround"}:::human
+    H2 --> N["ต่อ M6: Schedule"]:::data
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;

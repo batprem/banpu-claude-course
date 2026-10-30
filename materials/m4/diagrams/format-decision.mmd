@@ -1,0 +1,14 @@
+%% M4 · Artifact or Word/Excel/PDF/PPT? decision
+flowchart LR
+    Q1{"ผู้รับต้องแก้ไข<br/>หรือเก็บเป็นทางการ?"}:::human
+    Q1 -- ใช่ ข้อความ/สัญญา --> W["Word"]:::data
+    Q1 -- ใช่ ตัวเลขต้องคำนวณต่อ --> X["Excel"]:::data
+    Q1 -- ไม่ --> Q2{"ใช้นำเสนอ<br/>ในห้องประชุม?"}:::human
+    Q2 -- ใช่ --> PP["PowerPoint"]:::data
+    Q2 -- ไม่ --> Q3{"อยากให้คนกด<br/>filter / เล่น / ลอง?"}:::human
+    Q3 -- ใช่ --> AR["Artifact<br/>Dashboard · App · Prototype · Diagram"]:::ai
+    Q3 -- ไม่ ต้องส่งต่อ/พิมพ์ --> PD["PDF"]:::data
+    AR -. Export PDF .-> PD
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;

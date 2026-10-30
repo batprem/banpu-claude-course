@@ -1,0 +1,473 @@
+{
+ "title": "Monthly Operations Report · กันยายน 2569",
+ "as_of": "2026-10-24",
+ "note": "ข้อมูลสมมติทั้งหมด (ยกเว้นราคาพลังงานสาธารณะ: IMF via FRED)",
+ "sites": [
+  {
+   "code": "A",
+   "name": "เหมืองสมมติ ภูผาทอง",
+   "type": "เหมือง",
+   "unit": "ตัน",
+   "sep": {
+    "bv": 381290,
+    "av": 375975,
+    "vol_var": -1.4,
+    "bc": 466.54,
+    "ac": 459.07,
+    "unit_cost": 1221.0,
+    "unit_cost_var": -0.2
+   },
+   "ytd": {
+    "bv": 3737040,
+    "av": 3727735,
+    "vol_var": -0.2,
+    "bc": 4651.2,
+    "ac": 4657.5
+   },
+   "trend": [
+    0.6,
+    -2.5,
+    1.4,
+    1.6,
+    0.2,
+    1.7,
+    -2.2,
+    -2.1,
+    -1.4
+   ],
+   "shift": {
+    "tonnes": 2598962,
+    "coal_t": 366805,
+    "diesel_l_per_t": 1.097,
+    "downtime_h": 1557,
+    "worst_truck": "A-HT10",
+    "worst_truck_h": 64
+   }
+  },
+  {
+   "code": "B",
+   "name": "เหมืองสมมติ ดอยหินดำ",
+   "type": "เหมือง",
+   "unit": "ตัน",
+   "sep": {
+    "bv": 264646,
+    "av": 250631,
+    "vol_var": -5.3,
+    "bc": 352.63,
+    "ac": 346.61,
+    "unit_cost": 1382.9,
+    "unit_cost_var": 3.8
+   },
+   "ytd": {
+    "bv": 2601303,
+    "av": 2582738,
+    "vol_var": -0.7,
+    "bc": 3476.4,
+    "ac": 3466.3
+   },
+   "trend": [
+    -0.3,
+    -0.7,
+    -0.8,
+    -0.2,
+    0.0,
+    -0.8,
+    0.3,
+    1.2,
+    -5.3
+   ],
+   "shift": {
+    "tonnes": 2045550,
+    "coal_t": 315467,
+    "diesel_l_per_t": 1.104,
+    "downtime_h": 3794,
+    "worst_truck": "B-HT07",
+    "worst_truck_h": 377
+   }
+  },
+  {
+   "code": "C",
+   "name": "เหมืองสมมติ ผาแดง",
+   "type": "เหมือง",
+   "unit": "ตัน",
+   "sep": {
+    "bv": 181423,
+    "av": 170498,
+    "vol_var": -6.0,
+    "bc": 259.36,
+    "ac": 281.96,
+    "unit_cost": 1653.7,
+    "unit_cost_var": 15.7
+   },
+   "ytd": {
+    "bv": 1804285,
+    "av": 1783193,
+    "vol_var": -1.2,
+    "bc": 2549.9,
+    "ac": 2587.5
+   },
+   "trend": [
+    -0.5,
+    -0.8,
+    -1.5,
+    0.9,
+    -1.7,
+    -1.2,
+    -0.3,
+    0.1,
+    -6.0
+   ],
+   "shift": {
+    "tonnes": 2518128,
+    "coal_t": 378462,
+    "diesel_l_per_t": 1.103,
+    "downtime_h": 1774,
+    "worst_truck": "C-HT13",
+    "worst_truck_h": 146
+   }
+  },
+  {
+   "code": "D",
+   "name": "โรงไฟฟ้าสมมติ ลำน้ำใส",
+   "type": "โรงไฟฟ้า",
+   "unit": "MWh",
+   "sep": {
+    "bv": 459866,
+    "av": 382103,
+    "vol_var": -16.9,
+    "bc": 1015.13,
+    "ac": 960.83,
+    "unit_cost": 2514.6,
+    "unit_cost_var": 13.9
+   },
+   "ytd": {
+    "bv": 4317317,
+    "av": 4209736,
+    "vol_var": -2.5,
+    "bc": 9546.7,
+    "ac": 9520.3
+   },
+   "trend": [
+    -2.0,
+    0.5,
+    1.2,
+    1.2,
+    2.0,
+    0.2,
+    0.1,
+    -10.1,
+    -16.9
+   ],
+   "shift": null
+  },
+  {
+   "code": "E",
+   "name": "โรงไฟฟ้าสมมติ ทุ่งทอง",
+   "type": "โรงไฟฟ้า",
+   "unit": "MWh",
+   "sep": {
+    "bv": 317411,
+    "av": 318320,
+    "vol_var": 0.3,
+    "bc": 752.62,
+    "ac": 738.14,
+    "unit_cost": 2318.9,
+    "unit_cost_var": -2.2
+   },
+   "ytd": {
+    "bv": 2957482,
+    "av": 2956303,
+    "vol_var": -0.0,
+    "bc": 6972.2,
+    "ac": 6964.0
+   },
+   "trend": [
+    0.9,
+    1.7,
+    1.0,
+    -1.7,
+    -1.1,
+    1.4,
+    -2.2,
+    -0.6,
+    0.3
+   ],
+   "shift": null
+  },
+  {
+   "code": "F",
+   "name": "ฟาร์มโซลาร์สมมติ แสงตะวัน",
+   "type": "โซลาร์",
+   "unit": "MWh",
+   "sep": {
+    "bv": 9282,
+    "av": 9241,
+    "vol_var": -0.4,
+    "bc": 6.45,
+    "ac": 6.45,
+    "unit_cost": 698.0,
+    "unit_cost_var": 0.4
+   },
+   "ytd": {
+    "bv": 102103,
+    "av": 101368,
+    "vol_var": -0.7,
+    "bc": 70.5,
+    "ac": 71.2
+   },
+   "trend": [
+    -2.1,
+    -0.8,
+    -1.2,
+    -0.5,
+    -2.3,
+    -1.0,
+    0.5,
+    1.8,
+    -0.4
+   ],
+   "shift": null
+  }
+ ],
+ "prices": [
+  {
+   "month": "2025-10",
+   "coal_aus_usd_per_t": "111.5",
+   "brent_usd_per_bbl": "63.98",
+   "lng_asia_usd_per_mmbtu": "10.84",
+   "source": "IMF Primary Commodity Prices via FRED (fred.stlouisfed.org)"
+  },
+  {
+   "month": "2025-11",
+   "coal_aus_usd_per_t": "115.44",
+   "brent_usd_per_bbl": "63.69",
+   "lng_asia_usd_per_mmbtu": "11.07",
+   "source": "IMF Primary Commodity Prices via FRED (fred.stlouisfed.org)"
+  },
+  {
+   "month": "2025-12",
+   "coal_aus_usd_per_t": "115.68",
+   "brent_usd_per_bbl": "61.81",
+   "lng_asia_usd_per_mmbtu": "9.91",
+   "source": "IMF Primary Commodity Prices via FRED (fred.stlouisfed.org)"
+  },
+  {
+   "month": "2026-01",
+   "coal_aus_usd_per_t": "115.81",
+   "brent_usd_per_bbl": "64.59",
+   "lng_asia_usd_per_mmbtu": "10.44",
+   "source": "IMF Primary Commodity Prices via FRED (fred.stlouisfed.org)"
+  },
+  {
+   "month": "2026-02",
+   "coal_aus_usd_per_t": "122.21",
+   "brent_usd_per_bbl": "69.41",
+   "lng_asia_usd_per_mmbtu": "10.75",
+   "source": "IMF Primary Commodity Prices via FRED (fred.stlouisfed.org)"
+  },
+  {
+   "month": "2026-03",
+   "coal_aus_usd_per_t": "140.06",
+   "brent_usd_per_bbl": "99.41",
+   "lng_asia_usd_per_mmbtu": "20.81",
+   "source": "IMF Primary Commodity Prices via FRED (fred.stlouisfed.org)"
+  },
+  {
+   "month": "2026-04",
+   "coal_aus_usd_per_t": "142.11",
+   "brent_usd_per_bbl": "102.81",
+   "lng_asia_usd_per_mmbtu": "16.57",
+   "source": "IMF Primary Commodity Prices via FRED (fred.stlouisfed.org)"
+  },
+  {
+   "month": "2026-05",
+   "coal_aus_usd_per_t": "141.45",
+   "brent_usd_per_bbl": "103.84",
+   "lng_asia_usd_per_mmbtu": "18.1",
+   "source": "IMF Primary Commodity Prices via FRED (fred.stlouisfed.org)"
+  },
+  {
+   "month": "2026-06",
+   "coal_aus_usd_per_t": "150.36",
+   "brent_usd_per_bbl": "84.49",
+   "lng_asia_usd_per_mmbtu": "17.19",
+   "source": "IMF Primary Commodity Prices via FRED (fred.stlouisfed.org)"
+  },
+  {
+   "month": "2026-07",
+   "coal_aus_usd_per_t": "140.4",
+   "brent_usd_per_bbl": "83.73",
+   "lng_asia_usd_per_mmbtu": "19.56",
+   "source": "IMF Primary Commodity Prices via FRED (fred.stlouisfed.org)"
+  },
+  {
+   "month": "2026-08",
+   "coal_aus_usd_per_t": "140.51",
+   "brent_usd_per_bbl": "88.07",
+   "lng_asia_usd_per_mmbtu": "22.04",
+   "source": "IMF Primary Commodity Prices via FRED (fred.stlouisfed.org)"
+  },
+  {
+   "month": "2026-09",
+   "coal_aus_usd_per_t": "153.84",
+   "brent_usd_per_bbl": "102.02",
+   "lng_asia_usd_per_mmbtu": "26.64",
+   "source": "IMF Primary Commodity Prices via FRED (fred.stlouisfed.org)"
+  }
+ ],
+ "projects": [
+  {
+   "ProjectID": "PRJ-101",
+   "Title": "เปลี่ยนสายพานลำเลียง CV-03",
+   "Site": "Site A",
+   "Budget_MTHB": "48.0",
+   "Spent_MTHB": "25.6",
+   "DueDate": "2026-12-15",
+   "Status": "On track",
+   "PercentComplete": "62"
+  },
+  {
+   "ProjectID": "PRJ-102",
+   "Title": "ติดตั้งระบบตรวจฝุ่นออนไลน์",
+   "Site": "Site A",
+   "Budget_MTHB": "12.5",
+   "Spent_MTHB": "10.4",
+   "DueDate": "2026-11-30",
+   "Status": "At risk",
+   "PercentComplete": "70"
+  },
+  {
+   "ProjectID": "PRJ-103",
+   "Title": "ปรับปรุงถนนขนส่งในเหมือง",
+   "Site": "Site B",
+   "Budget_MTHB": "31.0",
+   "Spent_MTHB": "11.4",
+   "DueDate": "2027-02-28",
+   "Status": "On track",
+   "PercentComplete": "40"
+  },
+  {
+   "ProjectID": "PRJ-104",
+   "Title": "ระบบบำบัดน้ำทิ้งเฟส 2",
+   "Site": "Site C",
+   "Budget_MTHB": "26.4",
+   "Spent_MTHB": "11.1",
+   "DueDate": "2026-12-31",
+   "Status": "Delayed",
+   "PercentComplete": "35"
+  },
+  {
+   "ProjectID": "PRJ-105",
+   "Title": "Overhaul หม้อไอน้ำ Unit 2",
+   "Site": "Site D",
+   "Budget_MTHB": "95.0",
+   "Spent_MTHB": "61.7",
+   "DueDate": "2026-11-20",
+   "Status": "On track",
+   "PercentComplete": "55"
+  },
+  {
+   "ProjectID": "PRJ-106",
+   "Title": "เปลี่ยน DCS โรงไฟฟ้า",
+   "Site": "Site E",
+   "Budget_MTHB": "72.3",
+   "Spent_MTHB": "20.4",
+   "DueDate": "2027-03-31",
+   "Status": "At risk",
+   "PercentComplete": "30"
+  },
+  {
+   "ProjectID": "PRJ-107",
+   "Title": "เปลี่ยน inverter ชุด 4–6",
+   "Site": "Site F",
+   "Budget_MTHB": "18.9",
+   "Spent_MTHB": "9.4",
+   "DueDate": "2026-12-10",
+   "Status": "On track",
+   "PercentComplete": "48"
+  },
+  {
+   "ProjectID": "PRJ-108",
+   "Title": "ติดตั้งแบตเตอรี่สำรอง (BESS) นำร่อง",
+   "Site": "Site F",
+   "Budget_MTHB": "64.0",
+   "Spent_MTHB": "3.2",
+   "DueDate": "2027-06-30",
+   "Status": "Not started",
+   "PercentComplete": "5"
+  },
+  {
+   "ProjectID": "PRJ-109",
+   "Title": "Digital permit-to-work",
+   "Site": "Site B",
+   "Budget_MTHB": "6.8",
+   "Spent_MTHB": "3.9",
+   "DueDate": "2026-12-20",
+   "Status": "On track",
+   "PercentComplete": "58"
+  },
+  {
+   "ProjectID": "PRJ-110",
+   "Title": "ปรับปรุงห้องควบคุม Unit 1",
+   "Site": "Site D",
+   "Budget_MTHB": "22.0",
+   "Spent_MTHB": "12.4",
+   "DueDate": "2026-12-31",
+   "Status": "On track",
+   "PercentComplete": "50"
+  },
+  {
+   "ProjectID": "PRJ-111",
+   "Title": "ระบบพยากรณ์ผลผลิตโซลาร์",
+   "Site": "Site F",
+   "Budget_MTHB": "4.2",
+   "Spent_MTHB": "1.2",
+   "DueDate": "2027-01-31",
+   "Status": "On track",
+   "PercentComplete": "25"
+  },
+  {
+   "ProjectID": "PRJ-112",
+   "Title": "ซ่อมบำรุงใหญ่รถขุด EX-07",
+   "Site": "Site C",
+   "Budget_MTHB": "15.6",
+   "Spent_MTHB": "8.8",
+   "DueDate": "2026-11-25",
+   "Status": "At risk",
+   "PercentComplete": "60"
+  }
+ ],
+ "open_issues": {
+  "High": 16,
+  "Medium": 11,
+  "Low": 3
+ },
+ "big_report_mb": 36.9,
+ "sources": [
+  [
+   "Excel",
+   "ops_monthly_2566-2569.xlsx",
+   "ภายใน"
+  ],
+  [
+   "CSV",
+   "shift_log_2568-2569.csv (~172,000 แถว)",
+   "ภายใน"
+  ],
+  [
+   "SharePoint List",
+   "Project_Tracker · Issue_Log (M3)",
+   "ภายใน"
+  ],
+  [
+   "Outlook",
+   "อีเมลอัปเดตโครงการ 20 ฉบับ (M3)",
+   "ภายใน"
+  ],
+  [
+   "Web/CSV",
+   "energy_prices_public_2023-2026.csv (IMF via FRED)",
+   "ภายนอก สาธารณะ"
+  ]
+ ]
+}
