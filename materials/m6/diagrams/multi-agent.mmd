@@ -1,0 +1,13 @@
+flowchart TB
+    U["คุณ: ขอ Weekly Insight"]:::human --> L["Lead agent<br/>แบ่งงาน + รวมผล"]:::ai
+    L --> A1["Sub-agent 1<br/>ข่าวเว็บ"]:::ai
+    L --> A2["Sub-agent 2<br/>อีเมล Outlook"]:::ai
+    L --> A3["Sub-agent 3<br/>บันทึกประชุม"]:::ai
+    A1 --> W[("Web")]:::data
+    A2 --> O[("Outlook")]:::data
+    A3 --> S[("SharePoint")]:::data
+    A1 & A2 & A3 --> L
+    L --> H{"🛑 คนตรวจผลรวม"}:::human
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;

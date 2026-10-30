@@ -1,0 +1,10 @@
+flowchart TB
+    T["⏰ Scheduled task ถึงเวลา"]:::ai --> Q{"งานนี้ต้องใช้<br/>ไฟล์/แอปในเครื่องไหม?"}:::ai
+    Q -- ไม่ใช้ · ใช้แค่ Connector + Web --> C["รันบน cloud ของ Anthropic<br/>ปิดเครื่อง/ปิดแอปได้"]:::ai
+    Q -- ใช้โฟลเดอร์ในเครื่อง --> L{"เครื่องเปิด + ไม่ sleep<br/>+ Claude Desktop เปิดอยู่?"}:::human
+    L -- ใช่ --> R["รันในเครื่องเรา"]:::ai
+    L -- ไม่ --> M["ไม่รันตามเวลา<br/>ดูใน Scheduled → past runs"]:::human
+    C & R --> O[("ผลลัพธ์: ไฟล์ใน output/<br/>หรือ Outlook Drafts")]:::data
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;

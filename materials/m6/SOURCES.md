@@ -1,0 +1,13 @@
+# M6 · Sources
+
+| # | Item | Used in | URL | Author / owner | Licence / usage rights | Accessed |
+|---|---|---|---|---|---|---|
+| 1 | Schedule recurring tasks in Cowork (Scheduled page, run conditions, local vs remote runs) | slides "Scheduled task ใน Cowork", "เงื่อนไข: งานจะรันจริงตอนไหน?" | https://support.claude.com/en/articles/13854387-schedule-recurring-tasks-in-cowork | Anthropic Help Center | link-only; quoted short phrases; versions of the page differ on remote vs local runs — re-check the week of training | 2026-10-30 |
+| 2 | Use Claude Cowork safely (approval modes, web search/fetch outside network egress settings) | slides "Monitoring", "HITL 4 กฎ" (notes) | https://support.claude.com/en/articles/13364135-use-claude-cowork-safely | Anthropic Help Center | link-only; paraphrased; mode names may change | 2026-10-30 |
+| 3 | Claude for Chrome permissions guide ("Automatically approve" default in some surfaces) | slide "HITL 4 กฎ" (notes) | https://support.claude.com/en/articles/12902446-claude-for-chrome-permissions-guide | Anthropic Help Center | link-only | 2026-10-30 |
+| 4 | Get started with Cowork (scheduled tasks need the computer awake and the app open for local work) | slide "เงื่อนไข" (notes) | https://support.claude.com/en/articles/13345190-get-started-with-cowork | Anthropic Help Center | link-only | 2026-10-30 |
+| 5 | Air Canada chatbot error: BC tribunal ruling (Moffatt v. Air Canada, 14 Feb 2024) — story | slide 2 story | https://globalnews.ca/news/10297307/air-canada-chatbot-error-bc-ruling | Global News | link-only; facts paraphrased | 2026-10-30 |
+| 6 | Air Canada ordered to pay customer after chatbot misguided him about fares | slide 2 story (notes) | https://dailyhive.com/canada/air-canada-chatbot-decision | Daily Hive | link-only | 2026-10-30 |
+| 7 | Data refresh in Power BI (real-time / DirectQuery vs scheduled refresh) | slide "Awareness: Dashboard สด จริงไหม?" (notes) | https://learn.microsoft.com/power-bi/connect-data/refresh-data | Microsoft Learn | link-only; refresh limits depend on licence — no numbers quoted | 2026-10-30 |
+| 8 | How we built our multi-agent research system (lead agent + sub-agents, ~15× tokens, +90.2% internal eval) | slide "Awareness: Sub-agent / Multi-agent" (notes) | https://www.anthropic.com/engineering/multi-agent-research-system | Anthropic Engineering, Jun 2025 | link-only; figures quoted from the post | 2026-10-30 |
+| 9 | Energy news for the Weekly Insight demo fallback | `data/pack/news_fallback.md` | — | Fictional headlines written for this course (`*.example.com`) | Original; labelled ข่าวสมมติ | 2026-10-30 |
