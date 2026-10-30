@@ -1,0 +1,11 @@
+flowchart LR
+    U["คุณ: Prompt<br/>สั่งงานครั้งนี้"]:::human --> C["Claude / Cowork"]:::ai
+    SK["Skill<br/>วิธีทำงานที่ใช้ซ้ำ"]:::ai --> C
+    C <--> PR[("Project<br/>บริบทของเรื่องนี้")]:::data
+    C <--> CN[("Connector<br/>SharePoint · Outlook")]:::data
+    C --> O["ร่างผลงาน"]:::ai --> R{"คุณตรวจ<br/>/อนุมัติ"}:::human
+    PL["Plugin<br/>ห่อรวม Skill + Connector<br/>+ คำสั่ง /"]:::ai -.-> SK
+    PL -.-> CN
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;

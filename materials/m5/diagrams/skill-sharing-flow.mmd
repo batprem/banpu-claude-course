@@ -1,0 +1,12 @@
+flowchart LR
+    A["ผู้สร้าง: เลือก<br/>งานที่ทำซ้ำ"]:::human --> B["Claude ช่วยร่าง<br/>SKILL.md + template"]:::ai
+    B --> T["ทดสอบ<br/>ข้อมูล 2 ชุด"]:::human
+    T --> RV{"Hi-I / IT ตรวจ<br/>ตาม Checklist"}:::human
+    RV -- แก้ --> B
+    RV -- ผ่าน --> OW["Owner Claude Team<br/>แชร์ทั้งองค์กร/กลุ่ม"]:::human
+    OW --> SP[("SharePoint ทีม<br/>ต้นฉบับ · เวอร์ชัน")]:::data
+    OW --> USE["ทั้งทีมใช้<br/>รายงานแบบเดียวกัน"]:::ai
+    USE -- เวอร์ชันใหม่ = ตรวจซ้ำ --> RV
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;
