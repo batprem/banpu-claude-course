@@ -12,7 +12,7 @@ Language: Thai for learner-facing content; technical terms may stay in English.
 - Source of truth for scope: proposal/proposal.html (16 client requirements, 8 modules).
 
 ## Status
-Planning phase. See PLAN.md. Don't build workshops until Prem approves the plan.
+Plan approved by Prem on 30 Oct 2026. Building, see PLAN.md.
 
 ## Concurrency
-At most 1 Claude module agent runs at a time besides the course-orchestrator leader.
+At most 2 Claude module agents runs at a time besides the course-orchestrator leader.

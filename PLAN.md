@@ -33,7 +33,7 @@ Artifact sharing needs company Claude accounts · Artifacts that call AI use up 
 - Use stories and real cases where they fit (each module: at least 1 story or case, with its source).
 
 ## Agent setup (Claude Code subagents in .claude/agents/)
-- Max 1 module agent running at a time besides the leader (sequential: M1 → M8).
+- Max 2 module agents running at a time besides the leader (M1 → M8, two at a time).
 - course-orchestrator: delegates 1 module per agent, checks page budgets, keeps style and terminology consistent, merges.
 - module-m1 … module-m8: each builds its module's slides + materials (handout, prompts, diagrams, Artifact spec) inside materials/<module>/.
 
