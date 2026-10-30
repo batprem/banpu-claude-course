@@ -85,7 +85,7 @@ const META = __META__;
 const SLIDES = __SLIDES__;
 const deck = document.getElementById('deck');
 marked.use({renderer:{code(code, lang){
-  if(lang==='mermaid') return '<div class="mermaid">'+code+'</div>';
+  if(lang==='mermaid') return '<div class="mermaid" data-src="'+encodeURIComponent(code)+'"></div>';
   return false;}}});
 SLIDES.forEach((s,i)=>{
   const el=document.createElement('section');
@@ -100,17 +100,29 @@ const slides=[...document.querySelectorAll('.slide')], notes=[...document.queryS
 async function show(i){cur=Math.max(0,Math.min(slides.length-1,i));
   slides.forEach((s,j)=>s.classList.toggle('active',j===cur));
   notes.forEach((s,j)=>s.classList.toggle('active',j===cur));
-  history.replaceState(null,'','#'+(cur+1));
-  const pending=slides[cur].querySelectorAll('.mermaid:not([data-processed])');
-  if(pending.length){await document.fonts.ready; await mermaid.run({nodes:pending});}}
+  history.replaceState(null,'','#'+(cur+1));}
+// Pre-render every diagram once (each slide made visible in turn so Mermaid can measure),
+// so print/PDF export never depends on which slides were visited. mermaid.render with our
+// own ids avoids the Date.now()-based id clashes of rapid mermaid.run calls.
+async function renderAll(){await document.fonts.ready;
+  for(let i=0;i<slides.length;i++){
+    const pending=[...slides[i].querySelectorAll('.mermaid:not([data-processed])')];
+    if(!pending.length) continue;
+    slides[i].classList.add('active');
+    for(let k=0;k<pending.length;k++){const el=pending[k];
+      try{const {svg}=await mermaid.render('mmd-s'+i+'-'+k, decodeURIComponent(el.dataset.src)); el.innerHTML=svg;}
+      catch(err){el.textContent='Diagram error: '+err.message;}
+      el.dataset.processed='true';}
+    if(i!==cur) slides[i].classList.remove('active');}
+  document.body.dataset.ready='1';}
 document.addEventListener('keydown',e=>{
   if(['ArrowRight','PageDown',' '].includes(e.key)) show(cur+1);
   if(['ArrowLeft','PageUp'].includes(e.key)) show(cur-1);
   if(e.key==='n') document.body.classList.toggle('show-notes');
-  if(e.key==='p'){document.fonts.ready.then(()=>mermaid.run({querySelector:'.mermaid:not([data-processed])'})).then(()=>window.print());}
+  if(e.key==='p') rendered.then(()=>window.print());
 });
-window.addEventListener('beforeprint',()=>mermaid.run({querySelector:'.mermaid:not([data-processed])'}));
 show(cur);
+const rendered=renderAll();
 </script></body></html>
 """
 
