@@ -1,0 +1,12 @@
+flowchart LR
+    T["① ตั้งทีม + เลือก use case<br/>5 นาที"]:::human --> A["② วิเคราะห์ Canvas<br/>Data → Connector → Output → Trade-off<br/>10 นาที"]:::human
+    D[("Data pack สมมติ UC1–UC5<br/>หรือ use case ของทีม (🟢 เท่านั้น)")]:::data --> A
+    A --> B["③ สร้างต้นแบบด้วย Cowork<br/>21 นาที"]:::ai
+    B --> C{"HITL: ตัวเลข/ที่มา<br/>ถูกไหม?"}:::human
+    C -- แก้ --> B
+    C -- ผ่าน --> P["④ เตรียมนำเสนอ<br/>+ โพสต์ Show & Share board · 4 นาที"]:::human
+    P --> S["⑤ Show & Share 3 นาที/ทีม<br/>+ feedback 1 นาที · 20 นาที"]:::human
+    S --> V["⑥ โหวต + สรุป → M8 · 5 นาที"]:::human
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;

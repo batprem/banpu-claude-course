@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="th"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Capstone · Use Case จริงของเรา</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--human:#E4572E;--ai:#2E86AB;--data:#3BA55C;--ink:#1F2933;--paper:#FAF8F3;--warn:#F2A541}
+*{box-sizing:border-box}
+body{margin:0;background:#2b2f33;font-family:'IBM Plex Sans Thai',sans-serif;color:var(--ink)}
+.slide{width:1280px;height:720px;margin:24px auto;background:var(--paper);position:relative;overflow:hidden;
+  padding:56px 72px 48px;display:none;border-top:10px solid var(--ai)}
+.slide.active{display:block}
+.slide h1{font-size:44px;margin:0 0 24px;line-height:1.25}
+.slide h2{font-size:32px;margin:0 0 16px}
+.slide p,.slide li{font-size:26px;line-height:1.55}
+.slide table{border-collapse:collapse;font-size:20px;width:100%}
+.slide th,.slide td{border-bottom:1px solid #d9d4c7;padding:6px 10px;text-align:left}
+.slide th{background:#efeadf}
+.slide code{background:#efeadf;padding:1px 6px;border-radius:4px;font-size:.85em}
+.slide pre{background:#1F2933;color:#f5f5f5;padding:16px;border-radius:8px;font-size:18px;white-space:pre-wrap}
+.slide pre code{background:none;color:inherit}
+.slide img{max-width:100%;max-height:440px;display:block;margin:8px auto}
+.slide blockquote{border-left:6px solid var(--warn);margin:12px 0;padding:4px 18px;background:#fff6e6}
+.slide .mermaid{display:flex;justify-content:center}
+.slide.section{background:var(--ai);color:#fff;display:none;flex-direction:column;justify-content:center;border-top:0}
+.slide.section.active{display:flex}
+.slide.section h1{font-size:60px}
+.slide.story{border-top-color:var(--human)}
+.slide.story::before{content:"เรื่องเล่า / Case";position:absolute;top:18px;right:72px;font-size:16px;color:var(--human);font-weight:700}
+.foot{position:absolute;bottom:16px;left:72px;right:72px;display:flex;justify-content:space-between;font-size:14px;opacity:.6}
+.notes{width:1280px;margin:0 auto 24px;background:#fffbe8;padding:12px 18px;font-size:16px;display:none;white-space:pre-wrap}
+body.show-notes .notes.active{display:block}
+@media print{
+  @page{size:1280px 720px;margin:0}
+  body{background:#fff}
+  .slide,.slide.section{display:block!important;margin:0;page-break-after:always;break-after:page}
+  .slide.section{display:flex!important}
+  .notes{display:none!important}
+}
+</style></head><body>
+<div id="deck"></div>
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+<script>
+const META = {"title": "Capstone · Use Case จริงของเรา", "module": "M7", "duration": "75 min (Lecture 10 / Workshop 65)"};
+const SLIDES = [{"md": "<!-- type: section -->\n# M7 · Capstone: Use Case จริงของเรา\n\nเอาทุกอย่างตั้งแต่เช้ามาประกอบเป็นงานจริง 1 ชิ้น ในทีม 6–8 คน (5 ทีมต่อคลาส)\n\n15:00–16:15 · 75 นาที (บรรยาย 10 · Workshop 65)", "notes": "[0:00] หลังเบรกบ่าย พลังงานห้องเริ่มตก บอกตรง ๆ ว่า 65 นาทีต่อจากนี้ \"เราทำ ไม่ใช่ฟัง\" บรรยายแค่ 10 นาที\nRequirement 14 (Capstone: data, connector, output, trade-off · Hands-on) และประยุกต์ requirement 1–7\nผลลัพธ์ของแต่ละทีม: ต้นแบบ 1 ชิ้น + การ์ดบน Show & Share board + PDF แผนต่อยอด ที่เอาไปใช้ใน M8 แผน 30 วัน\nก่อนเริ่ม: ให้นับ 1–5 วนทั้งห้องเพื่อแบ่งทีม (หรือใช้ทีมที่ Hi-I จัดไว้ล่วงหน้า)", "type": "section"}, {"md": "<!-- type: story -->\n# Novo Nordisk: เอกสารที่เคยใช้ 10+ สัปดาห์ เหลือ 10 นาที\n\n- ทีมเล็ก **11 คน** เริ่มจากงานเดียวที่เจ็บที่สุด: เขียนรายงานผลการศึกษาทางคลินิก\n- เดิมผู้เขียน 1 คนทำได้เฉลี่ย **2.3 ฉบับต่อปี**\n- ใช้ Claude ร่าง → เวลาเขียนลดลง 90% · รอบรีวิว**ลดลงครึ่งหนึ่ง**\n- แต่ร่างทุกฉบับ \"ส่งถึงมือคนเพื่อตรวจและอนุมัติ\"\n\n> \"เราโยนข้อมูลใส่ LLM แล้วหวังว่าจะออกมาดีไม่ได้\" — ทีม Novo Nordisk", "notes": "[0:45] เคสจริงจาก Anthropic customer story (SOURCES #1) เล่า 1 นาที\nประเด็นที่อยากให้ติดหัว 3 ข้อ: (1) เริ่มจาก use case เดียวที่ชัด ไม่ใช่ \"เอา AI มาใช้ทั้งองค์กร\" (2) ทีมเล็กก็สร้างได้ (3) คนยังเป็นผู้อนุมัติ = Human-in-the-Loop ตรงกับที่เราพูดมาทั้งวัน\nตัวเลข 10+ สัปดาห์ → 10 นาที เป็นของงานร่างเอกสาร ไม่ใช่การอนุมัติ ย้ำอย่าเข้าใจผิดว่า \"ไม่ต้องตรวจแล้ว\"\nถามห้อง: \"งานไหนของทีมคุณที่กินเวลาเป็นสัปดาห์ แต่รูปแบบซ้ำเดิมทุกครั้ง?\" นั่นคือผู้สมัคร capstone", "type": "story"}, {"md": "# 65 นาทีจากนี้: ทำ → ตรวจ → โชว์\n\n```mermaid\nflowchart LR\n    T[\"① ตั้งทีม + เลือก use case<br/>5 นาที\"]:::human --> A[\"② วิเคราะห์ Canvas<br/>Data → Connector → Output → Trade-off<br/>10 นาที\"]:::human\n    D[(\"Data pack สมมติ UC1–UC5<br/>หรือ use case ของทีม (🟢 เท่านั้น)\")]:::data --> A\n    A --> B[\"③ สร้างต้นแบบด้วย Cowork<br/>21 นาที\"]:::ai\n    B --> C{\"HITL: ตัวเลข/ที่มา<br/>ถูกไหม?\"}:::human\n    C -- แก้ --> B\n    C -- ผ่าน --> P[\"④ เตรียมนำเสนอ<br/>+ โพสต์ Show & Share board · 4 นาที\"]:::human\n    P --> S[\"⑤ Show & Share 3 นาที/ทีม<br/>+ feedback 1 นาที · 20 นาที\"]:::human\n    S --> V[\"⑥ โหวต + สรุป → M8 · 5 นาที\"]:::human\n    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;\n    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;\n    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;\n```\n🟧 คน (HITL) · 🟦 AI · 🟩 Data/Connector", "notes": "[2:00] เดินตาม diagram: ส้ม = เวลาที่ทีมต้องคิดและตัดสินใจเอง น้ำเงิน = ให้ Cowork ทำ\nย้ำว่าช่วงสร้างต้นแบบมีลูปกลับ: ถ้าตัวเลขหรือที่มาไม่ผ่าน ให้กลับไปแก้ ไม่ใช่เอาไปโชว์\nเวลาจริงบนนาฬิกา: 15:10 ตั้งทีม · 15:15 Canvas · 15:25 สร้าง · 15:46 เตรียมนำเสนอ · 15:50 Show & Share · 16:10 โหวต/สรุป\nบทบาทในทีม (เลือกใน 1 นาที): ผู้ขับ Cowork 1 · ผู้ตรวจ HITL 1 · ผู้ดูเวลา 1 · ผู้นำเสนอ 1 · ที่เหลือเป็นเจ้าของโจทย์/นักวิเคราะห์", "type": "content"}, {"md": "# กรอบคิด Use Case: Data → Connector → Output → Trade-off\n\n```mermaid\nflowchart LR\n    D[(\"Data<br/>ข้อมูลอยู่ไหน · สีอะไร 🟢🟡🔴\")]:::data --> C[(\"Connector<br/>SharePoint · Outlook · โฟลเดอร์\")]:::data\n    C --> P[\"Process<br/>Claude / Cowork ทำอะไร\"]:::ai\n    P --> H{\"HITL<br/>ใครตรวจ ตรงไหน\"}:::human\n    H --> O[\"Output<br/>Word · Excel · PPTX · Artifact · ร่างอีเมล\"]:::ai\n    O --> T{\"Trade-off<br/>ความปลอดภัย · ข้อจำกัด · usage\"}:::human\n    T -. ปรับขอบเขต .-> D\n    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;\n    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;\n    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;\n```\n🟧 คน (HITL) · 🟦 AI · 🟩 Data/Connector", "notes": "[3:00] นี่คือ requirement 14 ทั้งข้อในภาพเดียว ทุกทีมต้องตอบครบ 4 ช่อง (+ จุด HITL) ก่อนลงมือ\nData: ข้อมูลอยู่ที่ไหน ใครเป็นเจ้าของ สีอะไรตาม Data Traffic Light (M1) · Connector: SharePoint / Outlook (M3) หรือโฟลเดอร์ใน Cowork (M2) — ไม่มี Google Drive\nOutput: เลือกตามคนอ่าน (Output Picker ของ M4) · Trade-off: ดูสไลด์ถัดไป\nเส้นประกลับไปที่ Data: บ่อยครั้งทางแก้ Trade-off คือ \"ลดขอบเขตข้อมูล\" เช่น ใช้แค่ตารางสรุป ไม่ใช้ข้อมูลรายบุคคล", "type": "content"}, {"md": "# Trade-off: 3 คำถามก่อนบอกว่า \"ใช้ได้จริง\"\n\n| มุม | ถามตัวเอง | ทางแก้ที่เรียนแล้ว |\n|---|---|---|\n| 🛡️ **ความปลอดภัย** | ข้อมูลสีอะไร? ใครเห็นผลลัพธ์? | 🟡 anonymize · 🔴 ไม่ใส่ Claude (M1) |\n| ⚠️ **ข้อจำกัด** | ไฟล์ใหญ่/เยอะเกินไหม? ต้องเปิดเครื่องไหม? | แบ่งไฟล์ · สรุปก่อน (M2, M4, M6) |\n| 🔋 **Usage** | ทำบ่อยแค่ไหน? ใช้ model อะไร? | Skill · แชตใหม่ · model เบา (M5, M8) |\n| ✋ **HITL** | ใครอนุมัติก่อนส่ง/บันทึก? | Plan → Approve → Execute · copy-before-write |", "notes": "[4:30] ทีมที่ได้คะแนนสูงไม่ใช่ทีมที่ demo สวยที่สุด แต่เป็นทีมที่บอกได้ว่า \"อะไรยังไม่ควรให้ Claude ทำ\"\nตัวอย่าง trade-off ที่ดี: \"รายงาน incident ใช้ชื่อพนักงานไม่ได้ (🔴/🟡) เราจึงตัดคอลัมน์ชื่อก่อนส่งเข้า Cowork\"\nตัวอย่าง usage: งานรายสัปดาห์ที่สั่งด้วย prompt ยาวทุกครั้ง → ทำเป็น Skill (M5) แล้วตั้ง Scheduled task (M6) แต่ Scheduled task ต้องเปิดเครื่องไว้\nเกณฑ์ rubric ข้อ 3 คือ trade-off ข้อนี้โดยตรง", "type": "content"}, {"md": "# เมนูโจทย์: 5 use case (ข้อมูลสมมติ) หรือโจทย์ของทีมเอง\n\n| # | Use case | Data | Connector | Output |\n|---|---|---|---|---|\n| UC1 | สรุปสัญญาจัดซื้อ | สัญญา .docx 3 ฉบับ + register | SharePoint | Excel + ปฏิทินแจ้งยกเลิก |\n| UC2 | รายงาน Incident รายสัปดาห์ | log 150+ แถว + อีเมล 3 ฉบับ | SharePoint · Outlook | รายงาน + ร่างอีเมล |\n| UC3 | รวมข้อมูล ESG 4 Site | xlsx/csv คนละหน่วย | SharePoint | ตารางรวม + Dashboard |\n| UC4 | ประชุม → Action tracker | บันทึก .md .txt .vtt + tracker | SharePoint · Outlook | Tracker + ร่างอีเมลติดตาม |\n| UC5 | Energy market brief | ราคา + ข่าว + มุมมองทีม | โฟลเดอร์ / เว็บสาธารณะ | Brief 1 หน้า |\n\n**โจทย์ของทีมเอง (BYO):** ได้ แต่ใช้ข้อมูล 🟢 หรือข้อมูลจำลองเท่านั้น", "notes": "[5:30] ทั้ง 5 โจทย์ปรับจากรูปแบบงานที่ทีม Hi-I ส่งมา (ฉบับนี้เป็นตัวแทนจนกว่าจะได้ use case จริง — ดู README open question) ข้อมูลทุกไฟล์เป็นข้อมูลสมมติ อยู่ใน ZIP M7_uc1…uc5\nแต่ละโจทย์มีกับดักที่ตั้งใจใส่ไว้ให้ HITL จับ เช่น UC2 มีวันที่ 2026-13-02 และ \"near miss\" ตัวพิมพ์เล็ก · UC3 Site G ขาดเดือน ต.ค. และ Site F มีแค่รายไตรมาส · UC4 งานไม่มีวันกำหนด — ไม่ต้องบอกผู้เรียนล่วงหน้า\nBYO: ทีมที่มีโจทย์จริงให้ใช้ Canvas เดียวกัน แต่สร้างข้อมูลจำลองก่อน (ให้ Claude สร้างไฟล์ตัวอย่างจากหัวคอลัมน์จริง ไม่ใช้ค่าจริง — prompt M7-P02)\nถ้ามีหลายทีมเลือกโจทย์ซ้ำ ได้ ไม่เป็นไร ทีมที่โจทย์ซ้ำจะเห็นทางแก้ต่างกันตอน Show & Share", "type": "content"}, {"md": "# ตัวอย่างเต็ม 1 โจทย์: UC2 รายงาน Incident รายสัปดาห์\n\n```mermaid\nflowchart LR\n    L[(\"incident_log.csv<br/>SharePoint List export\")]:::data --> CL[\"Cowork ทำความสะอาด<br/>+ เทียบสัปดาห์ก่อน\"]:::ai\n    E[(\"อีเมล 3 ฉบับ<br/>Outlook\")]:::data --> CL\n    CL --> Q{\"HITL: ตรวจข้อมูลผิดปกติ<br/>วันที่ผิด · ตัวพิมพ์\"}:::human\n    Q --> RP[\"ร่างรายงาน HSE รายสัปดาห์<br/>+ ร่างอีเมล\"]:::ai\n    RP --> AP{\"ผู้จัดการ HSE อนุมัติ<br/>ก่อนส่ง (ไม่ส่งเอง)\"}:::human\n    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;\n    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;\n    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;\n```\n🟧 คน (HITL) · 🟦 AI · 🟩 Data/Connector\n\n- Data ส่วนใหญ่ 🟢 สมมติ · ชื่อพนักงานในงานจริง = 🟡 ต้องตัดก่อน\n- Trade-off: ร่างอีเมลเท่านั้น **ไม่ส่งเอง** · ไม่ต้องใช้ model ใหญ่", "notes": "[6:30] ทำให้ดูว่า \"Canvas ที่ครบ\" หน้าตาเป็นอย่างไร ใช้เวลา 1 นาที ไม่ต้อง demo จริง\nไล่ 4 ช่อง: Data = incident_log.csv (เหมือน export จาก SharePoint List) + อีเมล Outlook 3 ฉบับ · Connector = SharePoint/Outlook ในวันจริง หรือโฟลเดอร์ ZIP ถ้าไม่มี test tenant (เส้นทาง B ของ M3)\nOutput = รายงานสัปดาห์ล่าสุดเทียบสัปดาห์ก่อน + ร่างอีเมลถึงผู้จัดการ HSE · HITL 2 จุด: ตรวจข้อมูลผิดปกติก่อนวิเคราะห์ และผู้จัดการอนุมัติก่อนส่ง\nTrade-off: อีเมล 01 มีประโยคพูดถึงพนักงานที่บาดเจ็บ ในงานจริงต้อง anonymize (🟡) · ข้อมูลไม่ใหญ่ ใช้ model เบาได้ (M8)", "type": "content"}, {"md": "# สร้างต้นแบบด้วย Cowork: สูตรเดิมจากเมื่อเช้า\n\n```mermaid\nflowchart LR\n    F[(\"โฟลเดอร์ทีม (สำเนา)<br/>copy-before-write\")]:::data --> I[\"Interview / Use your own words<br/>M2-P04 · M2-P03\"]:::ai\n    I --> PL[\"Claude เสนอแผน<br/>Plan\"]:::ai\n    PL --> AP{\"ทีมอนุมัติแผน<br/>Approve\"}:::human\n    AP --> EX[\"Cowork ลงมือ<br/>Execute\"]:::ai\n    EX --> CK{\"ตรวจ 3 จุด<br/>ตัวเลข · ที่มา · ห้ามส่งเอง\"}:::human\n    CK -- ยังไม่ผ่าน --> EX\n    CK -- ผ่าน --> OUT[\"ต้นแบบ v1<br/>+ screenshot ลงบอร์ด\"]:::ai\n    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;\n    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;\n    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;\n```\n🟧 คน (HITL) · 🟦 AI · 🟩 Data/Connector", "notes": "[7:30] ไม่มีอะไรใหม่ เป็นการประกอบของที่เรียนมา: copy-before-write (M3), Interview/Use your own words (M2-P04, M2-P03), Plan → Approve → Execute (M2-P02)\nไม่ต้องสร้างให้สมบูรณ์ เป้าหมายคือ \"ต้นแบบ v1 ที่ทำงานได้ 1 รอบ\" กับข้อมูลสมมติ\nตรวจ 3 จุดก่อนเอาไปโชว์: สุ่มตัวเลข 2 ค่าเทียบไฟล์ต้นฉบับ · ทุกข้อสรุปบอกที่มาได้ · ไม่มีอะไรถูกส่งออกหรือบันทึกทับเอง\nถ้า usage ใกล้เต็ม: คนเดียวในทีมเป็นผู้ขับ Cowork คนอื่นตรวจและเตรียมการ์ด ไม่ต้องรันพร้อมกันทั้ง 6 คน", "type": "content"}, {"md": "# Show & Share: 3 นาทีต่อทีม\n\n```mermaid\nflowchart LR\n    TM[\"ทีมกรอกการ์ดบนบอร์ด<br/>use case · diagram · demo\"]:::human --> BD[(\"Show & Share board<br/>Artifact\")]:::data\n    BD --> PR[\"นำเสนอ 3 นาที<br/>ปัญหา → Demo → Trade-off\"]:::human\n    PR --> FB[\"วิทยากรให้ feedback<br/>rubric 4 ข้อ · 1 นาที\"]:::human\n    PR --> VT[\"ทุกคนโหวต<br/>🏆 ใช้ได้จริง · 🛡️ ปลอดภัย · 💡 ไอเดีย\"]:::human\n    FB --> PDF[\"Export PDF<br/>แผนต่อยอด → M8 แผน 30 วัน\"]:::ai\n    VT --> PDF\n    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;\n    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;\n    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;\n```\n🟧 คน (HITL) · 🟦 AI · 🟩 Data/Connector\n\n**Rubric วิทยากร (ข้อละ 1–4):** ① ปัญหาจริงและวัดผลได้ ② ต้นแบบทำงาน ③ Trade-off/HITL ชัด ④ ต่อยอดได้ใน 30 วัน", "notes": "[8:30] โครง 3 นาที: 30 วินาทีปัญหา (ใครเจ็บ เสียเวลาเท่าไร) · 90 วินาที demo หรือ screenshot · 60 วินาที trade-off + ถ้าทำต่อจะทำอะไร\nวิทยากรให้ feedback 1 นาทีต่อทีมตาม rubric 4 ข้อ (อยู่ในบอร์ด แท็บ \"Rubric\") ไม่ต้องให้คะแนนประกาศหน้าห้อง ใช้เป็นคำแนะนำ\nโหวต 3 หมวด แต่ละคนได้ 1 เสียงต่อหมวด ห้ามโหวตทีมตัวเอง ทีมชนะได้ปรบมือ + PDF การ์ดไปเสนอหัวหน้า\nPDF จาก Export PDF ของบอร์ด = ข้อมูลตั้งต้นของ M8 แผน 30 วัน", "type": "content"}, {"md": "# กติกา 4 ข้อ แล้วเริ่มเลย\n\n1. **ข้อมูลสมมติ หรือ 🟢 เท่านั้น** · ห้ามเปิดไฟล์งานจริงของบริษัท\n2. **Connector: SharePoint / Outlook** หรือโฟลเดอร์สำเนา · ไม่ใช้ Google Drive\n3. **ไม่มีอะไรถูกส่ง/บันทึกทับโดยไม่มีคนอนุมัติ**\n4. **ติดขัดเกิน 3 นาที → ยกมือ** หรือดูทางสำรองในคู่มือ\n\nเปิด: `workshop.md` · `prompts.md` (M7-P01…P10) · บอร์ด `artifacts/show-share-board.html`", "notes": "[9:30] อ่านกติกาเร็ว ๆ แล้วเปิดนาฬิกานับถอยหลังบนบอร์ด (แท็บ Timer)\nข้อ 3 สำคัญที่สุดในวันนี้: UC2 และ UC4 มีร่างอีเมล ต้องเป็น draft เท่านั้น\nข้อ 4: วิทยากรและผู้ช่วยเดินวน ตามตาราง \"จุดที่ทีมมักติด\" ใน workshop หน้า 6 · ถ้าห้องมีผู้ช่วย 1 คน แบ่งกันดูคนละครึ่งห้อง\nแจก ZIP ผ่านลิงก์ SharePoint ของคลาส (หรือ USB สำรอง) ตอนที่ตั้งทีม", "type": "content"}];
+const deck = document.getElementById('deck');
+marked.use({renderer:{code(code, lang){
+  if(lang==='mermaid') return '<div class="mermaid" data-src="'+encodeURIComponent(code)+'"></div>';
+  return false;}}});
+SLIDES.forEach((s,i)=>{
+  const el=document.createElement('section');
+  el.className='slide '+s.type; el.innerHTML=marked.parse(s.md)+
+    '<div class="foot"><span>'+(META.module||'')+' · '+(META.title||'')+'</span><span>'+(i+1)+' / '+SLIDES.length+'</span></div>';
+  deck.appendChild(el);
+  const n=document.createElement('div'); n.className='notes'; n.textContent=s.notes; deck.appendChild(n);
+});
+mermaid.initialize({startOnLoad:false,theme:'base',themeVariables:{fontFamily:'IBM Plex Sans Thai',fontSize:'20px'}});
+let cur=Math.max(0,Math.min(SLIDES.length-1,(parseInt(location.hash.slice(1))||1)-1));
+const slides=[...document.querySelectorAll('.slide')], notes=[...document.querySelectorAll('.notes')];
+async function show(i){cur=Math.max(0,Math.min(slides.length-1,i));
+  slides.forEach((s,j)=>s.classList.toggle('active',j===cur));
+  notes.forEach((s,j)=>s.classList.toggle('active',j===cur));
+  history.replaceState(null,'','#'+(cur+1));}
+// Pre-render every diagram once (each slide made visible in turn so Mermaid can measure),
+// so print/PDF export never depends on which slides were visited. mermaid.render with our
+// own ids avoids the Date.now()-based id clashes of rapid mermaid.run calls.
+async function renderAll(){await document.fonts.ready;
+  for(let i=0;i<slides.length;i++){
+    const pending=[...slides[i].querySelectorAll('.mermaid:not([data-processed])')];
+    if(!pending.length) continue;
+    slides[i].classList.add('active');
+    for(let k=0;k<pending.length;k++){const el=pending[k];
+      try{const {svg}=await mermaid.render('mmd-s'+i+'-'+k, decodeURIComponent(el.dataset.src)); el.innerHTML=svg;}
+      catch(err){el.textContent='Diagram error: '+err.message;}
+      el.dataset.processed='true';}
+    if(i!==cur) slides[i].classList.remove('active');}
+  document.body.dataset.ready='1';}
+document.addEventListener('keydown',e=>{
+  if(['ArrowRight','PageDown',' '].includes(e.key)) show(cur+1);
+  if(['ArrowLeft','PageUp'].includes(e.key)) show(cur-1);
+  if(e.key==='n') document.body.classList.toggle('show-notes');
+  if(e.key==='p') rendered.then(()=>window.print());
+});
+show(cur);
+const rendered=renderAll();
+</script></body></html>

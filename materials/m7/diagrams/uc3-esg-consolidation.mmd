@@ -1,0 +1,9 @@
+flowchart LR
+    S[("ไฟล์ ESG 4 Site<br/>xlsx/csv คนละหน่วย")]:::data --> AL["Cowork จัดหัวคอลัมน์<br/>+ แปลงหน่วย"]:::ai
+    EF[("emission_factors_SYNTHETIC<br/>+ esg_targets")]:::data --> AL
+    AL --> G{"HITL: ข้อมูลหาย/ประมาณ<br/>Site G ต.ค. · Site F รายไตรมาส"}:::human
+    G --> M["ตารางรวม + tCO2e<br/>เทียบเป้า"]:::ai
+    M --> O["Excel + Dashboard Artifact<br/>ระบุสมมติฐานทุกข้อ"]:::ai
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;

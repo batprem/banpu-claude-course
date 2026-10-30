@@ -1,0 +1,8 @@
+flowchart LR
+    D[("สัญญา .docx 3 ฉบับ<br/>+ contract_register.csv<br/>SharePoint (สำเนา)")]:::data --> R["Cowork อ่านสัญญา<br/>ดึง 8 หัวข้อ + เลขข้อ"]:::ai
+    R --> X["ตาราง Contract Summary<br/>+ เทียบ register"]:::ai
+    X --> H{"จัดซื้อตรวจ<br/>มูลค่า · วันต่ออายุ · ค่าปรับ"}:::human
+    H --> O["Excel สรุป + ปฏิทินแจ้งยกเลิก<br/>(ไม่ส่งให้ supplier)"]:::ai
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;

@@ -1,0 +1,5 @@
+﻿source,unit,kgCO2e_per_unit,note
+grid_electricity,kWh,0.45,ค่าสมมติเพื่อฝึก ไม่ใช่ค่าทางการ
+diesel,litre,2.7,ค่าสมมติเพื่อฝึก ไม่ใช่ค่าทางการ
+coal,tonne,2300,ค่าสมมติเพื่อฝึก ไม่ใช่ค่าทางการ
+natural_gas,MMBtu,53,ค่าสมมติเพื่อฝึก ไม่ใช่ค่าทางการ

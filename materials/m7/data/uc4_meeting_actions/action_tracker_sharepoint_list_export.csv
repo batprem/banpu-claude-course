@@ -1,0 +1,6 @@
+﻿ID,Title,Owner,OwnerEmail,DueDate,Status,Source
+101,ส่งตัวเลข Q2 ให้ประธาน,คุณจำลอง ข้อมูลแม่น,jamlong.d@example.com,2026-07-05,Done,ประชุม 28 มิ.ย.
+102,อัปเดตแผนซ่อมบำรุง Site A,คุณทดสอบ ซ่อมเก่ง,thodsob.s@example.com,2026-08-15,In progress,ประชุม 3 ส.ค.
+103,ทบทวน SLA แคมป์ (CT-2569-022),คุณตัวอย่าง จัดซื้อดี,tuayang.j@example.com,2026-08-31,Not started,ประชุม 17 ส.ค.
+104,ทดลอง Dashboard ใหม่,คุณจำลอง ข้อมูลแม่น,jamlong.d@example.com,2026-09-10,In progress,ประชุม 24 ส.ค.
+105,เตรียมข้อมูล ESG ครึ่งปี,คุณสมมติ วางแผน,sommut.w@example.com,2026-09-30,Not started,ประชุม 31 ส.ค.

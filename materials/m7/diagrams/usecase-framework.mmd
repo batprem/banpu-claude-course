@@ -1,0 +1,10 @@
+flowchart LR
+    D[("Data<br/>ข้อมูลอยู่ไหน · สีอะไร 🟢🟡🔴")]:::data --> C[("Connector<br/>SharePoint · Outlook · โฟลเดอร์")]:::data
+    C --> P["Process<br/>Claude / Cowork ทำอะไร"]:::ai
+    P --> H{"HITL<br/>ใครตรวจ ตรงไหน"}:::human
+    H --> O["Output<br/>Word · Excel · PPTX · Artifact · ร่างอีเมล"]:::ai
+    O --> T{"Trade-off<br/>ความปลอดภัย · ข้อจำกัด · usage"}:::human
+    T -. ปรับขอบเขต .-> D
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;

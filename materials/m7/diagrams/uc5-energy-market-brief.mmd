@@ -1,0 +1,9 @@
+flowchart LR
+    P[("ราคารายสัปดาห์ SYNTHETIC")]:::data --> AN["Cowork สรุปแนวโน้ม<br/>+ จับคู่ข่าว"]:::ai
+    NW[("ข่าว SYNTHETIC<br/>(วันจริงใช้เว็บสาธารณะ)")]:::data --> AN
+    IV[("มุมมองทีมกลยุทธ์<br/>internal_view.md")]:::data --> AN
+    AN --> H{"HITL: ทุกประโยคมีที่มา?<br/>ไม่มีตัวเลขพยากรณ์?"}:::human
+    H --> O["Brief 1 หน้าอ่านบนมือถือ<br/>→ M6 Scheduled task"]:::ai
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;

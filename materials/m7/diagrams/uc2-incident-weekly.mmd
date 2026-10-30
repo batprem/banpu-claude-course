@@ -1,0 +1,9 @@
+flowchart LR
+    L[("incident_log.csv<br/>SharePoint List export")]:::data --> CL["Cowork ทำความสะอาด<br/>+ เทียบสัปดาห์ก่อน"]:::ai
+    E[("อีเมล 3 ฉบับ<br/>Outlook")]:::data --> CL
+    CL --> Q{"HITL: ตรวจข้อมูลผิดปกติ<br/>วันที่ผิด · ตัวพิมพ์"}:::human
+    Q --> RP["ร่างรายงาน HSE รายสัปดาห์<br/>+ ร่างอีเมล"]:::ai
+    RP --> AP{"ผู้จัดการ HSE อนุมัติ<br/>ก่อนส่ง (ไม่ส่งเอง)"}:::human
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;
