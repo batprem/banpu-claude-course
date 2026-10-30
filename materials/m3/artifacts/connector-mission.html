@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M3 Connector Mission</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--human:#E4572E;--ai:#2E86AB;--data:#3BA55C;--ink:#1F2933;--paper:#FAF8F3;--warn:#F2A541;--line:#e2dccd}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 'IBM Plex Sans Thai',sans-serif}
+header{position:sticky;top:0;z-index:5;background:var(--ink);color:#fff;padding:12px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+header h1{font-size:18px;margin:0;flex:1;min-width:220px}
+.badge{background:var(--warn);color:var(--ink);border-radius:999px;padding:3px 12px;font-weight:700;font-size:14px}
+.bar{height:8px;background:#ffffff33;border-radius:8px;overflow:hidden;width:100%;order:3}
+.bar i{display:block;height:100%;width:0;background:var(--data);transition:width .3s}
+main{max-width:920px;margin:0 auto;padding:16px}
+.legend{font-size:14px;margin:0 0 12px}
+section.stage{background:#fff;border:1px solid var(--line);border-left:8px solid var(--ai);border-radius:14px;padding:14px 18px;margin-bottom:14px}
+section.stage.h{border-left-color:var(--human)} section.stage.d{border-left-color:var(--data)}
+section.stage.done{box-shadow:0 0 0 2px var(--data) inset}
+h2{font-size:20px;margin:2px 0 8px} h2 small{font-weight:400;font-size:14px;opacity:.7}
+label.chk{display:flex;gap:8px;align-items:flex-start;margin:4px 0;cursor:pointer}
+label.chk input{margin-top:6px;width:18px;height:18px}
+.routes{display:flex;gap:10px;flex-wrap:wrap}
+.routes button,.ap button{font:600 15px 'IBM Plex Sans Thai';border:2px solid var(--ai);background:#fff;color:var(--ai);border-radius:10px;padding:8px 14px;cursor:pointer}
+.routes button.on{background:var(--ai);color:#fff}
+.mission{border:1px dashed var(--line);border-radius:10px;padding:10px 12px;margin:10px 0}
+.mission textarea{width:100%;min-height:64px;font:15px 'IBM Plex Sans Thai';border:1px solid var(--line);border-radius:8px;padding:8px}
+.mission .row{display:flex;gap:8px;align-items:center;margin-top:6px;flex-wrap:wrap}
+.btn{font:600 14px 'IBM Plex Sans Thai';background:var(--ai);color:#fff;border:0;border-radius:8px;padding:6px 12px;cursor:pointer}
+.fb{font-size:14px} .ok{color:#227a3f;font-weight:600} .no{color:#b23a1a;font-weight:600}
+.ap{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;border-bottom:1px solid var(--line);padding:8px 0}
+.ap code{background:#efeadf;padding:1px 6px;border-radius:4px;font-size:14px}
+.ap button{padding:4px 10px;font-size:14px;margin-left:4px}
+.ap button.sel-a{background:var(--data);border-color:var(--data);color:#fff}
+.ap button.sel-r{background:var(--human);border-color:var(--human);color:#fff}
+.ap .why{grid-column:1/-1;font-size:14px;display:none;background:#f4f1ea;border-radius:6px;padding:4px 10px}
+.ap.answered .why{display:block}
+ol.rules li{margin:4px 0}
+.copy{font:600 13px 'IBM Plex Sans Thai';background:#efeadf;border:0;border-radius:6px;padding:3px 10px;cursor:pointer}
+footer{max-width:920px;margin:0 auto;padding:8px 16px 32px;font-size:13px;opacity:.7}
+</style>
+<!-- Export PDF snippet: materials/_shared/export-pdf.html -->
+<style>
+  .export-pdf-btn{font:600 14px 'IBM Plex Sans Thai',sans-serif;background:#fff;color:#1F2933;border:0;border-radius:8px;padding:8px 14px;cursor:pointer}
+  .export-pdf-btn:hover{background:#2E86AB;color:#fff}
+  @media print{
+    @page{size:A4;margin:12mm}
+    body{background:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    header{position:static;background:#fff!important;color:var(--ink)}
+    .no-print,.export-pdf-btn,button,nav{display:none!important}
+    .print-expand,[hidden].print-expand,details,.ap .why{display:block!important;height:auto!important;overflow:visible!important}
+    section,.card{break-inside:avoid}
+    textarea{border:1px solid #ccc;min-height:auto}
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>🛰️ M3 Connector Mission · ค้นข้ามแหล่ง + แก้อย่างปลอดภัย</h1>
+  <span class="badge" id="badge">ยศ: ผู้ฝึกเชื่อมต่อ · 0 แต้ม</span>
+  <button class="export-pdf-btn no-print" onclick="window.print()" title="บันทึกเป็น PDF (เลือก Save as PDF)">⬇ Export PDF</button>
+  <div class="bar"><i id="prog"></i></div>
+</header>
+<main>
+<p class="legend">ข้อมูลสมมติทั้งหมด (Sample Pack M3) · Connector ที่ใช้ได้: <b>SharePoint + Outlook</b> เท่านั้น · 🟧 คน (HITL) · 🟦 AI · 🟩 Data/Connector</p>
+
+<section class="stage h" id="s1">
+  <h2>ด่าน 1 · เลือกเส้นทาง <small>3 นาที</small></h2>
+  <div class="routes no-print">
+    <button data-route="A">เส้นทาง A · Test tenant (M365 Connector)</button>
+    <button data-route="B">เส้นทาง B · โฟลเดอร์ M3_SamplePack + Cowork</button>
+  </div>
+  <p id="routeText">ยังไม่ได้เลือก</p>
+  <label class="chk"><input type="checkbox" data-k="c1"> ฉันใช้บัญชีทดสอบ / Sample Pack เท่านั้น ไม่เปิดไฟล์หรือกล่องจดหมายจริง</label>
+</section>
+
+<section class="stage d" id="s2">
+  <h2>ด่าน 2 · เชื่อมแบบอ่านอย่างเดียว <small>5 นาที</small></h2>
+  <p>วาง <b id="p2">M3-P01</b> <button class="copy no-print" data-copy="p01">📋 Copy prompt</button></p>
+  <label class="chk"><input type="checkbox" data-k="c2"> Claude บอกจำนวนอีเมล/ไฟล์ที่เห็น และไม่ได้แก้หรือส่งอะไร</label>
+  <label class="chk"><input type="checkbox" data-k="c3"> ฉันจดไว้ว่ามีผลลัพธ์จาก <b>นอก</b> site M3-Training หรือไม่ (เหตุผลที่ต้องระบุขอบเขต)</label>
+</section>
+
+<section class="stage" id="s3">
+  <h2>ด่าน 3 · ค้นข้ามแหล่ง 3 ภารกิจ <small>8 นาที · ภารกิจละ 10 แต้ม</small></h2>
+  <div id="missions"></div>
+</section>
+
+<section class="stage" id="s4">
+  <h2>ด่าน 4 · สรุปเดียว + ตรวจที่มา <small>5 นาที</small></h2>
+  <p>วาง M3-P02 แล้วตามด้วย M3-P04 <button class="copy no-print" data-copy="p04">📋 Copy M3-P04</button></p>
+  <label class="chk"><input type="checkbox" data-k="c4"> ทุกข้อในสรุปมีที่มา (หัวเรื่องอีเมล+วันที่ / ไฟล์+แท็บ)</label>
+  <label class="chk"><input type="checkbox" data-k="c5"> มี "จุดที่แหล่งข้อมูลขัดกัน" อย่างน้อย 1 จุด</label>
+  <label class="chk"><input type="checkbox" data-k="c6"> ฉันนับแหล่งที่ Claude ใช้ เทียบกับต้นทางแล้ว (บทเรียน 15,841 เคส)</label>
+</section>
+
+<section class="stage h" id="s5">
+  <h2>ด่าน 5 · คุณคือผู้อนุมัติ: แผนแก้ Capex Tracker <small>6 นาที · ข้อละ 5 แต้ม</small></h2>
+  <p>Claude เสนอแผนต่อไปนี้หลัง M3-P06 — แต่ละข้อ <b>อนุมัติ</b> หรือ <b>ไม่อนุมัติ</b>?</p>
+  <div id="plan"></div>
+</section>
+
+<section class="stage h" id="s6">
+  <h2>ด่าน 6 · ตรวจก่อนบันทึก + ปิดงาน <small>3 นาที</small></h2>
+  <label class="chk"><input type="checkbox" data-k="c7"> M3-P07: ต่างเฉพาะ Site D (F2, J2) + Change_Log 1 แถว · สูตรครบ</label>
+  <label class="chk"><input type="checkbox" data-k="c8"> ต้นฉบับไม่ถูกแก้ (วันที่แก้ไขล่าสุดไม่เปลี่ยน)</label>
+  <label class="chk"><input type="checkbox" data-k="c9"> ไม่มีอะไรถูกส่งออกจาก Outlook (ร่างอีเมลแสดงในแชตเท่านั้น)</label>
+  <h2 style="margin-top:12px">5 กฎก่อนกด Enter</h2>
+  <ol class="rules">
+    <li>Connector ที่ใช้ได้: <b>SharePoint + Outlook</b> เท่านั้น (ไม่ใช่ Google Drive)</li>
+    <li>ระบุขอบเขต: site · โฟลเดอร์ · ช่วงเวลา · แหล่งที่อนุญาต</li>
+    <li>ขอ <b>ที่มาทุกข้อ</b> และ <b>จุดที่ข้อมูลขัดกัน</b></li>
+    <li><b>copy-before-write</b> · ไม่ให้ AI ทับไฟล์ที่แชร์</li>
+    <li>งาน write ทุกงาน: Plan → Approve → Execute + ตรวจก่อนบันทึก</li>
+  </ol>
+</section>
+</main>
+<footer>Banpu · Claude for Business · M3 · ข้อมูลสมมติเพื่อการอบรมเท่านั้น</footer>
+
+<script>
+const PROMPTS={
+ p01:`ใช้ Microsoft 365 connector แบบอ่านอย่างเดียว ห้ามแก้ไข ห้ามส่ง ห้ามสร้างอะไร
+1) ค้นอีเมลใน Outlook ที่หัวเรื่องขึ้นต้นด้วย [PRJ- ในช่วง 30 วันที่ผ่านมา บอกจำนวนและ 3 หัวเรื่องล่าสุด
+2) ค้นไฟล์ใน SharePoint site "M3-Training" ที่ชื่อมีคำว่า Tracker หรือ Issue บอกชื่อไฟล์และวันที่แก้ไขล่าสุด
+ถ้าค้นไม่เจอ ให้บอกตรง ๆ ว่าไม่เจอ อย่าเดา`,
+ p08:`โฟลเดอร์นี้จำลอง Microsoft 365 (ข้อมูลสมมติ):
+- outlook/ = กล่องจดหมาย (ไฟล์ .eml และ mailbox_index.csv)
+- sharepoint/ = SharePoint site (Project_Tracker.csv และ Issue_Log.csv คือ SharePoint List ที่ export แล้ว, Shared_Capex_Tracker_2569.xlsx คือไฟล์ที่หลายคนแก้)
+ให้ถือว่าทุกไฟล์เป็นแบบอ่านอย่างเดียว ห้ามแก้ ย้าย หรือลบ จนกว่าฉันจะสั่งเป็นขั้น ๆ
+ยืนยันด้วยการบอกจำนวนอีเมล จำนวนโครงการ และจำนวน issue ที่ยัง Open แล้วรอคำถามถัดไป`,
+ p03:q=>`อ่านอย่างเดียว ใช้เฉพาะ Outlook และ SharePoint site "M3-Training"
+คำถาม: ${q}
+ตอบสั้น ๆ แล้วแนบที่มาทุกข้อ (หัวเรื่องอีเมล+วันที่ หรือ ชื่อไฟล์+แท็บ/แถว)
+ถ้าสองแหล่งให้ตัวเลขไม่ตรงกัน ให้แสดงทั้งสองค่า อย่าเลือกเอง`,
+ p04:`ทบทวนสรุปที่คุณเพิ่งทำ:
+1) ข้อไหนที่อ้างที่มาไม่ได้ชัด ให้ทำเครื่องหมาย ⚠️
+2) ตัวเลขทุกตัว (งบ วงเงิน %) มาจากแหล่งไหน แสดงเป็นตาราง ตัวเลข | แหล่ง | ตรงกันทุกแหล่งไหม
+3) มีอีเมลหรือไฟล์ในขอบเขตที่คุณไม่ได้อ่านไหม บอกตรง ๆ
+ห้ามแก้สรุปเอง ให้ฉันตัดสินใจ`};
+// Missions: answer is checked by keyword groups (each group needs one match).
+const MISSIONS=[
+ {t:"🎯 1 · เงินค้างอนุมัติ",q:"PRJ-105 ขออนุมัติงบเพิ่มเท่าไร ทำไม ต้องตอบภายในวันไหน และงบใน Capex Tracker ตอนนี้เท่าไร",
+  need:[["3.8","3,8"],["31"],["95"]],hint:"ดูอีเมล [PRJ-105] วันที่ 26 ต.ค. + แท็บ Site D",ans:"ขอเพิ่ม 3.8 ล้านบาท (95.0 → 98.8) เพราะพบรอยร้าวท่อ superheater · ต้องตอบภายใน 31 ต.ค. · Capex Tracker ยังเป็น Budget/Forecast 95"},
+ {t:"🎯 2 · สถานะที่ไม่ตรงกัน",q:"PRJ-101 สถานะใน Project Tracker คืออะไร และอีเมลหรือ Issue Log บอกอะไรที่ต่างออกไป",
+  need:[["on track","ontrack","ตามแผน"],["40","ลูกกลิ้ง","เลื่อน","ISS-055","ไม่ครบ"]],hint:"เทียบ Project_Tracker กับอีเมลสัปดาห์ 43 และ Issue Log",ans:"Tracker = On track 62% แต่อีเมลบอกลูกกลิ้งส่งไม่ครบ 40 ชิ้น อาจเลื่อนจาก 15 ธ.ค. · Issue Log ISS-055 High/Open"},
+ {t:"🎯 3 · โครงการล่าช้า (โบนัส)",q:"PRJ-104 ล่าช้าเพราะอะไร ใครติดตาม และมีการพูดถึงในประชุมไหนบ้าง",
+  need:[["ใบอนุญาต","permit"],["มะลิ"]],hint:"Project Tracker + อีเมล [PRJ-104] + สรุปประชุม Project Review",ans:"Delayed รอใบอนุญาต (ระบายน้ำ) · คุณมะลิติดตาม · พูดถึงในสรุปประชุม Project Review ต.ค. 2569"}];
+const PLAN=[
+ {s:"สร้างสำเนา <code>_COPY_Shared_Capex_Tracker_2569_นิด_20261030.xlsx</code> และทำงานกับสำเนาเท่านั้น",ok:true,why:"ถูกต้อง: copy-before-write"},
+ {s:"สำเนา · Site D!F2 (PRJ-105 Forecast_MTHB) 95 → 98.8",ok:true,why:"ตรงกับอีเมลขออนุมัติ และอยู่ในแท็บที่ได้รับอนุญาต"},
+ {s:"สำเนา · Summary!E5 เปลี่ยนสูตร <code>='Site D'!F4</code> เป็นตัวเลข 122.4 เพื่อให้อ่านง่าย",ok:false,why:"ไม่อนุมัติ: ห้ามเปลี่ยนสูตรเป็นตัวเลข (Summary จะเป็นตัวเลขตายเหมือนเรื่อง Capex Tracker)"},
+ {s:"สำเนา · Site E!E2 (Spent_Confirmed) ปรับให้ตรงกับ Spent_PM",ok:false,why:"ไม่อนุมัติ: แท็บของไซต์อื่น — ที่ประชุมสั่ง 'ห้ามแก้แท็บของไซต์อื่น' และเป็นงานของ Finance"},
+ {s:"สำเนา · Change_Log เพิ่ม 1 แถว (เวลา, Claude (ทดลอง), Site D, Forecast PRJ-105 95→98.8)",ok:true,why:"ถูกต้อง: บันทึกการเปลี่ยนแปลงให้ตรวจย้อนได้"},
+ {s:"เมื่อเสร็จ บันทึกสำเนาทับไฟล์ต้นฉบับบน SharePoint เพื่อประหยัดเวลา",ok:false,why:"ไม่อนุมัติ: เจ้าของไฟล์ต้องตรวจและนำไปใส่เอง (Plan → Approve → Execute)"}];
+
+const KEY="m3-connector-mission";
+let st={}; try{st=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){}
+st.chk=st.chk||{}; st.m=st.m||{}; st.p=st.p||{};
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function copy(text,btn){const done=()=>{const o=btn.textContent;btn.textContent="✓ คัดลอกแล้ว";setTimeout(()=>btn.textContent=o,1200)};
+  if(navigator.clipboard)navigator.clipboard.writeText(text).then(done,()=>fallback());else fallback();
+  function fallback(){const t=document.createElement("textarea");t.value=text;document.body.appendChild(t);t.select();try{document.execCommand("copy")}catch(e){}t.remove();done()}}
+
+// Stage 1 route
+function route(){const r=st.route;document.querySelectorAll("[data-route]").forEach(b=>b.classList.toggle("on",b.dataset.route===r));
+  document.getElementById("routeText").textContent=r==="A"?"เส้นทาง A: ใช้ Microsoft 365 Connector กับบัญชีทดสอบ · prompt เริ่ม M3-P01":r==="B"?"เส้นทาง B: ใช้โฟลเดอร์ M3_SamplePack ใน Cowork · prompt เริ่ม M3-P08":"ยังไม่ได้เลือก";
+  document.getElementById("p2").textContent=r==="B"?"M3-P08":"M3-P01";}
+document.querySelectorAll("[data-route]").forEach(b=>b.onclick=()=>{st.route=b.dataset.route;save();route();update()});
+document.querySelectorAll("[data-copy]").forEach(b=>b.onclick=()=>{const k=b.dataset.copy==="p01"&&st.route==="B"?"p08":b.dataset.copy;copy(PROMPTS[k],b)});
+
+// Checklists
+document.querySelectorAll("input[data-k]").forEach(i=>{i.checked=!!st.chk[i.dataset.k];i.onchange=()=>{st.chk[i.dataset.k]=i.checked;save();update()}});
+
+// Stage 3 missions
+const mw=document.getElementById("missions");
+MISSIONS.forEach((m,i)=>{const d=document.createElement("div");d.className="mission";
+  d.innerHTML=`<b>${m.t}</b><div>${esc(m.q)}</div>
+  <div class="row no-print"><button class="copy" data-i="${i}">📋 Copy prompt ภารกิจนี้</button><button class="copy" data-h="${i}">💡 คำใบ้</button></div>
+  <div class="fb" id="h${i}" hidden></div>
+  <textarea id="a${i}" placeholder="สรุปคำตอบของ Claude ที่คุณตรวจที่มาแล้ว"></textarea>
+  <div class="row"><button class="btn no-print" data-c="${i}">ตรวจคำตอบ</button><span class="fb" id="f${i}"></span></div>`;mw.appendChild(d);
+  const ta=d.querySelector("textarea");ta.value=(st.m[i]&&st.m[i].a)||"";ta.oninput=()=>{st.m[i]=Object.assign(st.m[i]||{},{a:ta.value});save()};});
+mw.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;
+  if(b.dataset.i)copy(PROMPTS.p03(MISSIONS[b.dataset.i].q),b);
+  if(b.dataset.h){const h=document.getElementById("h"+b.dataset.h);h.hidden=false;h.textContent="💡 "+MISSIONS[b.dataset.h].hint}
+  if(b.dataset.c){const i=+b.dataset.c,a=document.getElementById("a"+i).value.toLowerCase();
+    const ok=MISSIONS[i].need.every(g=>g.some(k=>a.includes(k.toLowerCase())));
+    st.m[i]=Object.assign(st.m[i]||{},{ok,tried:true});save();missionFb(i);update()}});
+function missionFb(i){const m=st.m[i];if(!m||!m.tried)return;const f=document.getElementById("f"+i);
+  f.innerHTML=m.ok?`<span class="ok">✓ ผ่าน +10</span> · เฉลย: ${esc(MISSIONS[i].ans)}`:`<span class="no">ยังไม่ครบ</span> · ถาม Claude ต่อ หรือเปิดที่มาเอง แล้วลองใหม่`}
+MISSIONS.forEach((_,i)=>missionFb(i));
+
+// Stage 5 approve / reject
+const pw=document.getElementById("plan");
+PLAN.forEach((p,i)=>{const d=document.createElement("div");d.className="ap";d.id="ap"+i;
+  d.innerHTML=`<div>${i+1}. ${p.s}</div><div class="no-print"><button data-a="${i}">อนุมัติ</button><button data-r="${i}">ไม่อนุมัติ</button></div><div class="why" id="w${i}"></div>`;pw.appendChild(d)});
+pw.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;const i=+(b.dataset.a??b.dataset.r);st.p[i]=b.dataset.a!==undefined?"a":"r";save();planFb(i);update()});
+function planFb(i){const v=st.p[i];if(!v)return;const d=document.getElementById("ap"+i),p=PLAN[i],right=(v==="a")===p.ok;
+  d.classList.add("answered");d.querySelectorAll("button").forEach(b=>b.className="");d.querySelector(v==="a"?"[data-a]":"[data-r]").className=v==="a"?"sel-a":"sel-r";
+  document.getElementById("w"+i).innerHTML=`คุณเลือก: <b>${v==="a"?"อนุมัติ":"ไม่อนุมัติ"}</b> · ${right?'<span class="ok">ถูก +5</span>':'<span class="no">ลองคิดอีกที</span>'} — ${esc(p.why)}`}
+PLAN.forEach((_,i)=>planFb(i));
+
+// Score, rank, progress
+function update(){const missionPts=MISSIONS.reduce((s,_,i)=>s+(st.m[i]&&st.m[i].ok?10:0),0);
+  const planPts=PLAN.reduce((s,p,i)=>s+(st.p[i]&&((st.p[i]==="a")===p.ok)?5:0),0);
+  const chkPts=Object.values(st.chk).filter(Boolean).length*2, pts=missionPts+planPts+chkPts;
+  const rank=pts>=70?"Connector Guardian 🛡️":pts>=45?"นักสืบข้ามแหล่ง 🔎":pts>=20?"ผู้เชื่อมต่อ 🔌":"ผู้ฝึกเชื่อมต่อ";
+  document.getElementById("badge").textContent=`ยศ: ${rank} · ${pts} แต้ม`;
+  const stages=[!!st.route&&st.chk.c1,st.chk.c2&&st.chk.c3,MISSIONS.filter((_,i)=>st.m[i]&&st.m[i].ok).length>=2,st.chk.c4&&st.chk.c5&&st.chk.c6,PLAN.every((_,i)=>st.p[i]),st.chk.c7&&st.chk.c8&&st.chk.c9];
+  stages.forEach((ok,i)=>document.getElementById("s"+(i+1)).classList.toggle("done",!!ok));
+  document.getElementById("prog").style.width=(100*stages.filter(Boolean).length/stages.length)+"%"}
+route();update();
+</script>
+</body>
+</html>

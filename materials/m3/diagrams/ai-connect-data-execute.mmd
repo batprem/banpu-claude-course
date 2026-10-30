@@ -1,0 +1,11 @@
+%% M3 · AI → Connect → Data → Execute
+flowchart LR
+    U["คุณ: บอกเป้าหมาย<br/>+ ขอบเขตแหล่งข้อมูล"]:::human --> AI["AI<br/>Claude วางแผนว่าจะค้นอะไร"]:::ai
+    AI --> C["Connect<br/>Connector ที่ IT เปิด<br/>SharePoint · Outlook"]:::data
+    C --> D[("Data<br/>อีเมล · ไฟล์ · SharePoint List")]:::data
+    D --> X["Execute<br/>สรุป / ร่าง / เสนอการแก้"]:::ai
+    X --> H{"คุณตรวจ<br/>ก่อนใช้หรือบันทึก"}:::human
+    H -- แก้ --> AI
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;

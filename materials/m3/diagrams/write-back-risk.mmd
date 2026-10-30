@@ -1,0 +1,11 @@
+%% M3 · ความเสี่ยงการเขียนกลับไฟล์ Excel ที่หลายคนแก้พร้อมกัน
+flowchart LR
+    F[("Shared_Capex_Tracker.xlsx<br/>บน SharePoint")]:::data
+    PM["PM Site D แก้แท็บ Site D"]:::human --> F
+    FN["Finance แก้ Spent_Confirmed"]:::human --> F
+    F --> AI["Claude อ่านไฟล์ 09:00<br/>แก้ทั้งไฟล์แล้วเขียนกลับ 09:20"]:::ai
+    AI --> X[("ไฟล์ใหม่ทับไฟล์เดิม<br/>งานของคนอื่นช่วง 09:00–09:20 หาย<br/>สูตร Summary กลายเป็นตัวเลข")]:::data
+    X --> H{"ใครรู้ตัว? เมื่อไร?"}:::human
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;

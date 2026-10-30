@@ -1,0 +1,10 @@
+%% M3 · Workshop flow (30 นาที)
+flowchart LR
+    S["1 เตรียม + เลือกเส้นทาง<br/>Test tenant หรือ โฟลเดอร์สำรอง 3'"]:::human --> C["2 เชื่อม SharePoint/Outlook<br/>บัญชีทดสอบ 5'"]:::data
+    C --> F["3 ค้นข้ามแหล่ง<br/>3 ภารกิจ 8'"]:::ai
+    F --> R["4 สรุปเดียว + ตรวจที่มา 5'"]:::ai
+    R --> W["5 copy-before-write<br/>ให้ Claude แก้สำเนา 6'"]:::human
+    W --> K{"6 ตรวจก่อนบันทึก<br/>+ Export PDF 3'"}:::human
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;

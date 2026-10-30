@@ -1,0 +1,9 @@
+%% M3 · Read vs Write: ความเสี่ยงต่างกัน
+flowchart LR
+    R["Read<br/>ค้น อ่าน สรุป"]:::ai --> RS[("ข้อมูลต้นทาง<br/>ไม่เปลี่ยน")]:::data
+    W["Write<br/>แก้ไฟล์ · ส่งเมล · สร้าง/ลบ"]:::ai --> G{"Plan → Approve<br/>คนอนุมัติก่อน"}:::human
+    G -- อนุมัติ --> WS[("ไฟล์/อีเมลจริง<br/>เปลี่ยนทันที")]:::data
+    G -- ไม่อนุมัติ --> W
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;
