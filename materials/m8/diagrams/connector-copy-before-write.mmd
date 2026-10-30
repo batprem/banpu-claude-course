@@ -1,0 +1,15 @@
+%% กฎ 3+4: AI → Connect → Data → Execute + copy-before-write
+flowchart LR
+    AI["AI<br/>Claude / Cowork"]:::ai --> CN[("Connect<br/>SharePoint · Outlook เท่านั้น")]:::data
+    CN --> D[("Data<br/>อ่าน (Read) ก่อนเสมอ")]:::data
+    D --> W{"งานนี้ต้อง<br/>เขียน/แก้ไหม?"}:::human
+    W -- ไม่ --> OUT["สรุป/รายงาน<br/>ลง output/"]:::ai
+    W -- ต้องแก้ --> CP["copy-before-write<br/>ทำสำเนาก่อน"]:::human
+    CP --> E["Execute บนสำเนา"]:::ai
+    E --> CK{"ตรวจผล<br/>+ แจ้งเจ้าของไฟล์"}:::human
+    CK -- ผ่าน --> RP[("แทนที่/อัปโหลด<br/>โดยคน")]:::data
+    CK -- ไม่ผ่าน --> E
+    GD["Google Drive /<br/>Connector อื่น"]:::human -. ไม่อนุญาต .-> CN
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;

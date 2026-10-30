@@ -1,0 +1,9 @@
+%% กฎ 5: Skill จากภายนอก = โปรแกรมแปลกหน้า (ย่อจาก M1/M5)
+flowchart LR
+    S[("Skill จากภายนอก<br/>GitHub · LINE · เพื่อนส่งมา")]:::data --> R["Claude ช่วยอ่าน/สรุป<br/>แต่ไม่ติดตั้ง ไม่รัน"]:::ai
+    R --> CL{"Checklist 6 ข้อ<br/>ที่มา · สิทธิ์ · Script<br/>· ส่งออก · คำสั่งแอบแฝง<br/>· ผู้อนุมัติ/เวอร์ชัน"}:::human
+    CL -- ธงแดง/ไม่แน่ใจ --> NO["ไม่ติดตั้ง<br/>ส่ง Hi-I / IT ตรวจ"]:::human
+    CL -- ผ่าน + มีผู้อนุมัติ --> OK["ใช้เวอร์ชันที่อนุมัติ"]:::ai
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;

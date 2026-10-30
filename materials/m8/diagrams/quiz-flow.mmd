@@ -1,0 +1,10 @@
+%% Workshop ภารกิจ 2: Quiz 18 ข้อ + รอบสุดท้าย Data Traffic Light
+flowchart LR
+    O[("security-quiz.html<br/>18 ข้อ · 6 หมวด")]:::data --> A["ตอบเดี่ยว<br/>ดูเฉลย + เหตุผลทุกข้อ"]:::human
+    A --> F["รอบสุดท้าย<br/>การ์ด M1 6 ใบ · 10 วินาที/ใบ"]:::human
+    C[("traffic_light_cards.json<br/>M1 · อ่านอย่างเดียว")]:::data --> F
+    F --> S["คะแนนรวม + หมวดที่ควรทบทวน"]:::ai
+    S --> X["Export PDF<br/>เก็บไว้เป็นหลักฐาน"]:::human
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;

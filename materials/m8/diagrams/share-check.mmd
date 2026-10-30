@@ -1,0 +1,12 @@
+%% กฎ 2: แชร์ Project / Artifact / ลิงก์ไฟล์ ให้แคบที่สุด (บทเรียนจากเคส 38TB)
+flowchart LR
+    O["Claude สร้าง Artifact /<br/>Project / ไฟล์ output"]:::ai --> V{"ตรวจเนื้อหา:<br/>มีข้อมูล 🟡🔴 หลุดไหม?"}:::human
+    V -- มี --> F["แก้/ตัดออกก่อน"]:::human
+    F --> V
+    V -- ไม่มี --> W{"ใครต้องเห็นจริง ๆ?"}:::human
+    W --> S[("แชร์ภายในองค์กร<br/>เฉพาะคน/กลุ่มที่จำเป็น<br/>SharePoint · Team")]:::data
+    S --> X["ทบทวน/เลิกแชร์<br/>เมื่อหมดความจำเป็น"]:::human
+    W -. ห้าม .-> P["ลิงก์สาธารณะ · LINE<br/>· อีเมลส่วนตัว"]:::human
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;

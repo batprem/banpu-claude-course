@@ -1,0 +1,11 @@
+%% M8 · 45 นาทีสุดท้าย: ทบทวน → ใช้ให้คุ้ม → Quiz → แผน 30 วัน → ปิด
+flowchart LR
+    R["① ทบทวน 6 กฎ<br/>+ สิ่งที่ไม่ให้ Claude ทำ<br/>12 นาที"]:::human --> U["② ใช้ให้คุ้ม<br/>model · แบ่งงาน · Project/Skill<br/>4 + 5 นาที"]:::ai
+    U --> Q["③ Quiz 18 ข้อ<br/>+ รอบสุดท้าย Traffic Light<br/>12 นาที"]:::human
+    C[("การ์ด Data Traffic Light<br/>จาก M1 (อ่านอย่างเดียว)")]:::data --> Q
+    Q --> P["④ แผน 30 วันของฉัน<br/>Artifact + Export PDF<br/>8 นาที"]:::human
+    M7[("การ์ดทีมจาก M7<br/>Show & Share PDF")]:::data --> P
+    P --> E["⑤ Q&A · แบบประเมิน · ปิด<br/>4 นาที"]:::human
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;

@@ -1,0 +1,15 @@
+%% สิ่งที่ไม่ให้ Claude ทำ: 4 คำถามก่อนกด Allow / Approve
+flowchart LR
+    P["Claude เสนอแผน<br/>(Plan)"]:::ai --> Q1{"ส่งออกนอกตัวเรา?<br/>อีเมล · แชร์ · โพสต์"}:::human
+    Q1 -- ใช่ --> D1["ให้ร่างไว้ใน Drafts<br/>คนกดส่งเอง"]:::human
+    Q1 -- ไม่ --> Q2{"ลบ / เขียนทับ<br/>ไฟล์ที่แชร์?"}:::human
+    Q2 -- ใช่ --> D2["copy-before-write<br/>ห้ามลบต้นฉบับ"]:::human
+    Q2 -- ไม่ --> Q3{"ตัดสินใจแทนคน?<br/>อนุมัติ · เงิน · สัญญา · HR"}:::human
+    Q3 -- ใช่ --> D3["Claude เสนอทางเลือก<br/>คนตัดสิน"]:::human
+    Q3 -- ไม่ --> Q4{"แตะข้อมูล 🔴 /<br/>ระบบนอก M365?"}:::human
+    Q4 -- ใช่ --> D4["หยุด"]:::human
+    Q4 -- ไม่ --> X["Approve → Execute"]:::ai
+    D1 & D2 & D3 --> X
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;

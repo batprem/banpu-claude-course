@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>แผน 30 วันของฉัน</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--human:#E4572E;--ai:#2E86AB;--data:#3BA55C;--ink:#1F2933;--paper:#FAF8F3;--warn:#F2A541;
+  --red:#D64545;--yellow:#E8B400;--line:#e3ddcf;--muted:#5b6670;--soft:#f4f1ea}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans Thai',sans-serif;line-height:1.5}
+.wrap{max-width:1080px;margin:0 auto;padding:20px 16px 48px}
+header{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-start;justify-content:space-between}
+h1{font-size:26px;margin:0}
+h2{font-size:18px;margin:0 0 10px;display:flex;gap:8px;align-items:center}
+h2 .n{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--ink);color:#fff;font-size:14px}
+.sub{color:var(--muted);font-size:14px;margin:2px 0 0}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:18px;margin-top:16px}
+@media (max-width:860px){.grid{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin-bottom:14px}
+.card.human{border-left:6px solid var(--human)} .card.ai{border-left:6px solid var(--ai)} .card.data{border-left:6px solid var(--data)}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+label.f{display:block;font-size:13px;color:var(--muted);margin:6px 0 2px}
+input[type=text],input[type=date],input[type=number],select,textarea{font:15px 'IBM Plex Sans Thai',sans-serif;border:1px solid var(--line);
+  border-radius:8px;padding:6px 10px;background:#fff;color:var(--ink);width:100%;max-width:100%}
+textarea{min-height:56px;resize:vertical;overflow:hidden}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;gap:6px;align-items:center;border:1px solid var(--line);border-radius:999px;padding:4px 10px;background:var(--soft);font-size:14px;cursor:pointer}
+.chip input{margin:0}
+.chip.on{border-color:var(--ink);background:#fff;font-weight:600}
+.chip.c-green.on{background:#eaf6ed;border-color:var(--data)} .chip.c-yellow.on{background:#fff6d6;border-color:var(--yellow)}
+.chip.c-red.on{background:#fdecea;border-color:var(--red)}
+.ideas{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 10px}
+.idea{border:1px dashed var(--ai);background:#f2f8fb;color:var(--ink);border-radius:999px;padding:4px 10px;font:14px 'IBM Plex Sans Thai',sans-serif;cursor:pointer}
+.uc{border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin:10px 0;background:#fffdf9}
+.uc h3{margin:0;font-size:16px;display:flex;gap:8px;align-items:center}
+.uc h3 .tag{font-size:12px;background:var(--human);color:#fff;border-radius:6px;padding:1px 6px}
+.weeks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media (max-width:640px){.weeks{grid-template-columns:1fr}}
+.wk{border:1px solid var(--line);border-top:6px solid var(--ai);border-radius:12px;padding:10px 12px;background:#fff}
+.wk.h{border-top-color:var(--human)}
+.wk h3{margin:0 0 4px;font-size:16px;display:flex;justify-content:space-between;gap:6px}
+.wk h3 small{font-weight:400;color:var(--muted)}
+.ci{display:flex;gap:6px;align-items:center;font-size:13px;margin-top:6px;background:var(--soft);border-radius:8px;padding:4px 8px}
+.rules{display:grid;gap:4px}
+.rule{display:flex;gap:8px;align-items:flex-start;font-size:15px}
+.side{position:sticky;top:10px;align-self:start}
+.meter{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+.big{font-size:42px;font-weight:700;line-height:1}
+.bar{height:12px;background:#ece6d8;border-radius:99px;overflow:hidden;margin:8px 0}
+.bar i{display:block;height:100%;width:0;background:var(--data);transition:width .3s}
+.warns{margin:8px 0 0;padding:0;list-style:none;font-size:14px}
+.warns li{margin:4px 0;padding:6px 10px;border-radius:8px;background:#fff3d6;border-left:4px solid var(--warn)}
+.warns li.r{background:#fdecea;border-left-color:var(--red)}
+.warns li.ok{background:#eaf6ed;border-left-color:var(--data)}
+.save{font-size:28px;font-weight:700;color:var(--data)}
+.btn{font:600 14px 'IBM Plex Sans Thai',sans-serif;border:1px solid var(--line);border-radius:8px;padding:7px 12px;cursor:pointer;background:#fff;color:var(--ink)}
+.prompt{background:#1F2933;color:#f5f3ee;border-radius:12px;padding:10px 12px;font:13px/1.6 'IBM Plex Sans Thai',monospace;white-space:pre-wrap;margin-top:8px;max-height:220px;overflow:auto}
+.print-only{display:none}
+footer{margin-top:20px;font-size:12px;color:var(--muted)}
+</style>
+<!-- Export PDF snippet (materials/_shared/export-pdf.html) -->
+<style>
+  .export-pdf-btn{font:600 14px 'IBM Plex Sans Thai',sans-serif;background:#1F2933;color:#fff;border:0;border-radius:8px;padding:8px 14px;cursor:pointer}
+  .export-pdf-btn:hover{background:#2E86AB}
+  @media print{
+    @page{size:A4;margin:12mm}
+    body{background:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .no-print,.export-pdf-btn,button,nav{display:none!important}
+    .print-expand,[hidden].print-expand,details{display:block!important;height:auto!important;overflow:visible!important}
+    section,.card{break-inside:avoid}
+  }
+</style>
+<style>
+@media print{
+  .wrap{max-width:none;padding:0}
+  .grid{display:block}
+  .side{position:static}
+  .print-only{display:block!important}
+  .card,.meter{border-radius:8px;padding:8px 12px;margin-bottom:8px}
+  .card.big-card{break-inside:auto}
+  .uc,.wk{break-inside:avoid}
+  .chip:not(.on){display:none}
+  .chip input,.idea,.ideas{display:none!important}
+  input,select,textarea{border:0!important;border-bottom:1px solid var(--line)!important;border-radius:0!important;padding:2px 0!important;appearance:none;-webkit-appearance:none}
+  textarea{min-height:0;resize:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div>
+    <h1>🗓️ แผน 30 วันของฉัน · Claude for Business</h1>
+    <p class="sub">1 งาน · 4 สัปดาห์ · มีเจ้าของ · มี check-in · ตัวอย่างทั้งหมดเป็นงานสมมติ ห้ามใส่ข้อมูลจริงของบริษัทในแผน</p>
+    <p class="print-only sub">Banpu · Claude for Business · M8 · พิมพ์เมื่อ <span id="p-date"></span></p>
+  </div>
+  <div class="no-print" style="display:flex;gap:8px;flex-wrap:wrap">
+    <button class="btn" id="example" type="button">ดูตัวอย่างแผน</button>
+    <button class="btn" id="clear" type="button">ล้างแผน</button>
+    <button class="export-pdf-btn no-print" onclick="window.print()" title="บันทึกเป็น PDF (เลือก Save as PDF)">⬇ Export PDF</button>
+  </div>
+</header>
+
+<div class="grid">
+<main>
+  <section class="card human">
+    <h2><span class="n">1</span>ตัวฉันและคนที่ช่วยเช็ก</h2>
+    <div class="row">
+      <div><label class="f" for="f-name">ชื่อ</label><input type="text" id="f-name" data-k="name" placeholder="คุณสมมติ ใจดี"></div>
+      <div><label class="f" for="f-team">ทีม / หน่วยงาน</label><input type="text" id="f-team" data-k="team" placeholder="เช่น ทีมวางแผนการผลิต"></div>
+      <div><label class="f" for="f-start">วันเริ่ม (จันทร์)</label><input type="date" id="f-start" data-k="start"></div>
+    </div>
+    <div class="row">
+      <div><label class="f" for="f-buddy">Buddy (เพื่อนร่วมเรียน/ร่วมทีม)</label><input type="text" id="f-buddy" data-k="buddy" placeholder="คุณตัวอย่าง รักงาน"></div>
+      <div><label class="f" for="f-boss">หัวหน้าที่จะเล่าผลสัปดาห์ 4</label><input type="text" id="f-boss" data-k="boss" placeholder="หัวหน้าทีม"></div>
+      <div><label class="f" for="f-from">ต่อยอดจาก Capstone ทีม (M7)</label><input type="text" id="f-from" data-k="from" placeholder="เช่น UC2 รายงาน Incident"></div>
+    </div>
+  </section>
+
+  <section class="card data big-card">
+    <h2><span class="n">2</span>งานที่จะใช้ Claude (personal use cases)</h2>
+    <p class="sub">เลือก 1 งานหลัก (+ สำรองได้ 2) · กดไอเดียเพื่อเติมงานหลักเร็ว ๆ แล้วแก้ให้เป็นงานของคุณ</p>
+    <div class="ideas no-print" id="ideas"></div>
+    <div id="ucs"></div>
+  </section>
+
+  <section class="card ai big-card">
+    <h2><span class="n">3</span>4 สัปดาห์ (week by week)</h2>
+    <p class="sub">แก้ข้อความได้ทุกช่อง · วัน check-in คำนวณจากวันเริ่ม (ศุกร์ของแต่ละสัปดาห์)</p>
+    <div class="weeks" id="weeks"></div>
+  </section>
+
+  <section class="card human">
+    <h2><span class="n">4</span>วัดผลอย่างไร</h2>
+    <div class="row">
+      <div><label class="f" for="f-before">เวลาต่อครั้ง ก่อนใช้ Claude (นาที)</label><input type="number" min="0" id="f-before" data-k="before" placeholder="90"></div>
+      <div><label class="f" for="f-after">เป้าหมายหลังใช้ Claude (นาที รวมเวลาตรวจ)</label><input type="number" min="0" id="f-after" data-k="after" placeholder="30"></div>
+      <div><label class="f" for="f-times">ทำกี่ครั้งใน 30 วัน</label><input type="number" min="0" id="f-times" data-k="times" placeholder="4"></div>
+    </div>
+    <label class="f" for="f-success">ถือว่าสำเร็จเมื่อ… (วัดได้ · ตรวจได้)</label>
+    <textarea id="f-success" data-k="success" placeholder="เช่น ส่งรายงานได้ก่อนเที่ยงวันจันทร์ 4 สัปดาห์ติด ตัวเลขตรงต้นทาง 100% เมื่อตรวจ 3 จุด"></textarea>
+  </section>
+
+  <section class="card human">
+    <h2><span class="n">5</span>กติกาที่ฉันสัญญา (ติ๊กให้ครบ)</h2>
+    <div class="rules" id="rules"></div>
+  </section>
+</main>
+
+<aside class="side">
+  <div class="meter">
+    <div class="sub">ความพร้อมของแผน</div>
+    <div class="big"><span id="pct">0</span>%</div>
+    <div class="bar"><i id="bar"></i></div>
+    <div class="sub">เวลาที่คาดว่าจะประหยัดใน 30 วัน</div>
+    <div class="save"><span id="saved">0</span> ชม.</div>
+    <ul class="warns" id="warns"></ul>
+  </div>
+  <div class="meter no-print" style="margin-top:12px">
+    <div class="sub">นึกงานไม่ออก? ใช้ <b>M8-P03</b> (Interview pattern) ในบัญชี Claude Team</div>
+    <div class="prompt" id="p03"></div>
+    <button class="btn" id="copy" type="button" style="margin-top:8px">📋 คัดลอก prompt</button>
+  </div>
+</aside>
+</div>
+<footer>เก็บ PDF ไว้ใน SharePoint/OneDrive ของคุณหรือของทีม · แผนนี้อยู่ในเครื่องนี้เท่านั้น ไม่ส่งไปที่ใด ไม่เรียก AI · ตัวอย่างและไอเดียงานเป็นงานสมมติ</footer>
+</div>
+<script>
+const P03=`ฉันเพิ่งอบรม Claude for Business จบ อยากได้แผนใช้งาน 30 วันที่ทำได้จริง
+ช่วยสัมภาษณ์ฉันทีละคำถาม (ไม่เกิน 6 คำถาม รอคำตอบก่อนถามข้อต่อไป) เพื่อหา:
+1) งานที่ทำซ้ำทุกสัปดาห์/เดือน และกินเวลาเยอะ (ขอตัวอย่างงาน ไม่ต้องใส่ข้อมูลจริง)
+2) สีของข้อมูลในงานนั้นตาม Data Traffic Light (🟢 ใช้ได้ · 🟡 ต้อง anonymize · 🔴 ห้ามใส่ Claude)
+3) เครื่องมือที่เหมาะ: Chat / Project / Skill / Cowork / Artifact และ Connector (SharePoint / Outlook เท่านั้น)
+4) จุดที่ต้องมีคนตรวจ/อนุมัติ และใครเป็น buddy ที่จะช่วยเช็ก
+ถ้างานที่ฉันเล่าเป็นข้อมูล 🔴 ให้บอกตรง ๆ และเสนองานอื่นแทน
+เมื่อครบ ให้สรุปเป็นแผน 4 สัปดาห์ ตาราง: สัปดาห์ · สิ่งที่ทำ · ผลลัพธ์ที่วัดได้ · check-in`;
+const IDEAS=["สรุปรายงานผลผลิตรายสัปดาห์จาก Excel","สรุปอีเมลโครงการเป็น action list ทุกเช้าวันจันทร์",
+ "ร่างสไลด์ประชุมรายเดือนจากข้อมูลสาธารณะ","จัดโฟลเดอร์เอกสารโครงการเก่า (Plan only ก่อน)",
+ "Weekly Energy Insight จากข่าวสาธารณะ","Skill รายงานมาตรฐานของทีม"];
+const TOOLS=["Chat","Project","Skill","Cowork","Artifact","SharePoint","Outlook"];
+const COLORS=[["green","🟢 เขียว"],["yellow","🟡 เหลือง (anonymize)"],["red","🔴 แดง"]];
+const WEEKS=[
+ {t:"สัปดาห์ 1 · เลือก 1 งาน 🟢 · ตั้ง Project",h:true,d:"เลือกงานหลัก (ข้อมูล 🟢) · ใช้ Interview pattern (M8-P03) · ตั้ง Project + instructions · ทำครั้งแรกแบบ Plan → Approve → Execute"},
+ {t:"สัปดาห์ 2 · ทำจริง 3 ครั้ง · จดเวลา",h:false,d:"ทำงานหลัก 3 ครั้ง · จดเวลาก่อน/หลัง · buddy ตรวจผล 1 ครั้ง · เช็ก Settings → Usage"},
+ {t:"สัปดาห์ 3 · ทำ Skill / Template · ชวนเพื่อน 1 คน",h:false,d:"เก็บ prompt ที่ได้ผลเป็น Skill หรือ template · ชวนเพื่อนร่วมทีม 1 คนลองใช้ · (ถ้าเหมาะ) ตั้ง Scheduled task แบบร่างแล้วรอตรวจ"},
+ {t:"สัปดาห์ 4 · วัดผล · แชร์ทีม · เลือกงานถัดไป",h:true,d:"สรุปเวลาที่ประหยัด + ข้อควรระวัง · เล่าให้หัวหน้า 5 นาที · ตัดสินใจ: ทำต่อ / ปรับ / หยุด · เลือกงานถัดไป"}];
+const RULES=["ใช้บัญชี Claude Team ของบริษัทเท่านั้น ไม่ใช้ Personal AI กับข้อมูลบริษัท",
+ "ผ่าน Data Traffic Light ทุกครั้งก่อนวาง · 🔴 ไม่ใส่ Claude",
+ "Connector เฉพาะ SharePoint + Outlook · copy-before-write",
+ "Skill/Plugin จากภายนอก ต้องผ่าน checklist และผู้อนุมัติก่อนติดตั้ง",
+ "ทุกงานที่ลบ ย้าย เขียนทับ หรือส่งออก: Plan → Approve → Execute",
+ "งานอัตโนมัติ: ร่างแล้วรอคนตรวจ ไม่ส่งเอง"];
+const EXAMPLE={name:"คุณสมมติ ใจดี",team:"ทีมวางแผนการผลิต (สมมติ)",buddy:"คุณตัวอย่าง รักงาน",boss:"หัวหน้าทีม",from:"UC2 รายงาน Incident",
+ before:"90",after:"30",times:"4",success:"ส่งรายงานสรุปผลผลิตได้ก่อนเที่ยงวันจันทร์ 4 สัปดาห์ติด ตัวเลขตรงต้นทาง 100% เมื่อตรวจ 3 จุด",
+ uc:[{task:"สรุปรายงานผลผลิตรายสัปดาห์จาก Excel (ข้อมูลสมมติ/🟢)",color:"green",tools:["Project","Cowork","SharePoint"],check:"buddy ตรวจตัวเลข 3 จุดก่อนส่งหัวหน้า"},
+     {task:"Weekly Energy Insight จากข่าวสาธารณะ",color:"green",tools:["Cowork","Artifact"],check:"อ่านแหล่งข่าวทุกข้อก่อนแชร์"},{task:"",color:"",tools:[],check:""}],
+ rules:RULES.map(()=>true)};
+const KEY="m8-plan-30-days";
+let st={}; try{st=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){}
+function blank(){return {uc:[0,1,2].map(()=>({task:"",color:"",tools:[],check:""})),wk:WEEKS.map(w=>w.d),rules:RULES.map(()=>false)}}
+st=Object.assign(blank(),st);
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}};
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const grow=t=>{t.style.height="auto";t.style.height=(t.scrollHeight+2)+"px"};
+function fridays(){if(!st.start)return WEEKS.map(()=>"");const d=new Date(st.start+"T00:00:00");
+  return WEEKS.map((_,i)=>{const f=new Date(d);f.setDate(d.getDate()+i*7+((5-d.getDay()+7)%7));
+    return f.toLocaleDateString("th-TH",{day:"numeric",month:"short",year:"numeric"})})}
+function render(){
+  document.querySelectorAll("[data-k]").forEach(el=>{el.value=st[el.dataset.k]??""});
+  $("ideas").innerHTML=IDEAS.map((t,i)=>`<button class="idea" type="button" data-idea="${i}">💡 ${esc(t)}</button>`).join("");
+  $("ucs").innerHTML=st.uc.map((u,i)=>`<div class="uc"><h3>${i===0?'งานหลัก <span class="tag">ต้องมี</span>':'งานสำรอง '+i}</h3>
+   <label class="f">งาน (เล่าแบบไม่มีข้อมูลจริง)</label><input type="text" data-uc="${i}" data-f="task" value="${esc(u.task)}" placeholder="เช่น สรุปรายงานผลผลิตรายสัปดาห์">
+   <label class="f">สีของข้อมูล</label><div class="chips">${COLORS.map(([c,l])=>`<label class="chip c-${c}${u.color===c?' on':''}"><input type="radio" name="col${i}" data-uc="${i}" data-f="color" value="${c}"${u.color===c?' checked':''}>${l}</label>`).join("")}</div>
+   <label class="f">เครื่องมือ / Connector</label><div class="chips">${TOOLS.map(t=>`<label class="chip${u.tools.includes(t)?' on':''}"><input type="checkbox" data-uc="${i}" data-f="tools" value="${t}"${u.tools.includes(t)?' checked':''}>${t}</label>`).join("")}</div>
+   <label class="f">จุดที่คนตรวจ/อนุมัติ (HITL)</label><input type="text" data-uc="${i}" data-f="check" value="${esc(u.check)}" placeholder="เช่น buddy ตรวจตัวเลข 3 จุดก่อนส่ง"></div>`).join("");
+  const fr=fridays();
+  $("weeks").innerHTML=WEEKS.map((w,i)=>`<div class="wk${w.h?' h':''}"><h3>${esc(w.t)}</h3><textarea data-wk="${i}">${esc(st.wk[i])}</textarea>
+   <div class="ci">🗓️ check-in ศุกร์ ${fr[i]||'(ใส่วันเริ่ม)'} · กับ ${esc(st.buddy||'buddy')}${i===3?' + '+esc(st.boss||'หัวหน้า'):''}</div></div>`).join("");
+  $("rules").innerHTML=RULES.map((r,i)=>`<label class="rule"><input type="checkbox" data-rule="${i}"${st.rules[i]?' checked':''}> ${esc(r)}</label>`).join("");
+  document.querySelectorAll("textarea").forEach(grow); meter();}
+function meter(){
+  const main=st.uc[0], checks=[!!st.name,!!st.start,!!st.buddy,!!main.task,!!main.color,main.tools.length>0,!!main.check,
+    +st.before>0&&+st.after>0&&+st.times>0,!!st.success,st.rules.every(Boolean)];
+  const pct=Math.round(100*checks.filter(Boolean).length/checks.length);
+  $("pct").textContent=pct; $("bar").style.width=pct+"%";
+  const saved=Math.max(0,((+st.before||0)-(+st.after||0))*(+st.times||0)/60); $("saved").textContent=saved.toFixed(1);
+  const w=[];
+  st.uc.forEach((u,i)=>{if(u.color==="red")w.push(["r",`${i?'งานสำรอง '+i:'งานหลัก'} เป็นข้อมูล 🔴 · ห้ามใส่ Claude · เลือกงานอื่น`])});
+  if(st.uc.some(u=>u.tools.includes("Cowork"))&&!st.uc.some(u=>u.check))w.push(["","ใช้ Cowork แต่ยังไม่มีจุด HITL · Plan → Approve → Execute"]);
+  if(main.color==="yellow")w.push(["","🟡 ต้อง anonymize ก่อนทุกครั้ง · เขียนวิธี anonymize ในงานหลัก"]);
+  if(!st.buddy)w.push(["","ยังไม่มี buddy · แผนที่มีคนเช็กสำเร็จบ่อยกว่า"]);
+  if(+st.after>0&&+st.before>0&&+st.after>=+st.before)w.push(["","เป้าหมายหลังใช้ Claude ไม่ได้เร็วขึ้น · ลองดูงานที่ซ้ำบ่อยกว่า"]);
+  if(pct===100&&!w.some(x=>x[0]==="r"))w.push(["ok","แผนพร้อม · กด Export PDF แล้วเก็บไว้ใน SharePoint/OneDrive"]);
+  $("warns").innerHTML=w.map(([c,t])=>`<li class="${c}">${esc(t)}</li>`).join("");}
+document.addEventListener("input",e=>{const t=e.target;
+  if(t.dataset.k){st[t.dataset.k]=t.value; if(["start","buddy","boss"].includes(t.dataset.k)){save();render();t.focus&&document.querySelector(`[data-k="${t.dataset.k}"]`).focus();return}}
+  if(t.dataset.uc!==undefined){const u=st.uc[+t.dataset.uc];
+    if(t.dataset.f==="tools"){u.tools=[...document.querySelectorAll(`[data-uc="${t.dataset.uc}"][data-f="tools"]:checked`)].map(x=>x.value);t.closest(".chip").classList.toggle("on",t.checked)}
+    else if(t.dataset.f==="color"){u.color=t.value;t.closest(".chips").querySelectorAll(".chip").forEach(c=>c.classList.toggle("on",c.contains(t)))}
+    else u[t.dataset.f]=t.value}
+  if(t.dataset.wk!==undefined)st.wk[+t.dataset.wk]=t.value;
+  if(t.dataset.rule!==undefined)st.rules[+t.dataset.rule]=t.checked;
+  if(t.tagName==="TEXTAREA")grow(t); save(); meter();});
+document.addEventListener("change",e=>{if(e.target.type==="checkbox"||e.target.type==="radio")e.target.dispatchEvent(new Event("input",{bubbles:true}))});
+$("ideas").addEventListener("click",e=>{const b=e.target.closest("[data-idea]");if(!b)return;st.uc[0].task=IDEAS[+b.dataset.idea];save();render()});
+$("example").onclick=()=>{st=Object.assign(blank(),JSON.parse(JSON.stringify(EXAMPLE)));const d=new Date();d.setDate(d.getDate()+((8-d.getDay())%7||7));
+  st.start=[d.getFullYear(),String(d.getMonth()+1).padStart(2,"0"),String(d.getDate()).padStart(2,"0")].join("-");save();render()};
+$("clear").onclick=()=>{st=blank();save();render()};
+$("p03").textContent=P03;
+$("copy").onclick=()=>{const b=$("copy"),done=()=>{b.textContent="✓ คัดลอกแล้ว";setTimeout(()=>b.textContent="📋 คัดลอก prompt",1200)};
+  if(navigator.clipboard)navigator.clipboard.writeText(P03).then(done,done);else done()};
+$("p-date").textContent=new Date().toLocaleDateString("th-TH",{dateStyle:"long"});
+render();
+</script>
+</body>
+</html>

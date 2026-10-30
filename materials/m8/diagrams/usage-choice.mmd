@@ -1,0 +1,15 @@
+%% ใช้ให้คุ้มภายใต้ weekly limit: เลือก model · แบ่งงาน · ไม่ส่ง context ซ้ำ
+flowchart LR
+    T["งานใหม่"]:::human --> R{"ทำซ้ำทุกสัปดาห์/เดือน?"}:::human
+    R -- ใช่ --> PS[("Project / Skill<br/>เก็บคำสั่ง + ตัวอย่างไว้")]:::data
+    R -- ไม่ --> M{"ยากแค่ไหน?"}:::human
+    PS --> M
+    M -- ง่าย/ซ้ำ --> H["Haiku"]:::ai
+    M -- ทั่วไป --> S["Sonnet (ค่าเริ่มต้น)"]:::ai
+    M -- ยาก/สำคัญ --> O["Opus"]:::ai
+    BIG[("ไฟล์ใหญ่ · หลายขั้น")]:::data --> SP["แบ่งงาน: วางแผนก่อน<br/>ทำทีละส่วน · ทดลองตัวอย่างเล็ก"]:::human
+    SP --> M
+    H & S & O --> CK["แชตยาว → สรุป แล้วเริ่มแชตใหม่<br/>ดู Settings → Usage"]:::human
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;

@@ -1,0 +1,14 @@
+%% ทบทวนกฎ 1: Data Traffic Light ก่อนวางข้อมูลทุกครั้ง (ย่อจาก M1)
+flowchart LR
+    D[("ข้อมูลที่จะใช้")]:::data --> Q1{"อ่อนไหว?<br/>บุคคล · สุขภาพ · การเงินยังไม่เปิดเผย<br/>· ความลับการค้า · รหัสผ่าน"}:::human
+    Q1 -- ใช่ --> R["🔴 ห้ามใส่ Claude<br/>ใช้เครื่องมือที่บริษัทกำหนด"]:::human
+    Q1 -- ไม่ --> Q2{"มีชื่อคน · เบอร์<br/>· ชื่อคู่ค้า/ลูกค้า?"}:::human
+    Q2 -- ใช่ --> Y["🟡 anonymize ก่อน"]:::human
+    Q2 -- ไม่ --> G["🟢 ใช้ได้"]:::human
+    Y --> G
+    G --> A{"บัญชี Claude Team<br/>ของบริษัท?"}:::human
+    A -- ใช่ --> C["Claude ทำงาน"]:::ai
+    A -- บัญชีส่วนตัว --> S["หยุด"]:::human
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;

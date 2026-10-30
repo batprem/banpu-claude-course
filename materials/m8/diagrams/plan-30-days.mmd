@@ -1,0 +1,12 @@
+%% ภารกิจ 3: แผน 30 วันของฉัน (week by week + check-in)
+flowchart LR
+    U[("use case ของฉัน<br/>+ การ์ดทีมจาก M7")]:::data --> I["Interview pattern<br/>Claude ถามทีละข้อ"]:::ai
+    I --> W1["สัปดาห์ 1<br/>เลือก 1 งาน 🟢 · ตั้ง Project"]:::human
+    W1 --> W2["สัปดาห์ 2<br/>ทำจริง 3 ครั้ง · จดเวลา"]:::ai
+    W2 --> W3["สัปดาห์ 3<br/>ทำ Skill / Template · ชวนเพื่อน 1 คน"]:::ai
+    W3 --> W4["สัปดาห์ 4<br/>วัดผล · แชร์ทีม · เลือกงานถัดไป"]:::human
+    W1 & W2 & W3 & W4 --> CI{"Check-in ทุกศุกร์<br/>กับ buddy / หัวหน้า"}:::human
+    CI --> PDF[("Export PDF<br/>เก็บใน SharePoint ของทีม")]:::data
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;
