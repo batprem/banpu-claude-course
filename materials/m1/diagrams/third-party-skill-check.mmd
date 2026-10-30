@@ -1,0 +1,11 @@
+%% M1 · แนวคิด: ตรวจ Skill จากภายนอกก่อนติดตั้ง (ลงมือจริงใน M5)
+flowchart LR
+    S[("Skill จากภายนอก<br/>GitHub · โซเชียล · เพื่อนส่งมา")]:::data --> C1{"1 ที่มา<br/>ใครทำ เชื่อถือได้?"}:::human
+    C1 --> C2{"2 สิทธิ์<br/>ขอเข้าถึงอะไรบ้าง?"}:::human
+    C2 --> C3{"3 Script<br/>มีโค้ดที่รันได้?"}:::human
+    C3 --> C4{"4 ส่งข้อมูลออก<br/>มี URL/การเรียกเน็ต?"}:::human
+    C4 -- ผ่านทุกข้อ + IT รับรอง --> OK["ติดตั้ง · Claude ใช้ Skill"]:::ai
+    C1 & C2 & C3 & C4 -- ไม่แน่ใจ --> NO["ไม่ติดตั้ง<br/>ส่งให้ทีม IT/Hi-I ตรวจ"]:::human
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;

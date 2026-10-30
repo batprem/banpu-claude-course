@@ -1,0 +1,15 @@
+%% M1 · Demo: งานเดียวกัน 2 วิธี (Excel → HTML dashboard)
+flowchart LR
+    X[("site_ops_sample.xlsx")]:::data
+    subgraph CHAT["Chat ธรรมดา"]
+      C1["คุณอัปโหลดไฟล์<br/>+ พิมพ์ prompt"]:::human --> C2["Claude ตอบโค้ด/Artifact<br/>ในหน้าแชต"]:::ai --> C3["คุณ copy ไปบันทึกเอง<br/>แก้เองทีละรอบ"]:::human
+    end
+    subgraph COWORK["Cowork (Agent)"]
+      K1["คุณให้สิทธิ์โฟลเดอร์<br/>+ บอกเป้าหมาย"]:::human --> K2["Claude สำรวจไฟล์<br/>เสนอแผน"]:::ai --> K3{"คุณอนุมัติแผน"}:::human --> K4["Claude สร้าง dashboard.html<br/>เปิดตรวจเอง แก้เอง"]:::ai --> K5["คุณตรวจตัวเลข<br/>ก่อนแชร์"]:::human
+    end
+    X --> C1
+    X --> K1
+    K4 --> O[("output/dashboard.html")]:::data
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;

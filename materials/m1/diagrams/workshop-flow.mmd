@@ -1,0 +1,9 @@
+%% M1 · Workshop flow: Data Traffic Light (20 นาที)
+flowchart LR
+    B["บรีฟกติกา<br/>2 นาที"]:::human --> P1["รอบ 1: เล่นเดี่ยว 15 ใบ<br/>ใน Artifact 8 นาที"]:::human
+    P1 --> P2["รอบ 2: ให้ Claude ช่วย anonymize<br/>ไพ่เหลือง 1 ใบ 5 นาที"]:::ai
+    P2 --> CK{"คุณตรวจ: ยังมีชื่อ/<br/>ข้อมูลระบุตัวตนไหม?"}:::human
+    CK --> DB["Debrief + กฎ 3 ข้อของฉัน<br/>Export PDF 5 นาที"]:::human
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;

@@ -1,0 +1,12 @@
+%% M1 · เลือก model และวิธีทำงานให้คุ้ม weekly usage limit
+flowchart LR
+    T["งานที่จะทำ"]:::human --> Q{"ยาก/ต้องคิดลึก<br/>หลายขั้น?"}:::human
+    Q -- งานทั่วไป --> S["Sonnet (ค่าเริ่มต้น)"]:::ai
+    Q -- ง่าย/ซ้ำ/เร็ว --> H["Haiku"]:::ai
+    Q -- ยากมาก/สำคัญ --> O["Opus"]:::ai
+    S & H & O --> U["ตรวจ Settings → Usage<br/>ก่อนงานใหญ่"]:::human
+    F[("ไฟล์ใหญ่ · แชตยาว")]:::data --> TIP["ตัดเฉพาะส่วนที่ใช้<br/>· เริ่มแชตใหม่ · ใช้ Project/Skill"]:::human
+    TIP --> U
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;

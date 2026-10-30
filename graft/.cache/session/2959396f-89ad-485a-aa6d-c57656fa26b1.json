@@ -1,9 +1,0 @@
-{
-  "lastQuery": "Act as the course-orchestrator agent defined in .claude/agents/course-orchestrator.md. Build the Banpu Claude course materials per PLAN.md and AGENTS.md (approved plan). HARD RULE: launch and supervise every module agent ONLY through Orca (load the Orca 'orchestration' skill via 'orca skills get orchestration' and use orca orchestration task-create/dispatch/worker-start/check), never by running the claude or codex CLI directly. At most 2 module workers running at once besides you. Each module worker follows .claude/agents/module-mN.md. Review each finished module yourself, then commit and push to origin master after each module. Write materials/STATUS.md when all modules are done.",
-  "perAgentQuery": {},
-  "graftReads": 0,
-  "sourceReads": 0,
-  "savedTokens": 0,
-  "injectedPointers": [],
-  "nudges": 0
-}

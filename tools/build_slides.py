@@ -102,12 +102,12 @@ async function show(i){cur=Math.max(0,Math.min(slides.length-1,i));
   notes.forEach((s,j)=>s.classList.toggle('active',j===cur));
   history.replaceState(null,'','#'+(cur+1));
   const pending=slides[cur].querySelectorAll('.mermaid:not([data-processed])');
-  if(pending.length) await mermaid.run({nodes:pending});}
+  if(pending.length){await document.fonts.ready; await mermaid.run({nodes:pending});}}
 document.addEventListener('keydown',e=>{
   if(['ArrowRight','PageDown',' '].includes(e.key)) show(cur+1);
   if(['ArrowLeft','PageUp'].includes(e.key)) show(cur-1);
   if(e.key==='n') document.body.classList.toggle('show-notes');
-  if(e.key==='p'){mermaid.run({querySelector:'.mermaid:not([data-processed])'}).then(()=>window.print());}
+  if(e.key==='p'){document.fonts.ready.then(()=>mermaid.run({querySelector:'.mermaid:not([data-processed])'})).then(()=>window.print());}
 });
 window.addEventListener('beforeprint',()=>mermaid.run({querySelector:'.mermaid:not([data-processed])'}));
 show(cur);

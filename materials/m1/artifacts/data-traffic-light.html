@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Data Traffic Light</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--human:#E4572E;--ai:#2E86AB;--data:#3BA55C;--ink:#1F2933;--paper:#FAF8F3;--warn:#F2A541;
+  --green:#3BA55C;--yellow:#F2A541;--red:#D64545;--line:#e3ddcf;--muted:#5b6670}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans Thai',sans-serif;line-height:1.5}
+.wrap{max-width:880px;margin:0 auto;padding:20px 16px 48px}
+header{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+h1{font-size:26px;margin:0}
+h1 .dots{letter-spacing:2px}
+.sub{color:var(--muted);font-size:14px;margin:2px 0 0}
+.hud{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 8px}
+.pill{background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-weight:600;font-size:15px}
+.pill b{color:var(--ai)}
+.bar{height:10px;background:#ece6d8;border-radius:99px;overflow:hidden;margin-bottom:18px}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--data),var(--ai));transition:width .3s}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:0 6px 20px rgba(31,41,51,.07)}
+.card .id{font-size:13px;color:var(--muted);font-weight:600}
+.card h2{font-size:24px;margin:4px 0 12px}
+.sample{background:#f4f1ea;border-left:5px solid var(--ai);padding:10px 14px;border-radius:8px;font-size:15px}
+.choices{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
+.choice{border:0;border-radius:14px;padding:16px 8px;font:700 18px 'IBM Plex Sans Thai',sans-serif;color:#fff;cursor:pointer;transition:transform .08s}
+.choice small{display:block;font-weight:400;font-size:13px;opacity:.95}
+.choice:hover{transform:translateY(-2px)}
+.choice:disabled{opacity:.45;cursor:default;transform:none}
+.choice.sel{outline:4px solid var(--ink);opacity:1}
+.c-green{background:var(--green)} .c-yellow{background:var(--yellow);color:var(--ink)} .c-red{background:var(--red)}
+.feedback{margin-top:18px;border-radius:12px;padding:14px 16px;display:none}
+.feedback.show{display:block;animation:pop .25s}
+.feedback.ok{background:#e9f6ec;border:1px solid var(--green)}
+.feedback.bad{background:#fdecea;border:1px solid var(--red)}
+.feedback h3{margin:0 0 6px;font-size:18px}
+.feedback p{margin:4px 0;font-size:15px}
+.row{display:flex;gap:10px;justify-content:space-between;align-items:center;margin-top:14px;flex-wrap:wrap}
+.btn{border:1px solid var(--ink);background:#fff;color:var(--ink);border-radius:10px;padding:9px 16px;font:600 15px 'IBM Plex Sans Thai',sans-serif;cursor:pointer}
+.btn.primary{background:var(--ai);border-color:var(--ai);color:#fff}
+.keys{font-size:13px;color:var(--muted)}
+.streak{font-size:15px;color:var(--human);font-weight:700;min-height:22px}
+@keyframes pop{from{transform:scale(.97);opacity:0}to{transform:none;opacity:1}}
+.result{display:none}
+.result.show{display:block}
+.score-big{font-size:56px;font-weight:700;color:var(--ai);margin:0}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
+.stat{border-radius:12px;padding:12px;color:#fff;text-align:center;font-weight:600}
+.badge{display:inline-block;background:var(--ink);color:#fff;border-radius:8px;padding:4px 10px;font-weight:600}
+textarea,input[type=text]{width:100%;font:15px 'IBM Plex Sans Thai',sans-serif;border:1px solid var(--line);border-radius:10px;padding:10px;background:#fff}
+input[type=text]{width:auto;min-width:200px;padding:6px 10px}
+.review{margin-top:28px}
+.review h2{font-size:20px}
+.rv{border:1px solid var(--line);border-left:8px solid var(--line);background:#fff;border-radius:10px;padding:10px 14px;margin:8px 0}
+.rv.green{border-left-color:var(--green)} .rv.yellow{border-left-color:var(--yellow)} .rv.red{border-left-color:var(--red)}
+.rv .t{font-weight:600}
+.rv .m{font-size:14px;color:var(--muted)}
+.rv .you{font-size:13px;font-weight:600}
+.print-only{display:none}
+footer{margin-top:24px;font-size:12px;color:var(--muted)}
+@media (max-width:560px){.choices{grid-template-columns:1fr}.stats{grid-template-columns:1fr}}
+
+/* Export PDF snippet (materials/_shared/export-pdf.html) */
+.export-pdf-btn{font:600 14px 'IBM Plex Sans Thai',sans-serif;background:#1F2933;color:#fff;border:0;border-radius:8px;padding:8px 14px;cursor:pointer}
+.export-pdf-btn:hover{background:#2E86AB}
+@media print{
+  @page{size:A4;margin:12mm}
+  body{background:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .no-print,.export-pdf-btn,button,nav{display:none!important}
+  .print-expand,[hidden].print-expand,details{display:block!important;height:auto!important;overflow:visible!important}
+  section,.card{break-inside:avoid}
+  .print-only{display:block}
+  .rv{break-inside:avoid}
+  .result{display:block}
+  textarea{display:none!important}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1><span class="dots">🟢🟡🔴</span> Data Traffic Light</h1>
+      <p class="sub">M1 · ข้อมูลนี้ใส่ Claude ได้ไหม? จัดประเภทไพ่ 15 ใบ (ข้อมูลสมมติทั้งหมด)</p>
+    </div>
+    <div class="no-print" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+      <input type="text" id="player" placeholder="ชื่อเล่น / ชื่อทีม" aria-label="ชื่อผู้เล่น">
+      <button class="export-pdf-btn no-print" onclick="window.print()" title="บันทึกเป็น PDF (เลือก Save as PDF)">⬇ Export PDF</button>
+    </div>
+  </header>
+
+  <p class="print-only"><b>ผู้เล่น:</b> <span id="print-player">-</span> · <b>คะแนน:</b> <span id="print-score">-</span></p>
+
+  <div class="hud no-print">
+    <span class="pill">ไพ่ <b id="hud-pos">1</b> / <span id="hud-total">15</span></span>
+    <span class="pill">คะแนน <b id="hud-score">0</b></span>
+    <span class="pill">🔥 สตรีค <b id="hud-streak">0</b></span>
+  </div>
+  <div class="bar no-print"><i id="bar"></i></div>
+
+  <section id="game" class="card no-print" aria-live="polite">
+    <div class="id" id="c-id"></div>
+    <h2 id="c-title"></h2>
+    <div class="sample" id="c-sample"></div>
+    <div class="choices">
+      <button class="choice c-green" data-a="green">🟢 เขียว<small>ใช้ได้</small></button>
+      <button class="choice c-yellow" data-a="yellow">🟡 เหลือง<small>ต้อง anonymize</small></button>
+      <button class="choice c-red" data-a="red">🔴 แดง<small>ห้ามใส่ Claude</small></button>
+    </div>
+    <div class="feedback" id="fb">
+      <h3 id="fb-h"></h3>
+      <p><b>เหตุผล:</b> <span id="fb-why"></span></p>
+      <p><b>ทำให้ปลอดภัยอย่างไร:</b> <span id="fb-tip"></span></p>
+    </div>
+    <div class="row">
+      <span class="streak" id="streak-msg"></span>
+      <span class="keys">คีย์ลัด: 1 = เขียว · 2 = เหลือง · 3 = แดง · Enter = ใบถัดไป</span>
+      <button class="btn primary" id="next" disabled>ใบถัดไป →</button>
+    </div>
+  </section>
+
+  <section id="result" class="result card">
+    <p class="sub">ผลของคุณ</p>
+    <p class="score-big"><span id="r-score">0</span>/<span id="r-total">15</span></p>
+    <p><span class="badge" id="r-badge"></span></p>
+    <div class="stats">
+      <div class="stat" style="background:var(--green)">🟢 ตอบถูก <span id="r-green"></span></div>
+      <div class="stat" style="background:var(--yellow);color:var(--ink)">🟡 ตอบถูก <span id="r-yellow"></span></div>
+      <div class="stat" style="background:var(--red)">🔴 ตอบถูก <span id="r-red"></span></div>
+    </div>
+    <label for="rules"><b>กฎ 3 ข้อของฉัน</b> ก่อนใส่ข้อมูลเข้า Claude (พิมพ์ไว้ แล้ว Export PDF เก็บได้)</label>
+    <textarea id="rules" rows="4" placeholder="1. …&#10;2. …&#10;3. …"></textarea>
+    <p class="print-only" id="rules-print" style="white-space:pre-wrap"></p>
+    <div class="row no-print">
+      <button class="btn" id="again">เล่นอีกรอบ (สลับไพ่)</button>
+      <button class="export-pdf-btn no-print" onclick="window.print()">⬇ Export PDF</button>
+    </div>
+  </section>
+
+  <section class="review print-expand" id="review" hidden>
+    <h2>เฉลยและเหตุผลทั้ง 15 ใบ</h2>
+    <div id="rv-list"></div>
+  </section>
+
+  <footer>ข้อมูลทุกใบเป็นข้อมูลสมมติเพื่อการอบรม · การจัดประเภทจริงให้ยึดนโยบาย IT/Data ของบริษัท · Banpu · Claude for Business · M1</footer>
+</div>
+
+<!-- CARDS:START (generated from materials/m1/data/traffic_light_cards.json by data/sync_cards.py; edit the JSON, then re-run) -->
+<script type="application/json" id="cards-data">
+{
+ "version": 1,
+ "deck": "M1 · Data Traffic Light · 15 ใบ (ข้อมูลสมมติทั้งหมด)",
+ "levels": {
+  "green": "🟢 เขียว ใช้ได้",
+  "yellow": "🟡 เหลือง ต้อง anonymize",
+  "red": "🔴 แดง ห้ามใส่ Claude"
+ },
+ "cards": [
+  {
+   "id": "C01",
+   "title": "ข่าวราคาถ่านหินจากเว็บข่าวสาธารณะ",
+   "sample": "ลิงก์ข่าว + ย่อหน้าข่าวว่าราคาถ่านหินอ้างอิงในเอเชียปรับลดลงสัปดาห์นี้",
+   "answer": "green",
+   "why": "เป็นข้อมูลที่เผยแพร่สาธารณะแล้ว ไม่มีข้อมูลภายในหรือข้อมูลบุคคล",
+   "tip": "ยังควรเก็บลิงก์แหล่งที่มาไว้ เพื่อให้คนตรวจย้อนได้",
+   "module": "M1"
+  },
+  {
+   "id": "C02",
+   "title": "Template รายงานประจำสัปดาห์แบบเปล่า",
+   "sample": "หัวข้อ: สรุปผลการดำเนินงาน · ปัญหา · แผนสัปดาห์หน้า (ยังไม่มีตัวเลข/ชื่อใด ๆ)",
+   "answer": "green",
+   "why": "เป็นโครงเอกสาร ไม่มีข้อมูลธุรกิจหรือข้อมูลบุคคล",
+   "tip": "เหมาะมากสำหรับเก็บไว้ใน Project หรือทำเป็น Skill",
+   "module": "M1"
+  },
+  {
+   "id": "C03",
+   "title": "ถามวิธีใช้สูตร XLOOKUP ใน Excel",
+   "sample": "\"ช่วยอธิบาย XLOOKUP แบบหาค่าจากอีกชีต พร้อมตัวอย่างสมมติ\"",
+   "answer": "green",
+   "why": "เป็นคำถามความรู้ทั่วไป ไม่ต้องแนบข้อมูลจริง",
+   "tip": "ถ้าต้องยกตัวอย่าง ให้ใช้ข้อมูลสมมติแทนตารางจริง",
+   "module": "M1"
+  },
+  {
+   "id": "C04",
+   "title": "สไลด์ความรู้ ESG ที่ดาวน์โหลดจากเว็บไซต์หน่วยงานรัฐ",
+   "sample": "PDF สาธารณะเรื่องแนวทางการเปิดเผยข้อมูลก๊าซเรือนกระจก",
+   "answer": "green",
+   "why": "เอกสารสาธารณะ ใครก็เข้าถึงได้",
+   "tip": "ตรวจเงื่อนไขลิขสิทธิ์ก่อนนำเนื้อหาไปเผยแพร่ต่อ",
+   "module": "M1"
+  },
+  {
+   "id": "C05",
+   "title": "ข้อมูลที่บริษัทเปิดเผยต่อสาธารณะแล้ว (เช่น รายงานประจำปีที่ประกาศแล้ว)",
+   "sample": "ไฟล์ PDF รายงานประจำปีที่อยู่บนเว็บไซต์นักลงทุนสัมพันธ์แล้ว",
+   "answer": "green",
+   "why": "เมื่อเปิดเผยต่อสาธารณะแล้ว ไม่ถือเป็นความลับอีก",
+   "tip": "ระวังฉบับร่างก่อนประกาศ ซึ่งเป็น 🔴 แดง",
+   "module": "M1"
+  },
+  {
+   "id": "C06",
+   "title": "บันทึกการประชุมทีม ที่มีชื่อและเบอร์โทรผู้เข้าประชุม",
+   "sample": "ผู้เข้าประชุม: คุณสมมติ ใจดี (081-xxx-xxxx), คุณทดลอง รักงาน … สรุป: เลื่อนตรวจสายพานไปสัปดาห์หน้า",
+   "answer": "yellow",
+   "why": "เนื้อหางานใช้ได้ แต่ชื่อและเบอร์โทรเป็นข้อมูลส่วนบุคคล",
+   "tip": "แทนชื่อด้วยบทบาท (หัวหน้ากะ, วิศวกร A) และลบเบอร์โทรก่อนวาง",
+   "module": "M1"
+  },
+  {
+   "id": "C07",
+   "title": "ผลสำรวจความพึงพอใจพนักงาน (คำตอบปลายเปิด + ชื่อผู้ตอบ)",
+   "sample": "ชื่อ: คุณตัวอย่าง มีสุข · แผนก: ซ่อมบำรุง Site B · \"อยากให้มีรถรับส่งกะดึก\"",
+   "answer": "yellow",
+   "why": "อยากได้สรุปความเห็น แต่ไม่ควรผูกกับตัวบุคคล",
+   "tip": "ลบชื่อ รวมแผนกเป็นกลุ่มใหญ่ แล้วค่อยให้ Claude สรุปธีม",
+   "module": "M1"
+  },
+  {
+   "id": "C08",
+   "title": "อีเมลจาก supplier สอบถามสเปกอะไหล่ (มีลายเซ็นและชื่อบริษัท)",
+   "sample": "From: sales@supplier.example.com · ขอยืนยันรุ่นตลับลูกปืน … ลงชื่อ ผู้จัดการฝ่ายขาย + เบอร์มือถือ",
+   "answer": "yellow",
+   "why": "คำถามเชิงเทคนิคใช้ได้ แต่ชื่อคู่ค้าและข้อมูลติดต่อเป็นข้อมูลภายนอกที่ไม่จำเป็น",
+   "tip": "ตัดลายเซ็น/ชื่อบริษัทออก เหลือเฉพาะคำถามเทคนิค",
+   "module": "M1"
+  },
+  {
+   "id": "C09",
+   "title": "รายงาน near-miss ที่มีชื่อผู้รายงานและหัวหน้ากะ",
+   "sample": "Site A · 14/09 · รถบรรทุกถอยใกล้จุดคนเดิน · ผู้รายงาน: คุณทดสอบ ปลอดภัย",
+   "answer": "yellow",
+   "why": "อยากวิเคราะห์แนวโน้มความปลอดภัย แต่ไม่ต้องรู้ว่าใครรายงาน",
+   "tip": "ลบชื่อคน ใช้ Site A–H และวันที่แบบเดือน แล้วจึงวิเคราะห์",
+   "module": "M1"
+  },
+  {
+   "id": "C10",
+   "title": "ตารางปริมาณขายไฟฟ้ารายเดือน พร้อมชื่อลูกค้าอุตสาหกรรม",
+   "sample": "ลูกค้า: บริษัทสมมติ ก จำกัด · ส.ค. 4.2 GWh · ก.ย. 4.5 GWh",
+   "answer": "yellow",
+   "why": "ปริมาณรวมช่วยวิเคราะห์ได้ แต่ชื่อลูกค้าเป็นข้อมูลคู่ค้า",
+   "tip": "แทนชื่อด้วย Customer 01–n และเก็บตารางจับคู่ไว้นอก Claude ถ้ามีราคา/เงื่อนไขสัญญา ให้ถือเป็น 🔴",
+   "module": "M1"
+  },
+  {
+   "id": "C11",
+   "title": "ไฟล์เงินเดือนพนักงาน พร้อมเลขบัตรประชาชน",
+   "sample": "รหัสพนักงาน · ชื่อ-สกุล · เลขบัตร 13 หลัก · เงินเดือน · บัญชีธนาคาร",
+   "answer": "red",
+   "why": "ข้อมูลส่วนบุคคลอ่อนไหวและข้อมูลการเงินส่วนตัว ตัดชื่อออกก็ยังเสี่ยง",
+   "tip": "ใช้เครื่องมือที่บริษัทกำหนดสำหรับข้อมูลอ่อนไหวเท่านั้น",
+   "module": "M1"
+  },
+  {
+   "id": "C12",
+   "title": "ร่างสัญญาซื้อขายถ่านหินที่ยังเจรจาอยู่ (ราคาและเงื่อนไข)",
+   "sample": "ร่างครั้งที่ 3 · ราคา/ตัน · ส่วนลดตามปริมาณ · เงื่อนไขค่าปรับ",
+   "answer": "red",
+   "why": "ความลับทางการค้า รั่วไหลแล้วกระทบการเจรจาโดยตรง",
+   "tip": "ถ้าต้องการโครงสัญญา ให้ขอ template ทั่วไปโดยไม่ใส่ตัวเลขจริง",
+   "module": "M1"
+  },
+  {
+   "id": "C13",
+   "title": "งบการเงินไตรมาสที่ยังไม่ประกาศต่อตลาดหลักทรัพย์",
+   "sample": "ร่างงบกำไรขาดทุน Q3 (ก่อนประกาศ) · รายได้ · EBITDA · กำไรสุทธิ",
+   "answer": "red",
+   "why": "ข้อมูลการเงินที่ยังไม่เปิดเผย อาจเป็นข้อมูลภายในตามกฎตลาดทุน",
+   "tip": "รอจนประกาศแล้ว (กลายเป็น 🟢) หรือใช้ตัวเลขสมมติฝึกทำรูปแบบรายงาน",
+   "module": "M1"
+  },
+  {
+   "id": "C14",
+   "title": "รหัสผ่าน / API key / connection string ของระบบภายใน",
+   "sample": "server=db-internal.example.com; user=svc_report; password=********",
+   "answer": "red",
+   "why": "credential เปิดทางเข้าระบบ ห้ามวางในเครื่องมือ AI ใด ๆ",
+   "tip": "ลบ credential ออกจากโค้ด/ไฟล์ก่อนขอให้ Claude ช่วยดู",
+   "module": "M1"
+  },
+  {
+   "id": "C15",
+   "title": "ใบรับรองแพทย์และประวัติการรักษาของพนักงาน",
+   "sample": "สแกนใบรับรองแพทย์ · วินิจฉัยโรค · วันลาป่วย · ชื่อพนักงาน",
+   "answer": "red",
+   "why": "ข้อมูลสุขภาพเป็นข้อมูลส่วนบุคคลอ่อนไหวพิเศษตาม PDPA",
+   "tip": "ไม่ส่งเข้า Claude แม้จะลบชื่อแล้ว ใช้ระบบ HR ที่บริษัทกำหนด",
+   "module": "M1"
+  }
+ ]
+}
+</script>
+<!-- CARDS:END -->
+
+<script>
+const DATA = JSON.parse(document.getElementById('cards-data').textContent);
+const LABEL = DATA.levels;
+const $ = id => document.getElementById(id);
+let order = [], pos = 0, score = 0, streak = 0, answers = {};
+
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+function start(){
+  order = shuffle(DATA.cards.slice()); pos = 0; score = 0; streak = 0; answers = {};
+  $('hud-total').textContent = order.length; $('r-total').textContent = order.length;
+  $('game').style.display = ''; $('result').classList.remove('show');
+  renderReview(); show();
+}
+
+function show(){
+  const c = order[pos];
+  $('c-id').textContent = 'ไพ่ ' + c.id; $('c-title').textContent = c.title; $('c-sample').textContent = c.sample;
+  $('hud-pos').textContent = pos + 1; $('hud-score').textContent = score; $('hud-streak').textContent = streak;
+  $('bar').style.width = (pos / order.length * 100) + '%';
+  document.querySelectorAll('.choice').forEach(b => {b.disabled = false; b.classList.remove('sel');});
+  $('fb').className = 'feedback'; $('next').disabled = true;
+}
+
+function answer(a){
+  const c = order[pos];
+  if(answers[c.id]) return;
+  answers[c.id] = a;
+  const ok = a === c.answer;
+  if(ok){score++; streak++;} else streak = 0;
+  document.querySelectorAll('.choice').forEach(b => {b.disabled = true; b.classList.toggle('sel', b.dataset.a === a);});
+  $('fb-h').textContent = ok ? '✅ ถูกต้อง! ' + LABEL[c.answer] : '❌ ยังไม่ใช่ · คำตอบคือ ' + LABEL[c.answer];
+  $('fb-why').textContent = c.why; $('fb-tip').textContent = c.tip;
+  $('fb').className = 'feedback show ' + (ok ? 'ok' : 'bad');
+  $('hud-score').textContent = score; $('hud-streak').textContent = streak;
+  $('streak-msg').textContent = streak >= 5 ? '🔥🔥 ' + streak + ' ใบติด! Data Guardian' : streak >= 3 ? '🔥 ' + streak + ' ใบติด!' : '';
+  $('next').disabled = false; $('next').focus();
+  renderReview();
+}
+
+function next(){
+  if($('next').disabled) return;
+  pos++;
+  if(pos < order.length) show(); else finish();
+}
+
+function finish(){
+  $('bar').style.width = '100%';
+  $('game').style.display = 'none'; $('result').classList.add('show');
+  $('r-score').textContent = score;
+  const ratio = score / order.length;
+  $('r-badge').textContent = ratio === 1 ? '🏆 Data Guardian ระดับทอง' : ratio >= .8 ? '🥈 พร้อมใช้งานอย่างปลอดภัย' : '📘 ทบทวนเฉลยด้านล่างอีกครั้ง';
+  ['green','yellow','red'].forEach(l => {
+    const cs = order.filter(c => c.answer === l);
+    $('r-' + l).textContent = cs.filter(c => answers[c.id] === l).length + '/' + cs.length;
+  });
+  $('review').hidden = false; renderReview(); syncPrint();
+}
+
+function renderReview(){
+  const list = $('rv-list'); list.innerHTML = '';
+  DATA.cards.forEach(c => {
+    const d = document.createElement('div'); d.className = 'rv ' + c.answer;
+    const you = answers[c.id] ? (answers[c.id] === c.answer ? '✅ คุณตอบถูก' : '❌ คุณตอบ ' + LABEL[answers[c.id]]) : '— ยังไม่ได้ตอบ';
+    d.innerHTML = '<div class="t"></div><div class="m"></div><div class="m"></div><div class="you"></div>';
+    d.children[0].textContent = c.id + ' · ' + c.title + ' → ' + LABEL[c.answer];
+    d.children[1].textContent = 'เหตุผล: ' + c.why;
+    d.children[2].textContent = 'ทำให้ปลอดภัย: ' + c.tip;
+    d.children[3].textContent = you;
+    list.appendChild(d);
+  });
+}
+
+function syncPrint(){
+  $('print-player').textContent = $('player').value || '-';
+  $('print-score').textContent = Object.keys(answers).length ? score + '/' + DATA.cards.length : '-';
+  $('rules-print').textContent = $('rules').value;
+}
+
+document.querySelectorAll('.choice').forEach(b => b.addEventListener('click', () => answer(b.dataset.a)));
+$('next').addEventListener('click', next);
+$('again').addEventListener('click', start);
+$('rules').addEventListener('input', syncPrint);
+$('player').addEventListener('input', syncPrint);
+window.addEventListener('beforeprint', syncPrint);
+document.addEventListener('keydown', e => {
+  if(['INPUT','TEXTAREA'].includes(e.target.tagName)) return;
+  if(e.key === '1') answer('green');
+  if(e.key === '2') answer('yellow');
+  if(e.key === '3') answer('red');
+  if(e.key === 'Enter') next();
+});
+start();
+</script>
+</body>
+</html>

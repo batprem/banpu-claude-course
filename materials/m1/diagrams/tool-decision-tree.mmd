@@ -1,0 +1,17 @@
+%% M1 · เลือก Chat / Project / Skill / Agent (Cowork) / Artifact
+flowchart LR
+    S["งานของคุณ"]:::human --> Q1{"ถามตอบสั้น ๆ<br/>ครั้งเดียวจบ?"}:::human
+    Q1 -- ใช่ --> CH["Chat"]:::ai
+    Q1 -- ไม่ --> Q2{"ต้องทำกับไฟล์/โฟลเดอร์<br/>หลายขั้นตอน?"}:::human
+    Q2 -- ใช่ --> AG["Agent (Cowork)"]:::ai
+    Q2 -- ไม่ --> Q3{"ใช้บริบท/เอกสารชุดเดิม<br/>ซ้ำ ๆ ในหัวข้อเดียว?"}:::human
+    Q3 -- ใช่ --> PR["Project"]:::ai
+    Q3 -- ไม่ --> Q4{"ทำงานรูปแบบเดิมซ้ำ<br/>หลายหัวข้อ/หลายคน?"}:::human
+    Q4 -- ใช่ --> SK["Skill"]:::ai
+    Q4 -- ไม่ --> CH
+    CH & PR & SK & AG --> Q5{"ผลลัพธ์ต้องเห็นภาพ/<br/>กดเล่น/แชร์?"}:::human
+    Q5 -- ใช่ --> AR["Artifact<br/>(Dashboard · App · Diagram)"]:::data
+    Q5 -- ไม่ --> DOC["ไฟล์ Word/Excel/PPT/PDF"]:::data
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;
