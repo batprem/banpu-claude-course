@@ -1,0 +1,388 @@
+<title>M6 Workshop</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: one calm column of 4 workshop "pages" (A4 cards) under a sticky progress strip; design → schedule → test run → decide. */
+:root{
+  --paper:#FAF8F3; --surface:#FFFFFF; --ink:#1F2933; --muted:#5B6670; --line:#E3DDCF; --code:#F3EFE6;
+  --human:#E4572E; --ai:#2E86AB; --data:#3BA55C; --warn:#F2A541; --red:#D64545;
+  --tint-green:#E9F6EC; --tint-yellow:#FDF3E1; --tint-red:#FDECEA; --tint-blue:#EAF3F8;
+  --f-body:'IBM Plex Sans Thai',system-ui,sans-serif; --f-mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#161B21; --surface:#1F262E; --ink:#E9ECEF; --muted:#A3ADB7; --line:#34404B; --code:#262F38;
+  --tint-green:#1D3324; --tint-yellow:#3A2F1A; --tint-red:#3B2222; --tint-blue:#1C2C38; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#161B21; --surface:#1F262E; --ink:#E9ECEF; --muted:#A3ADB7; --line:#34404B; --code:#262F38;
+  --tint-green:#1D3324; --tint-yellow:#3A2F1A; --tint-red:#3B2222; --tint-blue:#1C2C38; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:15.5px;line-height:1.65;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.wrap{max-width:820px;margin:0 auto}
+h1,h2,h3{text-wrap:balance;line-height:1.3}
+:focus-visible{outline:3px solid var(--ai);outline-offset:2px}
+
+/* sticky progress strip */
+.strip{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);padding-block:12px 10px;border-bottom:1px solid var(--line);margin-bottom:20px}
+.strip-row{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between}
+.strip-title{font-weight:700;font-size:15px}
+.strip-title span{color:var(--muted);font-weight:400}
+.prog{display:flex;align-items:center;gap:10px;flex:1 1 220px;min-width:0}
+.track{flex:1;height:8px;border-radius:99px;background:var(--line);overflow:hidden}
+.track i{display:block;height:100%;width:0;background:var(--data);transition:width .3s}
+.prog b{font-variant-numeric:tabular-nums;font-size:14px;white-space:nowrap}
+
+header.intro{display:grid;gap:4px;margin-bottom:20px}
+header.intro .eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+header.intro h1{font-size:28px;margin:0}
+header.intro p{margin:0;color:var(--muted)}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px clamp(16px,4vw,32px);margin-bottom:22px;display:grid;gap:14px;min-width:0}
+.card-head{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:baseline;justify-content:space-between}
+.card-head h2{margin:0;font-size:21px}
+.card-head .pg{color:var(--muted);font-weight:600;font-size:13px;letter-spacing:.04em}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:99px;padding:2px 12px;font-size:13px;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.chip::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--warn)}
+.card.done .chip::before{background:var(--data)}
+.goal{margin:0;padding:10px 14px;border-radius:10px;background:var(--code)}
+.goal b{color:var(--ai)}
+h3{font-size:16px;margin:4px 0 0}
+p,ol,ul{margin:0}
+ol,ul{padding-left:1.4em;display:grid;gap:4px}
+ol ul{margin-top:4px}
+code{font-family:var(--f-mono);font-size:.9em;background:var(--code);padding:1px 6px;border-radius:5px}
+
+.tbl{overflow-x:auto;min-width:0}
+table{border-collapse:collapse;width:100%;font-size:14.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--code);font-weight:600}
+td.c{text-align:center}
+td input[type=checkbox]{width:20px;height:20px;accent-color:var(--data);cursor:pointer}
+
+/* routes */
+.routes{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
+.route{border:1px solid var(--line);border-radius:10px;padding:10px 14px;min-width:0}
+.route.a{background:var(--tint-blue)} .route.b{background:var(--tint-green)}
+.route b{display:block}
+
+/* diagram */
+.diagram{overflow-x:auto;min-width:0;border:1px solid var(--line);border-radius:10px;padding:12px;background:var(--surface)}
+.diagram svg{display:block;width:100%;min-width:680px;height:auto}
+.diagram .edge{stroke:var(--ink);fill:none;stroke-width:1.6}
+.diagram .head{fill:var(--ink)}
+.legend{font-size:13px;color:var(--muted)}
+
+/* prompt */
+.prompt{border:1px solid var(--line);border-radius:10px;overflow:hidden;min-width:0}
+.prompt-bar{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px 8px 6px 14px;background:var(--code);border-bottom:1px solid var(--line);font-size:13px;font-weight:600}
+.copy-btn{font:600 13px var(--f-body);border:1px solid var(--ai);color:var(--ai);background:var(--surface);border-radius:7px;padding:4px 12px;cursor:pointer}
+.copy-btn:hover{background:var(--ai);color:#fff}
+.prompt pre{margin:0;padding:14px;overflow-x:auto;font-family:var(--f-mono);font-size:13.5px;line-height:1.6;white-space:pre-wrap;word-break:break-word;background:var(--surface);color:var(--ink)}
+
+/* checkpoint */
+.check{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border:1.5px dashed var(--human);border-radius:10px;cursor:pointer}
+.check input{width:20px;height:20px;margin-top:3px;accent-color:var(--data);flex:none;cursor:pointer}
+.card.done .check{border-style:solid;border-color:var(--data);background:var(--tint-green)}
+.note{font-size:14.5px;padding:8px 12px;border-radius:8px;background:var(--tint-yellow)}
+.ok{color:var(--data);font-weight:600} .no{color:var(--red);font-weight:600}
+.next{font-weight:600;color:var(--ai)}
+footer{font-size:12px;color:var(--muted);text-align:center;margin-top:8px}
+
+@media (prefers-reduced-motion: reduce){.track i{transition:none}}
+
+/* Export PDF (materials/_shared/export-pdf-artifact.html) */
+.export-pdf-btn{font:600 14px 'IBM Plex Sans Thai',sans-serif;background:#1F2933;color:#fff;border:0;border-radius:8px;padding:8px 14px;cursor:pointer}
+.export-pdf-btn:hover{background:#2E86AB}
+.export-pdf-btn[disabled]{opacity:.6;cursor:progress}
+.pdf-export .print-expand,.pdf-export [hidden].print-expand,.pdf-export details{display:block!important;height:auto!important;overflow:visible!important}
+.pdf-export body{background:#fff}
+.pdf-export .card{border-color:#ccc}
+.pdf-export .diagram svg{min-width:0}
+@media print{
+  @page{size:A4;margin:12mm}
+  body{background:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .no-print,.export-pdf-btn,button,nav{display:none!important}
+  .print-expand,[hidden].print-expand,details{display:block!important;height:auto!important;overflow:visible!important}
+  .pdf-page-break{break-before:page}
+  section,.card{break-inside:avoid}
+  .diagram svg{min-width:0}
+}
+</style>
+
+<div class="strip no-print">
+  <div class="wrap strip-row">
+    <div class="strip-title">M6 Workshop <span>· Scheduled task แรกของคุณ</span></div>
+    <div class="prog" aria-label="ความคืบหน้า">
+      <div class="track"><i id="progBar"></i></div>
+      <b id="progText">0 / 4 หน้า</b>
+    </div>
+    <button class="export-pdf-btn no-print" id="exportPdfBtn" type="button" title="ดาวน์โหลดเป็น PDF">⬇ Export PDF</button>
+  </div>
+</div>
+
+<main class="wrap" data-pdf-root>
+  <header class="intro">
+    <span class="eyebrow">M6 · Automation</span>
+    <h1>M6 Workshop · Scheduled task แรกของคุณ (20 นาที · 4 หน้า)</h1>
+    <p>ข้อมูลทั้งหมดเป็นข้อมูลสมมติ · Connector: <b>SharePoint + Outlook</b> เท่านั้น · Prompt ทั้งหมดอยู่ใน <code>prompts.md</code> (และในใบงานนี้ กด Copy ได้)</p>
+  </header>
+
+  <!-- หน้า 1 -->
+  <section class="card" id="page1" data-page="1">
+    <div class="card-head">
+      <div><div class="pg">หน้า 1 / 4 · 14:25–14:30</div><h2>เตรียมโฟลเดอร์ + ออกแบบ Automation Card</h2></div>
+      <span class="chip">5 นาที</span>
+    </div>
+
+    <div class="diagram" role="img" aria-label="ภาพรวม workshop: หน้า 1 คนออกแบบ Automation Card, หน้า 2 AI สร้าง Scheduled task, อ่านข้อมูล M4 output, M3 อีเมล และ m6 meeting notes, หน้า 3 AI Run now ได้ร่าง, คนตรวจร่างว่าไม่มีอะไรถูกส่ง, หน้า 4 คนเลือก Pause หรือเก็บไว้ และ Export PDF">
+      <svg viewBox="0 0 1000 130" xmlns="http://www.w3.org/2000/svg" font-family="IBM Plex Sans Thai, sans-serif" font-size="13" text-anchor="middle">
+        <defs><marker id="arr1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="head" d="M0 0L10 5L0 10z"/></marker></defs>
+        <rect x="4" y="25" width="140" height="80" rx="10" fill="#E4572E" stroke="#1F2933"/><text x="74" y="60" fill="#fff" font-weight="600">หน้า 1 · ออกแบบ</text><text x="74" y="80" fill="#fff">Automation Card</text>
+        <rect x="174" y="25" width="140" height="80" rx="10" fill="#2E86AB" stroke="#1F2933"/><text x="244" y="60" fill="#fff" font-weight="600">หน้า 2 · สร้าง</text><text x="244" y="80" fill="#fff">Scheduled task</text>
+        <rect x="344" y="25" width="140" height="80" rx="26" fill="#3BA55C" stroke="#1F2933"/><text x="414" y="51" fill="#fff" font-weight="600">อ่าน: M4 output</text><text x="414" y="70" fill="#fff" font-size="12">· M3 อีเมล</text><text x="414" y="88" fill="#fff" font-size="12">· m6 meeting notes</text>
+        <rect x="514" y="25" width="140" height="80" rx="10" fill="#2E86AB" stroke="#1F2933"/><text x="584" y="60" fill="#fff" font-weight="600">หน้า 3 · Run now</text><text x="584" y="80" fill="#fff">ได้ร่าง</text>
+        <polygon points="754,2 824,65 754,128 684,65" fill="#E4572E" stroke="#1F2933"/><text x="754" y="58" fill="#fff" font-weight="600" font-size="12">✅ ตรวจร่าง</text><text x="754" y="76" fill="#fff" font-size="12">ไม่มีอะไรถูกส่ง</text>
+        <rect x="854" y="25" width="142" height="80" rx="10" fill="#E4572E" stroke="#1F2933"/><text x="925" y="51" fill="#fff" font-weight="600">หน้า 4 · Pause</text><text x="925" y="70" fill="#fff" font-size="12">หรือเก็บไว้</text><text x="925" y="88" fill="#fff" font-size="12">+ Export PDF</text>
+        <path class="edge" d="M144 65H172" marker-end="url(#arr1)"/>
+        <path class="edge" d="M314 65H342" marker-end="url(#arr1)"/>
+        <path class="edge" d="M484 65H512" marker-end="url(#arr1)"/>
+        <path class="edge" d="M654 65H682" marker-end="url(#arr1)"/>
+        <path class="edge" d="M824 65H852" marker-end="url(#arr1)"/>
+      </svg>
+    </div>
+    <p class="legend">🟧 คน (HITL) · 🟦 AI · 🟩 Data/Connector</p>
+
+    <p class="goal"><b>เป้าหมาย:</b> เลือกงาน 1 งาน แล้วกรอก 6 ช่องให้ครบก่อนแตะ Claude</p>
+
+    <h3>ขั้นตอน</h3>
+    <ol>
+      <li>(2 นาที) ดาวน์โหลด <b>M6 pack</b> จาก SharePoint ของห้องอบรม แล้ว <b>คัดลอก</b> ไปที่ <code>Documents/Claude-Workshop/M6/</code> (copy-before-write) ในโฟลเดอร์มี <code>input/</code> (อีเมล M3 · Project Tracker · meeting notes 6 ไฟล์ · watchlist) และ <code>output/</code> ว่าง
+        <ul><li>ถ้ามีรายงานจาก M4 ให้คัดลอกไฟล์ไปไว้ที่ <code>input/m4_report/</code></li></ul>
+      </li>
+      <li>(3 นาที) เปิด Artifact <b>Automation Card</b> แล้วเลือกงาน 1 งาน:</li>
+    </ol>
+    <div class="tbl"><table>
+      <thead><tr><th>งาน</th><th>เหมาะกับใคร</th><th>Prompt</th></tr></thead>
+      <tbody>
+        <tr><td>(ก) รายงานสถานะโครงการรายสัปดาห์</td><td>ทุกคน (แนะนำ)</td><td><code>M6-P03</code></td></tr>
+        <tr><td>(ข) Weekly Energy &amp; Ops Insight (แบบที่สาธิต)</td><td>คนที่ติดตามข่าวตลาด</td><td><code>M6-P04</code></td></tr>
+        <tr><td>(ค) งานซ้ำของคุณเอง · ใช้ข้อมูล 🟢 เท่านั้น</td><td>คนที่มีงานในใจแล้ว</td><td><code>M6-P05</code></td></tr>
+      </tbody>
+    </table></div>
+    <ol start="3">
+      <li>กรอก 6 ช่องใน Artifact: ⏰ เมื่อไร · 🟩 Input · 🟦 Process · 🟦 Output · 🟧 Checkpoint · 🟧 Owner</li>
+    </ol>
+
+    <h3>เลือกเส้นทาง</h3>
+    <div class="routes">
+      <div class="route a"><b>เส้นทาง A · Connector</b>(มีบัญชี test tenant จาก M3): อ่าน Outlook + SharePoint · task รันบน cloud ได้แม้ปิดเครื่อง</div>
+      <div class="route b"><b>เส้นทาง B · โฟลเดอร์ในเครื่อง</b>(ทุกคนทำได้): อ่าน <code>input/</code> · task รันได้เฉพาะตอน <b>เครื่องเปิด + ไม่ sleep + Claude Desktop เปิดอยู่</b></div>
+    </div>
+
+    <label class="check" for="ck1a"><input type="checkbox" id="ck1a"><span><b>✅ Checkpoint (คนตรวจ):</b> Artifact ขึ้นป้าย "พร้อมตั้งเวลา" ครบ 6/6 และช่อง Owner เป็นชื่อคนจริง 1 คน (ไม่ใช่ "ทีม") · ช่อง Output เขียนเฉพาะ <code>output/</code> หรือ Outlook <b>Drafts</b></span></label>
+  </section>
+
+  <!-- หน้า 2 -->
+  <section class="card pdf-page-break" id="page2" data-page="2">
+    <div class="card-head">
+      <div><div class="pg">หน้า 2 / 4 · 14:30–14:36</div><h2>สร้าง Scheduled task แบบ "ถามก่อน"</h2></div>
+      <span class="chip">6 นาที</span>
+    </div>
+    <p class="goal"><b>เป้าหมาย:</b> มี task 1 ตัวในหน้า Scheduled ที่ตั้ง approval เป็น <b>Manual</b> และจะไม่ส่งอะไรออกไปเอง</p>
+
+    <h3>วิธีที่ 1 · Set up manually (แนะนำ)</h3>
+    <ol>
+      <li>Claude Desktop → แถบซ้าย <b>Scheduled</b> → <b>New task</b> → <b>Set up manually</b></li>
+      <li>กรอก: ชื่องาน · Prompt (กด <b>Copy prompt</b> ใน Automation Card หรือคัดลอก M6-P03/P04 จาก <code>prompts.md</code>) · ความถี่ <b>Weekly · จันทร์ 08:00</b> · โฟลเดอร์ <code>Documents/Claude-Workshop/M6</code> (เส้นทาง B)</li>
+      <li><b>Approval mode = Manual</b> ⚠ ค่าเริ่มต้นมักเป็น Auto ตรวจแล้วเปลี่ยนเอง</li>
+      <li>กด Save/Schedule</li>
+    </ol>
+
+    <h3>วิธีที่ 2 · ให้ Claude สัมภาษณ์ (งาน ค)</h3>
+    <ul>
+      <li><b>New task → Create with Claude</b> หรือพิมพ์ <code>/schedule</code> ในแชต Cowork แล้ววาง M6-P05</li>
+      <li>Claude ถามทีละข้อ แล้วสรุปตาราง 6 ช่อง → <b>อ่านก่อนกดยืนยัน</b></li>
+    </ul>
+
+    <div class="prompt">
+      <div class="prompt-bar"><span>Prompt ย่อสำหรับงาน (ก) · เส้นทาง B · ฉบับเต็ม M6-P03</span><button class="copy-btn no-print" type="button" data-copy="p03">Copy</button></div>
+      <pre id="p03">งาน: ร่าง "รายงานสถานะโครงการรายสัปดาห์" 1 หน้า ภาษาไทย ให้ [ชื่อเจ้าของงาน] ตรวจก่อน 09:30
+Input (อ่านอย่างเดียว): input/m3_outlook/*.eml · input/m3_sharepoint/*.csv · input/meeting_notes/*.md · input/m4_report/ (ถ้ามี)
+Process: โครงการ At risk/Delayed · ความเสี่ยงสูงสุด 3 เรื่อง · คำขออนุมัติที่ค้าง · จุดที่ข้อมูลขัดกัน (แสดงทั้งสองค่า ห้ามเลือกเอง)
+Output: output/weekly_status_[YYYY-MM-DD].docx (ห้ามเขียนทับไฟล์เดิม)
+Checkpoint: บรรทัดแรก "สถานะ: ร่าง · รอ [ชื่อเจ้าของงาน] ตรวจ" · ทุกข้อมีที่มา · ห้ามส่งอีเมล ห้ามแก้ไฟล์ใน input/
+จบด้วย "🛑 หยุดรอคนตรวจ" และสรุปว่าเขียนไฟล์อะไรไปบ้าง</pre>
+    </div>
+
+    <label class="check" for="ck2a"><input type="checkbox" id="ck2a"><span><b>✅ Checkpoint (คนตรวจ):</b> ในหน้า Scheduled เห็น task ของคุณ · ความถี่ถูกต้อง · approval = Manual · prompt มีคำว่า "ร่าง", "ห้ามส่ง", ชื่อเจ้าของงาน</span></label>
+    <p class="note">💡 <b>ติดขัด:</b> ไม่เห็นเมนู Scheduled → แจ้งผู้ช่วยสอน (admin อาจยังไม่เปิด Cowork) แล้วทำต่อในแชต Cowork ด้วย M6-P03 แบบรันครั้งเดียว</p>
+  </section>
+
+  <!-- หน้า 3 -->
+  <section class="card pdf-page-break" id="page3" data-page="3">
+    <div class="card-head">
+      <div><div class="pg">หน้า 3 / 4 · 14:36–14:42</div><h2>Run now 1 รอบ แล้วตรวจร่าง</h2></div>
+      <span class="chip">6 นาที</span>
+    </div>
+    <p class="goal"><b>เป้าหมาย:</b> รันทดสอบ 1 รอบ ได้ "ร่าง" ใน <code>output/</code> (หรือ Outlook Drafts) และพิสูจน์ว่าไม่มีอะไรถูกส่งหรือถูกแก้</p>
+
+    <h3>ขั้นตอน</h3>
+    <ol>
+      <li>(1 นาที) ในหน้า Scheduled คลิก task ของคุณ → <b>Run now</b> (ไม่ต้องรอถึงวันจันทร์)</li>
+      <li>(2 นาที) ระหว่างรัน Claude จะ <b>หยุดขออนุมัติ</b> (เพราะตั้ง Manual) → อ่านว่าจะทำอะไร
+        <ul>
+          <li>อ่าน <code>input/</code> · เขียน <code>output/</code> · สร้าง Draft → <span class="ok">✅ อนุมัติ</span></li>
+          <li>ส่งอีเมล · แก้/ลบไฟล์ใน <code>input/</code> · แก้ไฟล์บน SharePoint → <span class="no">❌ ปฏิเสธ</span> แล้วจดไว้ในการ์ด</li>
+        </ul>
+      </li>
+      <li>(3 นาที) เปิดร่างที่ได้ แล้ววาง M6-P06 ในแชตเดียวกันเพื่อให้ Claude ช่วยตรวจ:</li>
+    </ol>
+    <div class="prompt">
+      <div class="prompt-bar"><span>ตรวจร่างด้วย checklist · M6-P06</span><button class="copy-btn no-print" type="button" data-copy="p06">Copy</button></div>
+      <pre id="p06">ตรวจร่างที่เพิ่งสร้างด้วย checklist นี้ ตอบเป็นตาราง ✅/❌ + หลักฐาน:
+1. บรรทัดแรกบอกว่าเป็นร่างและชื่อเจ้าของงาน
+2. ทุกข้อมีที่มาที่เปิดตรวจได้
+3. ตัวเลขสำคัญ 3 ตัว: ระบุค่าในร่าง และค่าที่ต้นทาง ตรงกันไหม
+4. มีหัวข้อ "ไม่แน่ใจ/ขัดกัน" และไม่ได้เลือกค่าเอง
+5. ไม่มีอีเมลถูกส่ง ไม่มีไฟล์ต้นทางถูกแก้ (บอกรายการไฟล์ที่เขียนทั้งหมด)
+6. ไม่มีข้อมูล 🔴 (ข้อมูลส่วนบุคคล ข้อมูลลับ)
+ห้ามแก้ร่างเอง ถ้ามี ❌ ให้เสนอวิธีแก้ prompt ของ task แทน</pre>
+    </div>
+
+    <h3>ตรวจเองด้วยตา (คนตัดสิน ไม่ใช่ AI) · ข้อมูลสมมติชุดนี้มีจุดให้จับ</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>ตรวจอะไร</th><th>ค่าที่ควรเห็นในร่าง</th><th>ที่มา</th><th>✔</th></tr></thead>
+      <tbody>
+        <tr><td>PRJ-101 สายพาน CV-03</td><td>Tracker = On track <b>แต่</b> อีเมล/ประชุมบอกเสี่ยง → ต้องอยู่ในหัวข้อ "ขัดกัน"</td><td>Project_Tracker.csv · m3-001 · ประชุม PM 27 ต.ค.</td><td class="c"><input type="checkbox" id="t3a" aria-label="PRJ-101 อยู่ในหัวข้อขัดกัน"></td></tr>
+        <tr><td>ลูกกลิ้งที่ยังขาด</td><td>40 ชิ้น</td><td>อีเมล m3-001</td><td class="c"><input type="checkbox" id="t3b" aria-label="ลูกกลิ้ง 40 ชิ้น"></td></tr>
+        <tr><td>PRJ-105 งบเพิ่มที่ขออนุมัติ</td><td>3.8 ล้านบาท (ตอบภายใน 31 ต.ค.)</td><td>อีเมล m3-002</td><td class="c"><input type="checkbox" id="t3c" aria-label="PRJ-105 3.8 ล้านบาท"></td></tr>
+        <tr><td>ส่วนต่าง Spent ใน Capex Tracker</td><td>2.1 ล้านบาท</td><td>ประชุม Finance check 22 ต.ค.</td><td class="c"><input type="checkbox" id="t3d" aria-label="ส่วนต่าง 2.1 ล้านบาท"></td></tr>
+      </tbody>
+    </table></div>
+
+    <label class="check" for="ck3a"><input type="checkbox" id="ck3a"><span><b>✅ Checkpoint (คนตรวจ):</b> โฟลเดอร์ <code>input/</code> ไม่มีไฟล์ใดถูกแก้ (ดูเวลา Modified) · Outlook <b>Sent Items</b> ไม่มีอีเมลใหม่ · ร่างขึ้นต้น "สถานะ: ร่าง" และจบ "🛑 หยุดรอคนตรวจ"</span></label>
+    <p class="note">💡 <b>ร่างไม่ดี?</b> อย่าแก้ร่างเอง ให้แก้ <b>prompt ของ task</b> (Edit) แล้ว Run now อีกครั้ง เพราะสัปดาห์หน้า task จะใช้ prompt เดิม</p>
+  </section>
+
+  <!-- หน้า 4 -->
+  <section class="card pdf-page-break" id="page4" data-page="4">
+    <div class="card-head">
+      <div><div class="pg">หน้า 4 / 4 · 14:42–14:45</div><h2>ตัดสินใจ: เก็บไว้หรือ Pause + Export PDF</h2></div>
+      <span class="chip">3 นาที</span>
+    </div>
+    <p class="goal"><b>เป้าหมาย:</b> ปิดงานให้ปลอดภัย และมี Automation Card (PDF) กลับไปใช้ต่อ</p>
+
+    <h3>ขั้นตอน</h3>
+    <ol>
+      <li>(1 นาที) เลือก 1 ทาง แล้วติ๊กในการ์ด:
+        <ul>
+          <li><b>Pause</b> ← ค่าแนะนำหลังอบรม ถ้ายังไม่ได้รับอนุญาตให้ใช้กับข้อมูลจริง (นโยบาย IT/Hi-I)</li>
+          <li><b>เก็บไว้รันทดลอง 4 สัปดาห์</b> ← เฉพาะเส้นทาง A บน test tenant หรือข้อมูล 🟢 · ตั้งปฏิทินเตือน "เช็ก past runs ทุกจันทร์ 09:00"</li>
+        </ul>
+      </li>
+      <li>(1 นาที) ใน Automation Card กด <b>⬇ Export PDF</b> → Save as PDF → เก็บไว้ที่ <code>Documents/Claude-Workshop/M6/output/</code></li>
+      <li>(1 นาที) Debrief: ตอบ 2 คำถามกับคนข้าง ๆ
+        <ul>
+          <li>"task ของคุณ <b>หยุดรอคน</b> ตรงไหน?"</li>
+          <li>"ถ้าคุณลาพักร้อน ใครเป็นเจ้าของแทน?"</li>
+        </ul>
+      </li>
+    </ol>
+
+    <h3>กติกาก่อนลด approval จาก Manual</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>เงื่อนไข</th><th>ผ่าน?</th></tr></thead>
+      <tbody>
+        <tr><td>รันครบ 4 รอบ ร่างถูกต้องทุกรอบ (ตรวจตัวเลข 3 ตัวทุกรอบ)</td><td class="c"><input type="checkbox" id="t4a" aria-label="รันครบ 4 รอบ"></td></tr>
+        <tr><td>ไม่เคยมี action ที่ต้องปฏิเสธ</td><td class="c"><input type="checkbox" id="t4b" aria-label="ไม่เคยมี action ที่ต้องปฏิเสธ"></td></tr>
+        <tr><td>หัวหน้า/เจ้าของข้อมูลรับทราบว่ามี task นี้</td><td class="c"><input type="checkbox" id="t4c" aria-label="หัวหน้ารับทราบ"></td></tr>
+        <tr><td>ยังใช้ "ร่าง" เสมอ ไม่ส่งออกเอง (Auto ไม่ได้แปลว่าส่งเองได้)</td><td class="c"><input type="checkbox" id="t4d" aria-label="ยังใช้ร่างเสมอ"></td></tr>
+        <tr><td><b>Skip ห้ามใช้ทุกกรณี</b></td><td class="c">—</td></tr>
+      </tbody>
+    </table></div>
+
+    <label class="check" for="ck4a"><input type="checkbox" id="ck4a"><span><b>✅ Checkpoint (คนตรวจ):</b> มีไฟล์ <code>Automation-Card.pdf</code> · task อยู่ในสถานะ Paused หรือมีนัดตรวจ past runs ในปฏิทิน · ตอบได้ว่าใครเป็นเจ้าของ</span></label>
+    <p class="next">➡ ต่อ M7 Capstone: Automation Card นี้คือครึ่งหนึ่งของ Capstone canvas (data · connector · output · checkpoint)</p>
+  </section>
+
+  <footer>ข้อมูลทุกส่วนเป็นข้อมูลสมมติเพื่อการอบรม · Banpu · Claude for Business · M6</footer>
+</main>
+
+<script>
+document.documentElement.lang = 'th';
+document.body.setAttribute('data-pdf-name', 'M6-Workshop');
+(function () {
+  var KEY = 'm6-workshop-v1', state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { state = {}; }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+  var pages = Array.prototype.slice.call(document.querySelectorAll('section.card[data-page]'));
+  function update() {
+    var done = 0;
+    pages.forEach(function (p) {
+      var boxes = p.querySelectorAll('.check input[type=checkbox]');
+      var all = boxes.length > 0 && Array.prototype.every.call(boxes, function (b) { return b.checked; });
+      p.classList.toggle('done', all);
+      if (all) done++;
+    });
+    document.getElementById('progBar').style.width = (done / pages.length * 100) + '%';
+    document.getElementById('progText').textContent = done + ' / ' + pages.length + ' หน้า';
+  }
+  document.querySelectorAll('input[type=checkbox]').forEach(function (b) {
+    if (state[b.id]) b.checked = true;
+    b.addEventListener('change', function () { state[b.id] = b.checked; save(); update(); });
+  });
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var pre = document.getElementById(btn.dataset.copy);
+      var text = pre.textContent;
+      function selectIt() {
+        var r = document.createRange(); r.selectNodeContents(pre);
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        btn.textContent = 'เลือกข้อความแล้ว กด Ctrl+C';
+      }
+      try {
+        navigator.clipboard.writeText(text).then(function () { btn.textContent = 'Copied ✓'; }, selectIt);
+      } catch (e) { selectIt(); }
+      setTimeout(function () { btn.textContent = 'Copy'; }, 2200);
+    });
+  });
+  update();
+})();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script>
+(function () {
+  var btn = document.getElementById('exportPdfBtn');
+  var downloads = null;
+  try {
+    if (window.claude && typeof window.claude.use === 'function') {
+      window.claude.use('downloads').then(function (d) { downloads = d; }, function () {});
+    }
+  } catch (e) {}
+  btn.addEventListener('click', async function () {
+    var name = (document.body.dataset.pdfName || document.title || 'export').replace(/[\\/:*?"<>|]+/g, '-') + '.pdf';
+    if (!downloads || !window.html2pdf) { window.print(); return; }
+    var label = btn.textContent;
+    btn.disabled = true; btn.textContent = 'กำลังสร้าง PDF…';
+    document.documentElement.classList.add('pdf-export');
+    try {
+      var root = document.querySelector('[data-pdf-root]') || document.body;
+      var blob = await window.html2pdf().set({
+        margin: [10, 10, 10, 10],
+        image: { type: 'jpeg', quality: 0.95 },
+        html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff',
+          ignoreElements: function (el) { return el.classList && el.classList.contains('no-print'); } },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+        pagebreak: { mode: ['css', 'legacy'], before: '.pdf-page-break', avoid: ['section', '.card'] }
+      }).from(root).outputPdf('blob');
+      await downloads.save({ filename: name, data: blob });
+    } catch (err) {
+      if (!err || (err.code !== 'declined' && err.code !== 'rate_limited')) { window.print(); }
+    } finally {
+      document.documentElement.classList.remove('pdf-export');
+      btn.disabled = false; btn.textContent = label;
+    }
+  });
+})();
+</script>

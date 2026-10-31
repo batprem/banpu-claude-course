@@ -45,6 +45,16 @@
 | `artifacts/automation-card.html` + `.spec.md` | 6-slot task designer (เมื่อไร · Input · Process · Output · Checkpoint · Owner), safety warnings, copy-ready task prompt, quiz, test-run checklist, Export PDF |
 | `data/gen_m6_data.py` → `data/pack/` · `data/build_m6_pack.py` → `data/out/M6_pack(.zip)` | Synthetic meeting notes, watchlist, fictional news fallback; pack is gitignored and reuses M3 emails + SharePoint CSVs read-only |
 
+## Claude Artifacts (claude.ai)
+
+All private until shared from each page's Share menu. Published 31 Oct 2026 with `capabilities: {downloads: true}`.
+
+| Artifact | File | claude.ai URL | Export PDF |
+|---|---|---|---|
+| M6 Slides (15 slides) | `deck/project/` | https://claude.ai/artifact/77u51h2Mek9CgrSedciouK | ✅ (Share › Export, PDF/PPTX) |
+| M6 Workshop (ใบงาน 4 หน้า) | `artifacts/workshop-sheet.html` | https://claude.ai/artifact/WpGFhe1gXGwqSYhLeteZYo | ✅ |
+| Automation Card (การ์ด 6 ช่อง + Quiz + รอบทดสอบ) | `artifacts/automation-card.html` | https://claude.ai/artifact/HFdt3zwrfBgErGfv6q5TUk | ✅ |
+
 ## Build notes
 - Built by the M6 Orca worker over three attempts; each was cut off by API connection loss. The orchestrator wrote this README and `SOURCES.md`, and replaced the story slide (the Replit case was already used in M2) with the Air Canada chatbot case.
 

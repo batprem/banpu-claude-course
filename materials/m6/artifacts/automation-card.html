@@ -1,8 +1,3 @@
-<!doctype html>
-<html lang="th">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Automation Card</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
@@ -82,8 +77,15 @@ th{background:#efeadf}
 footer{margin-top:28px;font-size:12px;color:var(--muted)}
 .toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:8px 16px;border-radius:999px;font-size:14px;opacity:0;transition:opacity .25s;pointer-events:none}
 .toast.show{opacity:1}
+/* Export PDF (materials/_shared/export-pdf-artifact.html) */
 .export-pdf-btn{font:600 14px 'IBM Plex Sans Thai',sans-serif;background:#1F2933;color:#fff;border:0;border-radius:8px;padding:8px 14px;cursor:pointer}
 .export-pdf-btn:hover{background:#2E86AB}
+.export-pdf-btn[disabled]{opacity:.6;cursor:progress}
+.pdf-export .print-expand,.pdf-export [hidden].print-expand,.pdf-export details{display:block!important;height:auto!important;overflow:visible!important}
+.pdf-export .grid{display:block}
+.pdf-export .side{position:static}
+.pdf-export .prompt{max-height:none;overflow:visible;background:#fff;color:var(--ink);border:1px solid var(--ink)}
+.pdf-export .print-only,.pdf-export .exp{display:block}
 @media (max-width:600px){h1{font-size:21px}}
 @media print{
   @page{size:A4;margin:12mm}
@@ -99,8 +101,6 @@ footer{margin-top:28px;font-size:12px;color:var(--muted)}
   .exp{display:block}
 }
 </style>
-</head>
-<body>
 <div class="wrap">
 <header>
   <div>
@@ -109,7 +109,7 @@ footer{margin-top:28px;font-size:12px;color:var(--muted)}
   </div>
   <div class="row no-print">
     <button class="btn" onclick="resetAll()">↺ เริ่มใหม่</button>
-    <button class="export-pdf-btn no-print" onclick="window.print()" title="บันทึกเป็น PDF (เลือก Save as PDF)">⬇ Export PDF</button>
+    <button class="export-pdf-btn no-print" id="exportPdfBtn" type="button" title="ดาวน์โหลดเป็น PDF">⬇ Export PDF</button>
   </div>
 </header>
 <p class="legend">🟧 คน (HITL) · 🟦 AI · 🟩 Data/Connector</p>
@@ -120,7 +120,7 @@ footer{margin-top:28px;font-size:12px;color:var(--muted)}
 </nav>
 
 <!-- ===== Panel 1: card ===== -->
-<section class="panel on" id="p-card">
+<section class="panel on print-expand" id="p-card">
   <h2 class="print-only">1 · การ์ด 6 ช่อง</h2>
   <div class="tpls no-print" id="tpls">
     <button class="tpl" data-t="a">(ก) รายงานสถานะโครงการรายสัปดาห์<small>แนะนำ · prompt M6-P03</small></button>
@@ -211,7 +211,7 @@ footer{margin-top:28px;font-size:12px;color:var(--muted)}
 </section>
 
 <!-- ===== Panel 2: quiz ===== -->
-<section class="panel" id="p-quiz">
+<section class="panel print-expand pdf-page-break" id="p-quiz">
   <h2 class="print-only">2 · Quiz: ตั้งเวลาได้ไหม · ต้องหยุดตรงไหน?</h2>
   <div class="hud">
     <span class="pill">คะแนน <b id="qscore">0</b>/<span id="qtotal">0</span></span>
@@ -222,7 +222,7 @@ footer{margin-top:28px;font-size:12px;color:var(--muted)}
 </section>
 
 <!-- ===== Panel 3: test run + decision ===== -->
-<section class="panel" id="p-run">
+<section class="panel print-expand" id="p-run">
   <h2 class="print-only">3 · รอบทดสอบ + ตัดสินใจ</h2>
   <h3>✅ ตรวจรอบ Run now (คนตัดสิน ไม่ใช่ AI)</h3>
   <div id="runchecks"></div>
@@ -248,7 +248,11 @@ footer{margin-top:28px;font-size:12px;color:var(--muted)}
 
 <footer>Banpu Claude for Business · M6 Automation · ข้อมูลและชื่อทั้งหมดเป็นข้อมูลสมมติ · ไม่เรียก AI จากหน้านี้ (ไม่ใช้ usage) · บันทึกเฉพาะในเบราว์เซอร์ของคุณ</footer>
 </div>
-<div class="toast" id="toast"></div>
+<div class="toast no-print" id="toast"></div>
+<script>
+document.documentElement.lang="th";
+document.body.setAttribute("data-pdf-name","M6-Automation-Card");
+</script>
 <script>
 const INPUTS={
   A:[["o-prj","Outlook: หัวเรื่อง [PRJ- 7 วันล่าสุด"],["o-appr","Outlook: \"ขออนุมัติ\" 7 วันล่าสุด"],["sp-trk","SharePoint: Project_Tracker"],["sp-iss","SharePoint: Issue_Log"],["sp-meet","SharePoint: Meeting Notes/2569"],["web","Web: ข่าวสาธารณะ ตาม watchlist"],["red","ไฟล์เงินเดือน / ข้อมูลส่วนบุคคล 🔴",1]],
@@ -405,5 +409,40 @@ document.addEventListener("change",e=>{
 document.addEventListener("input",e=>{const el=e.target;if(el.dataset.num!==undefined){S.nums[el.dataset.num]=Object.assign(S.nums[el.dataset.num]||{},{draft:el.value});save();return;}if(el.id&&el.id in S&&el.tagName!=="SELECT"){S[el.id]=el.value;render();}});
 load();renderStatic();render();
 </script>
-</body>
-</html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<button class="export-pdf-btn no-print" id="exportPdfBtn" type="button" title="ดาวน์โหลดเป็น PDF">⬇ Export PDF</button>
+<script>
+(function () {
+  var btn = document.getElementById('exportPdfBtn');
+  var downloads = null;
+  try {
+    if (window.claude && typeof window.claude.use === 'function') {
+      window.claude.use('downloads').then(function (d) { downloads = d; }, function () {});
+    }
+  } catch (e) {}
+  btn.addEventListener('click', async function () {
+    var name = (document.body.dataset.pdfName || document.title || 'export').replace(/[\\/:*?"<>|]+/g, '-') + '.pdf';
+    if (!downloads || !window.html2pdf) { window.print(); return; }
+    var label = btn.textContent;
+    btn.disabled = true; btn.textContent = 'กำลังสร้าง PDF…';
+    document.documentElement.classList.add('pdf-export');
+    try {
+      var root = document.querySelector('[data-pdf-root]') || document.body;
+      var blob = await window.html2pdf().set({
+        margin: [10, 10, 10, 10],
+        image: { type: 'jpeg', quality: 0.95 },
+        html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff',
+          ignoreElements: function (el) { return el.classList && el.classList.contains('no-print'); } },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+        pagebreak: { mode: ['css', 'legacy'], before: '.pdf-page-break', avoid: ['section', '.card'] }
+      }).from(root).outputPdf('blob');
+      await downloads.save({ filename: name, data: blob });
+    } catch (err) {
+      if (!err || (err.code !== 'declined' && err.code !== 'rate_limited')) { window.print(); }
+    } finally {
+      document.documentElement.classList.remove('pdf-export');
+      btn.disabled = false; btn.textContent = label;
+    }
+  });
+})();
+</script>
