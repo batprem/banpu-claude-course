@@ -43,7 +43,9 @@ Lecture 15 นาที (รวม Demo ~3) · Workshop 25 นาที · ถ�
 
 | Path | What |
 |---|---|
-| `slides.md` → `slides.html` | Lecture deck, 15 slides, speaker notes with minute marks |
+| **Slides Artifact** · https://claude.ai/artifact/KgQ57jcEaEb58SShmpLqkr | **Delivery deck.** 15 slides built on Claude's core Slides Artifact type; speaker notes on every slide; Present mode; download as PDF/PPTX from Share › Export. All 5 Mermaid diagrams redrawn natively (boxes + connectors) in the 3 STYLE colours with legend. Private until shared from the page's Share menu |
+| `deck/project/deck.json` + `deck/project/slides/s01–s15.html` | Source files of the Slides Artifact (republish with the Artifact tool, `root: materials/m4/deck`) |
+| `slides.md` → `slides.html` | Content source the Artifact was built from (same 15 slides and notes); superseded for delivery |
 | `workshop.md` | Workshop guide, 5 A4 pages (goal · prompt ID · ✅ checkpoint · time per step) |
 | `prompts.md` | M4-P01 … M4-P08 (copy-ready) |
 | `diagrams/*.mmd` | document-factory · artifact-iterate · format-decision · too-big-workaround · workshop-flow (all embedded in slides) · office-report (workshop หน้า 3) |

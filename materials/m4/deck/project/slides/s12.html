@@ -1,0 +1,15 @@
+<section id="s12" style="background:#FAF8F3;color:#1F2933;font-family:'IBM Plex Sans Thai', Tahoma, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-size:60px;font-weight:700;line-height:1.15;color:#1F2933">ข้อจำกัดจริง: เมื่อรายงานใหญ่เกินไป</h2>
+<table style="font-size:30px;color:#1F2933">
+<tr style="background:#1F2933"><th style="width:32%;color:#FAF8F3;padding:16px 24px;text-align:left">เจออะไร</th><th style="width:38%;color:#FAF8F3;padding:16px 24px;text-align:left">ทำไมเกิด</th><th style="width:30%;color:#FAF8F3;padding:16px 24px;text-align:left">สังเกตได้จาก</th></tr>
+<tr style="background:#FFFDF8"><td style="padding:16px 24px">แนบอีเมลไม่ได้</td><td style="padding:16px 24px">รูปหน้างานความละเอียดสูงหลายสิบภาพ</td><td style="padding:16px 24px">Outlook แจ้งไฟล์เกินขนาด</td></tr>
+<tr style="background:#F3EDE2"><td style="padding:16px 24px">บันทึก/อัปโหลดเข้า Claude ไม่ได้</td><td style="padding:16px 24px">ไฟล์เกินขนาดต่อไฟล์</td><td style="padding:16px 24px">อัปโหลดล้มเหลว</td></tr>
+<tr style="background:#FFFDF8"><td style="padding:16px 24px">Claude ตอบไม่ครบ</td><td style="padding:16px 24px">ข้อมูลยาวเกิน context</td><td style="padding:16px 24px">ตัวเลขบางไซต์หาย</td></tr>
+<tr style="background:#F3EDE2"><td style="padding:16px 24px">usage หมดเร็ว</td><td style="padding:16px 24px">ให้อ่านทั้งไฟล์ซ้ำ ๆ</td><td style="padding:16px 24px">แจ้งเตือน limit</td></tr>
+</table>
+<p style="font-size:32px;line-height:1.4;color:#1F2933;background:#E8F1F6;border-radius:12px;padding:20px 32px">ตัวอย่างใน workshop: Monthly_Ops_Report_2569-09_FULL.docx = <b>~37 MB</b></p>
+<aside>[11:00] Requirement 7: ใช้ไฟล์จริงขนาดจริงใน data/out/ (สร้างด้วย gen_m4_data.py) รายงาน Word ~37 MB มีรูปสังเคราะห์ 14 ภาพ
+ขนาดสูงสุดของไฟล์แนบขึ้นกับการตั้งค่า Exchange/Outlook ขององค์กร (ค่าที่พบบ่อย 20–35 MB) ให้ถาม IT บ้านปูก่อนสอน อย่าจำตัวเลขจากที่อื่น
+ขีดจำกัดการอัปโหลดของ Claude เปลี่ยนตามแผนและเวลา: ดู support.claude.com บทความ “Upload files to Claude” (SOURCES #6) และทดสอบใน dry-run
+M2 สอนการ “อ่าน” ไฟล์ใหญ่ M4 เน้นการ “ส่งออก” รายงานใหญ่</aside>
+</section>
