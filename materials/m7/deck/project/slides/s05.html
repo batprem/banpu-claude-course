@@ -1,0 +1,14 @@
+<section id="s05" style="background:#FAF8F3;color:#1F2933;font-family:'IBM Plex Sans Thai', Tahoma, sans-serif;padding:128px;display:flex;flex-direction:column;gap:48px">
+<h2 style="font-size:60px;font-weight:700;line-height:1.15;color:#1F2933">Trade-off: 3 คำถามก่อนบอกว่า “ใช้ได้จริง”</h2>
+<table style="font-size:30px;color:#1F2933">
+<tr style="background:#1F2933"><th style="width:22%;color:#FAF8F3;padding:20px 24px;text-align:left">มุม</th><th style="width:40%;color:#FAF8F3;padding:20px 24px;text-align:left">ถามตัวเอง</th><th style="width:38%;color:#FAF8F3;padding:20px 24px;text-align:left">ทางแก้ที่เรียนแล้ว</th></tr>
+<tr style="background:#FFFDF8"><td style="padding:20px 24px"><b>🛡️ ความปลอดภัย</b></td><td style="padding:20px 24px">ข้อมูลสีอะไร? ใครเห็นผลลัพธ์?</td><td style="padding:20px 24px">🟡 anonymize · 🔴 ไม่ใส่ Claude (M1)</td></tr>
+<tr style="background:#F3EDE2"><td style="padding:20px 24px"><b>⚠️ ข้อจำกัด</b></td><td style="padding:20px 24px">ไฟล์ใหญ่/เยอะเกินไหม? ต้องเปิดเครื่องไหม?</td><td style="padding:20px 24px">แบ่งไฟล์ · สรุปก่อน (M2, M4, M6)</td></tr>
+<tr style="background:#FFFDF8"><td style="padding:20px 24px"><b>🔋 Usage</b></td><td style="padding:20px 24px">ทำบ่อยแค่ไหน? ใช้ model อะไร?</td><td style="padding:20px 24px">Skill · แชตใหม่ · model เบา (M5, M8)</td></tr>
+<tr style="background:#F3EDE2"><td style="padding:20px 24px"><b>✋ HITL</b></td><td style="padding:20px 24px">ใครอนุมัติก่อนส่ง/บันทึก?</td><td style="padding:20px 24px">Plan → Approve → Execute · copy-before-write</td></tr>
+</table>
+<aside>[4:30] ทีมที่ได้คะแนนสูงไม่ใช่ทีมที่ demo สวยที่สุด แต่เป็นทีมที่บอกได้ว่า “อะไรยังไม่ควรให้ Claude ทำ”
+ตัวอย่าง trade-off ที่ดี: “รายงาน incident ใช้ชื่อพนักงานไม่ได้ (🔴/🟡) เราจึงตัดคอลัมน์ชื่อก่อนส่งเข้า Cowork”
+ตัวอย่าง usage: งานรายสัปดาห์ที่สั่งด้วย prompt ยาวทุกครั้ง → ทำเป็น Skill (M5) แล้วตั้ง Scheduled task (M6) แต่ Scheduled task ต้องเปิดเครื่องไว้
+เกณฑ์ rubric ข้อ 3 คือ trade-off ข้อนี้โดยตรง</aside>
+</section>

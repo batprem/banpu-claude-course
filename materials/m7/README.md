@@ -45,17 +45,20 @@ Learners form 5 teams (6–8 people), pick one of 5 synthetic use cases (standin
 | 7 | Limits & workarounds | ⚠️ trade-off on every card, "จุดที่ทีมมักติด" table (p.6); data pack is small by design (real-size data was M2–M4) | Awareness (apply) |
 
 ## Files
-```
-materials/m7/
-  README.md · SOURCES.md
-  slides.md · slides.html
-  workshop.md (13 pages) · prompts.md (M7-P01…P10)
-  diagrams/ capstone-flow · usecase-framework · build-loop · show-share · uc1-contract-summary · uc2-incident-weekly
-            uc3-esg-consolidation · uc4-meeting-actions · uc5-energy-market-brief (.mmd)
-  artifacts/ show-share-board.html · show-share-board.spec.md
-  data/ gen_m7_data.py · uc1_contract_summary/ … uc5_energy_market_brief/ (each with BRIEF.md) · out/ (ZIPs, gitignored)
-  img/ (empty: no external images used)
-```
+
+| Path | What |
+|---|---|
+| **Slides Artifact** · https://claude.ai/artifact/17aWEiXMohcTuVjq2mKxzh | **Delivery deck.** 10 slides built on Claude's core Slides Artifact type; speaker notes on every slide; Present mode; download as PDF/PPTX from Share › Export. All 5 diagrams redrawn natively (boxes + connectors) in the 3 STYLE colours with legend. Private until shared from the page's Share menu |
+| `deck/project/deck.json` + `deck/project/slides/s01–s10.html` | Source files of the Slides Artifact (republish with the Artifact tool, `root: materials/m7/deck`) |
+| `slides.md` → `slides.html` | Content source the Artifact was built from (same 10 slides and notes, minute marks); superseded for delivery |
+| `README.md` · `SOURCES.md` | This file · sources |
+| `workshop.md` | Workshop guide, 13 pages |
+| `prompts.md` | M7-P01 … M7-P10 (copy-ready) |
+| `diagrams/*.mmd` | capstone-flow · usecase-framework · build-loop · show-share · uc1-contract-summary · uc2-incident-weekly · uc3-esg-consolidation · uc4-meeting-actions · uc5-energy-market-brief (5 embedded in slides 3, 4, 7, 8, 9; all 9 in workshop) |
+| `artifacts/show-share-board.html` + `.spec.md` | Show & Share board Artifact |
+| `data/` | `gen_m7_data.py` · `uc1_contract_summary/` … `uc5_energy_market_brief/` (each with BRIEF.md) · `out/` (ZIPs, gitignored) |
+| `img/` | Empty: no external images used |
+
 Regenerate the data pack + ZIPs: `python3 materials/m7/data/gen_m7_data.py` (needs `python-docx`, `openpyxl`). The `BRIEF.md` files are hand-written and are not overwritten by the generator. Trainer answer keys (counts, dates, traps) are in workshop pages 7–11 under 🔑 and match the committed data (seed 7).
 
 ## Open questions for Prem
