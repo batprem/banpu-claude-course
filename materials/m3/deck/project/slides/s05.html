@@ -1,0 +1,17 @@
+<section id="s05" style="background:#FAF8F3;color:#1F2933;font-family:'IBM Plex Sans Thai', Tahoma, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-size:64px;font-weight:700;line-height:1.15;color:#1F2933">เปิดใช้อย่างไร: 3 คน 3 ขั้น</h2>
+<table style="font-size:30px;color:#1F2933">
+<tr style="background:#1F2933"><th style="width:28%;color:#FAF8F3;padding:18px 28px;text-align:left">ใคร</th><th style="width:40%;color:#FAF8F3;padding:18px 28px;text-align:left">ทำอะไร</th><th style="width:32%;color:#FAF8F3;padding:18px 28px;text-align:left">เราต้องรู้อะไร</th></tr>
+<tr style="background:#FFFDF8"><td style="padding:18px 28px">Claude Owner (Hi-I/IT)</td><td style="padding:18px 28px">เพิ่ม Connector ใน Organization settings</td><td style="padding:18px 28px">เปิดให้ทั้งทีม หรือไม่เปิด</td></tr>
+<tr style="background:#F3EDE2"><td style="padding:18px 28px">Entra Global Admin (IT)</td><td style="padding:18px 28px">ให้ consent ครั้งเดียว · เลือกสิทธิ์</td><td style="padding:18px 28px">ปิดบางส่วนได้ เช่น ปิด Mail</td></tr>
+<tr style="background:#FFFDF8"><td style="padding:18px 28px"><b>ผู้ใช้ (เรา)</b></td><td style="padding:18px 28px">Customize → Connectors → Connect · login บัญชีบริษัท</td><td style="padding:18px 28px">Claude เห็นเท่าที่เราเห็น</td></tr>
+</table>
+<ul style="font-size:34px;line-height:1.5;color:#3A4651">
+<li>ยังไม่มีปุ่ม Connect? <b>ไม่ต้องหาทางเลี่ยง</b> แจ้ง IT</li>
+<li>Write tools (ส่งเมล · แก้ไฟล์) เป็นตัวเลือกแยกที่ admin ต้องเปิดเพิ่ม</li>
+</ul>
+<aside>[3:00] ให้คนเข้าใจว่าทำไมบางคนเห็น บางคนไม่เห็น: ขึ้นกับการตั้งค่าขององค์กร
+สำคัญ: Connector ใช้ delegated permissions ไฟล์ที่เราไม่มีสิทธิ์เปิด Claude ก็เปิดไม่ได้ แต่ไฟล์ที่เราเปิดได้ “ทั้งหมด” Claude ก็ค้นได้ทั้งหมด (ตั้ง allowlist เฉพาะ site ไม่ได้) จึงต้องระวังคำถามที่กว้างเกินไป
+Write tools: admin ต้อง re-consent และเปิดแยก ค่าเริ่มต้นเป็น read-only (SOURCES #1)
+คำถามเปิดให้ IT: Banpu เปิด write tools หรือไม่ (ดู README)</aside>
+</section>

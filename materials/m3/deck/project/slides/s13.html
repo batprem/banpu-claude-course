@@ -1,0 +1,15 @@
+<section id="s13" style="background:#FAF8F3;color:#1F2933;font-family:'IBM Plex Sans Thai', Tahoma, sans-serif;padding:128px;display:flex;flex-direction:column;gap:48px">
+<h2 style="font-size:64px;font-weight:700;line-height:1.15;color:#1F2933">ข้อจำกัดของ Connector และทางเลี่ยง</h2>
+<table style="font-size:30px;color:#1F2933">
+<tr style="background:#1F2933"><th style="width:50%;color:#FAF8F3;padding:18px 28px;text-align:left">ข้อจำกัด</th><th style="width:50%;color:#FAF8F3;padding:18px 28px;text-align:left">ทางเลี่ยง</th></tr>
+<tr style="background:#FFFDF8"><td style="padding:18px 28px">SharePoint List ไม่ได้ระบุว่าค้นได้</td><td style="padding:18px 28px">Export List เป็น CSV/Excel ไว้ในคลังเอกสาร</td></tr>
+<tr style="background:#F3EDE2"><td style="padding:18px 28px">จำกัด site ไม่ได้ · ค้นทุกที่ที่เราเข้าได้</td><td style="padding:18px 28px">ระบุ site/โฟลเดอร์/ชื่อไฟล์ใน prompt</td></tr>
+<tr style="background:#FFFDF8"><td style="padding:18px 28px">ค้นอาจไม่ครบ · ไฟล์ใหญ่อาจอ่านไม่หมด</td><td style="padding:18px 28px">ถามเจาะจง ขอรายการที่มา แบ่งช่วงเวลา</td></tr>
+<tr style="background:#F3EDE2"><td style="padding:18px 28px">ไฟล์เข้ารหัส/บางชนิด (OneNote) เปิดไม่ได้</td><td style="padding:18px 28px">ใช้ไฟล์ Word/Excel/PDF/CSV แทน</td></tr>
+<tr style="background:#FFFDF8"><td style="padding:18px 28px">Write tools ส่งไฟล์แนบไม่ได้ · ไม่มีขั้นยืนยันในตัว</td><td style="padding:18px 28px">ให้ร่างไว้ คนส่งเอง · ใช้ลิงก์ SharePoint</td></tr>
+</table>
+<aside>[13:00] ข้อมูลจาก Claude Help Center ณ 30 ต.ค. 2026 (SOURCES #1, #2) ตรวจซ้ำสัปดาห์ที่สอน
+“ค้นอาจไม่ครบ” เป็นข้อสังเกตจากการใช้งาน ไม่ใช่ตัวเลขทางการ: Connector คืนผลค้นหาเป็นชุด ๆ ไม่ใช่ทุกฉบับ จึงต้องขอให้ Claude “บอกรายการที่มาที่ใช้” แล้วเราดูว่ามีอะไรขาดไหม
+Requirement 7: ข้อจำกัดจริง + workaround
+ความปลอดภัย: Claude เห็นทุกอย่างที่เราเห็น ถามกว้าง ๆ อาจดึงข้อมูล 🔴 มาโดยไม่ตั้งใจ → ระบุขอบเขตเสมอ (ทบทวน Data Traffic Light จาก M1)</aside>
+</section>

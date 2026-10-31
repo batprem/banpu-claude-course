@@ -1,0 +1,31 @@
+<section id="s03" style="background:#FAF8F3;color:#1F2933;font-family:'IBM Plex Sans Thai', Tahoma, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:24px">
+<h2 style="font-size:60px;font-weight:700;line-height:1.15;color:#1F2933">AI → Connect → Data → Execute</h2>
+<!-- cols w440: c0 128 (cx348) c1 740 (cx960) c2 1352 (cx1572) · rows h160: r1 290-450 (mid 370) r2 630-790 (mid 710) · U c0r1 AI c1r1 C c2r1 · D c2r2 X c1r2 H c0r2 · loop strip y540 -->
+<div style="position:absolute;left:128px;top:290px;width:440px;height:160px;background:#E4572E;border-radius:16px;padding:12px 16px;display:flex;flex-direction:column;justify-content:center;align-items:center"><p style="font-size:28px;font-weight:700;line-height:1.25;color:#FFFDF8;text-align:center">คุณ: บอกเป้าหมาย<br>+ ขอบเขตแหล่งข้อมูล</p></div>
+<div style="position:absolute;left:740px;top:290px;width:440px;height:160px;background:#2E86AB;border-radius:16px;padding:12px 16px;display:flex;flex-direction:column;justify-content:center;align-items:center"><p style="font-size:28px;font-weight:700;line-height:1.25;color:#FFFDF8;text-align:center">AI<br>Claude วางแผนว่าจะค้นอะไร</p></div>
+<div style="position:absolute;left:1352px;top:290px;width:440px;height:160px;background:#3BA55C;border-radius:16px;padding:12px 16px;display:flex;flex-direction:column;justify-content:center;align-items:center"><p style="font-size:28px;font-weight:700;line-height:1.25;color:#FFFDF8;text-align:center">Connect<br>Connector ที่ IT เปิด<br>SharePoint · Outlook</p></div>
+<div style="position:absolute;left:1352px;top:630px;width:440px;height:160px;background:#3BA55C;border-radius:16px;padding:12px 16px;display:flex;flex-direction:column;justify-content:center;align-items:center"><p style="font-size:28px;font-weight:700;line-height:1.25;color:#FFFDF8;text-align:center">Data<br>อีเมล · ไฟล์ · SharePoint List</p></div>
+<div style="position:absolute;left:740px;top:630px;width:440px;height:160px;background:#2E86AB;border-radius:16px;padding:12px 16px;display:flex;flex-direction:column;justify-content:center;align-items:center"><p style="font-size:28px;font-weight:700;line-height:1.25;color:#FFFDF8;text-align:center">Execute<br>สรุป / ร่าง / เสนอการแก้</p></div>
+<div style="position:absolute;left:128px;top:630px;width:440px;height:160px;background:#E4572E;border-radius:80px;padding:12px 16px;display:flex;flex-direction:column;justify-content:center;align-items:center"><p style="font-size:28px;font-weight:700;line-height:1.25;color:#FFFDF8;text-align:center">คุณตรวจ<br>ก่อนใช้หรือบันทึก</p></div>
+<x-connector x1="568" y1="370" x2="740" y2="370" style="color:#1F2933;border-width:3px"></x-connector>
+<x-connector x1="1180" y1="370" x2="1352" y2="370" style="color:#1F2933;border-width:3px"></x-connector>
+<x-connector x1="1572" y1="450" x2="1572" y2="630" style="color:#1F2933;border-width:3px"></x-connector>
+<x-connector x1="1352" y1="710" x2="1180" y2="710" style="color:#1F2933;border-width:3px"></x-connector>
+<x-connector x1="740" y1="710" x2="568" y2="710" style="color:#1F2933;border-width:3px"></x-connector>
+<x-connector x1="348" y1="630" x2="348" y2="540" head="none" style="color:#1F2933;border-width:3px"></x-connector>
+<x-connector x1="348" y1="540" x2="960" y2="540" head="none" style="color:#1F2933;border-width:3px"></x-connector>
+<x-connector x1="960" y1="540" x2="960" y2="450" style="color:#1F2933;border-width:3px"></x-connector>
+<p style="position:absolute;left:600px;top:494px;width:300px;font-size:24px;font-weight:600;color:#B5461F">แก้ → กลับไปที่ AI</p>
+<div style="position:absolute;left:128px;bottom:56px;width:1664px;display:flex;flex-direction:row;gap:48px;align-items:center">
+<div style="display:flex;flex-direction:row;gap:12px;align-items:center"><div style="width:32px;height:32px;background:#E4572E;border-radius:6px"></div><p style="font-size:24px;color:#3A4651">คน (HITL)</p></div>
+<div style="display:flex;flex-direction:row;gap:12px;align-items:center"><div style="width:32px;height:32px;background:#2E86AB;border-radius:6px"></div><p style="font-size:24px;color:#3A4651">AI</p></div>
+<div style="display:flex;flex-direction:row;gap:12px;align-items:center"><div style="width:32px;height:32px;background:#3BA55C;border-radius:6px"></div><p style="font-size:24px;color:#3A4651">Data/Connector</p></div>
+</div>
+<aside>[1:00] ชี้ทีละกล่อง
+- AI: Claude วางแผนว่าต้องค้นอะไร จากไหน
+- Connect: ผ่าน Connector ที่ IT อนุมัติเท่านั้น Claude เห็น เท่าที่บัญชีเราเห็น (delegated permissions) ไม่มากกว่านั้น
+- Data: อีเมล ไฟล์ Word/Excel/PDF ใน SharePoint
+- Execute: สรุป ร่าง หรือ “เสนอ” การแก้ไข
+- จุดสุดท้ายคือเราตรวจ ก่อนนำไปใช้หรือบันทึก (Human-in-the-Loop)
+ประโยคจำ: “Connector คือท่อ ไม่ใช่ใบอนุญาตให้ทำอะไรก็ได้”</aside>
+</section>

@@ -1,0 +1,31 @@
+<section id="s09" style="background:#FAF8F3;color:#1F2933;font-family:'IBM Plex Sans Thai', Tahoma, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:24px">
+<h2 style="font-size:60px;font-weight:700;line-height:1.15;color:#1F2933">copy-before-write (ทำสำเนาก่อนให้ Claude แก้)</h2>
+<!-- cols w356: c0 128 (cx306) c1 564 (cx742) c2 1000 (cx1178) c3 1436 (cx1614) · r1 260-420 (mid 340): O CP P A · r2 580-740 (mid 660), right to left: E c3 CK c2 M c1 V c0 -->
+<div style="position:absolute;left:128px;top:260px;width:356px;height:160px;background:#3BA55C;border-radius:16px;padding:12px 16px;display:flex;flex-direction:column;justify-content:center;align-items:center"><p style="font-size:26px;font-weight:700;line-height:1.25;color:#FFFDF8;text-align:center">ไฟล์ต้นฉบับ<br>บน SharePoint</p></div>
+<div style="position:absolute;left:564px;top:260px;width:356px;height:160px;background:#E4572E;border-radius:16px;padding:12px 16px;display:flex;flex-direction:column;justify-content:center;align-items:center"><p style="font-size:26px;font-weight:700;line-height:1.25;color:#FFFDF8;text-align:center">1 คุณทำสำเนา<br>ชื่อ _COPY_ชื่อ_วันที่</p></div>
+<div style="position:absolute;left:1000px;top:260px;width:356px;height:160px;background:#2E86AB;border-radius:16px;padding:12px 16px;display:flex;flex-direction:column;justify-content:center;align-items:center"><p style="font-size:26px;font-weight:700;line-height:1.25;color:#FFFDF8;text-align:center">2 Claude เสนอแผนแก้<br>เฉพาะส่วนที่สั่ง</p></div>
+<div style="position:absolute;left:1436px;top:260px;width:356px;height:160px;background:#E4572E;border-radius:80px;padding:12px 16px;display:flex;flex-direction:column;justify-content:center;align-items:center"><p style="font-size:26px;font-weight:700;line-height:1.25;color:#FFFDF8;text-align:center">3 คุณอนุมัติแผน</p></div>
+<div style="position:absolute;left:1436px;top:580px;width:356px;height:160px;background:#2E86AB;border-radius:16px;padding:12px 16px;display:flex;flex-direction:column;justify-content:center;align-items:center"><p style="font-size:26px;font-weight:700;line-height:1.25;color:#FFFDF8;text-align:center">4 Claude แก้สำเนา<br>+ ทำตารางสิ่งที่เปลี่ยน</p></div>
+<div style="position:absolute;left:1000px;top:580px;width:356px;height:160px;background:#E4572E;border-radius:80px;padding:12px 16px;display:flex;flex-direction:column;justify-content:center;align-items:center"><p style="font-size:26px;font-weight:700;line-height:1.25;color:#FFFDF8;text-align:center">5 คุณตรวจ<br>diff · สูตร · แท็บคนอื่น</p></div>
+<div style="position:absolute;left:564px;top:580px;width:356px;height:160px;background:#E4572E;border-radius:16px;padding:12px 16px;display:flex;flex-direction:column;justify-content:center;align-items:center"><p style="font-size:26px;font-weight:700;line-height:1.25;color:#FFFDF8;text-align:center">6 เจ้าของไฟล์นำค่าที่ถูก<br>ไปใส่ต้นฉบับเอง</p></div>
+<div style="position:absolute;left:128px;top:580px;width:356px;height:160px;background:#3BA55C;border-radius:16px;padding:12px 16px;display:flex;flex-direction:column;justify-content:center;align-items:center"><p style="font-size:26px;font-weight:700;line-height:1.25;color:#FFFDF8;text-align:center">Version history<br>ย้อนได้ถ้าพลาด</p></div>
+<x-connector x1="484" y1="340" x2="564" y2="340" style="color:#1F2933;border-width:3px"></x-connector>
+<x-connector x1="920" y1="340" x2="1000" y2="340" style="color:#1F2933;border-width:3px"></x-connector>
+<x-connector x1="1356" y1="340" x2="1436" y2="340" style="color:#1F2933;border-width:3px"></x-connector>
+<x-connector x1="1614" y1="420" x2="1614" y2="580" style="color:#1F2933;border-width:3px"></x-connector>
+<x-connector x1="1436" y1="660" x2="1356" y2="660" style="color:#1F2933;border-width:3px"></x-connector>
+<x-connector x1="1178" y1="580" x2="1178" y2="420" style="color:#1F2933;border-width:3px"></x-connector>
+<x-connector x1="1000" y1="660" x2="920" y2="660" style="color:#1F2933;border-width:3px"></x-connector>
+<x-connector x1="564" y1="660" x2="484" y2="660" style="color:#1F2933;border-width:3px"></x-connector>
+<p style="position:absolute;left:1194px;top:483px;width:200px;font-size:24px;font-weight:600;color:#B5461F">ไม่ผ่าน → แผนใหม่</p>
+<p style="position:absolute;left:928px;top:612px;width:66px;font-size:24px;font-weight:600;color:#B5461F">ผ่าน</p>
+<div style="position:absolute;left:128px;bottom:56px;width:1664px;display:flex;flex-direction:row;gap:48px;align-items:center">
+<div style="display:flex;flex-direction:row;gap:12px;align-items:center"><div style="width:32px;height:32px;background:#E4572E;border-radius:6px"></div><p style="font-size:24px;color:#3A4651">คน (HITL)</p></div>
+<div style="display:flex;flex-direction:row;gap:12px;align-items:center"><div style="width:32px;height:32px;background:#2E86AB;border-radius:6px"></div><p style="font-size:24px;color:#3A4651">AI</p></div>
+<div style="display:flex;flex-direction:row;gap:12px;align-items:center"><div style="width:32px;height:32px;background:#3BA55C;border-radius:6px"></div><p style="font-size:24px;color:#3A4651">Data/Connector</p></div>
+</div>
+<aside>[7:00] นี่คือกฎหลักของโมดูล ใช้ชื่อ “copy-before-write” ให้ตรงกันทั้งหลักสูตร
+6 ขั้น: ทำสำเนา (ตั้งชื่อ _COPY_ชื่อ_วันที่) → Claude เสนอแผน → เราอนุมัติ → Claude แก้สำเนาและทำ “ตารางสิ่งที่เปลี่ยน” → เราตรวจ diff สูตร แท็บคนอื่น → เจ้าของไฟล์นำค่าที่ถูกไปใส่ต้นฉบับเอง
+ทำไมไม่ให้ Claude ทับต้นฉบับเลยหลังตรวจ? เพราะระหว่างที่เราตรวจ คนอื่นอาจแก้ต้นฉบับไปแล้ว
+Workshop หน้า 5–6 จะฝึกขั้นนี้จริง</aside>
+</section>

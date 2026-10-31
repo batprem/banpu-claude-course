@@ -32,7 +32,14 @@
 | 7 Connector limits + workarounds | slide 13 (tenant-wide search, partial results, write tools), PHE story, workshop p2/p4 checkpoints | Demo + Hands-on |
 
 ## Files
-- `slides.md` / `slides.html` · `workshop.md` · `prompts.md` · `diagrams/` (6)
+
+| Path | What |
+|---|---|
+| **Slides Artifact** · https://claude.ai/artifact/MFFCrgSvtQS9S4guydcnoz | **Delivery deck.** 15 slides built on Claude's core Slides Artifact type; speaker notes on every slide; Present mode; download as PDF/PPTX from Share › Export. All 6 diagrams redrawn natively (boxes + connectors) in the 3 STYLE colours with legend. Private until shared from the page's Share menu |
+| `deck/project/deck.json` + `deck/project/slides/s01–s15.html` | Source files of the Slides Artifact (republish with the Artifact tool, `root: materials/m3/deck`) |
+| `slides.md` → `slides.html` | Content source the Artifact was built from (same 15 slides and notes); superseded for delivery |
+
+- `workshop.md` · `prompts.md` · `diagrams/` (6)
 - `artifacts/connector-mission.html` + `.spec.md` (Export PDF)
 - `data/gen_m3_data.py` (seed 303) → `data/pack/outlook/` (20 emails + index), `data/pack/sharepoint/` (Project Tracker, Issue Log, Shared Capex Tracker) · `data/IT_SETUP.md` (test tenant checklist + fallback)
 

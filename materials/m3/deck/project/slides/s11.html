@@ -1,0 +1,16 @@
+<section id="s11" style="background:#FAF8F3;color:#1F2933;font-family:'IBM Plex Sans Thai', Tahoma, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-size:60px;font-weight:700;line-height:1.15;color:#1F2933">Demo · สรุปสถานะโครงการจาก 3 แหล่ง (ข้อมูลสมมติ)</h2>
+<div style="display:flex;flex-direction:column;gap:20px">
+<div style="background:#FFFDF8;border:2px solid #E7E1D5;border-radius:16px;padding:20px 32px;display:flex;flex-direction:row;gap:28px;align-items:center"><p style="font-size:44px;font-weight:700;color:#3BA55C">1</p><p style="font-size:32px;line-height:1.35">Outlook ทดสอบ: อีเมล 20 ฉบับ ย้อนหลัง 4 สัปดาห์</p></div>
+<div style="background:#FFFDF8;border:2px solid #E7E1D5;border-radius:16px;padding:20px 32px;display:flex;flex-direction:row;gap:28px;align-items:center"><p style="font-size:44px;font-weight:700;color:#3BA55C">2</p><p style="font-size:32px;line-height:1.35">SharePoint ทดสอบ: Project_Tracker.csv · Issue_Log.csv · Shared_Capex_Tracker_2569.xlsx</p></div>
+<div style="background:#FFFDF8;border:2px solid #E7E1D5;border-radius:16px;padding:20px 32px;display:flex;flex-direction:row;gap:28px;align-items:center"><p style="font-size:44px;font-weight:700;color:#2E86AB">3</p><p style="font-size:32px;line-height:1.35">Prompt <b>M3-P02</b> → สรุป 1 หน้า: ความเสี่ยง 3 เรื่อง · คำขออนุมัติที่ค้าง</p></div>
+<div style="background:#FFFDF8;border:2px solid #E7E1D5;border-radius:16px;padding:20px 32px;display:flex;flex-direction:row;gap:28px;align-items:center"><p style="font-size:44px;font-weight:700;color:#2E86AB">4</p><p style="font-size:32px;line-height:1.35">ชี้ผลลัพธ์: PRJ-101 “On track” ใน Tracker แต่อีเมลบอกของไม่ครบ</p></div>
+<div style="background:#FFFDF8;border:2px solid #E7E1D5;border-radius:16px;padding:20px 32px;display:flex;flex-direction:row;gap:28px;align-items:center"><p style="font-size:44px;font-weight:700;color:#E4572E">5</p><p style="font-size:32px;line-height:1.35">ตรวจ: คลิกที่มา 2 ข้อ เทียบตัวเลขกับต้นทาง</p></div>
+</div>
+<aside>[9:30] Demo สด 2 นาที (ทำล่วงหน้าใน dry-run แล้วเก็บผลไว้เป็น fallback)
+- เปิด Claude Desktop → ตรวจว่าเปิด Connector Microsoft 365 แล้ว
+- วาง M3-P02 (ใน prompts.md) ให้ห้องเห็นว่า Claude ค้นอะไรบ้าง (tool calls)
+- ไฮไลต์ 3 สิ่งที่ควรเห็น: (1) PRJ-101 ขัดกันระหว่าง Tracker กับอีเมล (2) PRJ-105 ขออนุมัติงบเพิ่ม 3.8 ล้านบาท ค้างถึง 31 ต.ค. (3) PRJ-104 Delayed รอใบอนุญาต
+- ถ้า Claude ไม่เจอบางอย่าง ให้ถามต่อแบบเจาะจง (M3-P03) แล้วบอกห้องว่า “นี่คือเหตุผลที่ต้องตรวจ”
+- ถ้าไม่มี test tenant: ใช้โฟลเดอร์ pack/ ใน Cowork แทน (อีเมลเป็นไฟล์ .eml)</aside>
+</section>
