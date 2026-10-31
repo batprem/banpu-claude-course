@@ -34,6 +34,13 @@
 | 12 Folder restructure | `data/generate_messy_folder.py` (~1,500 files, 2562–2569) demo + workshop p6 Plan only | Demo + Hands-on |
 
 ## Files
+
+| Path | What |
+|---|---|
+| **Slides Artifact** · https://claude.ai/artifact/3kKwMXkqyNFfRMEQxCQVwu | **Delivery deck.** 15 slides built on Claude's core Slides Artifact type; speaker notes on every slide; Present mode; download as PDF/PPTX from Share › Export. All 8 Mermaid diagrams redrawn natively (boxes + connectors) in the 3 STYLE colours with legend; 2 `img/` illustrations uploaded as assets. Private until shared from the page's Share menu |
+| `deck/project/deck.json` + `deck/project/slides/s01–s15.html` | Source files of the Slides Artifact (republish with the Artifact tool, `root: materials/m2/deck`) |
+| `slides.md` → `slides.html` | Content source the Artifact was built from (same 15 slides and notes); superseded for delivery |
+
 - `slides.md` / `slides.html` · `workshop.md` · `prompts.md` · `diagrams/` (8) · `img/` (2 generated illustrations)
 - `artifacts/`: Workshop Companion · Prompt Playground · Excel Detective · Prototype Gallery (each `.html` + `.spec.md`, Export PDF)
 - `data/` — **core Sample Data Pack** (owner M2, reused read-only by M3–M7):

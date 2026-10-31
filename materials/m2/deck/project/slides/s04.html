@@ -1,0 +1,29 @@
+<section id="s04" style="background:#FAF8F3;color:#1F2933;font-family:'IBM Plex Sans Thai', Tahoma, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:24px">
+<h2 style="font-size:60px;font-weight:700;line-height:1.15;color:#1F2933">Prompt Framework: Input → Process → Output</h2>
+<!-- I 128,250,340,150  P 568,250,340,150  O 1008,250,340,150  H 1452,250,340,150 · loop strip y 450 -->
+<div style="position:absolute;left:128px;top:250px;width:340px;height:150px;background:#3BA55C;border-radius:16px;padding:12px 16px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:4px"><p style="font-size:30px;font-weight:700;line-height:1.2;color:#FFFDF8;text-align:center">Input</p><p style="font-size:24px;line-height:1.25;color:#FFFDF8;text-align:center">ไฟล์/โฟลเดอร์ไหน ข้อมูลอะไร</p></div>
+<div style="position:absolute;left:568px;top:250px;width:340px;height:150px;background:#2E86AB;border-radius:16px;padding:12px 16px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:4px"><p style="font-size:30px;font-weight:700;line-height:1.2;color:#FFFDF8;text-align:center">Process</p><p style="font-size:24px;line-height:1.25;color:#FFFDF8;text-align:center">ให้ Claude ทำอะไร ทีละขั้น</p></div>
+<div style="position:absolute;left:1008px;top:250px;width:340px;height:150px;background:#3BA55C;border-radius:16px;padding:12px 16px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:4px"><p style="font-size:30px;font-weight:700;line-height:1.2;color:#FFFDF8;text-align:center">Output</p><p style="font-size:24px;line-height:1.25;color:#FFFDF8;text-align:center">รูปแบบ ที่เก็บ ชื่อไฟล์</p></div>
+<div style="position:absolute;left:1452px;top:250px;width:340px;height:150px;background:#E4572E;border-radius:16px;padding:12px 16px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:4px"><p style="font-size:30px;font-weight:700;line-height:1.2;color:#FFFDF8;text-align:center">คนตรวจผล</p><p style="font-size:24px;line-height:1.25;color:#FFFDF8;text-align:center">ตรงเป้าหมายไหม</p></div>
+<x-connector x1="468" y1="325" x2="568" y2="325" style="color:#1F2933;border-width:3px"></x-connector>
+<x-connector x1="908" y1="325" x2="1008" y2="325" style="color:#1F2933;border-width:3px"></x-connector>
+<x-connector x1="1348" y1="325" x2="1452" y2="325" style="color:#1F2933;border-width:3px"></x-connector>
+<x-connector x1="1622" y1="400" x2="1622" y2="450" head="none" style="color:#B5461F;border-width:3px;border-style:dashed"></x-connector>
+<x-connector x1="1622" y1="450" x2="298" y2="450" head="none" style="color:#B5461F;border-width:3px;border-style:dashed"></x-connector>
+<x-connector x1="298" y1="450" x2="298" y2="400" style="color:#B5461F;border-width:3px;border-style:dashed"></x-connector>
+<p style="position:absolute;left:860px;top:464px;width:240px;font-size:24px;font-weight:600;color:#B5461F;text-align:center">ปรับ prompt</p>
+<div style="position:absolute;left:128px;top:550px;width:1664px;background:#1F2933;border-radius:16px;padding:32px 40px;display:flex;flex-direction:column;gap:8px">
+<p style="font-size:28px;line-height:1.5;color:#FAF8F3"><span style="color:#7FD39A"><b>Input:</b></span> ไฟล์ทั้งหมดในโฟลเดอร์ input/ (รายงานผลผลิต 6 ไซต์ ปี 2566–2568)</p>
+<p style="font-size:28px;line-height:1.5;color:#FAF8F3"><span style="color:#8CC7E3"><b>Process:</b></span> รวมเป็นตารางเดียว เทียบ Budget vs Actual รายไซต์รายปี</p>
+<p style="font-size:28px;line-height:1.5;color:#FAF8F3"><span style="color:#7FD39A"><b>Output:</b></span> Excel 1 ไฟล์ใน output/ ชื่อ ops_summary.xlsx + สรุป 5 บรรทัด</p>
+</div>
+<div style="position:absolute;left:128px;bottom:56px;width:1664px;display:flex;flex-direction:row;gap:48px;align-items:center">
+<div style="display:flex;flex-direction:row;gap:12px;align-items:center"><div style="width:32px;height:32px;background:#E4572E;border-radius:6px"></div><p style="font-size:24px;color:#3A4651">คน (HITL)</p></div>
+<div style="display:flex;flex-direction:row;gap:12px;align-items:center"><div style="width:32px;height:32px;background:#2E86AB;border-radius:6px"></div><p style="font-size:24px;color:#3A4651">AI</p></div>
+<div style="display:flex;flex-direction:row;gap:12px;align-items:center"><div style="width:32px;height:32px;background:#3BA55C;border-radius:6px"></div><p style="font-size:24px;color:#3A4651">Data/Connector</p></div>
+</div>
+<aside>(3:00–4:30) Prompt ที่ดีตอบ 3 คำถาม: เอาอะไรเข้า (Input) ทำอะไร (Process) ได้อะไรออก ที่ไหน รูปแบบไหน (Output)
+ข้อผิดพลาดที่เห็นบ่อย: บอกแค่ Process ("วิเคราะห์ให้หน่อย") → Claude เดา input และ output เอง
+ชี้ว่าเส้นประย้อนกลับ = คนตรวจผลแล้วปรับ prompt — นี่คือ HITL ที่เล็กที่สุด
+ให้ดู Prompt Playground ตัวอย่างที่ 1 (before/after) ถ้ามีเวลา</aside>
+</section>
