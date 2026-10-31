@@ -43,7 +43,9 @@ Lecture 10 นาที (13:40–13:50) · Workshop 20 นาที (13:50–14:
 
 | Path | What |
 |---|---|
-| `slides.md` → `slides.html` | Lecture deck, 10 slides, speaker notes with minute marks |
+| **Slides Artifact** · https://claude.ai/artifact/PRZrJe9wv2nWeJSaTFy416 | **Delivery deck.** 10 slides built on Claude's core Slides Artifact type; speaker notes on every slide; Present mode; download as PDF/PPTX from Share › Export. All 5 diagrams redrawn natively (boxes + connectors) in the 3 STYLE colours with legend. Private until shared from the page's Share menu |
+| `deck/project/deck.json` + `deck/project/slides/s01–s10.html` | Source files of the Slides Artifact (republish with the Artifact tool, `root: materials/m5/deck`) |
+| `slides.md` → `slides.html` | Content source the Artifact was built from (same 10 slides and notes, minute marks); superseded for delivery |
 | `workshop.md` | Workshop guide, 4 A4 pages |
 | `prompts.md` | M5-P01 … M5-P06 (copy-ready) |
 | `diagrams/*.mmd` | skill-vs-others · progressive-disclosure · skill-sharing-flow · third-party-audit · workshop-flow (all embedded in slides 5–9; workshop-flow also in workshop p.1) |

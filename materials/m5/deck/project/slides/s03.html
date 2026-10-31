@@ -1,0 +1,26 @@
+<section id="s03" style="background:#FAF8F3;color:#1F2933;font-family:'IBM Plex Sans Thai', Tahoma, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-size:60px;font-weight:700;line-height:1.15;color:#1F2933">Skill คืออะไร: โฟลเดอร์ที่สอน “วิธีทำงาน”</h2>
+<div style="background:#1F2933;border-radius:16px;padding:32px 40px;display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'Courier New', monospace;font-size:30px;font-weight:700;line-height:1.4;color:#F2A541">banpu-standard-report/</p>
+<div style="display:flex;flex-direction:row;gap:24px;align-items:baseline">
+<p style="width:620px;font-family:'Courier New', monospace;font-size:28px;line-height:1.4;color:#FAF8F3">├── SKILL.md</p>
+<p style="flex:1;font-size:28px;line-height:1.4;color:#8CC7E3">← ชื่อ + description + ขั้นตอน โทน รูปแบบตัวเลข</p>
+</div>
+<div style="display:flex;flex-direction:row;gap:24px;align-items:baseline">
+<p style="width:620px;font-family:'Courier New', monospace;font-size:28px;line-height:1.4;color:#FAF8F3">├── templates/report-template.md</p>
+<p style="flex:1;font-size:28px;line-height:1.4;color:#8CC7E3">← โครง 6 หัวข้อ</p>
+</div>
+<div style="display:flex;flex-direction:row;gap:24px;align-items:baseline">
+<p style="width:620px;font-family:'Courier New', monospace;font-size:28px;line-height:1.4;color:#FAF8F3">└── examples/example-report-site-b.md</p>
+<p style="flex:1;font-size:28px;line-height:1.4;color:#8CC7E3">← ตัวอย่างผลลัพธ์ที่ดี</p>
+</div>
+</div>
+<ul style="font-size:34px;line-height:1.55;color:#3A4651">
+<li>Claude <b>เลือกใช้เอง</b> เมื่องานตรงกับ description</li>
+<li>เขียนเป็นภาษาคน ไม่ต้องเขียนโปรแกรม</li>
+<li>บาง Skill มี script ด้วย → ต้องตรวจเหมือนติดตั้งโปรแกรม</li>
+</ul>
+<aside>[2:00] เปิดโฟลเดอร์จริงใน materials/m5/skill-example/ ให้ดู 20 วินาที ชี้ frontmatter 2 บรรทัด name และ description: “description คือป้ายหน้าร้าน Claude อ่านป้ายนี้ก่อนตัดสินใจว่าจะเปิด Skill ไหม”
+ใน Claude: Settings → Capabilities → Skills (บางเวอร์ชัน Customize → Skills) อัปโหลดเป็น ZIP ต้องเปิด Code execution ก่อน (SOURCES #4)
+Claude มี Skill สำเร็จรูปของ Anthropic อยู่แล้ว เช่น สร้าง Word/Excel/PowerPoint/PDF ที่เราใช้ใน M4 ก็มาจาก Skill</aside>
+</section>

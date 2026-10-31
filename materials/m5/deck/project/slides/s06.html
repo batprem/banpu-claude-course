@@ -1,0 +1,27 @@
+<section id="s06" style="background:#FAF8F3;color:#1F2933;font-family:'IBM Plex Sans Thai', Tahoma, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:24px">
+<h2 style="font-size:60px;font-weight:700;line-height:1.15;color:#1F2933">Skill ช่วยประหยัด usage ได้อย่างไร</h2>
+<!-- L1 128,340,380,150  Q 588,350,320,130 (pill)  L2 1008,250,360,130  SKIP 1008,450,360,130  CK 1448,250,344,130 · bus x 958 (Q right 908,415 → L2 315 / SKIP 515) -->
+<div style="position:absolute;left:128px;top:340px;width:380px;height:150px;background:#3BA55C;border-radius:16px;padding:10px 16px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2px"><p style="font-size:28px;font-weight:700;line-height:1.25;color:#FFFDF8;text-align:center">ทุก Skill: ชื่อ + description</p><p style="font-size:24px;line-height:1.25;color:#FFFDF8;text-align:center">~100 token ต่อ Skill</p></div>
+<div style="position:absolute;left:588px;top:350px;width:320px;height:130px;background:#2E86AB;border-radius:65px;padding:10px 28px;display:flex;flex-direction:column;justify-content:center;align-items:center"><p style="font-size:28px;font-weight:700;line-height:1.25;color:#FFFDF8;text-align:center">งานตรงกับ<br>Skill ไหม?</p></div>
+<div style="position:absolute;left:1008px;top:250px;width:360px;height:130px;background:#2E86AB;border-radius:16px;padding:10px 16px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2px"><p style="font-size:24px;font-weight:600;color:#D6EBF5;text-align:center">ถ้าใช่</p><p style="font-size:26px;font-weight:700;line-height:1.25;color:#FFFDF8;text-align:center">อ่าน SKILL.md</p><p style="font-size:24px;line-height:1.25;color:#FFFDF8;text-align:center">+ template เมื่อจำเป็น</p></div>
+<div style="position:absolute;left:1008px;top:450px;width:360px;height:130px;background:#2E86AB;border-radius:16px;padding:10px 16px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2px"><p style="font-size:24px;font-weight:600;color:#D6EBF5;text-align:center">ถ้าไม่</p><p style="font-size:26px;font-weight:700;line-height:1.25;color:#FFFDF8;text-align:center">ไม่โหลดเนื้อหา</p><p style="font-size:24px;line-height:1.25;color:#FFFDF8;text-align:center">ไม่เสีย token เพิ่ม</p></div>
+<div style="position:absolute;left:1448px;top:250px;width:344px;height:130px;background:#E4572E;border-radius:16px;padding:10px 16px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2px"><p style="font-size:26px;font-weight:700;line-height:1.25;color:#FFFDF8;text-align:center">คุณตรวจผล</p><p style="font-size:24px;line-height:1.25;color:#FFFDF8;text-align:center">รูปแบบถูกตั้งแต่รอบแรก</p></div>
+<x-connector x1="508" y1="415" x2="588" y2="415" style="color:#1F2933;border-width:3px"></x-connector>
+<x-connector x1="908" y1="415" x2="958" y2="415" head="none" style="color:#1F2933;border-width:3px"></x-connector>
+<x-connector x1="958" y1="315" x2="958" y2="515" head="none" style="color:#1F2933;border-width:3px"></x-connector>
+<x-connector x1="958" y1="315" x2="1008" y2="315" style="color:#1F2933;border-width:3px"></x-connector>
+<x-connector x1="958" y1="515" x2="1008" y2="515" style="color:#1F2933;border-width:3px"></x-connector>
+<x-connector x1="1368" y1="315" x2="1448" y2="315" style="color:#1F2933;border-width:3px"></x-connector>
+<ul style="position:absolute;left:128px;top:650px;width:1664px;font-size:34px;line-height:1.55;color:#3A4651">
+<li>ไม่ต้องวางคำสั่ง + ตัวอย่างยาว ๆ ซ้ำทุกแชต</li>
+<li>ได้รูปแบบถูกตั้งแต่รอบแรก = <b>รอบแก้น้อยลง</b></li>
+</ul>
+<div style="position:absolute;left:128px;bottom:56px;width:1664px;display:flex;flex-direction:row;gap:48px;align-items:center">
+<div style="display:flex;flex-direction:row;gap:12px;align-items:center"><div style="width:32px;height:32px;background:#E4572E;border-radius:6px"></div><p style="font-size:24px;color:#3A4651">คน (HITL)</p></div>
+<div style="display:flex;flex-direction:row;gap:12px;align-items:center"><div style="width:32px;height:32px;background:#2E86AB;border-radius:6px"></div><p style="font-size:24px;color:#3A4651">AI</p></div>
+<div style="display:flex;flex-direction:row;gap:12px;align-items:center"><div style="width:32px;height:32px;background:#3BA55C;border-radius:6px"></div><p style="font-size:24px;color:#3A4651">Data/Connector</p></div>
+</div>
+<aside>[6:00] กลไกนี้ Anthropic เรียกว่า progressive disclosure: ตอนเริ่มแชต Claude เห็นแค่ชื่อ + description ของทุก Skill (ประมาณ 100 token ต่อ Skill) จะอ่าน SKILL.md (แนะนำไม่เกิน ~5,000 token) และไฟล์อื่นเมื่องานตรงเท่านั้น (SOURCES #3, #10)
+พูดตรง ๆ: Skill ไม่ได้ทำให้ฟรี เมื่อใช้ Skill ก็ยังอ่าน SKILL.md แต่ที่ประหยัดจริงคือ (1) ไม่ต้อง paste คำสั่ง/ตัวอย่างยาวซ้ำ (2) รอบแก้ “ขอหัวข้อแบบนี้ ไม่ใช่แบบนั้น” หายไป (3) งานรูปแบบชัดใช้ model เบากว่าได้
+เชื่อม requirement 13 และ M8 (เคล็ดลับ usage): แชตใหม่ + Skill ดีกว่าแชตยาวที่สะสมคำสั่ง</aside>
+</section>
