@@ -1,0 +1,398 @@
+<title>M3 Workshop</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: one calm column of 6 workshop "pages" (A4 cards) under a sticky progress strip. */
+:root{
+  --paper:#FAF8F3; --surface:#FFFFFF; --ink:#1F2933; --muted:#5B6670; --line:#E3DDCF; --code:#F3EFE6;
+  --human:#E4572E; --ai:#2E86AB; --data:#3BA55C; --warn:#F2A541; --red:#D64545;
+  --tint-green:#E9F6EC; --tint-yellow:#FDF3E1; --tint-red:#FDECEA;
+  --f-body:'IBM Plex Sans Thai',system-ui,sans-serif; --f-mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#161B21; --surface:#1F262E; --ink:#E9ECEF; --muted:#A3ADB7; --line:#34404B; --code:#262F38;
+  --tint-green:#1D3324; --tint-yellow:#3A2F1A; --tint-red:#3B2222; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#161B21; --surface:#1F262E; --ink:#E9ECEF; --muted:#A3ADB7; --line:#34404B; --code:#262F38;
+  --tint-green:#1D3324; --tint-yellow:#3A2F1A; --tint-red:#3B2222; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:15.5px;line-height:1.65;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.wrap{max-width:820px;margin:0 auto}
+h1,h2,h3{text-wrap:balance;line-height:1.3}
+:focus-visible{outline:3px solid var(--ai);outline-offset:2px}
+
+/* sticky progress strip */
+.strip{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);padding-block:12px 10px;border-bottom:1px solid var(--line);margin-bottom:20px}
+.strip-row{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between}
+.strip-title{font-weight:700;font-size:15px}
+.strip-title span{color:var(--muted);font-weight:400}
+.prog{display:flex;align-items:center;gap:10px;flex:1 1 220px;min-width:0}
+.track{flex:1;height:8px;border-radius:99px;background:var(--line);overflow:hidden}
+.track i{display:block;height:100%;width:0;background:var(--data);transition:width .3s}
+.prog b{font-variant-numeric:tabular-nums;font-size:14px;white-space:nowrap}
+
+header.intro{display:grid;gap:4px;margin-bottom:20px}
+header.intro .eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+header.intro h1{font-size:28px;margin:0}
+header.intro p{margin:0;color:var(--muted)}
+header.intro code{font-family:var(--f-mono);font-size:13px}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px clamp(16px,4vw,32px);margin-bottom:22px;display:grid;gap:14px;min-width:0}
+.card-head{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:baseline;justify-content:space-between}
+.card-head h2{margin:0;font-size:21px}
+.card-head .pg{color:var(--muted);font-weight:600;font-size:13px;letter-spacing:.04em}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:99px;padding:2px 12px;font-size:13px;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.chip::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--warn)}
+.card.done .chip::before{background:var(--data)}
+.goal{margin:0;padding:10px 14px;border-radius:10px;background:var(--code)}
+.goal b{color:var(--ai)}
+h3{font-size:16px;margin:4px 0 0}
+p,ol,ul{margin:0}
+ol,ul{padding-left:1.4em;display:grid;gap:4px}
+code{font-family:var(--f-mono);font-size:.9em;background:var(--code);padding:1px 6px;border-radius:5px}
+
+.tbl{overflow-x:auto;min-width:0}
+table{border-collapse:collapse;width:100%;font-size:14.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--code);font-weight:600}
+td.l-green{background:var(--tint-green)} td.l-yellow{background:var(--tint-yellow)} td.l-red{background:var(--tint-red)}
+td input{width:100%;min-width:90px;border:0;background:transparent;color:var(--ink);font:inherit;padding:2px 0}
+td input:focus{outline:2px solid var(--ai);outline-offset:2px;border-radius:3px}
+
+/* diagram */
+.diagram{overflow-x:auto;min-width:0;border:1px solid var(--line);border-radius:10px;padding:12px;background:var(--surface)}
+.diagram svg{display:block;width:100%;min-width:640px;height:auto}
+.diagram .edge{stroke:var(--ink);fill:none;stroke-width:1.6}
+.diagram .head{fill:var(--ink)}
+.legend{font-size:13px;color:var(--muted)}
+
+/* prompt */
+.prompt{border:1px solid var(--line);border-radius:10px;overflow:hidden;min-width:0}
+.prompt-bar{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px 8px 6px 14px;background:var(--code);border-bottom:1px solid var(--line);font-size:13px;font-weight:600}
+.copy-btn{font:600 13px var(--f-body);border:1px solid var(--ai);color:var(--ai);background:var(--surface);border-radius:7px;padding:4px 12px;cursor:pointer}
+.copy-btn:hover{background:var(--ai);color:#fff}
+.prompt pre{margin:0;padding:14px;overflow-x:auto;font-family:var(--f-mono);font-size:13.5px;line-height:1.6;white-space:pre-wrap;word-break:break-word;background:var(--surface);color:var(--ink)}
+
+/* checkpoint */
+.check{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border:1.5px dashed var(--human);border-radius:10px;cursor:pointer}
+.check input{width:20px;height:20px;margin-top:3px;accent-color:var(--data);flex:none;cursor:pointer}
+.card.done .check{border-style:solid;border-color:var(--data);background:var(--tint-green)}
+.note{font-size:14.5px;padding:8px 12px;border-radius:8px;background:var(--tint-yellow)}
+.next{font-weight:600;color:var(--ai)}
+.checks{display:grid;gap:8px}
+.diagram .lbl{fill:var(--ink)}
+footer{font-size:12px;color:var(--muted);text-align:center;margin-top:8px}
+
+@media (prefers-reduced-motion: reduce){.track i{transition:none}}
+
+/* Export PDF (materials/_shared/export-pdf-artifact.html) */
+.export-pdf-btn{font:600 14px 'IBM Plex Sans Thai',sans-serif;background:#1F2933;color:#fff;border:0;border-radius:8px;padding:8px 14px;cursor:pointer}
+.export-pdf-btn:hover{background:#2E86AB}
+.export-pdf-btn[disabled]{opacity:.6;cursor:progress}
+.pdf-export .print-expand,.pdf-export [hidden].print-expand,.pdf-export details{display:block!important;height:auto!important;overflow:visible!important}
+.pdf-export body{background:#fff}
+.pdf-export .card{border-color:#ccc}
+.pdf-export .diagram svg{min-width:0}
+@media print{
+  @page{size:A4;margin:12mm}
+  body{background:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .no-print,.export-pdf-btn,button,nav{display:none!important}
+  .print-expand,[hidden].print-expand,details{display:block!important;height:auto!important;overflow:visible!important}
+  .pdf-page-break{break-before:page}
+  section,.card{break-inside:avoid}
+  .diagram svg{min-width:0}
+}
+</style>
+
+<div class="strip no-print">
+  <div class="wrap strip-row">
+    <div class="strip-title">M3 Workshop <span>· ค้นข้ามแหล่ง + แก้อย่างปลอดภัย</span></div>
+    <div class="prog" aria-label="ความคืบหน้า">
+      <div class="track"><i id="progBar"></i></div>
+      <b id="progText">0 / 6 หน้า</b>
+    </div>
+    <button class="export-pdf-btn no-print" id="exportPdfBtn" type="button" title="ดาวน์โหลดเป็น PDF">⬇ Export PDF</button>
+  </div>
+</div>
+
+<main class="wrap" data-pdf-root>
+  <header class="intro">
+    <span class="eyebrow">M3 · Microsoft 365 Connectors อย่างปลอดภัย</span>
+    <h1>M3 Workshop · ค้นข้ามแหล่ง + แก้อย่างปลอดภัย (30 นาที · 11:30–12:00)</h1>
+    <p>ข้อมูลทั้งหมดเป็นข้อมูลสมมติจาก Sample Pack M3 · Connector ที่ใช้ได้: <b>SharePoint + Outlook</b> เท่านั้น (ไม่ใช้ Google Drive) · เปิด Artifact <b>Connector Mission</b> (<code>artifacts/connector-mission.html</code>) ไว้คู่กัน แล้วติ๊กตามทีละด่าน</p>
+    <p class="legend">🟧 คน (HITL) · 🟦 AI · 🟩 Data/Connector · ทุกหน้ามี ✅ จุดที่ <b>คุณ</b> ต้องตรวจก่อนไปต่อ</p>
+  </header>
+
+  <!-- หน้า 1 -->
+  <section class="card" id="page1" data-page="1">
+    <div class="card-head">
+      <div><div class="pg">หน้า 1 / 6</div><h2>เตรียม + เลือกเส้นทาง</h2></div>
+      <span class="chip">3 นาที · 11:30–11:33</span>
+    </div>
+    <p class="goal"><b>เป้าหมาย:</b> รู้ว่าวันนี้คุณทำเส้นทางไหน และพร้อมก่อนเริ่มจับเวลา</p>
+
+    <div class="tbl"><table>
+      <thead><tr><th></th><th>เส้นทาง A · Test tenant</th><th>เส้นทาง B · โฟลเดอร์สำรอง</th></tr></thead>
+      <tbody>
+        <tr><th>ใช้เมื่อ</th><td>IT เตรียมบัญชีทดสอบ + site <code>M3-Training</code> + mailbox ทดสอบแล้ว</td><td>ไม่เห็น Microsoft 365 ใน Connectors หรือ login ไม่ผ่านภายใน 2 นาที</td></tr>
+        <tr><th>ข้อมูล</th><td>อีเมล 20 ฉบับใน mailbox ทดสอบ · Project Tracker, Issue Log, Shared_Capex_Tracker_2569.xlsx บน site</td><td>โฟลเดอร์ <code>M3_SamplePack/</code> (outlook/*.eml + sharepoint/*) ในเครื่อง เปิดผ่าน Cowork</td></tr>
+        <tr><th>Prompt เริ่ม</th><td>M3-P01</td><td>M3-P08</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>ขั้นตอน</h3>
+    <ol>
+      <li>เปิด Claude Desktop → Settings → Connectors ดูว่ามี <b>Microsoft 365</b> หรือไม่</li>
+      <li>ยกมือถ้า <b>ไม่เห็น</b> → ไปเส้นทาง B ทันที (อย่าเสียเวลาแก้ login เกิน 2 นาที)</li>
+      <li>เส้นทาง B: แตกไฟล์ <code>M3_SamplePack.zip</code> ไว้ที่ Desktop แล้วให้ Cowork เข้าถึง <b>เฉพาะ</b> โฟลเดอร์นี้</li>
+    </ol>
+
+    <label class="check" for="ck1"><input type="checkbox" id="ck1"><span><b>✅ Checkpoint:</b> ใช้บัญชีทดสอบ / โฟลเดอร์ Sample Pack เท่านั้น ไม่เปิดไฟล์งานจริง ไม่เปิดกล่องจดหมายจริง (ทบทวน Data Traffic Light จาก M1)</span></label>
+  </section>
+
+  <!-- หน้า 2 -->
+  <section class="card pdf-page-break" id="page2" data-page="2">
+    <div class="card-head">
+      <div><div class="pg">หน้า 2 / 6</div><h2>เชื่อม SharePoint/Outlook แบบอ่านอย่างเดียว</h2></div>
+      <span class="chip">5 นาที · 11:33–11:38</span>
+    </div>
+    <p class="goal"><b>เป้าหมาย:</b> ยืนยันว่า Claude "เห็น" อะไร ก่อนจะถามอะไรจริงจัง</p>
+
+    <p><b>เส้นทาง A</b> · วาง prompt นี้ (M3-P01)</p>
+    <div class="prompt">
+      <div class="prompt-bar"><span>Prompt M3-P01</span><button class="copy-btn no-print" type="button" data-copy="p01">Copy</button></div>
+<pre id="p01">ใช้ Microsoft 365 connector แบบอ่านอย่างเดียว ห้ามแก้ไข ห้ามส่ง ห้ามสร้างอะไร
+1) ค้นอีเมลใน Outlook ที่หัวเรื่องขึ้นต้นด้วย [PRJ- ในช่วง 30 วันที่ผ่านมา บอกจำนวนและ 3 หัวเรื่องล่าสุด
+2) ค้นไฟล์ใน SharePoint site "M3-Training" ที่ชื่อมีคำว่า Tracker หรือ Issue บอกชื่อไฟล์และวันที่แก้ไขล่าสุด
+ถ้าค้นไม่เจอ ให้บอกตรง ๆ ว่าไม่เจอ อย่าเดา</pre>
+    </div>
+
+    <p><b>เส้นทาง B</b> · วาง M3-P08 (ใน <code>prompts.md</code>) ให้ Cowork นับจำนวนอีเมล โครงการ และ issue ที่ยัง Open</p>
+    <p class="note"><b>ดูอะไรระหว่างรอ:</b> Claude เรียกเครื่องมืออะไรบ้าง (search mail / search SharePoint) นี่คือขั้น <b>Connect → Data</b> ใน AI → Connect → Data → Execute</p>
+
+    <div class="checks">
+      <label class="check" for="ck2a"><input type="checkbox" id="ck2a"><span><b>✅ Checkpoint:</b> จำนวนที่ Claude บอก ตรงกับคำใบ้ของวิทยากรไหม (อีเมลหัวเรื่อง <code>[PRJ-</code> มีหลายฉบับ, Issue Log 56 แถว)</span></label>
+      <label class="check" for="ck2b"><input type="checkbox" id="ck2b"><span><b>✅ Checkpoint:</b> ถ้า Claude บอกว่าเจอไฟล์ <b>นอก</b> site <code>M3-Training</code> → จดไว้: นี่คือเหตุผลที่ต้องระบุขอบเขตทุกครั้ง (Connector ค้นได้ทุกที่ที่บัญชีเราเข้าถึง)</span></label>
+    </div>
+  </section>
+
+  <!-- หน้า 3 -->
+  <section class="card pdf-page-break" id="page3" data-page="3">
+    <div class="card-head">
+      <div><div class="pg">หน้า 3 / 6</div><h2>ค้นข้ามแหล่ง: 3 ภารกิจ</h2></div>
+      <span class="chip">8 นาที · 11:38–11:46</span>
+    </div>
+    <p class="goal"><b>เป้าหมาย:</b> ฝึกถามเจาะจง + ขอที่มา แล้ว <b>เทียบเอง</b> ว่าแหล่งข้อมูลขัดกันไหม</p>
+
+    <p>ใช้ prompt แม่แบบ M3-P03 แล้วเปลี่ยนเฉพาะคำถาม</p>
+    <div class="prompt">
+      <div class="prompt-bar"><span>Prompt M3-P03</span><button class="copy-btn no-print" type="button" data-copy="p03">Copy</button></div>
+<pre id="p03">อ่านอย่างเดียว ใช้เฉพาะ Outlook และ SharePoint site "M3-Training"
+คำถาม: [วางคำถามของภารกิจ]
+ตอบสั้น ๆ แล้วแนบที่มาทุกข้อ (หัวเรื่องอีเมล+วันที่ หรือ ชื่อไฟล์+แท็บ/แถว)
+ถ้าสองแหล่งให้ตัวเลขไม่ตรงกัน ให้แสดงทั้งสองค่า อย่าเลือกเอง</pre>
+    </div>
+
+    <div class="tbl"><table>
+      <thead><tr><th>ภารกิจ</th><th>คำถาม (วางในวงเล็บเหลี่ยม)</th><th>แหล่งที่ควรถูกอ้าง</th></tr></thead>
+      <tbody>
+        <tr><td>🎯 1 · เงินค้างอนุมัติ</td><td>"PRJ-105 ขออนุมัติงบเพิ่มเท่าไร ทำไม ต้องตอบภายในวันไหน และงบใน Capex Tracker ตอนนี้เท่าไร"</td><td>อีเมล <code>[PRJ-105] ขออนุมัติงบเพิ่ม…</code> + Capex Tracker แท็บ Site D</td></tr>
+        <tr><td>🎯 2 · สถานะที่ไม่ตรงกัน</td><td>"PRJ-101 สถานะใน Project Tracker คืออะไร และอีเมลหรือ Issue Log บอกอะไรที่ต่างออกไป"</td><td>Project Tracker + อีเมล <code>[PRJ-101] อัปเดตสัปดาห์ 43…</code> + Issue Log</td></tr>
+        <tr><td>🎯 3 · โครงการล่าช้า</td><td>"PRJ-104 ล่าช้าเพราะอะไร ใครติดตาม และมีการพูดถึงในประชุมไหนบ้าง"</td><td>Project Tracker + อีเมล <code>[PRJ-104]…</code> + สรุปประชุม Project Review</td></tr>
+      </tbody>
+    </table></div>
+    <p>ทำให้ได้อย่างน้อย 2 ภารกิจ (ภารกิจ 3 เป็นโบนัส) แล้วกรอกคำตอบใน Artifact เพื่อเก็บแต้ม</p>
+
+    <label class="check" for="ck3"><input type="checkbox" id="ck3"><span><b>✅ Checkpoint:</b> เปิดที่มาอย่างน้อย <b>1 แหล่งต่อภารกิจ</b> ด้วยตัวเอง (คลิกลิงก์/เปิดไฟล์) แล้วเทียบตัวเลข · ถ้า Claude ไม่อ้างที่มา ให้ถามซ้ำ ไม่ใช่เชื่อเลย</span></label>
+  </section>
+
+  <!-- หน้า 4 -->
+  <section class="card pdf-page-break" id="page4" data-page="4">
+    <div class="card-head">
+      <div><div class="pg">หน้า 4 / 6</div><h2>สรุปเดียวจาก 3 แหล่ง + ตรวจที่มา</h2></div>
+      <span class="chip">5 นาที · 11:46–11:51</span>
+    </div>
+    <p class="goal"><b>เป้าหมาย:</b> รวม Outlook + SharePoint List + Excel เป็นสรุปสถานะ 1 หน้า แล้วให้ Claude ตรวจตัวเองก่อนเราตรวจ</p>
+
+    <p><b>ขั้น 1</b> · วาง M3-P02 (สรุปสถานะโครงการ 1 หน้า: ตารางโครงการเสี่ยง · ความเสี่ยงสูงสุด 3 เรื่อง · คำขออนุมัติที่ค้าง · จุดที่แหล่งข้อมูลขัดกัน)</p>
+    <p><b>ขั้น 2</b> · วาง M3-P04 ทันทีหลังได้สรุป</p>
+    <div class="prompt">
+      <div class="prompt-bar"><span>Prompt M3-P04</span><button class="copy-btn no-print" type="button" data-copy="p04">Copy</button></div>
+<pre id="p04">ทบทวนสรุปที่คุณเพิ่งทำ:
+1) ข้อไหนที่อ้างที่มาไม่ได้ชัด ให้ทำเครื่องหมาย ⚠️
+2) ตัวเลขทุกตัว (งบ วงเงิน %) มาจากแหล่งไหน แสดงเป็นตาราง ตัวเลข | แหล่ง | ตรงกันทุกแหล่งไหม
+3) มีอีเมลหรือไฟล์ในขอบเขตที่คุณไม่ได้อ่านไหม บอกตรง ๆ
+ห้ามแก้สรุปเอง ให้ฉันตัดสินใจ</pre>
+    </div>
+
+    <h3>สิ่งที่สรุปที่ดีควรมี (เช็กเอง)</h3>
+    <ul>
+      <li>PRJ-105 ขอเพิ่ม 3.8 ล้านบาท (95.0 → 98.8) ต้องตอบภายใน 31 ต.ค. แต่ Capex Tracker ยังเป็น 95</li>
+      <li>PRJ-101 "On track" ใน Tracker แต่อีเมล + Issue Log บอกของส่งไม่ครบ อาจเลื่อน</li>
+      <li>PRJ-104 Delayed รอใบอนุญาต</li>
+      <li>คำขออนุมัติอื่นที่ค้าง (เช่น จ้างที่ปรึกษา BESS, OT ทีมติดตั้งสายพาน)</li>
+    </ul>
+
+    <label class="check" for="ck4"><input type="checkbox" id="ck4"><span><b>✅ Checkpoint:</b> นับจำนวนแหล่งที่ Claude บอกว่าใช้ เทียบกับที่ควรมี (3 ประเภท) · จำบทเรียนเรื่อง 15,841 เคสที่หายเงียบ ๆ: <b>นับต้นทาง vs ผลลัพธ์</b></span></label>
+  </section>
+
+  <!-- หน้า 5 -->
+  <section class="card pdf-page-break" id="page5" data-page="5">
+    <div class="card-head">
+      <div><div class="pg">หน้า 5 / 6</div><h2>copy-before-write: ให้ Claude แก้ "สำเนา"</h2></div>
+      <span class="chip">6 นาที · 11:51–11:57</span>
+    </div>
+    <p class="goal"><b>เป้าหมาย:</b> อัปเดต Forecast ของ PRJ-105 ตามอีเมลขออนุมัติ โดยไม่แตะไฟล์ที่ทั้งทีมใช้ร่วมกัน</p>
+
+    <div class="diagram" role="img" aria-label="Shared_Capex_Tracker_2569.xlsx ต้นฉบับห้ามแตะ ไป M3-P05 ทำสำเนา ไป M3-P06 Claude เสนอแผน ไป คุณพิมพ์อนุมัติหรือไม่ ถ้าใช่ แก้เฉพาะสำเนาและเขียน Change_Log ถ้าไม่ กลับไปแก้แผน">
+      <svg viewBox="0 0 1000 200" xmlns="http://www.w3.org/2000/svg" font-family="IBM Plex Sans Thai, sans-serif" font-size="14" text-anchor="middle">
+        <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="head" d="M0 0L10 5L0 10z"/></marker></defs>
+        <rect x="6" y="40" width="188" height="70" rx="10" fill="#3BA55C" stroke="#1F2933"/>
+        <text x="100" y="70" fill="#fff" font-weight="600" font-size="13">Shared_Capex_Tracker</text><text x="100" y="92" fill="#fff" font-size="13">_2569.xlsx · ต้นฉบับ ห้ามแตะ</text>
+        <rect x="226" y="40" width="160" height="70" rx="10" fill="#2E86AB" stroke="#1F2933"/>
+        <text x="306" y="70" fill="#fff" font-weight="600">M3-P05</text><text x="306" y="92" fill="#fff">ทำสำเนา _COPY_...</text>
+        <rect x="418" y="40" width="200" height="70" rx="10" fill="#2E86AB" stroke="#1F2933"/>
+        <text x="518" y="62" fill="#fff" font-weight="600">M3-P06</text><text x="518" y="82" fill="#fff" font-size="13">Claude เสนอแผน: เซลล์ไหน</text><text x="518" y="100" fill="#fff" font-size="13">ค่าเดิม → ค่าใหม่</text>
+        <polygon points="735,8 850,75 735,142 620,75" fill="#E4572E" stroke="#1F2933" transform="translate(16 0)"/>
+        <text x="751" y="71" fill="#fff" font-weight="600" font-size="13">คุณพิมพ์</text><text x="751" y="90" fill="#fff" font-weight="600" font-size="13">'อนุมัติ'?</text>
+        <rect x="876" y="30" width="118" height="90" rx="10" fill="#2E86AB" stroke="#1F2933"/>
+        <text x="935" y="62" fill="#fff" font-weight="600" font-size="13">แก้เฉพาะสำเนา</text><text x="935" y="82" fill="#fff" font-size="13">+ เขียน</text><text x="935" y="100" fill="#fff" font-size="13">Change_Log</text>
+        <path class="edge" d="M194 75H224" marker-end="url(#arr)"/>
+        <path class="edge" d="M386 75H416" marker-end="url(#arr)"/>
+        <path class="edge" d="M618 75H634" marker-end="url(#arr)"/>
+        <path class="edge" d="M866 75H874" marker-end="url(#arr)"/>
+        <text class="lbl" x="870" y="60" font-size="12">ใช่</text>
+        <path class="edge" d="M751 142V180H518V112" marker-end="url(#arr)"/>
+        <text class="lbl" x="640" y="172" font-size="12">ไม่ · กลับไปแก้แผน</text>
+      </svg>
+    </div>
+    <p class="legend">🟧 คน (HITL) · 🟦 AI · 🟩 Data/Connector</p>
+
+    <h3>ขั้นตอน (ทำใน Cowork ทั้งเส้นทาง A และ B · เส้นทาง A ให้ดาวน์โหลดไฟล์จาก site ทดสอบมาไว้ในโฟลเดอร์ทำงานก่อน)</h3>
+    <ol>
+      <li>วาง <b>M3-P05</b> → Claude ทำสำเนา <code>_COPY_Shared_Capex_Tracker_2569_[ชื่อเล่น]_[YYYYMMDD].xlsx</code> แล้ว <b>หยุดรอ</b></li>
+      <li>วาง <b>M3-P06</b> → Claude เสนอแผน: แท็บ Site D แถว PRJ-105 · Forecast_MTHB 95 → 98.8 · Note "รออนุมัติงบเพิ่ม 3.8 ลบ. (อีเมล 26 ต.ค.)"</li>
+      <li>อ่านแผน ถ้ามีการแตะแท็บอื่น/สูตร/format → ตอบว่า "ไม่อนุมัติ แก้แผน" ถ้าถูกต้อง → พิมพ์ <b>อนุมัติ</b></li>
+    </ol>
+
+    <div class="checks">
+      <label class="check" for="ck5a"><input type="checkbox" id="ck5a"><span><b>✅ Checkpoint (ก่อนพิมพ์ "อนุมัติ"):</b> แผนแก้ <b>เฉพาะไฟล์ <code>_COPY_</code></b> และเฉพาะแท็บ Site D + 1 แถวใน Change_Log</span></label>
+      <label class="check" for="ck5b"><input type="checkbox" id="ck5b"><span><b>✅ Checkpoint (ก่อนพิมพ์ "อนุมัติ"):</b> ไม่มีการเปลี่ยนสูตร ไม่ลบแถว/คอลัมน์ ไม่แตะแท็บของไซต์อื่น (ที่ประชุมสั่งไว้ว่า <b>ห้ามแก้แท็บของไซต์อื่น</b>)</span></label>
+    </div>
+  </section>
+
+  <!-- หน้า 6 -->
+  <section class="card pdf-page-break" id="page6" data-page="6">
+    <div class="card-head">
+      <div><div class="pg">หน้า 6 / 6</div><h2>ตรวจก่อนบันทึก + ปิดงาน</h2></div>
+      <span class="chip">3 นาที · 11:57–12:00</span>
+    </div>
+    <p class="goal"><b>เป้าหมาย:</b> พิสูจน์ด้วยหลักฐานว่าสำเนาพร้อมให้ <b>เจ้าของไฟล์</b> นำไปใช้ ไม่ใช่ Claude เขียนทับต้นฉบับ</p>
+
+    <p><b>ขั้น 1</b> · วาง <b>M3-P07</b> ให้ Claude เทียบต้นฉบับกับสำเนาแบบอ่านอย่างเดียว: ทุกเซลล์ที่ต่าง · สูตรที่กลายเป็นตัวเลข · การเปลี่ยนในแท็บอื่น · dropdown คอลัมน์ Status</p>
+    <p><b>ขั้น 2</b> · ตัดสินใจเอง</p>
+    <div class="tbl"><table>
+      <thead><tr><th>ผล M3-P07</th><th>ทำอะไรต่อ</th></tr></thead>
+      <tbody>
+        <tr><td>ต่างเฉพาะ Site D!F2, Site D!J2 + Change_Log 1 แถว · สูตรครบ</td><td class="l-green">✅ "พร้อมให้เจ้าของไฟล์นำไปใส่ต้นฉบับ" ส่งลิงก์สำเนาให้คุณกัญญา (สมมติ) ตรวจเอง</td></tr>
+        <tr><td>มีสูตรกลายเป็นตัวเลข หรือแท็บอื่นเปลี่ยน</td><td class="l-red">❌ ทิ้งสำเนา เริ่มจาก M3-P05 ใหม่</td></tr>
+        <tr><td>ต้นฉบับบน SharePoint ถูกแก้ไปแล้วโดยไม่ตั้งใจ</td><td class="l-yellow">ใช้ <b>Version history → Restore</b> (SOURCES #3) แล้วแจ้งเจ้าของไฟล์ทันที</td></tr>
+      </tbody>
+    </table></div>
+    <p><b>ขั้น 3 (ถ้ามีเวลา / ทำต่อหลังเรียน)</b> · M3-P09 ร่างอีเมลสรุปถึง <code>pm-team@example.com</code> <b>แสดงในแชตเท่านั้น ห้ามส่ง</b> ใส่ลิงก์ SharePoint แทนแนบไฟล์</p>
+    <p><b>ปิดงาน:</b> ใน Artifact Connector Mission กด <b>⬇ Export PDF</b> เก็บผลภารกิจ + 5 กฎก่อนกด Enter</p>
+
+    <h3>✅ Checkpoint สุดท้าย</h3>
+    <div class="checks">
+      <label class="check" for="ck6a"><input type="checkbox" id="ck6a"><span>ต้นฉบับไม่ถูกแก้ (วันที่แก้ไขล่าสุดไม่เปลี่ยน)</span></label>
+      <label class="check" for="ck6b"><input type="checkbox" id="ck6b"><span>สรุปทุกข้ออ้างที่มาได้ และเราเปิดดูเองอย่างน้อย 3 แหล่ง</span></label>
+      <label class="check" for="ck6c"><input type="checkbox" id="ck6c"><span>ไม่มีอะไรถูกส่งออกไปจาก Outlook</span></label>
+    </div>
+  </section>
+
+  <footer>ข้อมูลทุกส่วนเป็นข้อมูลสมมติเพื่อการอบรม · Banpu · Claude for Business · M3</footer>
+</main>
+
+<script>
+document.documentElement.lang = 'th';
+document.body.setAttribute('data-pdf-name', 'M3-Workshop');
+(function () {
+  var KEY = 'm3-workshop-v1', state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { state = {}; }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+  var pages = Array.prototype.slice.call(document.querySelectorAll('section.card[data-page]'));
+  function update() {
+    var done = 0;
+    pages.forEach(function (p) {
+      var boxes = p.querySelectorAll('.check input[type=checkbox]');
+      var all = boxes.length > 0 && Array.prototype.every.call(boxes, function (b) { return b.checked; });
+      p.classList.toggle('done', all);
+      if (all) done++;
+    });
+    document.getElementById('progBar').style.width = (done / pages.length * 100) + '%';
+    document.getElementById('progText').textContent = done + ' / ' + pages.length + ' หน้า';
+  }
+  document.querySelectorAll('.check input[type=checkbox]').forEach(function (b) {
+    if (state[b.id]) b.checked = true;
+    b.addEventListener('change', function () { state[b.id] = b.checked; save(); update(); });
+  });
+  document.querySelectorAll('td input').forEach(function (i) {
+    if (state[i.id]) i.value = state[i.id];
+    i.addEventListener('input', function () { state[i.id] = i.value; save(); });
+  });
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var pre = document.getElementById(btn.dataset.copy);
+      var text = pre.textContent;
+      function selectIt() {
+        var r = document.createRange(); r.selectNodeContents(pre);
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        btn.textContent = 'เลือกข้อความแล้ว กด Ctrl+C';
+      }
+      try {
+        navigator.clipboard.writeText(text).then(function () { btn.textContent = 'Copied ✓'; }, selectIt);
+      } catch (e) { selectIt(); }
+      setTimeout(function () { btn.textContent = 'Copy'; }, 2200);
+    });
+  });
+  update();
+})();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script>
+(function () {
+  var btn = document.getElementById('exportPdfBtn');
+  var downloads = null;
+  try {
+    if (window.claude && typeof window.claude.use === 'function') {
+      window.claude.use('downloads').then(function (d) { downloads = d; }, function () {});
+    }
+  } catch (e) {}
+  btn.addEventListener('click', async function () {
+    var name = (document.body.dataset.pdfName || document.title || 'export').replace(/[\\/:*?"<>|]+/g, '-') + '.pdf';
+    if (!downloads || !window.html2pdf) { window.print(); return; }
+    var label = btn.textContent;
+    btn.disabled = true; btn.textContent = 'กำลังสร้าง PDF…';
+    document.documentElement.classList.add('pdf-export');
+    try {
+      var root = document.querySelector('[data-pdf-root]') || document.body;
+      var blob = await window.html2pdf().set({
+        margin: [10, 10, 10, 10],
+        image: { type: 'jpeg', quality: 0.95 },
+        html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff',
+          ignoreElements: function (el) { return el.classList && el.classList.contains('no-print'); } },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+        pagebreak: { mode: ['css', 'legacy'], before: '.pdf-page-break', avoid: ['section', '.card'] }
+      }).from(root).outputPdf('blob');
+      await downloads.save({ filename: name, data: blob });
+    } catch (err) {
+      if (!err || (err.code !== 'declined' && err.code !== 'rate_limited')) { window.print(); }
+    } finally {
+      document.documentElement.classList.remove('pdf-export');
+      btn.disabled = false; btn.textContent = label;
+    }
+  });
+})();
+</script>

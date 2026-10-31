@@ -43,6 +43,16 @@
 - `artifacts/connector-mission.html` + `.spec.md` (Export PDF)
 - `data/gen_m3_data.py` (seed 303) → `data/pack/outlook/` (20 emails + index), `data/pack/sharepoint/` (Project Tracker, Issue Log, Shared Capex Tracker) · `data/IT_SETUP.md` (test tenant checklist + fallback)
 
+## Claude Artifacts (claude.ai)
+
+All private until shared from each page's Share menu. Published 31 Oct 2026 with `capabilities: {downloads: true}`.
+
+| Artifact | File | claude.ai URL | Export PDF |
+|---|---|---|---|
+| M3 Slides (15 slides) | `deck/project/` | https://claude.ai/artifact/MFFCrgSvtQS9S4guydcnoz | ✅ (Share › Export, PDF/PPTX) |
+| M3 Workshop (ใบงาน 6 หน้า) | `artifacts/workshop-sheet.html` | https://claude.ai/artifact/WTTy6F421gQfVwrxUFSax1 | ✅ |
+| M3 Connector Mission (ภารกิจ 6 ด่าน) | `artifacts/connector-mission.html` | https://claude.ai/artifact/F4gquxgXQwnB8cSTo3hsBq | ✅ |
+
 ## Build notes
 - The M3 Orca worker built slides, prompts, diagrams and data, then was cut off twice by API connection loss. The orchestrator wrote `workshop.md`, the Connector Mission Artifact + spec, `IT_SETUP.md`, `SOURCES.md` and this README, and replaced the slide-7 story (the Replit case duplicated M2) with the PHE Excel case.
 
