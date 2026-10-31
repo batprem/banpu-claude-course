@@ -31,10 +31,18 @@
 | 13 Usage efficiency / model choice | slides 12–15, mission 1 (M8-P01/P02), quiz category ใช้ให้คุ้ม | Hands-on (light) |
 
 ## Files
-- `slides.md` / `slides.html` · `workshop.md` · `prompts.md` · `diagrams/` (9)
-- `artifacts/security-quiz.html` + spec — 18 questions in 6 categories + final round of 6 M1 cards, per-category score, explanations, Export PDF. Data in `data/quiz_questions.json`; run `python3 materials/m8/data/sync_quiz.py` after editing (re-embeds questions + M1 cards read-only, regenerates `trainer/answer-key.md`).
-- `artifacts/plan-30-days.html` + spec — 30-day adoption plan with readiness meter, hours-saved counter, safety warnings, Export PDF.
-- `trainer/answer-key.md` — answers + reasons for the quiz and final round.
+
+| Path | What |
+|---|---|
+| **Slides Artifact** · https://claude.ai/artifact/Uix5PCdLVDFT2EpceDUi1Q | **Delivery deck.** 20 slides built on Claude's core Slides Artifact type; speaker notes on every slide; Present mode; download as PDF/PPTX from Share › Export. All 9 diagrams redrawn natively (boxes + connectors) in the 3 STYLE colours with legend. Private until shared from the page's Share menu |
+| `deck/project/deck.json` + `deck/project/slides/s01–s20.html` | Source files of the Slides Artifact (republish with the Artifact tool, `root: materials/m8/deck`) |
+| `slides.md` → `slides.html` | Content source the Artifact was built from (same 20 slides and notes); superseded for delivery |
+| `workshop.md` | Workshop guide, 5 pages |
+| `prompts.md` | M8-P01 … M8-P07 (copy-ready) |
+| `diagrams/*.mmd` | 9 Mermaid diagrams (all embedded in slides) |
+| `artifacts/security-quiz.html` + spec | 18 questions in 6 categories + final round of 6 M1 cards, per-category score, explanations, Export PDF. Data in `data/quiz_questions.json`; run `python3 materials/m8/data/sync_quiz.py` after editing (re-embeds questions + M1 cards read-only, regenerates `trainer/answer-key.md`) |
+| `artifacts/plan-30-days.html` + spec | 30-day adoption plan with readiness meter, hours-saved counter, safety warnings, Export PDF |
+| `trainer/answer-key.md` | Answers + reasons for the quiz and final round |
 
 ## Build notes
 - Built by the M8 Orca worker over two attempts; both were cut off by API connection loss. The orchestrator finished the 30-day plan Artifact script, its spec, `workshop.md`, `SOURCES.md` and this README.
