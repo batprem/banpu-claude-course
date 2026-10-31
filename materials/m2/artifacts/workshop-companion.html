@@ -46,15 +46,18 @@ ul.check li.hitl::before{content:"🟧";flex:none}
 footer{font-size:13px;opacity:.7;text-align:center;padding:16px}
 @media (max-width:600px){.timer{margin-left:0}}
 </style>
-<!-- Export PDF snippet (materials/_shared/export-pdf.html) -->
+<!-- Export PDF (materials/_shared/export-pdf-artifact.html) -->
 <style>
   .export-pdf-btn{font:600 14px 'IBM Plex Sans Thai',sans-serif;background:#1F2933;color:#fff;border:0;border-radius:8px;padding:8px 14px;cursor:pointer}
   .export-pdf-btn:hover{background:#2E86AB}
+  .export-pdf-btn[disabled]{opacity:.6;cursor:progress}
+  .pdf-export .print-expand,.pdf-export [hidden].print-expand,.pdf-export details{display:block!important;height:auto!important;overflow:visible!important}
   @media print{
     @page{size:A4;margin:12mm}
     body{background:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
     .no-print,.export-pdf-btn,button,nav{display:none!important}
     .print-expand,[hidden].print-expand,details{display:block!important;height:auto!important;overflow:visible!important}
+    .pdf-page-break{break-before:page}
     section,.card{break-inside:avoid}
   }
 </style>
@@ -63,11 +66,11 @@ footer{font-size:13px;opacity:.7;text-align:center;padding:16px}
   .export-pdf-btn{border:1px solid #fff}
 </style>
 </head>
-<body>
+<body data-pdf-name="M2-Workshop-Companion">
 <header>
   <h1>M2 Workshop Companion · Cowork + Prompt Patterns</h1>
   <span>ความคืบหน้า <span id="pct">0%</span></span>
-  <button class="export-pdf-btn no-print" onclick="window.print()" title="บันทึกเป็น PDF (เลือก Save as PDF)">⬇ Export PDF</button>
+  <button class="export-pdf-btn no-print" id="exportPdfBtn" type="button" title="ดาวน์โหลดเป็น PDF">⬇ Export PDF</button>
   <div class="bar"><i id="barfill"></i></div>
 </header>
 <main>
@@ -186,6 +189,42 @@ function show(i){document.querySelectorAll("section.step").forEach((s,j)=>s.hidd
 show(state.cur||0); progress();
 window.addEventListener("beforeprint",()=>document.querySelectorAll("section.step").forEach(s=>s.hidden=false));
 window.addEventListener("afterprint",()=>show(state.cur||0));
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script>
+(function () {
+  var btn = document.getElementById('exportPdfBtn');
+  var downloads = null;
+  try {
+    if (window.claude && typeof window.claude.use === 'function') {
+      window.claude.use('downloads').then(function (d) { downloads = d; }, function () {});
+    }
+  } catch (e) {}
+  btn.addEventListener('click', async function () {
+    var name = (document.body.dataset.pdfName || document.title || 'export').replace(/[\\/:*?"<>|]+/g, '-') + '.pdf';
+    if (!downloads || !window.html2pdf) { window.print(); return; }
+    var label = btn.textContent;
+    btn.disabled = true; btn.textContent = 'กำลังสร้าง PDF…';
+    document.documentElement.classList.add('pdf-export');
+    try {
+      var root = document.querySelector('[data-pdf-root]') || document.body;
+      var blob = await window.html2pdf().set({
+        margin: [10, 10, 10, 10],
+        image: { type: 'jpeg', quality: 0.95 },
+        html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff',
+          ignoreElements: function (el) { return el.classList && el.classList.contains('no-print'); } },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+        pagebreak: { mode: ['css', 'legacy'], before: '.pdf-page-break', avoid: ['section', '.card'] }
+      }).from(root).outputPdf('blob');
+      await downloads.save({ filename: name, data: blob });
+    } catch (err) {
+      if (!err || (err.code !== 'declined' && err.code !== 'rate_limited')) { window.print(); }
+    } finally {
+      document.documentElement.classList.remove('pdf-export');
+      btn.disabled = false; btn.textContent = label;
+    }
+  });
+})();
 </script>
 </body>
 </html>

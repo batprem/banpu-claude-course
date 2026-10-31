@@ -47,6 +47,19 @@
   - `generate_core_pack.py` (seed 2569) → `core/ops_monthly_clean.{csv,xlsx}` (fictional sites, 3 years, Budget vs Actual), `workshop_b_scattered/` (13 messy files), `answer_key/insights.md` (trainer only)
   - `generate_messy_folder.py` → `out/` messy folder (~1,500 files) · `generate_big_files.py` → `out/` 200k-row CSV + 320-page PDF. `out/` is gitignored; regenerate with `python3 data/generate_*.py`.
 
+## Claude Artifacts (claude.ai)
+
+All private until shared from each page's Share menu. Every page except the Slides deck is published with `capabilities: {downloads: true}` and the shared `materials/_shared/export-pdf-artifact.html` snippet (html2pdf → downloads, fallback window.print). To republish, use the Artifact tool with the same file path, or pass the URL from another session.
+
+| Artifact | File | claude.ai URL | Export PDF |
+|---|---|---|---|
+| M2 Slides (delivery deck) | `deck/project/` (Slides type) | https://claude.ai/artifact/3kKwMXkqyNFfRMEQxCQVwu | ✅ (Share › Export PDF/PPTX) |
+| M2 Workshop (workshop sheet, 6 pages) | `artifacts/workshop-sheet.html` | https://claude.ai/artifact/2kVCrZwhnqqwMHBF326PvR | ✅ |
+| Workshop Companion | `artifacts/workshop-companion.html` | https://claude.ai/artifact/Vyp7t1u44Ga5W4YbpuMYdP | ✅ |
+| Excel Detective | `artifacts/excel-detective.html` | https://claude.ai/artifact/1ytRQDkazJW4Xw24zZwkLu | ✅ |
+| Prompt Playground | `artifacts/prompt-playground.html` | https://claude.ai/artifact/LQ7Mh4vNj4syXPARm6ucV8 | ✅ |
+| Prototype Gallery | `artifacts/prototype-gallery.html` | https://claude.ai/artifact/3s1YpuHwGK7QvSn7ogm2Aq | ✅ |
+
 ## Build notes
 - Built by the M2 Orca worker; it was cut off twice by API connection loss before finishing. The orchestrator wrote this README, `SOURCES.md` and the 4 Artifact specs and reviewed the module.
 
