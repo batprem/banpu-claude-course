@@ -16,7 +16,7 @@
 | เวลา | นาที | สไลด์ | กิจกรรม | ประเภท |
 |---|---|---|---|---|
 | 09:15–09:17 | 2 | 1–2 | เปิดโมดูล · เป้าหมาย 60 นาที | Lecture |
-| 09:17–09:18 | 1 | 3 | Story: Samsung 2023 (ข้อมูลรั่วจากความหวังดี) | Lecture · Story |
+| 09:17–09:18 | 1 | 3 | Story: แชต ChatGPT ที่แชร์ไว้โผล่ใน Google, ก.ค. 2025 (ข้อมูลรั่วจากความหวังดี) | Lecture · Story |
 | 09:18–09:23 | 5 | 4–9 | Claude / Cowork · Chatbot vs Agent · Agent loop · Plan → Approve → Execute | Lecture |
 | 09:23–09:32 | 9 | 10–18 | Chat / Project / Skill / Agent / Artifact · decision tree · quick quiz | Lecture + interaction |
 | 09:32–09:40 | 8 | 19–23 | Demo Chat vs Cowork (Excel → HTML dashboard) · debrief | Demo |
@@ -57,7 +57,7 @@ Lecture 40 นาที (รวม Demo 8) · Workshop 20 นาที
 Regenerate: `python3 materials/m1/data/gen_site_ops.py` · `python3 materials/m1/data/sync_cards.py` · `python3 tools/build_slides.py materials/m1/slides.md`
 
 ## Stories / cases
-1. Samsung, Apr–May 2023: engineers pasted internal source code into a public chatbot → company-wide ban (slide 3; SOURCES #1–2).
+1. Shared ChatGPT chats in Google, Jul–Aug 2025: users ticked "Make this chat discoverable" when sharing; Fast Company found ~4,500 indexed chats, some with names and confidential work content; OpenAI removed the feature (slide 3; SOURCES #1–2). Replaced the earlier 2023 opening case on Prem's request (31 Oct 2026).
 2. Cato Networks, Dec 2025: a modified open-source Skill silently downloaded and ran ransomware in a test environment (slide 33; SOURCES #3–5).
 
 ## Trainer prep

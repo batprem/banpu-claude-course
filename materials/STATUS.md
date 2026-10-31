@@ -10,7 +10,7 @@ Workers were repeatedly cut off by API connection loss ("Connection lost mid-res
 ## Modules
 | Module | Time | Slides (budget) | Workshop pages (budget) | Diagrams | Artifacts (all with Export PDF) | Story / case | Built by | Commit |
 |---|---|---|---|---|---|---|---|---|
-| M1 Foundation & Security First | 60′ | 41 (40) | 4 (4) | 7 | Data Traffic Light game | Samsung source-code leak 2023 · Cato CTRL weaponised Skill 2025 | worker | `402d92f` |
+| M1 Foundation & Security First | 60′ | 41 (40) | 4 (4) | 7 | Data Traffic Light game | Shared ChatGPT chats indexed by Google 2025 · Cato CTRL weaponised Skill 2025 | worker | `402d92f` |
 | M2 Files & Folders + Prompt Patterns | 45′ | 15 (15) | 6 (6) | 8 | Workshop Companion · Prompt Playground · Excel Detective · Prototype Gallery | Replit agent deletes production DB 2025 · Matt Pocock `grill-me` | worker + orchestrator (README, SOURCES, specs) | `b958b6d` |
 | M3 M365 Connectors | 45′ | 15 (15) | 6 (6) | 6 + 1 | Connector Mission | PHE 15,841 COVID cases lost in Excel 2020 · fictional Capex Tracker overwrite | worker + orchestrator (workshop, Artifact, IT setup, README, SOURCES) | `a12a3d6` |
 | M4 Document Factory & Artifacts | 40′ | 15 (15) | 5 (5) | 6 | Monthly Ops Dashboard (v1/v2) · Output Picker | Deloitte Australia AI-error report refund 2025 | worker | `9b18a9f` |
@@ -44,7 +44,7 @@ Workers were repeatedly cut off by API connection loss ("Connection lost mid-res
 
 **Content decisions**
 7. Real Hi-I use cases: replace the 5 stand-in use cases or run them as bring-your-own (M7). Also per-class headcount, which sets the pitch length.
-8. Naming real firms in stories (Samsung, Replit, Deloitte, Air Canada, Novo Nordisk): OK for a Banpu audience?
+8. Naming real firms in stories (OpenAI/ChatGPT, Replit, Deloitte, Air Canada, Novo Nordisk): OK for a Banpu audience?
 9. External energy data: keep IMF/FRED (citation wording to confirm) or add a Thai source such as EPPO (M4).
 10. Skill approver role, sharing location, Plugin policy and whether to align the Skill checklist with IT approval (M5).
 11. Illustrations: only M2 has generated illustrations (2). Add up to 2 per module?
