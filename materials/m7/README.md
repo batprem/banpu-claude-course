@@ -61,6 +61,16 @@ Learners form 5 teams (6–8 people), pick one of 5 synthetic use cases (standin
 
 Regenerate the data pack + ZIPs: `python3 materials/m7/data/gen_m7_data.py` (needs `python-docx`, `openpyxl`). The `BRIEF.md` files are hand-written and are not overwritten by the generator. Trainer answer keys (counts, dates, traps) are in workshop pages 7–11 under 🔑 and match the committed data (seed 7).
 
+## Claude Artifacts (claude.ai)
+
+All private until shared from each page's Share menu. Published 31 Oct 2026 with `capabilities: {downloads: true}`.
+
+| Artifact | File | claude.ai URL | Export PDF |
+|---|---|---|---|
+| M7 Slides (10 slides) | `deck/project/` | https://claude.ai/artifact/17aWEiXMohcTuVjq2mKxzh | ✅ (Share › Export, PDF/PPTX) |
+| M7 Workshop (ใบงาน 13 หน้า) | `artifacts/workshop-sheet.html` (built by `artifacts/build_workshop_sheet.py` from `workshop.md`) | https://claude.ai/artifact/GYFfuKNKMURfsooszp4cKc | ✅ |
+| Show & Share Board (การ์ดทีม · โหวต · rubric · Timer) | `artifacts/show-share-board.html` | https://claude.ai/artifact/VncwbAfqEmSuDFBtGfx5uy | ✅ |
+
 ## Open questions for Prem
 1. **Real use cases from Hi-I:** the proposal says Hi-I sends 3–5 real use cases ≥ 1 week before training. UC1–UC5 are stand-ins. When they arrive, do we replace UC1–UC5 (same Canvas/board, new synthetic data per case) or keep UC1–UC5 and add theirs as BYO?
 2. **Class size / team count:** timing assumes 30–40 learners → 5 teams × 4 min. With ~200+ users over several classes, please confirm per-class headcount; 6+ teams needs 2-minute pitches (fallback on p.13).

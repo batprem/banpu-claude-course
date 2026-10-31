@@ -1,0 +1,504 @@
+<title>M7 Workshop</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: one calm column of 13 workshop "pages" (A4 cards) under a sticky progress strip; team → canvas → build → present. */
+:root{
+  --paper:#FAF8F3; --surface:#FFFFFF; --ink:#1F2933; --muted:#5B6670; --line:#E3DDCF; --code:#F3EFE6;
+  --human:#E4572E; --ai:#2E86AB; --data:#3BA55C; --warn:#F2A541; --red:#D64545;
+  --tint-green:#E9F6EC; --tint-yellow:#FDF3E1; --tint-red:#FDECEA; --tint-blue:#EAF3F8;
+  --f-body:'IBM Plex Sans Thai',system-ui,sans-serif; --f-mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#161B21; --surface:#1F262E; --ink:#E9ECEF; --muted:#A3ADB7; --line:#34404B; --code:#262F38;
+  --tint-green:#1D3324; --tint-yellow:#3A2F1A; --tint-red:#3B2222; --tint-blue:#1C2C38; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#161B21; --surface:#1F262E; --ink:#E9ECEF; --muted:#A3ADB7; --line:#34404B; --code:#262F38;
+  --tint-green:#1D3324; --tint-yellow:#3A2F1A; --tint-red:#3B2222; --tint-blue:#1C2C38; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:15.5px;line-height:1.65;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.wrap{max-width:820px;margin:0 auto}
+h1,h2,h3{text-wrap:balance;line-height:1.3}
+:focus-visible{outline:3px solid var(--ai);outline-offset:2px}
+
+/* sticky progress strip */
+.strip{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);padding-block:12px 10px;border-bottom:1px solid var(--line);margin-bottom:20px}
+.strip-row{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between}
+.strip-title{font-weight:700;font-size:15px}
+.strip-title span{color:var(--muted);font-weight:400}
+.prog{display:flex;align-items:center;gap:10px;flex:1 1 220px;min-width:0}
+.track{flex:1;height:8px;border-radius:99px;background:var(--line);overflow:hidden}
+.track i{display:block;height:100%;width:0;background:var(--data);transition:width .3s}
+.prog b{font-variant-numeric:tabular-nums;font-size:14px;white-space:nowrap}
+
+header.intro{display:grid;gap:4px;margin-bottom:20px}
+header.intro .eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+header.intro h1{font-size:28px;margin:0}
+header.intro p{margin:0;color:var(--muted)}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px clamp(16px,4vw,32px);margin-bottom:22px;display:grid;gap:14px;min-width:0}
+.card-head{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:baseline;justify-content:space-between}
+.card-head h2{margin:0;font-size:21px}
+.card-head .pg{color:var(--muted);font-weight:600;font-size:13px;letter-spacing:.04em}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:99px;padding:2px 12px;font-size:13px;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.chip::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--warn)}
+.card.done .chip::before{background:var(--data)}
+.goal{margin:0;padding:10px 14px;border-radius:10px;background:var(--code)}
+.goal b{color:var(--ai)}
+h3{font-size:16px;margin:4px 0 0}
+p,ol,ul{margin:0}
+ol,ul{padding-left:1.4em;display:grid;gap:4px}
+ol ul{margin-top:4px}
+code{font-family:var(--f-mono);font-size:.9em;background:var(--code);padding:1px 6px;border-radius:5px}
+
+.tbl{overflow-x:auto;min-width:0}
+table{border-collapse:collapse;width:100%;font-size:14.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--code);font-weight:600}
+td.c{text-align:center}
+td input[type=checkbox]{width:20px;height:20px;accent-color:var(--data);cursor:pointer}
+
+/* routes */
+.routes{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
+.route{border:1px solid var(--line);border-radius:10px;padding:10px 14px;min-width:0}
+.route.a{background:var(--tint-blue)} .route.b{background:var(--tint-green)}
+.route b{display:block}
+
+/* diagram */
+.diagram{overflow-x:auto;min-width:0;border:1px solid var(--line);border-radius:10px;padding:12px;background:var(--surface)}
+.diagram svg{display:block;width:100%;min-width:680px;height:auto}
+.diagram .edge{stroke:var(--ink);fill:none;stroke-width:1.6}
+.diagram .head{fill:var(--ink)}
+.legend{font-size:13px;color:var(--muted)}
+
+/* prompt */
+.prompt{border:1px solid var(--line);border-radius:10px;overflow:hidden;min-width:0}
+.prompt-bar{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px 8px 6px 14px;background:var(--code);border-bottom:1px solid var(--line);font-size:13px;font-weight:600}
+.copy-btn{font:600 13px var(--f-body);border:1px solid var(--ai);color:var(--ai);background:var(--surface);border-radius:7px;padding:4px 12px;cursor:pointer}
+.copy-btn:hover{background:var(--ai);color:#fff}
+.prompt pre{margin:0;padding:14px;overflow-x:auto;font-family:var(--f-mono);font-size:13.5px;line-height:1.6;white-space:pre-wrap;word-break:break-word;background:var(--surface);color:var(--ink)}
+
+/* checkpoint */
+.check{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border:1.5px dashed var(--human);border-radius:10px;cursor:pointer}
+.check input{width:20px;height:20px;margin-top:3px;accent-color:var(--data);flex:none;cursor:pointer}
+.card.done .check{border-style:solid;border-color:var(--data);background:var(--tint-green)}
+.note{font-size:14.5px;padding:8px 12px;border-radius:8px;background:var(--tint-yellow)}
+.ok{color:var(--data);font-weight:600} .no{color:var(--red);font-weight:600}
+.next{font-weight:600;color:var(--ai)}
+footer{font-size:12px;color:var(--muted);text-align:center;margin-top:8px}
+
+@media (prefers-reduced-motion: reduce){.track i{transition:none}}
+
+/* Export PDF (materials/_shared/export-pdf-artifact.html) */
+.export-pdf-btn{font:600 14px 'IBM Plex Sans Thai',sans-serif;background:#1F2933;color:#fff;border:0;border-radius:8px;padding:8px 14px;cursor:pointer}
+.export-pdf-btn:hover{background:#2E86AB}
+.export-pdf-btn[disabled]{opacity:.6;cursor:progress}
+.pdf-export .print-expand,.pdf-export [hidden].print-expand,.pdf-export details{display:block!important;height:auto!important;overflow:visible!important}
+.pdf-export body{background:#fff}
+.pdf-export .card{border-color:#ccc}
+.pdf-export .diagram svg{min-width:0}
+@media print{
+  @page{size:A4;margin:12mm}
+  body{background:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .no-print,.export-pdf-btn,button,nav{display:none!important}
+  .print-expand,[hidden].print-expand,details{display:block!important;height:auto!important;overflow:visible!important}
+  .pdf-page-break{break-before:page}
+  section,.card{break-inside:avoid}
+  .diagram svg{min-width:0}
+}
+
+/* M7 additions */
+.mmd .mmd-src{margin:0;font-family:var(--f-mono);font-size:12.5px;white-space:pre-wrap;color:var(--muted)}
+.mmd svg{display:block;max-width:100%;height:auto;margin:0 auto}
+.mmd.done .mmd-src{display:none}
+.note.key{background:var(--tint-blue)}
+.check span{min-width:0}
+.card-head .chip{white-space:normal}
+</style>
+<!-- generated by build_workshop_sheet.py from ../workshop.md; edit the .md and re-run -->
+
+<div class="strip no-print">
+  <div class="wrap strip-row">
+    <div class="strip-title">M7 Workshop <span>· Capstone: Use Case จริงของเรา</span></div>
+    <div class="prog" aria-label="ความคืบหน้า">
+      <div class="track"><i id="progBar"></i></div>
+      <b id="progText">0 / 13 หน้า</b>
+    </div>
+    <button class="export-pdf-btn no-print" id="exportPdfBtn" type="button" title="ดาวน์โหลดเป็น PDF">⬇ Export PDF</button>
+  </div>
+</div>
+
+<main class="wrap" data-pdf-root>
+<header class="intro">
+  <span class="eyebrow">M7 · Capstone</span>
+  <h1>M7 Workshop · Capstone: Use Case จริงของเรา (65 นาที · 15:10–16:15)</h1>
+  <p>ข้อมูลทุกไฟล์เป็นข้อมูลสมมติ · Data pack: <code>data/out/M7_uc1…uc5.zip</code> (แต่ละ ZIP มี <code>BRIEF.md</code>) · Prompt: <code>prompts.md</code> (M7-P01…P10) · บอร์ด: <code>artifacts/show-share-board.html</code> · ทีมละ 6–8 คน (คลาส 30–40 คน = 5 ทีม)</p>
+</header>
+
+<section class="card" id="page1" data-page="1">
+<div class="card-head"><div><div class="pg">หน้า 1 / 13</div><h2>ภาพรวม 65 นาที และบทบาทในทีม</h2></div><span class="chip">อ่าน 1 นาที · 15:10</span></div>
+<div class="diagram mmd" role="img" aria-label="แผนภาพขั้นตอน"><pre class="mmd-src">flowchart LR
+    T[&quot;① ตั้งทีม + เลือก use case&lt;br/&gt;5 นาที&quot;]:::human --&gt; A[&quot;② วิเคราะห์ Canvas&lt;br/&gt;Data → Connector → Output → Trade-off&lt;br/&gt;10 นาที&quot;]:::human
+    D[(&quot;Data pack สมมติ UC1–UC5&lt;br/&gt;หรือ use case ของทีม (🟢 เท่านั้น)&quot;)]:::data --&gt; A
+    A --&gt; B[&quot;③ สร้างต้นแบบด้วย Cowork&lt;br/&gt;21 นาที&quot;]:::ai
+    B --&gt; C{&quot;HITL: ตัวเลข/ที่มา&lt;br/&gt;ถูกไหม?&quot;}:::human
+    C -- แก้ --&gt; B
+    C -- ผ่าน --&gt; P[&quot;④ เตรียมนำเสนอ&lt;br/&gt;+ โพสต์ Show &amp; Share board · 4 นาที&quot;]:::human
+    P --&gt; S[&quot;⑤ Show &amp; Share 3 นาที/ทีม&lt;br/&gt;+ feedback 1 นาที · 20 นาที&quot;]:::human
+    S --&gt; V[&quot;⑥ โหวต + สรุป → M8 · 5 นาที&quot;]:::human
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;</pre></div>
+<p class="legend">🟧 คน (HITL) · 🟦 AI · 🟩 Data/Connector</p>
+<div class="tbl"><table><thead><tr><th>เวลา</th><th>ช่วง</th><th>ผลลัพธ์ที่ต้องมี</th><th>หน้า</th></tr></thead><tbody><tr><td>15:10–15:15</td><td>① ตั้งทีม + เลือกโจทย์</td><td>ชื่อทีม · โจทย์ · บทบาทครบ</td><td>2</td></tr><tr><td>15:15–15:25</td><td>② Canvas + Trade-off</td><td>Canvas 4 ช่อง + diagram</td><td>3–4</td></tr><tr><td>15:25–15:46</td><td>③ สร้างต้นแบบด้วย Cowork</td><td>ต้นแบบ v1 ผ่าน HITL</td><td>5–11</td></tr><tr><td>15:46–15:50</td><td>④ เตรียมนำเสนอ</td><td>การ์ดบนบอร์ด + บท 3 นาที</td><td>12</td></tr><tr><td>15:50–16:10</td><td>⑤ Show &amp; Share</td><td>5 ทีม × (3 นาที + feedback 1)</td><td>13</td></tr><tr><td>16:10–16:15</td><td>⑥ โหวต + สรุป</td><td>PDF บอร์ด → M8</td><td>13</td></tr></tbody></table></div>
+<h3><b>บทบาท (เลือกใน 1 นาที คนละ 1 บท):</b></h3>
+<ul><li>🧭 <b>เจ้าของโจทย์</b> อธิบายว่าใครเจ็บ และ "เสร็จ" หน้าตาเป็นอย่างไร</li><li>🟦 <b>ผู้ขับ Cowork</b> คนเดียวที่พิมพ์ในเครื่อง (ประหยัด usage ทั้งทีม)</li><li>🟧 <b>ผู้ตรวจ HITL</b> เปิดไฟล์ต้นฉบับเทียบตัวเลข มีสิทธิ์ "ไม่อนุมัติ"</li><li>⏱️ <b>ผู้คุมเวลา</b> ดูนาฬิกา เตือนทุก 5 นาที</li><li>🎤 <b>ผู้นำเสนอ</b> กรอกการ์ดบนบอร์ด และพูด 3 นาที</li><li>🔍 <b>นักวิเคราะห์</b> (คนที่ 6–8) ตรวจ Trade-off และหาจุดที่ข้อมูลจะเป็น 🟡/🔴 ในงานจริง</li></ul>
+<label class="check" for="ck1_1"><input type="checkbox" id="ck1_1"><span><b>Checkpoint:</b> ทุกคนในทีมรู้บทของตัวเอง และรู้ว่าจะเปิดหน้าไหนต่อ</span></label>
+<p class="note">🧑‍🏫 <b>วิทยากร:</b> เปิดบอร์ดแท็บ Timer บนจอใหญ่ ตั้ง 5:00 แล้วกดเริ่ม</p>
+</section>
+
+<section class="card pdf-page-break" id="page2" data-page="2">
+<div class="card-head"><div><div class="pg">หน้า 2 / 13</div><h2>① ตั้งทีม + เลือกโจทย์</h2></div><span class="chip">5 นาที · 15:10–15:15</span></div>
+<p class="goal"><b>เป้าหมาย:</b> ทีมได้โจทย์ 1 เรื่องที่ทำได้จริงใน 21 นาที และได้ data pack ในเครื่องผู้ขับ Cowork</p>
+<h3><b>เมนูโจทย์</b> (รายละเอียดใน <code>BRIEF.md</code> ของแต่ละ ZIP และหน้า 7–11)</h3>
+<div class="tbl"><table><thead><tr><th>โจทย์</th><th>เหมาะกับ</th><th>ความยาก</th><th>ใช้ทักษะจาก</th></tr></thead><tbody><tr><td>UC1 สรุปสัญญาจัดซื้อ</td><td>จัดซื้อ · กฎหมาย · Admin</td><td>⭐⭐</td><td>M2 · M4</td></tr><tr><td>UC2 รายงาน Incident รายสัปดาห์</td><td>HSE · Ops · Site</td><td>⭐⭐</td><td>M3 · M4 · M6</td></tr><tr><td>UC3 รวมข้อมูล ESG 4 Site</td><td>ESG · Data · การเงิน</td><td>⭐⭐⭐</td><td>M2 Workshop B · M4</td></tr><tr><td>UC4 ประชุม → Action tracker</td><td>PMO · ผู้จัดการทุกสาย</td><td>⭐</td><td>M3 · M6</td></tr><tr><td>UC5 Energy market brief</td><td>กลยุทธ์ · Trading · ผู้บริหาร</td><td>⭐⭐</td><td>M4 · M6</td></tr><tr><td>BYO โจทย์ของทีม</td><td>ทีมที่มีงานจริงชัด</td><td>⭐⭐⭐</td><td>ทั้งหมด</td></tr></tbody></table></div>
+<h3><b>ขั้นตอน</b></h3>
+<ol><li>นับ 1–5 วนทั้งห้อง หรือนั่งตามทีมที่ Hi-I จัด · ตั้งชื่อทีมสั้น ๆ (1 นาที)</li><li>โหวตเลือกโจทย์ในทีม: ใครมีงานคล้ายโจทย์ไหนมากที่สุด เลือกอันนั้น (2 นาที)</li><li>ผู้ขับ Cowork ดาวน์โหลด ZIP จากลิงก์ SharePoint ของคลาส แตกไฟล์ใส่โฟลเดอร์ใหม่ <code>capstone_&lt;ทีม&gt;</code> (นี่คือ<b>สำเนา</b>) (2 นาที)</li></ol>
+<p><b>BYO (โจทย์ของทีมเอง):</b> ได้ ถ้าตอบ "ใช่" ทั้ง 3 ข้อ: ① อธิบายได้โดยไม่ต้องเปิดไฟล์จริง ② สร้างข้อมูลจำลองได้ใน 5 นาทีด้วย <code>M7-P02</code> ③ ข้อมูลจริงในอนาคตอยู่บน SharePoint/Outlook ไม่ใช่ระบบอื่น · ถ้าไม่ครบ เลือก UC ที่ใกล้ที่สุดแล้วเล่าโจทย์จริงตอนนำเสนอแทน</p>
+<div class="prompt"><div class="prompt-bar"><span>Prompt</span><button class="copy-btn no-print" type="button" data-copy="pr1">Copy</button></div><pre id="pr1">(BYO) ทีมเรามีงานจริงเรื่อง {…} ไฟล์จริงมีคอลัมน์ {…} ช่วยสร้างข้อมูลจำลองเพื่อฝึก … ใส่กับดัก 2 จุด</pre></div>
+<p>(ฉบับเต็ม <code>M7-P02</code>)</p>
+<label class="check" for="ck2_1"><input type="checkbox" id="ck2_1"><span><b>Checkpoint:</b> โฟลเดอร์ <code>capstone_&lt;ทีม&gt;</code> เปิดได้ เห็น <code>BRIEF.md</code> · ไม่มีไฟล์งานจริงของบริษัทในโฟลเดอร์</span></label>
+<p class="note">🧑‍🏫 <b>วิทยากร:</b> ถ้า 3 ทีมขึ้นไปเลือกโจทย์เดียวกัน ไม่ต้องห้าม แต่ชวนทีมที่ 3 ลอง BYO หรือ UC4 (ง่ายสุด) · ติดตั้ง ZIP ไม่ได้ → USB สำรอง</p>
+</section>
+
+<section class="card pdf-page-break" id="page3" data-page="3">
+<div class="card-head"><div><div class="pg">หน้า 3 / 13</div><h2>② Use-case Canvas: Data → Connector → Output</h2></div><span class="chip">5 นาที · 15:15–15:20</span></div>
+<p class="goal"><b>เป้าหมาย:</b> ทีมตอบครบ 4 ช่องก่อนแตะ Cowork · ใช้ Interview pattern (M2) ให้ Claude ถามเรา ไม่ใช่เราเขียนเองทั้งหมด</p>
+<div class="diagram mmd" role="img" aria-label="แผนภาพขั้นตอน"><pre class="mmd-src">flowchart LR
+    D[(&quot;Data&lt;br/&gt;ข้อมูลอยู่ไหน · สีอะไร 🟢🟡🔴&quot;)]:::data --&gt; C[(&quot;Connector&lt;br/&gt;SharePoint · Outlook · โฟลเดอร์&quot;)]:::data
+    C --&gt; P[&quot;Process&lt;br/&gt;Claude / Cowork ทำอะไร&quot;]:::ai
+    P --&gt; H{&quot;HITL&lt;br/&gt;ใครตรวจ ตรงไหน&quot;}:::human
+    H --&gt; O[&quot;Output&lt;br/&gt;Word · Excel · PPTX · Artifact · ร่างอีเมล&quot;]:::ai
+    O --&gt; T{&quot;Trade-off&lt;br/&gt;ความปลอดภัย · ข้อจำกัด · usage&quot;}:::human
+    T -. ปรับขอบเขต .-&gt; D
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;</pre></div>
+<p class="legend">🟧 คน (HITL) · 🟦 AI · 🟩 Data/Connector</p>
+<h3><b>ขั้นตอน</b></h3>
+<ol><li>ผู้ขับเปิด <b>Chat ใหม่</b> (ยังไม่ใช่ Cowork) วาง prompt แล้วให้เจ้าของโจทย์ตอบทีละคำถาม (4 นาที)</li></ol>
+<div class="prompt"><div class="prompt-bar"><span>Prompt</span><button class="copy-btn no-print" type="button" data-copy="pr2">Copy</button></div><pre id="pr2">เราเป็นทีมในเวิร์กช็อป Capstone เลือกโจทย์ {UC…} ข้อมูลเป็นข้อมูลสมมติทั้งหมด
+ช่วยสัมภาษณ์เราทีละคำถาม (ไม่เกิน 6 ข้อ) เพื่อเติม Canvas: Data · Connector · Output · Trade-off
+แล้วสรุปเป็นตาราง + Mermaid flowchart ใช้ classDef human/ai/data + เกณฑ์เสร็จ 3 ข้อ</pre></div>
+<p>(ฉบับเต็มพร้อมสี <code>M7-P01</code> · ถ้าเวลาน้อย ตอบสั้น ๆ ได้ หรือพิมพ์ "ใช้ตาม BRIEF.md")</p>
+<ol start="2"><li>ผู้นำเสนอเปิดบอร์ด แท็บ <b>การ์ดทีม</b> กรอกช่อง Data / Connector / Output ทันทีที่ได้คำตอบ (1 นาที)</li></ol>
+<h3><b>ตัวช่วยตอบ</b></h3>
+<ul><li>Data: "ไฟล์อยู่ที่ไหนในวันจริง? ใครอัปเดต? ทุกกี่วัน?"</li><li>Connector: วันนี้ = โฟลเดอร์ใน Cowork · วันจริง = SharePoint / Outlook (M3) · ห้ามคิดถึง Google Drive</li><li>Output: ดู Output Picker ของ M4: คนอ่านเป็นใคร อ่านบนอะไร ต้องแก้ต่อไหม</li></ul>
+<label class="check" for="ck3_1"><input type="checkbox" id="ck3_1"><span><b>Checkpoint:</b> Canvas 3 ช่องแรกมีคำตอบที่<b>วัดได้</b> (เช่น "Excel 1 ชีต 12 แถว" ไม่ใช่ "รายงานสวย ๆ") · มีเกณฑ์เสร็จ 3 ข้อ</span></label>
+</section>
+
+<section class="card pdf-page-break" id="page4" data-page="4">
+<div class="card-head"><div><div class="pg">หน้า 4 / 13</div><h2>② Trade-off: ความปลอดภัย · ข้อจำกัด · usage</h2></div><span class="chip">5 นาที · 15:20–15:25</span></div>
+<p class="goal"><b>เป้าหมาย:</b> ทีมรู้ก่อนลงมือว่า "ถ้าเป็นข้อมูลจริง อะไรต้องตัด อะไรติดขัด อะไรเปลือง" และวาง HITL ไว้ตรงไหน · rubric ข้อ ③ ให้คะแนนหน้านี้</p>
+<h3><b>ตอบในทีม (นักวิเคราะห์เป็นคนจด · 3 นาที)</b></h3>
+<div class="tbl"><table><thead><tr><th>มุม</th><th>คำถาม</th><th>คำตอบของทีม (เขียนสั้น)</th></tr></thead><tbody><tr><td>🛡️ ความปลอดภัย</td><td>ในงานจริง ข้อมูลนี้สีอะไร 🟢🟡🔴? ช่องไหนต้อง anonymize? ใครเห็น output?</td><td></td></tr><tr><td>⚠️ ข้อจำกัด</td><td>ไฟล์ใหญ่/หลายไฟล์แค่ไหน? ต้องเปิดเครื่องไว้ไหม? Connector เห็นไฟล์นี้ไหม?</td><td></td></tr><tr><td>🔋 Usage</td><td>ทำบ่อยแค่ไหน? model เบาพอไหม? ควรเป็น Skill (M5) หรือ Scheduled task (M6)?</td><td></td></tr><tr><td>✋ HITL</td><td>จุดตรวจ/อนุมัติอยู่ตรงไหน ใครเป็นคนกด? อะไรห้าม AI ทำเอง?</td><td></td></tr></tbody></table></div>
+<p><b>ตัวอย่างคำตอบที่ดี (UC2):</b> "ชื่อผู้บาดเจ็บ = 🟡 ตัดก่อน · log มาจาก SharePoint List ต้องมีสิทธิ์อ่าน · ทำทุกสัปดาห์ → Skill + Scheduled task แต่เครื่องต้องเปิด · ผู้จัดการ HSE อนุมัติร่างอีเมลก่อนส่ง"</p>
+<p><b>ตัวอย่างคำตอบที่ยังไม่พอ:</b> "ปลอดภัยเพราะใช้ Claude Team" (Team ไม่ได้ทำให้ข้อมูล 🔴 ใส่ได้ · ดู M1)</p>
+<p><b>วาด diagram ของทีม (2 นาที):</b> ใช้ Mermaid ที่ได้จาก <code>M7-P01</code> หรือเลือกกล่องในบอร์ด แท็บ <b>การ์ดทีม → Diagram</b> (กล่องสี 🟧🟦🟩 อัตโนมัติ) · ต้องมีกล่องสีส้มอย่างน้อย 1 กล่อง</p>
+<label class="check" for="ck4_1"><input type="checkbox" id="ck4_1"><span><b>Checkpoint:</b> ทุกแถวในตารางมีคำตอบ · diagram มีจุด HITL · การ์ดบนบอร์ดมีช่อง Trade-off แล้ว</span></label>
+<p class="note">🧑‍🏫 <b>วิทยากร:</b> เดินดูช่อง 🛡️ ของทุกทีมก่อน 15:25 ทีมไหนตอบ "ไม่มีความเสี่ยง" ให้ถามว่า "ถ้าไฟล์นี้หลุดไปถึงคู่ค้า ใครเดือดร้อน?"</p>
+</section>
+
+<section class="card pdf-page-break" id="page5" data-page="5">
+<div class="card-head"><div><div class="pg">หน้า 5 / 13</div><h2>③ สร้างต้นแบบ (ก): ตั้งโฟลเดอร์ + Plan → Approve</h2></div><span class="chip">5 นาที · 15:25–15:30</span></div>
+<p class="goal"><b>เป้าหมาย:</b> Cowork เห็นเฉพาะโฟลเดอร์สำเนา ทวนเป้าหมายถูก และเสนอแผนที่ทีมอนุมัติแล้ว</p>
+<div class="diagram mmd" role="img" aria-label="แผนภาพขั้นตอน"><pre class="mmd-src">flowchart LR
+    F[(&quot;โฟลเดอร์ทีม (สำเนา)&lt;br/&gt;copy-before-write&quot;)]:::data --&gt; I[&quot;Interview / Use your own words&lt;br/&gt;M2-P04 · M2-P03&quot;]:::ai
+    I --&gt; PL[&quot;Claude เสนอแผน&lt;br/&gt;Plan&quot;]:::ai
+    PL --&gt; AP{&quot;ทีมอนุมัติแผน&lt;br/&gt;Approve&quot;}:::human
+    AP --&gt; EX[&quot;Cowork ลงมือ&lt;br/&gt;Execute&quot;]:::ai
+    EX --&gt; CK{&quot;ตรวจ 3 จุด&lt;br/&gt;ตัวเลข · ที่มา · ห้ามส่งเอง&quot;}:::human
+    CK -- ยังไม่ผ่าน --&gt; EX
+    CK -- ผ่าน --&gt; OUT[&quot;ต้นแบบ v1&lt;br/&gt;+ screenshot ลงบอร์ด&quot;]:::ai
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;</pre></div>
+<p class="legend">🟧 คน (HITL) · 🟦 AI · 🟩 Data/Connector</p>
+<h3><b>ขั้นตอน</b></h3>
+<ol><li>เปิด <b>Cowork</b> · ให้สิทธิ์เฉพาะโฟลเดอร์ <code>capstone_&lt;ทีม&gt;</code> (สำเนา = copy-before-write) · สร้างโฟลเดอร์ย่อย <code>output/</code> (1 นาที)</li><li>วาง prompt (2 นาทีรวมรอผล)</li></ol>
+<div class="prompt"><div class="prompt-bar"><span>Prompt</span><button class="copy-btn no-print" type="button" data-copy="pr3">Copy</button></div><pre id="pr3">โฟลเดอร์ที่ให้สิทธิ์คือสำเนาของ data pack {M7_uc…} (ข้อมูลสมมติ) อ่าน BRIEF.md ก่อน
+1) ทวนเป้าหมายด้วยคำพูดของคุณเอง 3 บรรทัด  2) สำรวจไฟล์แบบอ่านอย่างเดียว + สิ่งที่ดูผิดปกติ
+3) เสนอแผนไม่เกิน 6 ขั้น ห้ามแก้ต้นฉบับ เขียนลง output/ เท่านั้น ห้ามส่ง/บันทึกลงระบบใด
+หยุดรอให้เราพิมพ์ &quot;อนุมัติ&quot; ก่อนลงมือ</pre></div>
+<p>(ฉบับเต็ม <code>M7-P03</code> · อิงแพตเทิร์น <code>M2-P03</code> Use your own words + <code>M2-P02</code> Plan → Approve → Execute)</p>
+<ol start="3"><li>ทั้งทีมอ่านแผน 1 นาที · ผู้ตรวจ HITL ถาม 2 ข้อ: "ตรงกับ Canvas ไหม?" "มีขั้นไหนแก้ไฟล์ต้นฉบับหรือส่งออกไหม?" · ถ้าไม่ผ่าน พิมพ์แก้แผน ถ้าผ่าน ไปหน้า 6 + หน้าโจทย์ของทีม (หน้า 7–11)</li></ol>
+<label class="check" for="ck5_1"><input type="checkbox" id="ck5_1"><span><b>Checkpoint:</b> Claude ทวนเป้าหมายถูก · แผนเขียนลง <code>output/</code> เท่านั้น · Claude <b>ยังไม่ได้ลงมือ</b> จนกว่าเราพิมพ์ "อนุมัติ"</span></label>
+<p class="note">💡 ถ้า Cowork ใช้ไม่ได้ในเครื่อง: ใช้ Chat แนบไฟล์จาก ZIP ตรง ๆ (ไฟล์ไม่เกิน 10 ไฟล์) ได้ผลใกล้เคียง</p>
+</section>
+
+<section class="card pdf-page-break" id="page6" data-page="6">
+<div class="card-head"><div><div class="pg">หน้า 6 / 13</div><h2>③ สร้างต้นแบบ (ข): ลงมือ + ตรวจแบบ HITL</h2></div><span class="chip">16 นาที · 15:30–15:46</span></div>
+<p class="goal"><b>เป้าหมาย:</b> ได้ต้นแบบ v1 ที่ทำงานครบ 1 รอบกับข้อมูลสมมติ และผ่านการตรวจของผู้ตรวจ HITL</p>
+<h3><b>จังหวะแนะนำ</b> (ผู้คุมเวลาประกาศ)</h3>
+<ul><li>15:30 พิมพ์ "อนุมัติ" + วาง prompt ของโจทย์ (<code>M7-P04</code>…<code>P08</code> ในหน้า 7–11)</li><li>15:38 ต้องมีผลลัพธ์รอบแรกใน <code>output/</code> แล้ว ถ้ายังไม่มี → ลดขอบเขต (เช่น 1 Site / 1 สัญญา)</li><li>15:40 ผู้ตรวจ HITL วาง <code>M7-P09</code> และ<b>เปิดไฟล์ต้นฉบับเทียบเอง 2 ค่า</b></li><li>15:44 แก้รอบสุดท้าย · จับภาพหน้าจอ 1–2 ภาพไว้โชว์ · 15:46 หยุดสร้าง</li></ul>
+<div class="prompt"><div class="prompt-bar"><span>Prompt</span><button class="copy-btn no-print" type="button" data-copy="pr4">Copy</button></div><pre id="pr4">ก่อนเราจะนำเสนองานนี้ ช่วยตรวจตัวเองเป็นตาราง: 1) ตัวเลขสำคัญ 3 ค่ามาจากไฟล์/แถวไหน คำนวณอย่างไร
+2) ข้อสรุปไหนอนุมาน 3) ข้อมูลผิดปกติที่เจอ 4) มีไฟล์ต้นฉบับถูกแก้หรือมีอะไรถูกส่งออกไหม
+5) ถ้าเป็นข้อมูลจริง ส่วนไหน 🟡/🔴  ห้ามแก้ผลลัพธ์ในขั้นนี้</pre></div>
+<p>(ฉบับเต็ม <code>M7-P09</code>)</p>
+<h3><b>จุดที่ทีมมักติด (วิทยากร/ผู้ช่วยใช้ตอนเดินวน)</b></h3>
+<div class="tbl"><table><thead><tr><th>อาการ</th><th>ทางแก้เร็ว</th></tr></thead><tbody><tr><td>Claude ลงมือก่อนอนุมัติ</td><td>หยุด (Stop) · ตรวจว่าไม่ได้แตะต้นฉบับ · พิมพ์ย้ำกติกาข้อ "รอคำว่าอนุมัติ"</td></tr><tr><td>ผลลัพธ์ยาวเกิน/หลุดโจทย์</td><td>"ทำแค่ {1 Site/1 สัญญา} ให้ครบก่อน" (Prototype first ของ M2)</td></tr><tr><td>อ่าน .docx / .vtt ไม่ได้</td><td>ให้ Cowork แปลงเป็น .txt ใน <code>output/</code> ก่อน หรือแนบใน Chat</td></tr><tr><td>ตัวเลขไม่ตรงกับที่นับเอง</td><td>ขอ "แสดงสูตร/โค้ดที่ใช้นับ" แล้วตรวจเงื่อนไขกรอง (เช่น ตัวพิมพ์ near miss)</td></tr><tr><td>ใกล้ชน usage limit</td><td>หยุดรันซ้ำ · คนเดียวขับ · แชตใหม่ + สรุปสั้น ๆ (M1/M8)</td></tr><tr><td>อยากส่งอีเมลจริง</td><td>ไม่ได้ในวันนี้ · ร่างเป็นไฟล์ หรือ draft ใน Outlook เท่านั้น</td></tr></tbody></table></div>
+<label class="check" for="ck6_1"><input type="checkbox" id="ck6_1"><span><b>Checkpoint (ผู้ตรวจ HITL เซ็นในใจ):</b> ตัวเลข 2 ค่าตรงกับต้นฉบับ · ทุกข้อสรุปบอกที่มาได้ · ไม่มีอะไรถูกส่ง/บันทึกทับ · ต้นแบบ v1 อยู่ใน <code>output/</code></span></label>
+</section>
+
+<section class="card pdf-page-break" id="page7" data-page="7">
+<div class="card-head"><div><div class="pg">หน้า 7 / 13</div><h2>โจทย์ UC1 สรุปสัญญาจัดซื้อ</h2></div><span class="chip">ใช้ช่วง 15:30–15:46</span></div>
+<div class="diagram mmd" role="img" aria-label="แผนภาพขั้นตอน"><pre class="mmd-src">flowchart LR
+    D[(&quot;สัญญา .docx 3 ฉบับ&lt;br/&gt;+ contract_register.csv&lt;br/&gt;SharePoint (สำเนา)&quot;)]:::data --&gt; R[&quot;Cowork อ่านสัญญา&lt;br/&gt;ดึง 8 หัวข้อ + เลขข้อ&quot;]:::ai
+    R --&gt; X[&quot;ตาราง Contract Summary&lt;br/&gt;+ เทียบ register&quot;]:::ai
+    X --&gt; H{&quot;จัดซื้อตรวจ&lt;br/&gt;มูลค่า · วันต่ออายุ · ค่าปรับ&quot;}:::human
+    H --&gt; O[&quot;Excel สรุป + ปฏิทินแจ้งยกเลิก&lt;br/&gt;(ไม่ส่งให้ supplier)&quot;]:::ai
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;</pre></div>
+<p class="legend">🟧 คน (HITL) · 🟦 AI · 🟩 Data/Connector</p>
+<p><b>Data (<code>M7_uc1_contract_summary.zip</code>):</b> <code>contracts/</code> สัญญา .docx 3 ฉบับ (CT-2569-014 อะไหล่สายพาน · -022 อาหารแคมป์ · -031 ล้างแผงโซลาร์) · <code>contract_register.csv</code> 12 สัญญา · <code>BRIEF.md</code></p>
+<p><b>Connector วันจริง:</b> SharePoint document library ของจัดซื้อ (อ่านอย่างเดียว) · วันนี้: โฟลเดอร์สำเนา</p>
+<h3><b>Prompt หลัก</b> (หลัง "อนุมัติ" แผนจาก P03)</h3>
+<div class="prompt"><div class="prompt-bar"><span>Prompt</span><button class="copy-btn no-print" type="button" data-copy="pr5">Copy</button></div><pre id="pr5">อ่านสัญญา .docx 3 ฉบับ ดึง: เลขสัญญา · คู่สัญญา · Site · มูลค่า · การชำระเงิน · วันเริ่ม/สิ้นสุด · ต่ออายุ · ค่าปรับ · ปรับราคา
+ทุกช่องใส่ &quot;ข้อ x&quot; ถ้าไม่พบเขียน &quot;ไม่พบในสัญญา&quot; · คำนวณวันสุดท้ายที่ต้องแจ้งยกเลิก (แสดงสูตร)
+เทียบ contract_register.csv · บันทึก output/contract_summary.xlsx (Summary + Mismatch) · หมายเหตุ: ไม่ใช่ความเห็นทางกฎหมาย</pre></div>
+<p>(ฉบับเต็ม <code>M7-P04</code>)</p>
+<p><b>Output ที่คาดหวัง:</b> Excel 3 แถว × 10+ คอลัมน์ พร้อมเลขข้อ · ชีต Mismatch (อาจว่าง = ต้องเขียนว่า "ตรงกันทุกช่อง") · สรุป 5 บรรทัด</p>
+<label class="check" for="ck7_1"><input type="checkbox" id="ck7_1"><span><b>Checkpoint (ผู้ตรวจ HITL):</b> เปิด .docx เทียบเอง 2 ช่อง: มูลค่า CT-2569-014 และเงื่อนไขต่ออายุ CT-2569-031</span></label>
+<p class="note key">🔑 <b>คีย์วิทยากร:</b> CT-2569-014 สิ้นสุด 2570-12-31 ต่ออัตโนมัติ แจ้ง 90 วัน → แจ้งภายใน <b>2 ต.ค. 2570</b> · CT-2569-031 สิ้นสุด 2570-01-31 แจ้ง 30 วัน → <b>1 ม.ค. 2570</b> (เชื่อมกับ UC4: shortlist ผู้รับจ้างใหม่) · CT-2569-022 <b>ไม่ต่ออัตโนมัติ</b> → ไม่มีวันแจ้งยกเลิก ต้องทำบันทึกต่ออายุ · ทีมที่ "เดาวัน" ให้ CT-2569-022 = ไม่ผ่าน HITL</p>
+<p class="note">🚀 <b>เสร็จเร็ว:</b> ทำ Skill <code>contract-summary</code> จากขั้นตอนนี้ (M5-P06) หรือ Artifact ปฏิทินแจ้งยกเลิก 12 สัญญา</p>
+<p class="note">🛡️ <b>Trade-off ที่ควรพูด:</b> สัญญาจริงมีราคาและเงื่อนไขเจรจา = 🟡/🔴 → ใช้ฉบับปิดชื่อ/ราคา หรือเริ่มจาก register · ฝ่ายกฎหมายยังเป็นผู้ตีความ</p>
+</section>
+
+<section class="card pdf-page-break" id="page8" data-page="8">
+<div class="card-head"><div><div class="pg">หน้า 8 / 13</div><h2>โจทย์ UC2 รายงาน Incident รายสัปดาห์</h2></div><span class="chip">ใช้ช่วง 15:30–15:46</span></div>
+<div class="diagram mmd" role="img" aria-label="แผนภาพขั้นตอน"><pre class="mmd-src">flowchart LR
+    L[(&quot;incident_log.csv&lt;br/&gt;SharePoint List export&quot;)]:::data --&gt; CL[&quot;Cowork ทำความสะอาด&lt;br/&gt;+ เทียบสัปดาห์ก่อน&quot;]:::ai
+    E[(&quot;อีเมล 3 ฉบับ&lt;br/&gt;Outlook&quot;)]:::data --&gt; CL
+    CL --&gt; Q{&quot;HITL: ตรวจข้อมูลผิดปกติ&lt;br/&gt;วันที่ผิด · ตัวพิมพ์&quot;}:::human
+    Q --&gt; RP[&quot;ร่างรายงาน HSE รายสัปดาห์&lt;br/&gt;+ ร่างอีเมล&quot;]:::ai
+    RP --&gt; AP{&quot;ผู้จัดการ HSE อนุมัติ&lt;br/&gt;ก่อนส่ง (ไม่ส่งเอง)&quot;}:::human
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;</pre></div>
+<p class="legend">🟧 คน (HITL) · 🟦 AI · 🟩 Data/Connector</p>
+<p><b>Data (<code>M7_uc2_incident_weekly.zip</code>):</b> <code>incident_log.csv</code> 155 เหตุการณ์ 8 สัปดาห์ (3 ส.ค.–27 ก.ย. 2026) 4 Site · <code>emails/</code> 3 ฉบับ (.eml) · <code>BRIEF.md</code></p>
+<p><b>Connector วันจริง:</b> SharePoint List (Issue/Incident Log) + Outlook · วันนี้: โฟลเดอร์สำเนา (เส้นทาง B ของ M3, <code>M3-P08</code>)</p>
+<h3><b>Prompt หลัก</b></h3>
+<div class="prompt"><div class="prompt-bar"><span>Prompt</span><button class="copy-btn no-print" type="button" data-copy="pr6">Copy</button></div><pre id="pr6">1) ตรวจคุณภาพข้อมูลก่อน (วันที่ผิด ตัวพิมพ์ไม่สม่ำเสมอ ค่าว่าง) แสดงเป็นตาราง แล้วหยุดถามเรา
+2) สรุปสัปดาห์ล่าสุดเทียบสัปดาห์ก่อน แยก Site/ประเภท ไฮไลต์ severity ≥ 3 และงานเปิดเกิน due_date
+3) ใส่ประเด็นจาก emails/ โดยไม่ใส่ชื่อบุคคล  4) output/hse_weekly.docx ≤ 2 หน้า + output/email_draft.txt (ห้ามส่ง)</pre></div>
+<p>(ฉบับเต็ม <code>M7-P05</code>)</p>
+<p><b>Output ที่คาดหวัง:</b> รายงาน 1–2 หน้า: ตารางสรุป · ไฮไลต์ · ประเด็นติดตาม · ร่างอีเมลถึงผู้จัดการ HSE</p>
+<label class="check" for="ck8_1"><input type="checkbox" id="ck8_1"><span><b>Checkpoint (ผู้ตรวจ HITL):</b> นับจำนวนเหตุ Site A สัปดาห์ล่าสุดเองใน Excel (filter วันที่ 21–27 ก.ย.) เทียบกับรายงาน</span></label>
+<p class="note key">🔑 <b>คีย์วิทยากร:</b> ข้อมูลผิด 2 จุด: <code>INC-0061</code> วันที่ 2026-13-02 · <code>INC-0018</code> "near miss" ตัวพิมพ์เล็ก (ถ้าไม่แก้ near miss จะถูกนับแยก) · สัปดาห์ 21–27 ก.ย.: รวม 18 (A 10 · C 6 · F 0 · G 2) เทียบสัปดาห์ก่อน 22 (A 8 · C 13 · F 1 · G 0) · severity ≥ 3: INC-0140, 0146, 0150 · เปิดเกินกำหนด ณ 28 ก.ย. = <b>0 รายการ</b> (ทีมที่แต่งรายการขึ้นมา = ไม่ผ่าน) · อีเมล 01 อ้าง LTI ที่ Site A วันที่ 20 ก.ย. แต่ log <b>ไม่มี</b> → ต้องถามกลับ ไม่ใช่เชื่ออีเมล</p>
+<p class="note">🚀 <b>เสร็จเร็ว:</b> แปลงเป็น Document Factory + Scheduled task ทุกจันทร์ 08:00 (M6-P03 แบบเดียวกัน)</p>
+<p class="note">🛡️ <b>Trade-off ที่ควรพูด:</b> ชื่อผู้บาดเจ็บ/ผู้รายงาน = 🟡 · รายงานไปถึงผู้บริหาร → HITL ก่อนส่งเสมอ · ข้อมูลเล็ก ใช้ model เบาได้</p>
+</section>
+
+<section class="card pdf-page-break" id="page9" data-page="9">
+<div class="card-head"><div><div class="pg">หน้า 9 / 13</div><h2>โจทย์ UC3 รวมข้อมูล ESG 4 Site</h2></div><span class="chip">ใช้ช่วง 15:30–15:46</span></div>
+<div class="diagram mmd" role="img" aria-label="แผนภาพขั้นตอน"><pre class="mmd-src">flowchart LR
+    S[(&quot;ไฟล์ ESG 4 Site&lt;br/&gt;xlsx/csv คนละหน่วย&quot;)]:::data --&gt; AL[&quot;Cowork จัดหัวคอลัมน์&lt;br/&gt;+ แปลงหน่วย&quot;]:::ai
+    EF[(&quot;emission_factors_SYNTHETIC&lt;br/&gt;+ esg_targets&quot;)]:::data --&gt; AL
+    AL --&gt; G{&quot;HITL: ข้อมูลหาย/ประมาณ&lt;br/&gt;Site G ต.ค. · Site F รายไตรมาส&quot;}:::human
+    G --&gt; M[&quot;ตารางรวม + tCO2e&lt;br/&gt;เทียบเป้า&quot;]:::ai
+    M --&gt; O[&quot;Excel + Dashboard Artifact&lt;br/&gt;ระบุสมมติฐานทุกข้อ&quot;]:::ai
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;</pre></div>
+<p class="legend">🟧 คน (HITL) · 🟦 AI · 🟩 Data/Connector</p>
+<p><b>Data (<code>M7_uc3_esg_consolidation.zip</code>):</b> Site A <code>.xlsx</code> (2 ชีต, kWh/ลิตร) · Site C <code>.csv</code> (หัวอังกฤษ, MWh/ตัน) · Site F <code>.xlsx</code> (<b>รายไตรมาส</b>) · Site G <code>.csv</code> (MMBtu, หัวไทย) · <code>emission_factors_SYNTHETIC.csv</code> · <code>esg_targets_2568.csv</code> · <code>BRIEF.md</code></p>
+<p><b>Connector วันจริง:</b> โฟลเดอร์ SharePoint ที่แต่ละ Site อัปโหลด · วันนี้: โฟลเดอร์สำเนา (เหมือน Workshop B ของ M2)</p>
+<h3><b>Prompt หลัก</b></h3>
+<div class="prompt"><div class="prompt-bar"><span>Prompt</span><button class="copy-btn no-print" type="button" data-copy="pr7">Copy</button></div><pre id="pr7">1) ทำตารางแปลงหน่วย + mapping หัวคอลัมน์ 4 Site → schema เดียว แล้วรอคำว่า &quot;ผ่าน&quot;
+2) รวมรายเดือนปี 2568 + tCO2e จาก emission_factors_SYNTHETIC (สูตรใน Excel)
+3) ห้ามเติมค่าที่หาย: Site G ต.ค. = &quot;รอข้อมูล&quot; · Site F คงรายไตรมาส · Site A ก.ค. = &quot;ค่าประมาณ&quot;
+4) เทียบ esg_targets → output/esg_2568.xlsx + Dashboard Artifact 1 หน้า (Export PDF)</pre></div>
+<p>(ฉบับเต็ม <code>M7-P06</code> · Dashboard ใช้แนวเดียวกับ <code>M4-P06</code>)</p>
+<p><b>Output ที่คาดหวัง:</b> ตาราง mapping · Excel รวมพร้อมสูตร · Dashboard 1 หน้าที่มีกล่อง "สมมติฐานและข้อมูลที่ขาด"</p>
+<label class="check" for="ck9_1"><input type="checkbox" id="ck9_1"><span><b>Checkpoint (ผู้ตรวจ HITL):</b> ตรวจตารางแปลงหน่วยก่อนพิมพ์ "ผ่าน" (1 MWh = 1,000 kWh) · สุ่ม 1 เดือนของ Site C เทียบ CSV</span></label>
+<p class="note key">🔑 <b>คีย์วิทยากร:</b> กับดัก 3 จุด = Site G เดือน ต.ค. ว่าง ("รอข้อมูลจาก Site") · Site F มีแค่ Q1–Q4 (ห้ามหาร 3 เป็นรายเดือนโดยไม่บอก) · Site A ชีต Water มีแถว "หมายเหตุ: ก.ค. มิเตอร์เสีย ใช้ค่าประมาณ" ซึ่งอาจถูกอ่านเป็นแถวข้อมูล · เดือนของ Site C เป็น <code>2025-01…12</code> = ปี 2568 · ค่า emission factor เป็นค่าสมมติ ห้ามพูดว่า "ค่าจริง"</p>
+<p class="note">🚀 <b>เสร็จเร็ว:</b> ให้ Claude เขียน "ข้อความขอข้อมูลที่ขาด" ถึง Site G (ร่างเท่านั้น) หรือทำ Prototype first 3 แบบ dashboard (M2-P05)</p>
+<p class="note">🛡️ <b>Trade-off ที่ควรพูด:</b> ตัวเลข ESG ไปถึงรายงานสาธารณะ → HITL 2 ชั้น (เจ้าของข้อมูล Site + ทีม ESG) · ไฟล์จริงหลายสิบไฟล์ → แบ่งรอบละ Site</p>
+</section>
+
+<section class="card pdf-page-break" id="page10" data-page="10">
+<div class="card-head"><div><div class="pg">หน้า 10 / 13</div><h2>โจทย์ UC4 จากบันทึกประชุมสู่ Action tracker</h2></div><span class="chip">ใช้ช่วง 15:30–15:46</span></div>
+<div class="diagram mmd" role="img" aria-label="แผนภาพขั้นตอน"><pre class="mmd-src">flowchart LR
+    N[(&quot;บันทึกประชุม 4 ไฟล์&lt;br/&gt;.md .txt .vtt&quot;)]:::data --&gt; EX[&quot;Cowork ดึง action item&lt;br/&gt;ใคร · ทำอะไร · เมื่อไร&quot;]:::ai
+    T[(&quot;Action tracker&lt;br/&gt;SharePoint List export&quot;)]:::data --&gt; EX
+    EX --&gt; MG[&quot;รวมกับ tracker เดิม&lt;br/&gt;ปิด/ซ้ำ/ไม่มีวันที่&quot;]:::ai
+    MG --&gt; H{&quot;HITL: เจ้าของงานยืนยัน&lt;br/&gt;งานไม่มีวันกำหนด&quot;}:::human
+    H --&gt; O[&quot;Tracker ใหม่ + ร่างอีเมลติดตาม&lt;br/&gt;(ร่างใน Outlook ไม่ส่งเอง)&quot;]:::ai
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;</pre></div>
+<p class="legend">🟧 คน (HITL) · 🟦 AI · 🟩 Data/Connector</p>
+<p><b>Data (<code>M7_uc4_meeting_actions.zip</code>):</b> <code>meetings/</code> 4 ไฟล์ (7 ก.ย. .md · 14 ก.ย. .txt · 21 ก.ย. ESG sync <b>.vtt transcript</b> · 28 ก.ย. .md) · <code>action_tracker_sharepoint_list_export.csv</code> (ID 101–105) · <code>owners.md</code> (อีเมล @example.com) · <code>BRIEF.md</code></p>
+<p><b>Connector วันจริง:</b> SharePoint List (tracker) + Outlook (draft) · วันนี้: โฟลเดอร์สำเนา</p>
+<h3><b>Prompt หลัก</b></h3>
+<div class="prompt"><div class="prompt-bar"><span>Prompt</span><button class="copy-btn no-print" type="button" data-copy="pr8">Copy</button></div><pre id="pr8">1) ดึง action item จาก 4 ไฟล์: งาน · ผู้รับผิดชอบ · กำหนดส่ง · มาจากประชุมไหน (อ้างบรรทัด/เวลา)
+2) ไม่มีวันชัด = &quot;ต้องยืนยัน&quot; ห้ามเดา · งานที่ถูกเลื่อน/ปิดในประชุมหลัง ให้อัปเดตสถานะ
+3) รวมกับ tracker เดิม (งานใหม่ต่อ ID 106) · 4) output/action_tracker_new.csv + followup_drafts.md (ร่าง 1 ฉบับ/คน) ห้ามส่ง</pre></div>
+<p>(ฉบับเต็ม <code>M7-P07</code>)</p>
+<p><b>Output ที่คาดหวัง:</b> tracker 13–15 แถว (5 เดิม + 8–10 ใหม่) · ร่างอีเมล 4 ฉบับ (1 ต่อเจ้าของงาน)</p>
+<label class="check" for="ck10_1"><input type="checkbox" id="ck10_1"><span><b>Checkpoint (ผู้ตรวจ HITL):</b> เลือก 2 งาน แล้วเปิดไฟล์ประชุมดูว่าใคร/วันไหนตรงจริง · ตรวจว่าไม่มีวันที่ที่ "แต่งขึ้น"</span></label>
+<p class="note key">🔑 <b>คีย์วิทยากร:</b> ซ่อมท่อไอน้ำ Site C: กำหนด 18 ก.ย. → เลื่อน 25 ก.ย. → <b>ปิดแล้ว</b> 28 ก.ย. · เช็กเงื่อนไขปรับราคา CT-2569-014 → <b>ปิด</b> 14 ก.ย. · scheduled task ของคุณจำลอง: ไม่มีวัน → "ขอ 2 สัปดาห์" → 28 ก.ย. "จะเสนอทางเลือกสัปดาห์หน้า" = <b>ต้องยืนยัน</b> · ตัวเลข Q3 ภายใน 30 ก.ย. แต่ Site F ยังขาด → คุณตัวอย่าง ตาม (<b>ไม่มีวัน</b>) · shortlist ผู้รับจ้างล้างแผง 5 ต.ค. · ตามข้อมูล Site G ภายในศุกร์ (จาก .vtt) · ตารางแปลงหน่วย สิ้นเดือน · "แจ้ง HSE" ใน 14 ก.ย. <b>ไม่ระบุผู้รับผิดชอบ</b> · tracker เดิม ID 103 เลยกำหนด 31 ส.ค. และยัง Not started</p>
+<p class="note">🚀 <b>เสร็จเร็ว:</b> ทำ Artifact "กระดานงานค้าง" แยกตามคน หรือร่าง prompt เป็น Scheduled task หลังประชุมทุกจันทร์ (M6)</p>
+<p class="note">🛡️ <b>Trade-off ที่ควรพูด:</b> transcript จริงอาจมีเรื่องส่วนตัว/HR = 🟡/🔴 · ห้ามให้ AI แก้ SharePoint List เองโดยไม่มีคนอนุมัติ · ร่างอีเมลต้องให้เจ้าของงานยืนยันวัน</p>
+</section>
+
+<section class="card pdf-page-break" id="page11" data-page="11">
+<div class="card-head"><div><div class="pg">หน้า 11 / 13</div><h2>โจทย์ UC5 Energy market brief</h2></div><span class="chip">ใช้ช่วง 15:30–15:46</span></div>
+<div class="diagram mmd" role="img" aria-label="แผนภาพขั้นตอน"><pre class="mmd-src">flowchart LR
+    P[(&quot;ราคารายสัปดาห์ SYNTHETIC&quot;)]:::data --&gt; AN[&quot;Cowork สรุปแนวโน้ม&lt;br/&gt;+ จับคู่ข่าว&quot;]:::ai
+    NW[(&quot;ข่าว SYNTHETIC&lt;br/&gt;(วันจริงใช้เว็บสาธารณะ)&quot;)]:::data --&gt; AN
+    IV[(&quot;มุมมองทีมกลยุทธ์&lt;br/&gt;internal_view.md&quot;)]:::data --&gt; AN
+    AN --&gt; H{&quot;HITL: ทุกประโยคมีที่มา?&lt;br/&gt;ไม่มีตัวเลขพยากรณ์?&quot;}:::human
+    H --&gt; O[&quot;Brief 1 หน้าอ่านบนมือถือ&lt;br/&gt;→ M6 Scheduled task&quot;]:::ai
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;</pre></div>
+<p class="legend">🟧 คน (HITL) · 🟦 AI · 🟩 Data/Connector</p>
+<p><b>Data (<code>M7_uc5_energy_market_brief.zip</code>):</b> <code>prices_weekly_SYNTHETIC.csv</code> (8 สัปดาห์: ดัชนีถ่านหินสมมติ NEX-6000 · LNG · น้ำมันอ้างอิง · บาท/ดอลลาร์) · <code>news_snippets_SYNTHETIC.csv</code> (ข่าวสมมติ 12 ข่าว ลิงก์ news.example.com) · <code>internal_view.md</code> · <code>BRIEF.md</code></p>
+<p><b>Connector วันจริง:</b> เว็บสาธารณะ (web search) + SharePoint (มุมมองภายใน) · วันนี้: โฟลเดอร์สำเนา (ห้ามค้นเว็บแทนข่าวสมมติในเวิร์กช็อป เพื่อให้ทุกทีมตรวจคำตอบเดียวกันได้)</p>
+<h3><b>Prompt หลัก</b></h3>
+<div class="prompt"><div class="prompt-bar"><span>Prompt</span><button class="copy-btn no-print" type="button" data-copy="pr9">Copy</button></div><pre id="pr9">1) % เปลี่ยนแปลงสัปดาห์ล่าสุด vs ก่อนหน้า และ vs 4 สัปดาห์ก่อน (ทศนิยม 1 ตำแหน่ง)
+2) เลือกข่าวที่เกี่ยวกับ 3 เรื่องใน internal_view.md  3) brief 1 หน้าบนมือถือ: 3 เรื่อง + ลิงก์ · ตารางราคา · ผลต่อธุรกิจ 2 bullet
+4) ห้ามพยากรณ์ราคาเป็นตัวเลข ทุกประโยคชี้ที่มา → output/market_brief.md + Artifact 1 หน้า (Export PDF)</pre></div>
+<p>(ฉบับเต็ม <code>M7-P08</code> · ต่อยอดเป็น <code>M6-P04</code> Weekly Energy &amp; Ops Insight)</p>
+<p><b>Output ที่คาดหวัง:</b> brief ไม่เกิน 1.5 หน้าจอมือถือ ทุกบรรทัดมีที่มา</p>
+<label class="check" for="ck11_1"><input type="checkbox" id="ck11_1"><span><b>Checkpoint (ผู้ตรวจ HITL):</b> คำนวณ % ถ่านหินและ LNG เองด้วยเครื่องคิดเลข · หาประโยคที่ "พยากรณ์" แล้วลบ</span></label>
+<p class="note key">🔑 <b>คีย์วิทยากร:</b> สัปดาห์ล่าสุด = 21 ก.ย. 2026 · ถ่านหิน 88.7 (−4.1% สัปดาห์ · −14.1% vs 4 สัปดาห์) · LNG 13.60 (+1.5% · +11.9%) · น้ำมัน 79.3 (−1.0% · −0.8%) · บาท 35.60 (−0.1% · +0.2%) · ข่าวที่ตรง 3 เรื่อง = coal / lng / power · ข่าว oil, fx, carbon ไม่อยู่ในความสนใจตาม internal_view (ใส่ได้เป็น "อื่น ๆ" แต่ไม่ใช่ 3 เรื่องหลัก)</p>
+<p class="note">🚀 <b>เสร็จเร็ว:</b> แปลงเป็น Scheduled task เช้าวันจันทร์ 07:30 (M6) พร้อมจุด HITL ก่อนส่งต่อ</p>
+<p class="note">🛡️ <b>Trade-off ที่ควรพูด:</b> ข่าวจากเว็บต้องตรวจที่มาและวันที่ · มุมมองภายในของทีมกลยุทธ์อาจเป็น 🟡 · ห้ามใช้เป็นคำแนะนำซื้อขาย</p>
+</section>
+
+<section class="card pdf-page-break" id="page12" data-page="12">
+<div class="card-head"><div><div class="pg">หน้า 12 / 13</div><h2>④ เตรียมนำเสนอ + โพสต์การ์ดบนบอร์ด</h2></div><span class="chip">4 นาที · 15:46–15:50</span></div>
+<p class="goal"><b>เป้าหมาย:</b> ทุกทีมมีการ์ดครบบน Show &amp; Share board และบทพูด 3 นาทีที่ไม่เกินเวลา</p>
+<h3><b>ขั้นตอน</b></h3>
+<ol><li>ผู้ขับวาง prompt ในแชตเดิม (1 นาที)</li></ol>
+<div class="prompt"><div class="prompt-bar"><span>Prompt</span><button class="copy-btn no-print" type="button" data-copy="pr10">Copy</button></div><pre id="pr10">ช่วยเตรียมการนำเสนอ 3 นาทีของทีม {ชื่อทีม} จากงานในแชตนี้:
+A) ข้อความการ์ด: ปัญหา · Data · Connector · Output · Trade-off · HITL · ผลที่วัดได้ (ระบุว่าประมาณ)
+B) บทพูด 0:00–0:30 ปัญหา · 0:30–2:00 demo · 2:00–3:00 trade-off + สิ่งที่ยังไม่ควรให้ AI ทำ
+C) ก้าวต่อไปใน 30 วัน 3 ข้อ</pre></div>
+<p>(ฉบับเต็ม <code>M7-P10</code>)</p>
+<ol start="2"><li>ผู้นำเสนอกรอก/วางข้อความลงบอร์ด แท็บ <b>การ์ดทีม</b> ให้ครบทุกช่อง · เลือกกล่อง diagram · ใส่ demo link หรือ note (เช่น "ไฟล์ output/hse_weekly.docx บนเครื่องผู้ขับ") (2 นาที)</li><li>กด <b>📋 คัดลอกรหัสการ์ด</b> แล้วส่งให้วิทยากร (แชตของคลาสใน Teams หรือยื่นเครื่องให้ดู) · วิทยากรกด <b>นำเข้าการ์ด</b> บนบอร์ดหน้าห้อง (1 นาที)</li><li>ซ้อมพูด 1 รอบในทีม ผู้คุมเวลาจับเวลา (1 นาที)</li></ol>
+<h3><b>โครงนำเสนอ 3 นาที</b></h3>
+<div class="tbl"><table><thead><tr><th>เวลา</th><th>พูดอะไร</th><th>เปิดอะไร</th></tr></thead><tbody><tr><td>0:00–0:30</td><td>ใครเจ็บ เสียเวลาเท่าไรต่อสัปดาห์/เดือน</td><td>การ์ดบนบอร์ด</td></tr><tr><td>0:30–2:00</td><td>Demo: ข้อมูลเข้า → Claude ทำอะไร → ผลลัพธ์ · ชี้จุด HITL</td><td>ไฟล์ใน <code>output/</code> หรือ screenshot</td></tr><tr><td>2:00–3:00</td><td>Trade-off 3 มุม · สิ่งที่ "ยังไม่ควรให้ AI ทำ" · ก้าวต่อไป 30 วัน</td><td>diagram บนการ์ด</td></tr></tbody></table></div>
+<label class="check" for="ck12_1"><input type="checkbox" id="ck12_1"><span><b>Checkpoint:</b> การ์ดของทีมขึ้นบนบอร์ดหน้าห้อง · บทพูด ≤ 3 นาที · ไม่มีชื่อคนจริงหรือข้อมูลจริงบนการ์ด</span></label>
+<p class="note">💡 Demo ไม่ทำงานตอนโชว์? ใช้ screenshot ที่เก็บไว้ 15:44 · ไม่ต้องรันใหม่หน้าห้อง (ประหยัด usage และเวลา)</p>
+<p class="note">🧑‍🏫 <b>วิทยากร:</b> จัดลำดับนำเสนอบนบอร์ด (ลากหรือกดลูกศร) ให้โจทย์ซ้ำกันอยู่ติดกันเพื่อเทียบทางแก้</p>
+</section>
+
+<section class="card pdf-page-break" id="page13" data-page="13">
+<div class="card-head"><div><div class="pg">หน้า 13 / 13</div><h2>⑤ Show &amp; Share + ⑥ โหวตและสรุป</h2></div><span class="chip">25 นาที · 15:50–16:15</span></div>
+<div class="diagram mmd" role="img" aria-label="แผนภาพขั้นตอน"><pre class="mmd-src">flowchart LR
+    TM[&quot;ทีมกรอกการ์ดบนบอร์ด&lt;br/&gt;use case · diagram · demo&quot;]:::human --&gt; BD[(&quot;Show &amp; Share board&lt;br/&gt;Artifact&quot;)]:::data
+    BD --&gt; PR[&quot;นำเสนอ 3 นาที&lt;br/&gt;ปัญหา → Demo → Trade-off&quot;]:::human
+    PR --&gt; FB[&quot;วิทยากรให้ feedback&lt;br/&gt;rubric 4 ข้อ · 1 นาที&quot;]:::human
+    PR --&gt; VT[&quot;ทุกคนโหวต&lt;br/&gt;🏆 ใช้ได้จริง · 🛡️ ปลอดภัย · 💡 ไอเดีย&quot;]:::human
+    FB --&gt; PDF[&quot;Export PDF&lt;br/&gt;แผนต่อยอด → M8 แผน 30 วัน&quot;]:::ai
+    VT --&gt; PDF
+    classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
+    classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;</pre></div>
+<p class="legend">🟧 คน (HITL) · 🟦 AI · 🟩 Data/Connector</p>
+<p><b>ลำดับต่อทีม (3 นาที + feedback 1 นาที × 5 ทีม = 20 นาที):</b> วิทยากรเปิดการ์ดทีมบนบอร์ด → แท็บ Timer 3:00 (เหลือง 0:30 · แดงหมดเวลา) → ทีมนำเสนอ → วิทยากรให้ feedback ตาม rubric 1 นาที → ทีมถัดไป</p>
+<h3><b>Rubric วิทยากร (ข้อละ 1–4 · ใช้เป็นคำแนะนำ ไม่ประกาศคะแนน)</b></h3>
+<div class="tbl"><table><thead><tr><th>เกณฑ์</th><th>1 · เริ่มต้น</th><th>2 · พอใช้</th><th>3 · ดี</th><th>4 · พร้อมต่อยอด</th></tr></thead><tbody><tr><td>① ปัญหาจริง วัดผลได้</td><td>"อยากให้เร็วขึ้น"</td><td>ระบุผู้ใช้</td><td>ระบุเวลา/รอบที่ประหยัด</td><td>มีตัวชี้วัด + เจ้าของงาน</td></tr><tr><td>② ต้นแบบทำงาน</td><td>มีแค่แนวคิด</td><td>ได้ผลบางส่วน</td><td>ครบ 1 รอบกับข้อมูลสมมติ</td><td>ครบ + ทำซ้ำได้ (prompt/Skill)</td></tr><tr><td>③ Trade-off + HITL</td><td>ไม่พูดถึง</td><td>พูดกว้าง ๆ</td><td>ครบ 3 มุม + จุด HITL</td><td>จับกับดักข้อมูลได้ + บอกสิ่งที่ไม่ให้ AI ทำ</td></tr><tr><td>④ ต่อยอด 30 วัน</td><td>ไม่มี</td><td>มีแต่ไม่ชัด</td><td>1–3 ขั้นชัด</td><td>ระบุผู้อนุมัติ/ข้อมูลที่ต้องขอ + Skill/Scheduled task</td></tr></tbody></table></div>
+<p><b>feedback 1 นาที = 1 ชม + 1 ถาม + 1 แนะ</b> เช่น "ชอบที่จับวันที่ผิดได้ · ถ้าใช้ข้อมูลจริง ชื่อผู้บาดเจ็บจะจัดการอย่างไร? · ลองทำเป็น Skill แล้วตั้ง Scheduled task"</p>
+<h3><b>⑥ โหวต + สรุป (5 นาที · 16:10–16:15)</b></h3>
+<ol><li>ทุกคนโหวต 3 หมวด (1 เสียงต่อหมวด ห้ามโหวตทีมตัวเอง): 🏆 ใช้ได้จริงที่สุด · 🛡️ ปลอดภัย/Trade-off ดีที่สุด · 💡 ไอเดียเจ๋งที่สุด · วิทยากรนับมือแล้วกด +1 ในแท็บ <b>โหวต</b> (2 นาที)</li><li>ประกาศผล + ปรบมือ (1 นาที)</li><li>วิทยากรกด <b>⬇ Export PDF</b> บนบอร์ด → อัปโหลดไว้ใน SharePoint ของคลาส · แต่ละทีม Export PDF การ์ดของตัวเอง (1 นาที)</li><li>เชื่อม M8: "ช่อง 'ก้าวต่อไป 30 วัน' บนการ์ด คือร่างแรกของแผน 30 วันที่เราจะเขียนต่อในชั่วโมงหน้า" (1 นาที)</li></ol>
+<label class="check" for="ck13_1"><input type="checkbox" id="ck13_1"><span><b>Checkpoint:</b> ทุกทีมได้นำเสนอ · บอร์ดมีโหวตครบ 3 หมวด · PDF บอร์ดอยู่ใน SharePoint ของคลาส</span></label>
+<p class="note">🧑‍🏫 <b>วิทยากร:</b> ถ้ามี 6 ทีมขึ้นไป ลดเป็น 2 นาทีต่อทีม + feedback รวมท้ายสุด หรือให้ 2 ทีมที่โจทย์ซ้ำนำเสนอคู่กัน · จด use case ที่ได้โหวต 🏆 ส่งทีม Hi-I เป็นผู้สมัคร pilot หลังอบรม</p>
+</section>
+
+<footer>Banpu · Claude for Business · M7 Capstone · ข้อมูลทั้งหมดเป็นข้อมูลสมมติ · Connector: SharePoint + Outlook เท่านั้น</footer>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+<script>
+(function(){
+  var KEY='m7-workshop-v1', st={};
+  try{st=JSON.parse(localStorage.getItem(KEY)||'{}')||{}}catch(e){st={}}
+  var cards=[].slice.call(document.querySelectorAll('section.card'));
+  function sync(){
+    var done=0;
+    cards.forEach(function(c){var b=c.querySelectorAll('.check input');var ok=b.length>0;
+      b.forEach(function(x){if(!x.checked)ok=false});c.classList.toggle('done',ok);if(ok)done++;});
+    document.getElementById('progBar').style.width=(done/cards.length*100)+'%';
+    document.getElementById('progText').textContent=done+' / '+cards.length+' หน้า';
+  }
+  document.querySelectorAll('.check input').forEach(function(x){
+    x.checked=!!st[x.id];
+    x.addEventListener('change',function(){st[x.id]=x.checked;try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}sync();});
+  });
+  sync();
+  document.querySelectorAll('.copy-btn').forEach(function(b){
+    b.addEventListener('click',function(){
+      var pre=document.getElementById(b.dataset.copy),t=pre.textContent;
+      function sel(){var r=document.createRange();r.selectNodeContents(pre);var s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='เลือกข้อความแล้ว กด Ctrl+C';}
+      function ok(){b.textContent='คัดลอกแล้ว ✓';setTimeout(function(){b.textContent='Copy'},1800);}
+      try{navigator.clipboard.writeText(t).then(ok,sel)}catch(e){sel()}
+    });
+  });
+  if(window.mermaid){
+    try{
+      mermaid.initialize({startOnLoad:false,securityLevel:'strict',theme:'base',
+        fontFamily:"'IBM Plex Sans Thai',sans-serif",flowchart:{htmlLabels:false,curve:'basis'},
+        themeVariables:{lineColor:'#5B6670',primaryTextColor:'#1F2933',edgeLabelBackground:'#FFFFFF',fontSize:'14px'}});
+      document.querySelectorAll('.mmd').forEach(function(d,i){
+        var src=d.querySelector('.mmd-src').textContent;
+        mermaid.render('m7mmd'+i,src).then(function(r){d.insertAdjacentHTML('beforeend',r.svg);d.classList.add('done');},function(){});
+      });
+    }catch(e){}
+  }
+})();
+</script>
+<script>document.documentElement.lang='th';document.body.setAttribute('data-pdf-name','M7-Workshop');</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script>
+(function () {
+  var btn = document.getElementById('exportPdfBtn');
+  var downloads = null;
+  try {
+    if (window.claude && typeof window.claude.use === 'function') {
+      window.claude.use('downloads').then(function (d) { downloads = d; }, function () {});
+    }
+  } catch (e) {}
+  btn.addEventListener('click', async function () {
+    var name = (document.body.dataset.pdfName || document.title || 'export').replace(/[\\/:*?"<>|]+/g, '-') + '.pdf';
+    if (!downloads || !window.html2pdf) { window.print(); return; }
+    var label = btn.textContent;
+    btn.disabled = true; btn.textContent = 'กำลังสร้าง PDF…';
+    document.documentElement.classList.add('pdf-export');
+    try {
+      var root = document.querySelector('[data-pdf-root]') || document.body;
+      var blob = await window.html2pdf().set({
+        margin: [10, 10, 10, 10],
+        image: { type: 'jpeg', quality: 0.95 },
+        html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff',
+          ignoreElements: function (el) { return el.classList && el.classList.contains('no-print'); } },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+        pagebreak: { mode: ['css', 'legacy'], before: '.pdf-page-break', avoid: ['section', '.card'] }
+      }).from(root).outputPdf('blob');
+      await downloads.save({ filename: name, data: blob });
+    } catch (err) {
+      if (!err || (err.code !== 'declined' && err.code !== 'rate_limited')) { window.print(); }
+    } finally {
+      document.documentElement.classList.remove('pdf-export');
+      btn.disabled = false; btn.textContent = label;
+    }
+  });
+})();
+</script>
