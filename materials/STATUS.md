@@ -7,7 +7,7 @@ All 8 modules are built and on `origin/master`. Each module was delegated to one
 
 Workers were repeatedly cut off by API connection loss ("Connection lost mid-response" / "The response stopped arriving") while writing large files. When that happened the orchestrator either resumed or relaunched the worker through Orca, or finished the remaining files itself. The "Built by" column records which.
 
-**31 Oct 2026, second pass — everything learners and the trainer use is now a Claude Artifact on claude.ai (32 Artifacts, table below).**
+**31 Oct 2026, second pass — everything learners and the trainer use is now a Claude Artifact on claude.ai (29 Artifacts: 8 Slides decks, 8 workshop sheets, 13 interactive pages; table below).**
 - Lecture decks: every `slides.md` was rebuilt on Claude's core **Slides Artifact type** (same slide count, content and speaker notes; Mermaid diagrams redrawn natively with boxes + connectors in the 3 colours, legend on every diagram slide). PDF/PPTX export is built into the type (Share › Export). M1 was built by the orchestrator as the prototype; M2–M8 by Orca Claude workers (run `run_6946e31302a7`, max 2 at a time) following `materials/_shared/SLIDES_ARTIFACT_BRIEF.md`. Sources live in `materials/<mN>/deck/project/`; `slides.md`/`slides.html` remain as the content source, superseded for delivery.
 - Workshop sheets: every `workshop.md` is now `materials/<mN>/artifacts/workshop-sheet.html` (same page count, copy-ready prompts, checkbox checkpoints, progress bar, workshop diagrams) and every existing interactive Artifact was published as its own Artifact. Built by Orca Claude workers following `materials/_shared/WORKSHOP_ARTIFACT_BRIEF.md`.
 - Export PDF on every published page: `materials/_shared/export-pdf-artifact.html` builds an A4 PDF in the page (html2pdf.js 0.10.1) and offers it through the `downloads` capability; it falls back to the browser print dialog where that is unavailable (e.g. the file opened locally).
@@ -26,8 +26,15 @@ Workers were repeatedly cut off by API connection loss ("Connection lost mid-res
 | M7 Capstone | 75′ | 10 (10) | 13 (13) | 9 | Show & Share board | Novo Nordisk clinical documentation with Claude | worker (relaunched once) | `956364d` |
 | M8 Security recap, Quiz & 30-day plan | 45′ | 20 (20) | 5 (5) | 9 | Security & Usage Quiz (18 Q + Traffic Light final round) · แผน 30 วัน | Microsoft AI research 38TB shared-link exposure (Wiz, 2023) | worker ×2 + orchestrator (plan Artifact script + spec, workshop, README, SOURCES) | `cc778ca` |
 
-## Claude Artifacts on claude.ai (all 32)
-All are **private** until shared from each page's Share menu (see open question 15). Each module README has the same list under `## Claude Artifacts (claude.ai)`.
+## Claude Artifacts on claude.ai (all 29)
+Each module README has the same list under `## Claude Artifacts (claude.ai)`.
+
+**Visibility (checked 31 Oct 2026): all 29 are still private.** Prem asked for "anyone with the link, no login". That could not be done from this session:
+- The Artifact tool cannot change sharing or visibility; it is set only from each page's **Share** menu on claude.ai, by the owner.
+- A logged-out `curl` returns HTTP 200 for all 29 URLs, but every response is the same generic app shell (title "Claude Artifact", ~35 KB, no module content); the Artifact content and the access check load afterwards in the browser. So HTTP 200 does **not** show the page is public. A real check means opening each link in a private/incognito window after sharing.
+- Expected limits when sharing:
+  - The 8 Slides decks get the `assets` and `mcp` (Google Drive) capabilities from the Slides type. Per the Artifact runtime docs, pages with these are organisation-internal and cannot be shared publicly. Expect at most "everyone in the organisation" for the decks; the PDF/PPTX export (Share › Export) is the way to hand a deck to people outside.
+  - The 21 workshop and interactive pages declare only `downloads`, so the page itself does not block public sharing. Whether a public link is allowed depends on the account's plan and admin settings (M4's notes cite the Help Center saying Team-plan Artifacts are shared within the organisation only).
 
 | Module | Artifact | Source in repo | claude.ai URL | Export PDF |
 |---|---|---|---|---|
@@ -104,7 +111,7 @@ Republish after an edit: decks with the Artifact tool (`url` + `root: materials/
 14. Matt Pocock `grill-me` licence (MIT per listings): confirm against the repo LICENSE before printing handouts (M2).
 
 **Claude Artifacts (new, 31 Oct)**
-15. Sharing: all 32 Artifacts are private to Prem's account. Share each with the Banpu organisation from its Share menu (or tell us who should own them) before the dry-run; learners cannot open the links until then.
+15. Sharing: all 29 Artifacts are private to Prem's account. Prem asked for public links (no login); the tool cannot set this. Open each URL, Share menu → the widest option offered (public link where the plan allows; otherwise the organisation), then check each in an incognito window. If public links are not allowed, decide between organisation-only sharing (learners log in with their Banpu Team account) and PDF exports for anyone outside.
 16. Live check still to do in the browser: click Export PDF on each page once (the in-page PDF path was not clicked through in this session) and download one deck as PDF from Share › Export, checking Thai rendering and that the 3-colour diagrams survive.
 17. Prototype Gallery (M2) shared voting expects a shared store that claude.ai does not provide, so votes stay per browser. Switch it to the Artifact `db` capability for a room-wide tally?
 18. While the decks were being written, a second writer re-saved near-identical copies of some slides (every deck; most likely the Slides page in an open browser tab normalising files). All versions were read and kept/merged and the repo equals what is published; worth confirming no other session was editing.
