@@ -1,0 +1,63 @@
+<!--
+  Export PDF for pages published as Claude Artifacts (replaces export-pdf.html there).
+  Publish the page with capabilities: {downloads: true}.
+  The button builds an A4 PDF in the page (html2pdf.js) and offers it through the
+  `downloads` capability; where that is unavailable (opened locally, older viewer)
+  it falls back to window.print() with the print CSS below.
+  1) <style> in the page's <style>. 2) The two <script> tags and the button where controls live.
+  3) class="no-print" on anything that must not appear in the PDF.
+  4) class="print-expand" on collapsible/tabbed content so it prints fully.
+  5) class="pdf-page-break" on each element that must start a new PDF page (e.g. each workshop page).
+  6) Optional: <body data-pdf-name="M1-Workshop"> sets the file name.
+-->
+<style>
+  .export-pdf-btn{font:600 14px 'IBM Plex Sans Thai',sans-serif;background:#1F2933;color:#fff;border:0;border-radius:8px;padding:8px 14px;cursor:pointer}
+  .export-pdf-btn:hover{background:#2E86AB}
+  .export-pdf-btn[disabled]{opacity:.6;cursor:progress}
+  .pdf-export .print-expand,.pdf-export [hidden].print-expand,.pdf-export details{display:block!important;height:auto!important;overflow:visible!important}
+  @media print{
+    @page{size:A4;margin:12mm}
+    body{background:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .no-print,.export-pdf-btn,button,nav{display:none!important}
+    .print-expand,[hidden].print-expand,details{display:block!important;height:auto!important;overflow:visible!important}
+    .pdf-page-break{break-before:page}
+    section,.card{break-inside:avoid}
+  }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<button class="export-pdf-btn no-print" id="exportPdfBtn" type="button" title="ดาวน์โหลดเป็น PDF">⬇ Export PDF</button>
+<script>
+(function () {
+  var btn = document.getElementById('exportPdfBtn');
+  var downloads = null;
+  try {
+    if (window.claude && typeof window.claude.use === 'function') {
+      window.claude.use('downloads').then(function (d) { downloads = d; }, function () {});
+    }
+  } catch (e) {}
+  btn.addEventListener('click', async function () {
+    var name = (document.body.dataset.pdfName || document.title || 'export').replace(/[\\/:*?"<>|]+/g, '-') + '.pdf';
+    if (!downloads || !window.html2pdf) { window.print(); return; }
+    var label = btn.textContent;
+    btn.disabled = true; btn.textContent = 'กำลังสร้าง PDF…';
+    document.documentElement.classList.add('pdf-export');
+    try {
+      var root = document.querySelector('[data-pdf-root]') || document.body;
+      var blob = await window.html2pdf().set({
+        margin: [10, 10, 10, 10],
+        image: { type: 'jpeg', quality: 0.95 },
+        html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff',
+          ignoreElements: function (el) { return el.classList && el.classList.contains('no-print'); } },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+        pagebreak: { mode: ['css', 'legacy'], before: '.pdf-page-break', avoid: ['section', '.card'] }
+      }).from(root).outputPdf('blob');
+      await downloads.save({ filename: name, data: blob });
+    } catch (err) {
+      if (!err || (err.code !== 'declined' && err.code !== 'rate_limited')) { window.print(); }
+    } finally {
+      document.documentElement.classList.remove('pdf-export');
+      btn.disabled = false; btn.textContent = label;
+    }
+  });
+})();
+</script>
