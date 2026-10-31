@@ -7,6 +7,13 @@ All 8 modules are built and on `origin/master`. Each module was delegated to one
 
 Workers were repeatedly cut off by API connection loss ("Connection lost mid-response" / "The response stopped arriving") while writing large files. When that happened the orchestrator either resumed or relaunched the worker through Orca, or finished the remaining files itself. The "Built by" column records which.
 
+**31 Oct 2026, second pass — everything learners and the trainer use is now a Claude Artifact on claude.ai (32 Artifacts, table below).**
+- Lecture decks: every `slides.md` was rebuilt on Claude's core **Slides Artifact type** (same slide count, content and speaker notes; Mermaid diagrams redrawn natively with boxes + connectors in the 3 colours, legend on every diagram slide). PDF/PPTX export is built into the type (Share › Export). M1 was built by the orchestrator as the prototype; M2–M8 by Orca Claude workers (run `run_6946e31302a7`, max 2 at a time) following `materials/_shared/SLIDES_ARTIFACT_BRIEF.md`. Sources live in `materials/<mN>/deck/project/`; `slides.md`/`slides.html` remain as the content source, superseded for delivery.
+- Workshop sheets: every `workshop.md` is now `materials/<mN>/artifacts/workshop-sheet.html` (same page count, copy-ready prompts, checkbox checkpoints, progress bar, workshop diagrams) and every existing interactive Artifact was published as its own Artifact. Built by Orca Claude workers following `materials/_shared/WORKSHOP_ARTIFACT_BRIEF.md`.
+- Export PDF on every published page: `materials/_shared/export-pdf-artifact.html` builds an A4 PDF in the page (html2pdf.js 0.10.1) and offers it through the `downloads` capability; it falls back to the browser print dialog where that is unavailable (e.g. the file opened locally).
+- Review: the orchestrator checked every module (counts vs source, diagrams + legend, notes, no text under 24px on slides, Export PDF markers, no Samsung, URLs in README) and confirmed each published file equals the committed file before committing per module.
+- M1's opening story was changed on Prem's request: the Samsung 2023 case is removed everywhere and replaced by the July 2025 shared-ChatGPT-chats-in-Google case (Fast Company; SOURCES #1–2).
+
 ## Modules
 | Module | Time | Slides (budget) | Workshop pages (budget) | Diagrams | Artifacts (all with Export PDF) | Story / case | Built by | Commit |
 |---|---|---|---|---|---|---|---|---|
@@ -19,19 +26,59 @@ Workers were repeatedly cut off by API connection loss ("Connection lost mid-res
 | M7 Capstone | 75′ | 10 (10) | 13 (13) | 9 | Show & Share board | Novo Nordisk clinical documentation with Claude | worker (relaunched once) | `956364d` |
 | M8 Security recap, Quiz & 30-day plan | 45′ | 20 (20) | 5 (5) | 9 | Security & Usage Quiz (18 Q + Traffic Light final round) · แผน 30 วัน | Microsoft AI research 38TB shared-link exposure (Wiz, 2023) | worker ×2 + orchestrator (plan Artifact script + spec, workshop, README, SOURCES) | `cc778ca` |
 
+## Claude Artifacts on claude.ai (all 32)
+All are **private** until shared from each page's Share menu (see open question 15). Each module README has the same list under `## Claude Artifacts (claude.ai)`.
+
+| Module | Artifact | Source in repo | claude.ai URL | Export PDF |
+|---|---|---|---|---|
+| M1 | Slides · 41 slides | `m1/deck/project/` | https://claude.ai/artifact/B5QugBgGE4eWMe69TrCvbv | Share › Export (PDF/PPTX) |
+| M1 | Workshop sheet · 4 หน้า | `m1/artifacts/workshop-sheet.html` | https://claude.ai/artifact/W9dt4fKCCRZn4pZMXycNdR | ✅ |
+| M1 | Data Traffic Light (เกม 15 ใบ) | `m1/artifacts/data-traffic-light.html` | https://claude.ai/artifact/F9jhpdSui1ybEe4M794LvZ | ✅ |
+| M2 | Slides · 15 slides | `m2/deck/project/` | https://claude.ai/artifact/3kKwMXkqyNFfRMEQxCQVwu | Share › Export (PDF/PPTX) |
+| M2 | Workshop sheet · 6 หน้า | `m2/artifacts/workshop-sheet.html` | https://claude.ai/artifact/2kVCrZwhnqqwMHBF326PvR | ✅ |
+| M2 | Workshop Companion | `m2/artifacts/workshop-companion.html` | https://claude.ai/artifact/Vyp7t1u44Ga5W4YbpuMYdP | ✅ |
+| M2 | Excel Detective | `m2/artifacts/excel-detective.html` | https://claude.ai/artifact/1ytRQDkazJW4Xw24zZwkLu | ✅ |
+| M2 | Prompt Playground | `m2/artifacts/prompt-playground.html` | https://claude.ai/artifact/LQ7Mh4vNj4syXPARm6ucV8 | ✅ |
+| M2 | Prototype Gallery | `m2/artifacts/prototype-gallery.html` | https://claude.ai/artifact/3s1YpuHwGK7QvSn7ogm2Aq | ✅ |
+| M3 | Slides · 15 slides | `m3/deck/project/` | https://claude.ai/artifact/MFFCrgSvtQS9S4guydcnoz | Share › Export (PDF/PPTX) |
+| M3 | Workshop sheet · 6 หน้า | `m3/artifacts/workshop-sheet.html` | https://claude.ai/artifact/WTTy6F421gQfVwrxUFSax1 | ✅ |
+| M3 | Connector Mission | `m3/artifacts/connector-mission.html` | https://claude.ai/artifact/F4gquxgXQwnB8cSTo3hsBq | ✅ |
+| M4 | Slides · 15 slides | `m4/deck/project/` | https://claude.ai/artifact/KgQ57jcEaEb58SShmpLqkr | Share › Export (PDF/PPTX) |
+| M4 | Workshop sheet · 5 หน้า | `m4/artifacts/workshop-sheet.html` | https://claude.ai/artifact/WJDTLqhbUEgPCh3EbEMgFK | ✅ |
+| M4 | Monthly Ops Dashboard (v1/v2) | `m4/artifacts/monthly-ops-dashboard.html` | https://claude.ai/artifact/5wEyprUmbagfBfBXXe4SJP | ✅ |
+| M4 | Output Picker | `m4/artifacts/output-picker.html` | https://claude.ai/artifact/S47Pyq2mMTUk85nZ2HQL67 | ✅ |
+| M5 | Slides · 10 slides | `m5/deck/project/` | https://claude.ai/artifact/PRZrJe9wv2nWeJSaTFy416 | Share › Export (PDF/PPTX) |
+| M5 | Workshop sheet · 4 หน้า | `m5/artifacts/workshop-sheet.html` | https://claude.ai/artifact/VcgZfUcr3i1u6iWZpB1PN3 | ✅ |
+| M5 | Skill Security Checklist | `m5/artifacts/skill-security-checklist.html` | https://claude.ai/artifact/8M5tgdbZfTgxtFuFkjXqqn | ✅ |
+| M6 | Slides · 15 slides | `m6/deck/project/` | https://claude.ai/artifact/77u51h2Mek9CgrSedciouK | Share › Export (PDF/PPTX) |
+| M6 | Workshop sheet · 4 หน้า | `m6/artifacts/workshop-sheet.html` | https://claude.ai/artifact/WpGFhe1gXGwqSYhLeteZYo | ✅ |
+| M6 | Automation Card | `m6/artifacts/automation-card.html` | https://claude.ai/artifact/HFdt3zwrfBgErGfv6q5TUk | ✅ |
+| M7 | Slides · 10 slides | `m7/deck/project/` | https://claude.ai/artifact/17aWEiXMohcTuVjq2mKxzh | Share › Export (PDF/PPTX) |
+| M7 | Workshop sheet · 13 หน้า | `m7/artifacts/workshop-sheet.html` (from `build_workshop_sheet.py`) | https://claude.ai/artifact/GYFfuKNKMURfsooszp4cKc | ✅ |
+| M7 | Show & Share Board | `m7/artifacts/show-share-board.html` | https://claude.ai/artifact/VncwbAfqEmSuDFBtGfx5uy | ✅ |
+| M8 | Slides · 20 slides | `m8/deck/project/` | https://claude.ai/artifact/Uix5PCdLVDFT2EpceDUi1Q | Share › Export (PDF/PPTX) |
+| M8 | Workshop sheet · 5 หน้า | `m8/artifacts/workshop-sheet.html` | https://claude.ai/artifact/CQD1FRgAQ1T27Lx4MSJ59L | ✅ |
+| M8 | Security & Usage Quiz | `m8/artifacts/security-quiz.html` | https://claude.ai/artifact/L6PcYj1MiRy7Aah9cUVgsv | ✅ |
+| M8 | แผน 30 วันของฉัน | `m8/artifacts/plan-30-days.html` | https://claude.ai/artifact/Dn5jDTNdz6YBP8DT23T7Nt | ✅ |
+
+Republish after an edit: decks with the Artifact tool (`url` + `root: materials/<mN>/deck`, changed slide files only); pages with the Artifact tool and the same `file_path` (keep `capabilities: {downloads: true}`).
+
 ## Rules check (all modules)
 - Thai learner-facing text; technical terms in English.
 - Synthetic data only: fictional sites/people, emails `@example.com`, generators committed, large outputs (> 5 MB) gitignored and regenerable.
 - M365 connectors only (SharePoint, Outlook). Google Drive appears only as "not allowed". No Copilot content.
-- Every workflow has a Mermaid diagram using the 3 colour classes (คน/HITL · AI · Data/Connector). All decks render every diagram on screen and in print (renderer fix `4ee4408`).
-- Every learner Artifact has an Export PDF button + print CSS.
+- Every workflow has a diagram using the 3 colour classes (คน/HITL · AI · Data/Connector). Mermaid sources stay in `diagrams/*.mmd`; the Slides Artifacts redraw all 52 slide diagrams natively with a legend; workshop sheets render theirs with Mermaid 10.9.1 or inline SVG.
+- Every published Artifact has Export PDF: Slides via the type's Share › Export (PDF/PPTX); every page via the `downloads`-based Export PDF button with print fallback.
 - Every module has at least one story or real case. No case is repeated across modules (M3 and M6 originally reused the Replit case and were changed; M5's notes deliberately call back to M1's Cato case).
 - External sources are listed per module in `materials/<mN>/SOURCES.md` and merged into `materials/SOURCES.md` (link-only unless the licence allows reuse). Generated illustrations are marked as original.
 
 ## Shared tooling
 - `tools/build_slides.py` — renders `slides.md` to a 16:9 HTML deck. Arrow keys navigate, `N` shows notes, `P` prints (one slide per PDF page).
 - `tools/merge_sources.py` — rebuilds `materials/SOURCES.md` from module source lists.
-- `materials/_shared/export-pdf.html` — Export PDF snippet for Artifacts.
+- `materials/_shared/export-pdf.html` — original print-based Export PDF snippet (local files only).
+- `materials/_shared/export-pdf-artifact.html` — Export PDF for published Artifacts (html2pdf.js → `downloads.save`, print fallback).
+- `materials/_shared/SLIDES_ARTIFACT_BRIEF.md` · `materials/_shared/WORKSHOP_ARTIFACT_BRIEF.md` — worker briefs for the Slides decks and the workshop/interactive Artifacts.
+- `materials/m7/artifacts/build_workshop_sheet.py` — regenerates the 13-page M7 workshop sheet from `workshop.md`.
 
 ## Open questions for Prem / Hi-I (consolidated)
 **Banpu tenant & IT**
@@ -55,6 +102,12 @@ Workers were repeatedly cut off by API connection loss ("Connection lost mid-res
 **Logistics**
 13. Distribution of data packs (M2 core pack, M3 pack, M4 ~49 MB pack, M6/M7 zips): training SharePoint site or USB.
 14. Matt Pocock `grill-me` licence (MIT per listings): confirm against the repo LICENSE before printing handouts (M2).
+
+**Claude Artifacts (new, 31 Oct)**
+15. Sharing: all 32 Artifacts are private to Prem's account. Share each with the Banpu organisation from its Share menu (or tell us who should own them) before the dry-run; learners cannot open the links until then.
+16. Live check still to do in the browser: click Export PDF on each page once (the in-page PDF path was not clicked through in this session) and download one deck as PDF from Share › Export, checking Thai rendering and that the 3-colour diagrams survive.
+17. Prototype Gallery (M2) shared voting expects a shared store that claude.ai does not provide, so votes stay per browser. Switch it to the Artifact `db` capability for a room-wide tally?
+18. While the decks were being written, a second writer re-saved near-identical copies of some slides (every deck; most likely the Slides page in an open browser tab normalising files). All versions were read and kept/merged and the repo equals what is published; worth confirming no other session was editing.
 
 ## Next steps (build order 7)
 - Dry-run on a Banpu Claude Team account: time each workshop, check usage consumption, confirm connector and Cowork behaviour.
