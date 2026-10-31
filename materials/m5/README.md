@@ -62,6 +62,16 @@ Data reused read-only from M2: `materials/m2/data/workshop_b_scattered/solar_F_2
 
 Regenerate: `python3 materials/m5/data/sync_audit_sample.py` · `python3 tools/build_slides.py materials/m5/slides.md` · ZIP: `cd materials/m5/skill-example && python3 -m zipfile -c banpu-standard-report.zip banpu-standard-report/`
 
+## Claude Artifacts (claude.ai)
+
+All private until shared from each page's Share menu. Published 31 Oct 2026 with `capabilities: {downloads: true}`.
+
+| Artifact | File | claude.ai URL | Export PDF |
+|---|---|---|---|
+| M5 Slides (10 slides) | `deck/project/` | https://claude.ai/artifact/PRZrJe9wv2nWeJSaTFy416 | ✅ (Share › Export, PDF/PPTX) |
+| M5 Workshop (ใบงาน 4 หน้า) | `artifacts/workshop-sheet.html` | https://claude.ai/artifact/VcgZfUcr3i1u6iWZpB1PN3 | ✅ |
+| Skill Security Checklist (ล่าธงแดง 16 จุด + Checklist 16 ข้อ) | `artifacts/skill-security-checklist.html` | https://claude.ai/artifact/8M5tgdbZfTgxtFuFkjXqqn | ✅ |
+
 ## Stories / cases
 1. ClawHavoc, Feb 2026: Koi Security audited 2,857 Skills on ClawHub (OpenClaw's public Skill registry) and found 341 malicious ones posing as popular tools; they told users to install a "prerequisite" that delivered an info-stealer (slide 2; SOURCES #1–2). It complements M1's Cato Networks proof-of-concept: M1 = "possible", M5 = "happened at scale".
 
