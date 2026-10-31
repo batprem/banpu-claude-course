@@ -1,0 +1,523 @@
+<title>M4 Workshop</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: one calm column of 5 workshop "pages" (A4 cards) under a sticky progress strip; Document Factory flow left to right. */
+:root{
+  --paper:#FAF8F3; --surface:#FFFFFF; --ink:#1F2933; --muted:#5B6670; --line:#E3DDCF; --code:#F3EFE6;
+  --human:#E4572E; --ai:#2E86AB; --data:#3BA55C; --warn:#F2A541; --red:#D64545;
+  --tint-green:#E9F6EC; --tint-yellow:#FDF3E1; --tint-red:#FDECEA;
+  --f-body:'IBM Plex Sans Thai',system-ui,sans-serif; --f-mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#161B21; --surface:#1F262E; --ink:#E9ECEF; --muted:#A3ADB7; --line:#34404B; --code:#262F38;
+  --tint-green:#1D3324; --tint-yellow:#3A2F1A; --tint-red:#3B2222; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#161B21; --surface:#1F262E; --ink:#E9ECEF; --muted:#A3ADB7; --line:#34404B; --code:#262F38;
+  --tint-green:#1D3324; --tint-yellow:#3A2F1A; --tint-red:#3B2222; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:15.5px;line-height:1.65;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.wrap{max-width:820px;margin:0 auto}
+h1,h2,h3{text-wrap:balance;line-height:1.3}
+:focus-visible{outline:3px solid var(--ai);outline-offset:2px}
+
+/* sticky progress strip */
+.strip{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);padding-block:12px 10px;border-bottom:1px solid var(--line);margin-bottom:20px}
+.strip-row{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between}
+.strip-title{font-weight:700;font-size:15px}
+.strip-title span{color:var(--muted);font-weight:400}
+.prog{display:flex;align-items:center;gap:10px;flex:1 1 220px;min-width:0}
+.track{flex:1;height:8px;border-radius:99px;background:var(--line);overflow:hidden}
+.track i{display:block;height:100%;width:0;background:var(--data);transition:width .3s}
+.prog b{font-variant-numeric:tabular-nums;font-size:14px;white-space:nowrap}
+
+header.intro{display:grid;gap:4px;margin-bottom:20px}
+header.intro .eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+header.intro h1{font-size:28px;margin:0}
+header.intro p{margin:0;color:var(--muted)}
+header.intro code{font-family:var(--f-mono);font-size:13px}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px clamp(16px,4vw,32px);margin-bottom:22px;display:grid;gap:14px;min-width:0}
+.card-head{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:baseline;justify-content:space-between}
+.card-head h2{margin:0;font-size:21px}
+.card-head .pg{color:var(--muted);font-weight:600;font-size:13px;letter-spacing:.04em}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:99px;padding:2px 12px;font-size:13px;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.chip::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--warn)}
+.card.done .chip::before{background:var(--data)}
+.goal{margin:0;padding:10px 14px;border-radius:10px;background:var(--code)}
+.goal b{color:var(--ai)}
+h3{font-size:16px;margin:4px 0 0}
+p,ol,ul{margin:0}
+ol,ul{padding-left:1.4em;display:grid;gap:4px}
+code{font-family:var(--f-mono);font-size:.9em;background:var(--code);padding:1px 6px;border-radius:5px}
+
+.tbl{overflow-x:auto;min-width:0}
+table{border-collapse:collapse;width:100%;font-size:14.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--code);font-weight:600}
+td.l-green{background:var(--tint-green)} td.l-yellow{background:var(--tint-yellow)} td.l-red{background:var(--tint-red)}
+td input{width:100%;min-width:90px;border:0;background:transparent;color:var(--ink);font:inherit;padding:2px 0}
+td input:focus{outline:2px solid var(--ai);outline-offset:2px;border-radius:3px}
+
+/* diagram */
+.diagram{overflow-x:auto;min-width:0;border:1px solid var(--line);border-radius:10px;padding:12px;background:var(--surface)}
+.diagram svg{display:block;width:100%;min-width:640px;height:auto}
+.diagram .edge{stroke:var(--ink);fill:none;stroke-width:1.6}
+.diagram .head{fill:var(--ink)}
+.diagram .lbl{fill:var(--muted);font-size:13px}
+.substep{display:grid;gap:10px;padding-top:4px}
+.ckgroup{display:grid;gap:8px}
+.legend{font-size:13px;color:var(--muted)}
+
+/* prompt */
+.prompt{border:1px solid var(--line);border-radius:10px;overflow:hidden;min-width:0}
+.prompt-bar{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px 8px 6px 14px;background:var(--code);border-bottom:1px solid var(--line);font-size:13px;font-weight:600}
+.copy-btn{font:600 13px var(--f-body);border:1px solid var(--ai);color:var(--ai);background:var(--surface);border-radius:7px;padding:4px 12px;cursor:pointer}
+.copy-btn:hover{background:var(--ai);color:#fff}
+.prompt pre{margin:0;padding:14px;overflow-x:auto;font-family:var(--f-mono);font-size:13.5px;line-height:1.6;white-space:pre-wrap;word-break:break-word;background:var(--surface);color:var(--ink)}
+
+/* checkpoint */
+.check{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border:1.5px dashed var(--human);border-radius:10px;cursor:pointer}
+.check input{width:20px;height:20px;margin-top:3px;accent-color:var(--data);flex:none;cursor:pointer}
+.card.done .check{border-style:solid;border-color:var(--data);background:var(--tint-green)}
+.note{font-size:14.5px;padding:8px 12px;border-radius:8px;background:var(--tint-yellow)}
+.next{font-weight:600;color:var(--ai)}
+footer{font-size:12px;color:var(--muted);text-align:center;margin-top:8px}
+
+@media (prefers-reduced-motion: reduce){.track i{transition:none}}
+
+/* Export PDF (materials/_shared/export-pdf-artifact.html) */
+.export-pdf-btn{font:600 14px 'IBM Plex Sans Thai',sans-serif;background:#1F2933;color:#fff;border:0;border-radius:8px;padding:8px 14px;cursor:pointer}
+.export-pdf-btn:hover{background:#2E86AB}
+.export-pdf-btn[disabled]{opacity:.6;cursor:progress}
+.pdf-export .print-expand,.pdf-export [hidden].print-expand,.pdf-export details{display:block!important;height:auto!important;overflow:visible!important}
+.pdf-export body{background:#fff}
+.pdf-export .card{border-color:#ccc}
+.pdf-export .diagram svg{min-width:0}
+@media print{
+  @page{size:A4;margin:12mm}
+  body{background:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .no-print,.export-pdf-btn,button,nav{display:none!important}
+  .print-expand,[hidden].print-expand,details{display:block!important;height:auto!important;overflow:visible!important}
+  .pdf-page-break{break-before:page}
+  section,.card{break-inside:avoid}
+  .diagram svg{min-width:0}
+}
+</style>
+
+<div class="strip no-print">
+  <div class="wrap strip-row">
+    <div class="strip-title">M4 Workshop <span>· Monthly Ops Report จาก 5 แหล่ง</span></div>
+    <div class="prog" aria-label="ความคืบหน้า">
+      <div class="track"><i id="progBar"></i></div>
+      <b id="progText">0 / 5 หน้า</b>
+    </div>
+    <button class="export-pdf-btn no-print" id="exportPdfBtn" type="button" title="ดาวน์โหลดเป็น PDF">⬇ Export PDF</button>
+  </div>
+</div>
+
+<main class="wrap" data-pdf-root>
+  <header class="intro">
+    <span class="eyebrow">M4 · Document Factory &amp; Artifact as Output Layer</span>
+    <h1>M4 Workshop · Monthly Operations Report จาก 5 แหล่ง (25 นาที)</h1>
+    <p>ข้อมูลภายในทั้งหมดเป็นข้อมูลจำลอง (ไซต์สมมติ คนสมมติ อีเมล @example.com) · ราคาพลังงานเป็นข้อมูลสาธารณะจริง (IMF via FRED)</p>
+    <p>Prompt เต็มอยู่ใน <code>prompts.md</code> (และในใบงานนี้ กด Copy ได้) · Artifact ช่วยเล่น: <b>Output Picker</b> · เฉลยให้เทียบหลังจบหน้า 4: <b>Monthly Ops Dashboard</b></p>
+    <p class="legend">สีในแผนภาพ: 🟧 คน (HITL) · 🟦 AI · 🟩 Data/Connector</p>
+  </header>
+
+  <!-- หน้า 1 -->
+  <section class="card" id="page1" data-page="1">
+    <div class="card-head">
+      <div><div class="pg">หน้า 1 / 5 · 13:15–13:18</div><h2>เตรียมโฟลเดอร์ + ตรวจ 5 แหล่ง</h2></div>
+      <span class="chip">3 นาที</span>
+    </div>
+    <p class="goal"><b>เป้าหมาย:</b> Cowork เห็นเฉพาะสำเนาข้อมูลของ M4 และยืนยันว่าเข้าถึง 5 แหล่งได้ครบ</p>
+
+    <div class="diagram" role="img" aria-label="ภาพรวม workshop: 5 แหล่งข้อมูล Excel, CSV ใหญ่, SharePoint, Outlook, ราคาพลังงานสาธารณะ เข้าสู่หน้า 2 Plan และรวมข้อมูล, คนตรวจ 3 ตัวเลข, แล้วแยกเป็นหน้า 3 Word หรือ PPTX และหน้า 4 Artifact v1 ไป v2, คนตัดสินใจหน้า 5 ว่าไฟล์ใหญ่เกินไหม, ต่อ M6 Schedule">
+      <svg viewBox="0 0 1000 290" xmlns="http://www.w3.org/2000/svg" font-family="IBM Plex Sans Thai, sans-serif" font-size="14" text-anchor="middle">
+        <defs><marker id="arr1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="head" d="M0 0L10 5L0 10z"/></marker></defs>
+        <rect x="6" y="10" width="160" height="42" rx="21" fill="#3BA55C" stroke="#1F2933"/><text x="86" y="36" fill="#fff" font-weight="600">1 Excel</text>
+        <rect x="6" y="66" width="160" height="42" rx="21" fill="#3BA55C" stroke="#1F2933"/><text x="86" y="92" fill="#fff" font-weight="600">2 CSV ใหญ่</text>
+        <rect x="6" y="122" width="160" height="42" rx="21" fill="#3BA55C" stroke="#1F2933"/><text x="86" y="148" fill="#fff" font-weight="600">3 SharePoint</text>
+        <rect x="6" y="178" width="160" height="42" rx="21" fill="#3BA55C" stroke="#1F2933"/><text x="86" y="204" fill="#fff" font-weight="600">4 Outlook</text>
+        <rect x="6" y="234" width="160" height="48" rx="21" fill="#3BA55C" stroke="#1F2933"/><text x="86" y="254" fill="#fff" font-weight="600" font-size="13">5 ราคาพลังงาน</text><text x="86" y="272" fill="#fff" font-size="12">สาธารณะ</text>
+        <path class="edge" d="M166 31C190 31 190 130 208 138" marker-end="url(#arr1)"/>
+        <path class="edge" d="M166 87C190 87 190 136 208 141" marker-end="url(#arr1)"/>
+        <path class="edge" d="M166 143H208" marker-end="url(#arr1)"/>
+        <path class="edge" d="M166 199C190 199 190 150 208 146" marker-end="url(#arr1)"/>
+        <path class="edge" d="M166 258C190 258 190 156 208 149" marker-end="url(#arr1)"/>
+        <rect x="210" y="115" width="150" height="56" rx="10" fill="#2E86AB" stroke="#1F2933"/><text x="285" y="139" fill="#fff" font-weight="600">หน้า 2</text><text x="285" y="159" fill="#fff" font-size="13">Plan + รวมข้อมูล</text>
+        <polygon points="455,93 525,143 455,193 385,143" fill="#E4572E" stroke="#1F2933"/><text x="455" y="139" fill="#fff" font-weight="600" font-size="13">ตรวจ</text><text x="455" y="157" fill="#fff" font-weight="600" font-size="13">3 ตัวเลข</text>
+        <path class="edge" d="M360 143H383" marker-end="url(#arr1)"/>
+        <rect x="560" y="62" width="160" height="56" rx="10" fill="#2E86AB" stroke="#1F2933"/><text x="640" y="86" fill="#fff" font-weight="600">หน้า 3</text><text x="640" y="106" fill="#fff" font-size="13">Word / PPTX</text>
+        <rect x="560" y="168" width="160" height="56" rx="10" fill="#2E86AB" stroke="#1F2933"/><text x="640" y="192" fill="#fff" font-weight="600">หน้า 4</text><text x="640" y="212" fill="#fff" font-size="13">Artifact v1 → v2</text>
+        <path class="edge" d="M500 125C530 100 535 90 558 90" marker-end="url(#arr1)"/>
+        <path class="edge" d="M500 161C530 186 535 196 558 196" marker-end="url(#arr1)"/>
+        <polygon points="812,83 892,143 812,203 732,143" fill="#E4572E" stroke="#1F2933"/><text x="812" y="139" fill="#fff" font-weight="600" font-size="13">หน้า 5</text><text x="812" y="157" fill="#fff" font-weight="600" font-size="12">ไฟล์ใหญ่เกิน?</text>
+        <path class="edge" d="M720 90C740 90 750 110 768 116" marker-end="url(#arr1)"/>
+        <path class="edge" d="M720 196C740 196 750 176 768 170" marker-end="url(#arr1)"/>
+        <rect x="904" y="118" width="90" height="50" rx="21" fill="#3BA55C" stroke="#1F2933"/><text x="949" y="139" fill="#fff" font-weight="600" font-size="13">ต่อ M6</text><text x="949" y="157" fill="#fff" font-size="12">Schedule</text>
+        <path class="edge" d="M892 143H902" marker-end="url(#arr1)"/>
+      </svg>
+    </div>
+    <p class="legend">🟧 คน (HITL) · 🟦 AI · 🟩 Data/Connector</p>
+
+    <ol>
+      <li>ดาวน์โหลด <b>M4 pack</b> จาก SharePoint ของห้องอบรม แล้ว <b>คัดลอก</b> ไปที่ <code>Documents/Claude-Workshop/M4/input/</code> (copy-before-write)</li>
+    </ol>
+    <div class="tbl"><table>
+      <thead><tr><th>#</th><th>ไฟล์ / แหล่ง</th><th>ขนาด</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><code>ops_monthly_2566-2569.xlsx</code> (6 ไซต์ ม.ค. 2566–ก.ย. 2569)</td><td>25 KB · 270 แถว</td></tr>
+        <tr><td>2</td><td><code>shift_log_2568-2569.csv</code> (3 เหมือง × 30 รถ × 3 กะ)</td><td>~11 MB · ~172,000 แถว</td></tr>
+        <tr><td>3</td><td>SharePoint List <code>Project_Tracker</code>, <code>Issue_Log</code> (สำรอง: <code>m3_sharepoint/*.csv</code>)</td><td>12 โครงการ · 56 issue</td></tr>
+        <tr><td>4</td><td>อีเมล <code>[PRJ-…]</code> ใน Outlook (สำรอง: <code>m3_outlook/*.eml</code>)</td><td>20 ฉบับ</td></tr>
+        <tr><td>5</td><td><code>energy_prices_public_2023-2026.csv</code> (IMF via FRED)</td><td>4 KB · 45 เดือน</td></tr>
+        <tr><td>+</td><td><code>Monthly_Ops_Report_2569-09_FULL.docx</code> (ใช้หน้า 5)</td><td>~37 MB</td></tr>
+      </tbody>
+    </table></div>
+    <ol start="2">
+      <li>สร้างโฟลเดอร์ว่าง <code>output/</code> · เปิด Cowork → เลือกโฟลเดอร์ <code>Documents/Claude-Workshop/M4</code> เท่านั้น</li>
+      <li>Copy <b>M4-P01</b> (อ่านอย่างเดียว)</li>
+    </ol>
+
+    <div class="prompt">
+      <div class="prompt-bar"><span>M4-P01 · ตรวจแหล่งข้อมูล (ห้ามแก้ไฟล์)</span><button class="copy-btn no-print" type="button" data-copy="p01">Copy</button></div>
+      <pre id="p01">สำรวจโฟลเดอร์ input/ แล้วทำตารางสรุป: ชื่อไฟล์ · ชนิด · ขนาด (MB) · จำนวนแถว/หน้า/ฉบับ (ประมาณได้) · ช่วงเวลาของข้อมูล
+ถ้าเชื่อม SharePoint และ Outlook ได้ ให้บอกด้วยว่าเห็น List "Project_Tracker", "Issue_Log" และอีเมลที่มีคำว่า [PRJ- หรือไม่ (อ่านอย่างเดียว)
+ห้ามสร้าง แก้ ย้าย หรือลบไฟล์ใด ๆ และห้ามอ่านไฟล์ CSV ใหญ่ทั้งไฟล์ ให้ดูแค่หัวคอลัมน์และ 5 แถวแรก</pre>
+    </div>
+
+    <label class="check" for="ck1"><input type="checkbox" id="ck1"><span><b>✅ Checkpoint (คนตรวจ):</b> ตารางของ Claude มีครบ 5 แหล่ง · CSV ถูก "ดูแค่หัว + 5 แถว" ไม่ใช่อ่านทั้งไฟล์ · ถ้า Connector ไม่ขึ้น ใช้ไฟล์สำรองใน <code>input/</code> ได้เลย ไม่ต้องรอ</span></label>
+  </section>
+
+  <!-- หน้า 2 -->
+  <section class="card pdf-page-break" id="page2" data-page="2">
+    <div class="card-head">
+      <div><div class="pg">หน้า 2 / 5 · 13:18–13:25</div><h2>Plan → รวม 5 แหล่ง → ตรวจ 3 ตัวเลข</h2></div>
+      <span class="chip">7 นาที</span>
+    </div>
+    <p class="goal"><b>เป้าหมาย:</b> ได้ <code>output/summary_2569-09.xlsx</code> ที่ทุกตัวเลขมีที่มา และคนตรวจแล้ว</p>
+
+    <div class="substep">
+      <h3>ขั้น 1 · วางแผน (2 นาที)</h3>
+      <p>Copy <b>M4-P02</b> → Claude ทวนเป้าหมาย 3 บรรทัด + เสนอแผน</p>
+      <div class="prompt">
+        <div class="prompt-bar"><span>M4-P02 · วางแผน Monthly Operations Report (ยังไม่ลงมือ)</span><button class="copy-btn no-print" type="button" data-copy="p02">Copy</button></div>
+        <pre id="p02">เป้าหมาย: Monthly Operations Report เดือนกันยายน 2569 สำหรับผู้บริหารฝ่ายปฏิบัติการ อ่านจบใน 5 นาที
+
+Input (5 แหล่ง):
+1) input/ops_monthly_2566-2569.xlsx: Budget vs Actual ปริมาณและต้นทุน 6 ไซต์
+2) input/shift_log_2568-2569.csv: shift log รถขน 3 เหมือง (~172,000 แถว)
+3) SharePoint List Project_Tracker + Issue_Log (หรือ input/m3_sharepoint/*.csv ถ้าไม่มี Connector)
+4) อีเมลอัปเดตโครงการใน Outlook ช่วง 1–31 ต.ค. 2569 (หรือ input/m3_outlook/*.eml)
+5) input/energy_prices_public_2023-2026.csv: ราคาถ่านหิน Brent และ LNG รายเดือน (ข้อมูลสาธารณะ IMF via FRED)
+
+Process: เทียบ ก.ย. 2569 กับ Budget และกับ ส.ค. 2569 · หาประเด็นเด่น 3 ข้อ และความเสี่ยง 3 ข้อ
+Output: ตารางสรุปรายไซต์ + ประเด็น + ที่มาของทุกตัวเลข (ไฟล์/ชีต/แถว หรือชื่ออีเมล)
+
+ก่อนลงมือ: ทวนเป้าหมายด้วยคำของคุณเอง 3 บรรทัด แล้วเสนอแผนเป็นขั้นตอน และบอกไฟล์ที่จะสร้างใน output/
+ถ้าข้อมูลไหนนิยามไม่ชัด (เช่น tonnes ใน shift log กับ actual_volume ใน Excel) ให้ถามฉันก่อน
+ห้ามสร้างหรือแก้ไฟล์จนกว่าฉันจะพิมพ์ว่า "อนุมัติ"</pre>
+      </div>
+      <label class="check" for="ck2a"><input type="checkbox" id="ck2a"><span><b>✅ Checkpoint:</b> แผนต้องมี (ก) สคริปต์สรุป CSV ไม่อ่านทีละแถว (ข) เขียนเฉพาะใน <code>output/</code> (ค) ถามเรื่องนิยาม</span></label>
+      <ul>
+        <li>Claude ถามว่า tonnes ใน shift log = อะไร? ตอบ: "ดิน + ถ่านหินที่รถขนทั้งหมด ไม่ใช่ปริมาณขาย ใช้ปริมาณจาก Excel เป็นตัวเลขหลัก"</li>
+        <li>ถ้าแผนดีแล้ว พิมพ์ "อนุมัติ"</li>
+      </ul>
+    </div>
+
+    <div class="substep">
+      <h3>ขั้น 2 · Process (3 นาที)</h3>
+      <p>Copy <b>M4-P03</b> → Claude รันสคริปต์ + สรุป</p>
+      <div class="prompt">
+        <div class="prompt-bar"><span>M4-P03 · รวม 5 แหล่ง (หลังอนุมัติแผน)</span><button class="copy-btn no-print" type="button" data-copy="p03">Copy</button></div>
+        <pre id="p03">อนุมัติ ทำตามแผนโดย:
+- ไฟล์ CSV ใหญ่: เขียนและรันสคริปต์สรุปรายไซต์ (ตันรวม, ตันถ่านหิน, ดีเซล ลิตร/ตัน, ชั่วโมง downtime, รถที่ downtime สูงสุด) สำหรับ ก.ย. 2569 และ ส.ค. 2569 ห้ามอ่านทีละแถว
+- Excel: คำนวณ % ต่างจาก Budget ทั้งปริมาณและต้นทุนต่อหน่วย เดือน ก.ย. และสะสม ม.ค.–ก.ย.
+- SharePoint/Outlook: สรุปโครงการที่ At risk / Delayed และ issue ระดับ High ที่ยังเปิดอยู่ พร้อมชื่ออีเมลที่อ้าง
+- ราคาพลังงาน: ค่า ก.ย. 2026 เทียบเดือนก่อนและเทียบ ก.ย. 2025 ระบุแหล่งและวันที่ดึงข้อมูล
+บันทึกผลเป็น output/summary_2569-09.xlsx (ชีต sites, mines, projects, prices, sources) และ output/summary_2569-09.md
+จบแล้วหยุด รอให้ฉันตรวจตัวเลขก่อนทำเอกสาร</pre>
+      </div>
+    </div>
+
+    <div class="substep">
+      <h3>ขั้น 3 · ตรวจ 3 ตัวเลข (2 นาที)</h3>
+      <p>Copy <b>M4-P04</b> แล้วเปิดไฟล์ต้นทางเทียบเอง</p>
+      <div class="prompt">
+        <div class="prompt-bar"><span>M4-P04 · Human-in-the-Loop: ตรวจ 3 ตัวเลข</span><button class="copy-btn no-print" type="button" data-copy="p04">Copy</button></div>
+        <pre id="p04">ฉันจะตรวจ 3 ตัวเลขนี้: [1) % ปริมาณ Site D เดือน ก.ย. 2) ต้นทุนต่อหน่วย Site C 3) ราคาถ่านหิน ก.ย. 2026]
+สำหรับแต่ละตัว ให้แสดง: ค่าที่คุณใช้ · สูตร · ไฟล์/ชีต/แถว (หรือโค้ดที่ใช้คำนวณ) · ค่าดิบจากต้นทาง
+ห้ามแก้ตัวเลขเอง ถ้าพบว่าตัวเองคำนวณผิด ให้บอกว่าผิดตรงไหนและรอฉันสั่งแก้</pre>
+      </div>
+      <div class="tbl"><table>
+        <thead><tr><th>ตัวเลขที่ตรวจ</th><th>ควรได้ประมาณ</th><th>เปิดดูที่</th></tr></thead>
+        <tbody>
+          <tr><td>ปริมาณ Site D ก.ย. vs Budget</td><td><b>−17%</b> (overhaul Unit 2)</td><td>Excel ชีต <code>data</code> · period 2026-09 · D</td></tr>
+          <tr><td>ต้นทุนต่อหน่วย Site C vs Budget</td><td><b>สูงกว่า ~16%</b> (รถขุด EX-07)</td><td>Excel · period 2026-09 · C</td></tr>
+          <tr><td>ราคาถ่านหินออสเตรเลีย ก.ย. 2026</td><td><b>153.84 USD/t</b> (+9.5% จาก ส.ค.)</td><td>CSV ราคาพลังงาน แถว 2026-09</td></tr>
+        </tbody>
+      </table></div>
+      <label class="check" for="ck2b"><input type="checkbox" id="ck2b"><span><b>✅ Checkpoint:</b> ตรงทั้ง 3 ตัว → ไปหน้า 3 · ผิดแม้ 1 ตัว → ให้ Claude อธิบายสูตรก่อน แล้วสั่งตรวจทุกตัว</span></label>
+      <p class="note">💡 จำเรื่อง Deloitte (สไลด์ 3): ของเสียหลุดออกจากโรงงานเพราะไม่มีใครเปิดต้นทางเทียบ</p>
+    </div>
+  </section>
+
+  <!-- หน้า 3 -->
+  <section class="card pdf-page-break" id="page3" data-page="3">
+    <div class="card-head">
+      <div><div class="pg">หน้า 3 / 5 · 13:25–13:30</div><h2>Report แบบ Office: Word หรือ PowerPoint</h2></div>
+      <span class="chip">5 นาที</span>
+    </div>
+    <p class="goal"><b>เป้าหมาย:</b> รายงานทางการ 1 ไฟล์ที่ส่งต่อ/แก้ต่อได้ (เลือก Word <b>หรือ</b> PPTX อย่างเดียวพอ)</p>
+    <p><b>ทำไมต้องมีแบบ Office ด้วย:</b> ผู้รับต้องแก้ต่อ เก็บเข้าระบบเอกสาร หรือนำเสนอในห้องประชุมตาม template บริษัท</p>
+    <p><b>ขั้นตอน:</b> Copy <b>M4-P05</b> แล้วเลือก <code>docx</code> หรือ <code>pptx</code> ในวงเล็บ</p>
+
+    <div class="diagram" role="img" aria-label="summary_2569-09.xlsx ที่ตรวจแล้ว ไปสู่ AI สร้าง Word หรือ PPTX ตามโครง 6 ส่วน, คนอ่านรอบเดียวตรวจ 4 ข้อ, ได้ไฟล์ output Monthly_Ops_Report_2569-09.docx หรือ .pptx">
+      <svg viewBox="0 0 1000 130" xmlns="http://www.w3.org/2000/svg" font-family="IBM Plex Sans Thai, sans-serif" font-size="14" text-anchor="middle">
+        <defs><marker id="arr3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="head" d="M0 0L10 5L0 10z"/></marker></defs>
+        <rect x="6" y="35" width="200" height="60" rx="24" fill="#3BA55C" stroke="#1F2933"/><text x="106" y="61" fill="#fff" font-weight="600" font-size="13">summary_2569-09.xlsx</text><text x="106" y="80" fill="#fff" font-size="13">ตรวจแล้ว</text>
+        <rect x="256" y="35" width="200" height="60" rx="10" fill="#2E86AB" stroke="#1F2933"/><text x="356" y="61" fill="#fff" font-weight="600">สร้าง Word / PPTX</text><text x="356" y="80" fill="#fff" font-size="13">ตามโครง 6 ส่วน</text>
+        <polygon points="590,8 680,65 590,122 500,65" fill="#E4572E" stroke="#1F2933"/><text x="590" y="61" fill="#fff" font-weight="600" font-size="13">อ่านรอบเดียว</text><text x="590" y="80" fill="#fff" font-weight="600" font-size="13">ตรวจ 4 ข้อ</text>
+        <rect x="730" y="35" width="264" height="60" rx="24" fill="#3BA55C" stroke="#1F2933"/><text x="862" y="61" fill="#fff" font-weight="600" font-size="13">output/Monthly_Ops_Report</text><text x="862" y="80" fill="#fff" font-size="13">_2569-09.docx/.pptx</text>
+        <path class="edge" d="M206 65H254" marker-end="url(#arr3)"/>
+        <path class="edge" d="M456 65H498" marker-end="url(#arr3)"/>
+        <path class="edge" d="M680 65H728" marker-end="url(#arr3)"/>
+      </svg>
+    </div>
+    <p class="legend">🟧 คน (HITL) · 🟦 AI · 🟩 Data/Connector</p>
+
+    <div class="prompt">
+      <div class="prompt-bar"><span>M4-P05 · Report → Word หรือ PowerPoint</span><button class="copy-btn no-print" type="button" data-copy="p05">Copy</button></div>
+      <pre id="p05">จาก output/summary_2569-09.xlsx ที่ฉันตรวจแล้ว สร้าง [เลือก 1: Word 3–4 หน้า / PowerPoint 5 สไลด์] ชื่อ output/Monthly_Ops_Report_2569-09.[docx/pptx]
+โครง: 1) Executive summary 5 บรรทัด 2) ตารางรายไซต์ (ปริมาณ, % vs Budget, ต้นทุนต่อหน่วย, % vs Budget) 3) ประเด็นเด่น 3 ข้อ 4) ความเสี่ยง + โครงการ At risk 5) ราคาพลังงานโลก (อ้างแหล่ง) 6) ภาคผนวก: นิยามและที่มาของข้อมูล
+ใช้สีส้มเฉพาะตัวเลขที่แย่กว่า Budget เกิน 5% · ไม่ใส่รูปถ่าย · ทุกหน้ามี footer "ข้อมูลสมมติเพื่อการอบรม"
+ห้ามเพิ่มตัวเลขที่ไม่มีใน summary</pre>
+    </div>
+
+    <h3>✅ Checkpoint (เปิดไฟล์จริงใน Word/PowerPoint)</h3>
+    <div class="ckgroup">
+      <label class="check" for="ck3a"><input type="checkbox" id="ck3a"><span>Executive summary พูดถึง Site D และ Site C ก่อนเรื่องอื่น</span></label>
+      <label class="check" for="ck3b"><input type="checkbox" id="ck3b"><span>ตัวเลขในตารางตรงกับ <code>summary_2569-09.xlsx</code> (สุ่ม 1 แถว)</span></label>
+      <label class="check" for="ck3c"><input type="checkbox" id="ck3c"><span>ส่วนราคาพลังงานมีแหล่ง "IMF via FRED" และเดือนของข้อมูล</span></label>
+      <label class="check" for="ck3d"><input type="checkbox" id="ck3d"><span>มี footer "ข้อมูลสมมติเพื่อการอบรม" และไม่มีตัวเลขที่ไม่อยู่ใน summary</span></label>
+    </div>
+    <p><b>ถ้าไม่ผ่าน:</b> สั่งแก้เฉพาะจุด เช่น "แก้หน้า 2: ต้นทุนต่อหน่วย Site C ใช้ค่าจากชีต sites แถว C เท่านั้น อย่าแก้ส่วนอื่น"</p>
+    <p class="note">⏩ <b>ช้ากว่าเวลา?</b> ข้ามไปหน้า 4 ก่อน แล้วกลับมาทำหน้านี้ใน M6 (รายงานนี้จะถูกตั้งเป็น Scheduled task)</p>
+  </section>
+
+  <!-- หน้า 4 -->
+  <section class="card pdf-page-break" id="page4" data-page="4">
+    <div class="card-head">
+      <div><div class="pg">หน้า 4 / 5 · 13:30–13:36</div><h2>Report แบบ Artifact: Dashboard v1 → v2</h2></div>
+      <span class="chip">6 นาที</span>
+    </div>
+    <p class="goal"><b>เป้าหมาย:</b> Dashboard ที่ผู้บริหารกดเลือกไซต์ได้ และรู้ภายใน 10 วินาทีว่าไซต์ไหนมีปัญหา</p>
+
+    <div class="diagram" role="img" aria-label="คนบรีฟว่าใครดูและตัดสินใจอะไร, AI ทำ v1 Dashboard, คนให้ feedback 1 ถึง 3 ข้อ, ถ้าต้องปรับ AI ทำ v2 แก้เฉพาะจุดแล้วกลับมาให้ feedback, ถ้าพอแล้วแชร์ในองค์กรหรือ Export PDF">
+      <svg viewBox="0 0 1000 240" xmlns="http://www.w3.org/2000/svg" font-family="IBM Plex Sans Thai, sans-serif" font-size="14" text-anchor="middle">
+        <defs><marker id="arr4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="head" d="M0 0L10 5L0 10z"/></marker></defs>
+        <rect x="6" y="40" width="170" height="60" rx="10" fill="#E4572E" stroke="#1F2933"/><text x="91" y="66" fill="#fff" font-weight="600">บรีฟ: ใครดู</text><text x="91" y="86" fill="#fff" font-size="13">ตัดสินใจอะไร</text>
+        <rect x="226" y="40" width="160" height="60" rx="10" fill="#2E86AB" stroke="#1F2933"/><text x="306" y="76" fill="#fff" font-weight="600">v1 Dashboard</text>
+        <polygon points="520,10 600,70 520,130 440,70" fill="#E4572E" stroke="#1F2933"/><text x="520" y="66" fill="#fff" font-weight="600" font-size="13">feedback</text><text x="520" y="85" fill="#fff" font-weight="600" font-size="13">1–3 ข้อ</text>
+        <rect x="440" y="172" width="160" height="56" rx="10" fill="#2E86AB" stroke="#1F2933"/><text x="520" y="205" fill="#fff" font-weight="600">v2 แก้เฉพาะจุด</text>
+        <rect x="790" y="40" width="204" height="60" rx="24" fill="#3BA55C" stroke="#1F2933"/><text x="892" y="66" fill="#fff" font-weight="600" font-size="13">แชร์ในองค์กร</text><text x="892" y="86" fill="#fff" font-size="13">/ Export PDF</text>
+        <path class="edge" d="M176 70H224" marker-end="url(#arr4)"/>
+        <path class="edge" d="M386 70H438" marker-end="url(#arr4)"/>
+        <path class="edge" d="M495 112V170" marker-end="url(#arr4)"/><text class="lbl" x="468" y="148">ปรับ</text>
+        <path class="edge" d="M545 172V114" marker-end="url(#arr4)"/>
+        <path class="edge" d="M600 70H788" marker-end="url(#arr4)"/><text class="lbl" x="694" y="60">พอแล้ว</text>
+      </svg>
+    </div>
+    <p class="legend">🟧 คน (HITL) · 🟦 AI · 🟩 Data/Connector</p>
+
+    <div class="substep">
+      <h3>ขั้น 1 · v1 (3 นาที)</h3>
+      <p>Copy <b>M4-P06</b> (ถ้ามีเวลาใช้ทางเลือก Prototype first: 3 layout แล้วเลือก 1)</p>
+      <div class="prompt">
+        <div class="prompt-bar"><span>M4-P06 · Report → Artifact Dashboard v1</span><button class="copy-btn no-print" type="button" data-copy="p06">Copy</button></div>
+        <pre id="p06">สร้าง Artifact แบบ HTML ไฟล์เดียว ชื่อ "Monthly Ops Dashboard ก.ย. 2569" จาก output/summary_2569-09.xlsx (ข้อมูลฝังในไฟล์ ไม่เรียกเน็ตหรือ AI)
+ผู้ดู: ผู้บริหารฝ่ายปฏิบัติการ ต้องเห็นภายใน 10 วินาทีว่า "ไซต์ไหนมีปัญหา"
+ส่วนประกอบ: แถว KPI 4 ช่อง · ตารางหรือการ์ด 6 ไซต์ (เลือกไซต์เพื่อดูรายละเอียดได้) · กราฟ % vs Budget ม.ค.–ก.ย. · กราฟราคาพลังงาน 12 เดือน (ใส่ที่มา) · โครงการ At risk · กล่อง "ที่มาของข้อมูล"
+ต้องมีปุ่ม Export PDF (window.print + print CSS ที่ซ่อนปุ่มและแสดงทุกส่วน)
+ฟอนต์ IBM Plex Sans Thai · สีหลัก #2E86AB · สีเตือน #E4572E · บันทึกเป็น output/dashboard_v1.html ด้วย</pre>
+      </div>
+      <div class="prompt">
+        <div class="prompt-bar"><span>ทางเลือก Prototype first (M2): เติมบรรทัดนี้ก่อน</span><button class="copy-btn no-print" type="button" data-copy="p06b">Copy</button></div>
+        <pre id="p06b">ก่อนทำจริง ขอ 3 layout แบบร่างสั้น ๆ (ผู้บริหาร / วิเคราะห์ละเอียด / มือถือ) ให้ฉันเลือก 1 แบบ</pre>
+      </div>
+    </div>
+
+    <div class="substep">
+      <h3>ขั้น 2 · ทดลองเป็นผู้บริหาร (1 นาที)</h3>
+      <p>กดเลือก Site D → เห็นสาเหตุไหม? กด Export PDF → พิมพ์ครบทุกส่วนไหม?</p>
+    </div>
+
+    <div class="substep">
+      <h3>ขั้น 3 · v2 (2 นาที)</h3>
+      <p>เขียน feedback ของคุณเอง 1–3 ข้อลงใน <b>M4-P07</b> (เฉพาะเจาะจง + เหตุผล)</p>
+      <div class="prompt">
+        <div class="prompt-bar"><span>M4-P07 · Iterate v2 (แก้เฉพาะจุด)</span><button class="copy-btn no-print" type="button" data-copy="p07">Copy</button></div>
+        <pre id="p07">ทำ v2 จาก v1 โดยแก้แค่ 3 เรื่องนี้ และห้ามเปลี่ยนส่วนอื่น:
+1) [เช่น เรียงไซต์จากแย่สุดไปดีสุดตาม % vs Budget]
+2) [เช่น ใส่ป้าย "สาเหตุ" ใต้ไซต์ที่ต่ำกว่า Budget เกิน 5% โดยอ้างชื่ออีเมลหรือโครงการ]
+3) [เช่น ย้ายกราฟราคาพลังงานไปล่างสุด]
+บันทึกเป็น output/dashboard_v2.html (ห้ามเขียนทับ v1) และสรุปว่าเปลี่ยนอะไรไปบ้าง</pre>
+      </div>
+      <div class="tbl"><table>
+        <thead><tr><th>feedback ที่ไม่ช่วย</th><th>feedback ที่ดี</th></tr></thead>
+        <tbody>
+          <tr><td>"ทำให้สวยขึ้น"</td><td>"เรียงไซต์จากแย่สุดไปดีสุด เพราะผู้บริหารดูปัญหาก่อน"</td></tr>
+          <tr><td>"เพิ่มข้อมูล"</td><td>"ใต้ Site D ใส่สาเหตุจากอีเมล PRJ-105 ให้รู้ว่าเป็นแผน overhaul"</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <label class="check" for="ck4"><input type="checkbox" id="ck4"><span><b>✅ Checkpoint:</b> v1 และ v2 อยู่ใน <code>output/</code> ทั้งคู่ (ไม่เขียนทับ) · ตัวเลขใน Dashboard = ตัวเลขที่ตรวจแล้วในหน้า 2 · มีกล่องที่มาของข้อมูล · ปุ่ม Export PDF ใช้ได้</span></label>
+    <p class="note">🔍 เทียบกับเฉลย <b>Monthly Ops Dashboard</b> (ผู้สอนแชร์ลิงก์หลังจบขั้นนี้) · แชร์ Artifact ได้เฉพาะคนในองค์กร (Team plan)</p>
+  </section>
+
+  <!-- หน้า 5 -->
+  <section class="card pdf-page-break" id="page5" data-page="5">
+    <div class="card-head">
+      <div><div class="pg">หน้า 5 / 5 · 13:36–13:40</div><h2>รายงานใหญ่เกินแนบอีเมล + เลือก output</h2></div>
+      <span class="chip">4 นาที</span>
+    </div>
+    <p class="goal"><b>เป้าหมาย:</b> ส่งรายงาน ~37 MB ให้ผู้บริหารได้ โดยไม่แนบไฟล์ใหญ่ และไม่กระจายสำเนา</p>
+
+    <div class="diagram" role="img" aria-label="ไฟล์ FULL.docx ประมาณ 37 MB, คนตรวจว่าเกินแนบไหม, ถ้าเกิน AI ทำ 3 ทาง: ย่อรูป, แบ่งไฟล์, สรุปพร้อมลิงก์ SharePoint, จากนั้นคนตรวจและเลือกวิธี, ส่งผ่าน SharePoint และ Outlook แบบร่าง">
+      <svg viewBox="0 0 1000 250" xmlns="http://www.w3.org/2000/svg" font-family="IBM Plex Sans Thai, sans-serif" font-size="14" text-anchor="middle">
+        <defs><marker id="arr5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="head" d="M0 0L10 5L0 10z"/></marker></defs>
+        <rect x="6" y="100" width="160" height="50" rx="22" fill="#3BA55C" stroke="#1F2933"/><text x="86" y="130" fill="#fff" font-weight="600" font-size="13">FULL.docx ~37 MB</text>
+        <polygon points="270,75 335,125 270,175 205,125" fill="#E4572E" stroke="#1F2933"/><text x="270" y="130" fill="#fff" font-weight="600" font-size="13">เกินแนบ?</text>
+        <path class="edge" d="M166 125H203" marker-end="url(#arr5)"/>
+        <rect x="420" y="20" width="180" height="46" rx="10" fill="#2E86AB" stroke="#1F2933"/><text x="510" y="48" fill="#fff" font-weight="600">ย่อรูป</text>
+        <rect x="420" y="102" width="180" height="46" rx="10" fill="#2E86AB" stroke="#1F2933"/><text x="510" y="130" fill="#fff" font-weight="600">แบ่งไฟล์</text>
+        <rect x="420" y="184" width="180" height="46" rx="10" fill="#2E86AB" stroke="#1F2933"/><text x="510" y="212" fill="#fff" font-weight="600" font-size="13">สรุป + ลิงก์ SharePoint</text>
+        <path class="edge" d="M320 110C360 60 380 43 418 43" marker-end="url(#arr5)"/><text class="lbl" x="370" y="62">เกิน</text>
+        <path class="edge" d="M335 125H418" marker-end="url(#arr5)"/><text class="lbl" x="378" y="117">เกิน</text>
+        <path class="edge" d="M320 140C360 190 380 207 418 207" marker-end="url(#arr5)"/><text class="lbl" x="370" y="200">เกิน</text>
+        <polygon points="725,70 805,125 725,180 645,125" fill="#E4572E" stroke="#1F2933"/><text x="725" y="121" fill="#fff" font-weight="600" font-size="13">คนตรวจ</text><text x="725" y="139" fill="#fff" font-weight="600" font-size="13">+ เลือกวิธี</text>
+        <path class="edge" d="M600 43C630 43 650 70 678 100" marker-end="url(#arr5)"/>
+        <path class="edge" d="M600 125H643" marker-end="url(#arr5)"/>
+        <path class="edge" d="M600 207C630 207 650 180 678 150" marker-end="url(#arr5)"/>
+        <rect x="840" y="96" width="154" height="58" rx="22" fill="#3BA55C" stroke="#1F2933"/><text x="917" y="121" fill="#fff" font-weight="600" font-size="13">SharePoint ·</text><text x="917" y="140" fill="#fff" font-size="13">Outlook (ร่าง)</text>
+        <path class="edge" d="M805 125H838" marker-end="url(#arr5)"/>
+      </svg>
+    </div>
+    <p class="legend">🟧 คน (HITL) · 🟦 AI · 🟩 Data/Connector</p>
+
+    <div class="substep">
+      <h3>ขั้น 1 (3 นาที)</h3>
+      <p>Copy <b>M4-P08</b> → Claude ทำ 3 workaround บนสำเนา + ร่างอีเมล (ยังไม่ส่ง)</p>
+      <div class="prompt">
+        <div class="prompt-bar"><span>M4-P08 · รายงานใหญ่เกินแนบอีเมล</span><button class="copy-btn no-print" type="button" data-copy="p08">Copy</button></div>
+        <pre id="p08">ไฟล์ input/Monthly_Ops_Report_2569-09_FULL.docx ใหญ่เกินแนบอีเมลของบริษัท
+1) บอกขนาดไฟล์ และส่วนที่ทำให้ไฟล์ใหญ่ (เช่น รูปกี่ภาพ ภาพละกี่ MB)
+2) ทำสำเนาที่ย่อรูปให้กว้างไม่เกิน 1280 px แบบ JPEG คุณภาพ 80 → output/Monthly_Ops_Report_2569-09_small.docx (ห้ามแก้ไฟล์ต้นฉบับ)
+3) แบ่งเป็น 2 ไฟล์: เนื้อหาหลัก และภาคผนวกรูป → output/
+4) ร่างอีเมล (ยังไม่ส่ง) ถึง ops-management@example.com: สรุป 5 บรรทัด + ช่องว่าง [ลิงก์ SharePoint] สำหรับแนบลิงก์ไฟล์เต็ม
+สรุปตารางขนาดก่อน/หลังของทุกไฟล์ และแนะนำว่าวิธีไหนเหมาะที่สุด เพราะอะไร</pre>
+      </div>
+      <div class="tbl"><table>
+        <thead><tr><th>วิธี</th><th>ผลที่ควรได้โดยประมาณ</th><th>เหมาะเมื่อ</th></tr></thead>
+        <tbody>
+          <tr><td>ย่อรูป 1280 px JPEG 80</td><td>~37 MB → <b>~6–7 MB</b></td><td>ต้องแนบไฟล์จริง ๆ</td></tr>
+          <tr><td>แบ่งไฟล์ หลัก + ภาคผนวก</td><td>ไฟล์หลักเล็กมาก ภาคผนวกยังใหญ่</td><td>ผู้รับต้องการเฉพาะเนื้อหา</td></tr>
+          <tr><td>สรุป 5 บรรทัด + ลิงก์ SharePoint</td><td>อีเมลไม่มีไฟล์แนบ</td><td><b>แนะนำ</b> ไฟล์อยู่ที่เดียว คุมสิทธิ์ได้</td></tr>
+        </tbody>
+      </table></div>
+      <label class="check" for="ck5a"><input type="checkbox" id="ck5a"><span><b>✅ Checkpoint (คนตรวจ):</b> ต้นฉบับ FULL.docx ไม่ถูกแก้ · ไฟล์ย่อเปิดได้และรูปยังอ่านออก · ร่างอีเมลยัง <b>ไม่ถูกส่ง</b> · ลิงก์แชร์ = เฉพาะคนในองค์กรที่เกี่ยวข้อง ไม่ใช่ "Anyone with the link"</span></label>
+    </div>
+
+    <div class="substep">
+      <h3>ขั้น 2 (1 นาที) · ทบทวน</h3>
+      <p>เปิด <b>Output Picker</b> Artifact เล่น 8 สถานการณ์ "ควรออกเป็น Word / Excel / PDF / PPT หรือ Artifact?" แล้ว Export PDF ผลคะแนนเก็บไว้</p>
+    </div>
+
+    <p class="next">➡️ ต่อ M5–M6: ขั้นตอนทั้งหมดนี้ทำซ้ำทุกเดือน → แพ็กเป็น Skill (M5) และตั้งเป็น Scheduled task ที่หยุดรออนุมัติก่อนส่ง (M6)</p>
+  </section>
+
+  <footer>ข้อมูลภายในทุกส่วนเป็นข้อมูลสมมติเพื่อการอบรม (ยกเว้นราคาพลังงานสาธารณะ IMF via FRED) · Banpu · Claude for Business · M4</footer>
+</main>
+
+<script>
+document.documentElement.lang = 'th';
+document.body.setAttribute('data-pdf-name', 'M4-Workshop');
+(function () {
+  var KEY = 'm4-workshop-v1', state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { state = {}; }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+  var pages = Array.prototype.slice.call(document.querySelectorAll('section.card[data-page]'));
+  function update() {
+    var done = 0;
+    pages.forEach(function (p) {
+      var boxes = p.querySelectorAll('.check input[type=checkbox]');
+      var all = boxes.length > 0 && Array.prototype.every.call(boxes, function (b) { return b.checked; });
+      p.classList.toggle('done', all);
+      if (all) done++;
+    });
+    document.getElementById('progBar').style.width = (done / pages.length * 100) + '%';
+    document.getElementById('progText').textContent = done + ' / ' + pages.length + ' หน้า';
+  }
+  document.querySelectorAll('.check input[type=checkbox]').forEach(function (b) {
+    if (state[b.id]) b.checked = true;
+    b.addEventListener('change', function () { state[b.id] = b.checked; save(); update(); });
+  });
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var pre = document.getElementById(btn.dataset.copy);
+      var text = pre.textContent;
+      function selectIt() {
+        var r = document.createRange(); r.selectNodeContents(pre);
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        btn.textContent = 'เลือกข้อความแล้ว กด Ctrl+C';
+      }
+      try {
+        navigator.clipboard.writeText(text).then(function () { btn.textContent = 'Copied ✓'; }, selectIt);
+      } catch (e) { selectIt(); }
+      setTimeout(function () { btn.textContent = 'Copy'; }, 2200);
+    });
+  });
+  update();
+})();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script>
+(function () {
+  var btn = document.getElementById('exportPdfBtn');
+  var downloads = null;
+  try {
+    if (window.claude && typeof window.claude.use === 'function') {
+      window.claude.use('downloads').then(function (d) { downloads = d; }, function () {});
+    }
+  } catch (e) {}
+  btn.addEventListener('click', async function () {
+    var name = (document.body.dataset.pdfName || document.title || 'export').replace(/[\\/:*?"<>|]+/g, '-') + '.pdf';
+    if (!downloads || !window.html2pdf) { window.print(); return; }
+    var label = btn.textContent;
+    btn.disabled = true; btn.textContent = 'กำลังสร้าง PDF…';
+    document.documentElement.classList.add('pdf-export');
+    try {
+      var root = document.querySelector('[data-pdf-root]') || document.body;
+      var blob = await window.html2pdf().set({
+        margin: [10, 10, 10, 10],
+        image: { type: 'jpeg', quality: 0.95 },
+        html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff',
+          ignoreElements: function (el) { return el.classList && el.classList.contains('no-print'); } },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+        pagebreak: { mode: ['css', 'legacy'], before: '.pdf-page-break', avoid: ['section', '.card'] }
+      }).from(root).outputPdf('blob');
+      await downloads.save({ filename: name, data: blob });
+    } catch (err) {
+      if (!err || (err.code !== 'declined' && err.code !== 'rate_limited')) { window.print(); }
+    } finally {
+      document.documentElement.classList.remove('pdf-export');
+      btn.disabled = false; btn.textContent = label;
+    }
+  });
+})();
+</script>

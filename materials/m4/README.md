@@ -69,6 +69,17 @@ python3 tools/build_slides.py materials/m4/slides.md
 ```
 Reused read-only: `m2/data/core/ops_monthly_clean.csv` (history), `m3/data/pack/sharepoint/*.csv`, `m3/data/pack/outlook/*.eml`.
 
+## Claude Artifacts (claude.ai)
+
+All private until shared from each page's Share menu. Published 31 Oct 2026 with `capabilities: {downloads: true}`.
+
+| Artifact | File | claude.ai URL | Export PDF |
+|---|---|---|---|
+| M4 Slides (15 slides) | `deck/project/` | https://claude.ai/artifact/KgQ57jcEaEb58SShmpLqkr | ✅ (Share › Export, PDF/PPTX) |
+| M4 Workshop (ใบงาน 5 หน้า) | `artifacts/workshop-sheet.html` | https://claude.ai/artifact/WJDTLqhbUEgPCh3EbEMgFK | ✅ |
+| Monthly Ops Dashboard (v1/v2) | `artifacts/monthly-ops-dashboard.html` | https://claude.ai/artifact/5wEyprUmbagfBfBXXe4SJP | ✅ |
+| Output Picker (เกม 10 ข้อ) | `artifacts/output-picker.html` | https://claude.ai/artifact/S47Pyq2mMTUk85nZ2HQL67 | ✅ |
+
 ## Stories / cases
 1. Deloitte Australia, Jul–Oct 2025: a A$440,000 government report contained ~20 fabricated references and an invented court quote; revised version disclosed generative-AI use; Deloitte refunded the final instalment (slide 3; SOURCES #1). Used to motivate the two human checkpoints in the Document Factory.
 2. Real public data as the external source: IMF commodity prices via FRED (SOURCES #2): coal +9.5 %, Brent +15.8 %, LNG +20.9 % m/m in Sep 2026.
