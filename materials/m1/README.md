@@ -42,7 +42,9 @@ Lecture 40 นาที (รวม Demo 8) · Workshop 20 นาที
 
 | Path | What |
 |---|---|
-| `slides.md` → `slides.html` | Lecture deck (41 slides, speaker notes with minute marks) |
+| **Slides Artifact** · https://claude.ai/artifact/B5QugBgGE4eWMe69TrCvbv | **Delivery deck.** 41 slides built on Claude's core Slides Artifact type; speaker notes on every slide; Present mode; download as PDF/PPTX from Share › Export. All 7 diagrams redrawn natively (boxes + connectors) in the 3 STYLE colours with legend. Private until shared from the page's Share menu |
+| `deck/project/deck.json` + `deck/project/slides/s01–s41.html` | Source files of the Slides Artifact (republish with the Artifact tool, `root: materials/m1/deck`) |
+| `slides.md` → `slides.html` | Content source the Artifact was built from (same 41 slides and notes); superseded for delivery |
 | `workshop.md` | Workshop guide, 4 A4 pages |
 | `prompts.md` | M1-P01 … M1-P06 (copy-ready) |
 | `diagrams/*.mmd` | agent-loop · tool-decision-tree · demo-chat-vs-cowork · data-traffic-light · third-party-skill-check · model-usage-choice · workshop-flow (all embedded in slides; workshop-flow also in workshop.md) |
