@@ -1,0 +1,16 @@
+<section id="s08" style="background:#FAF8F3;color:#1F2933;font-family:'IBM Plex Sans Thai', Tahoma, sans-serif;padding:128px;display:flex;flex-direction:column;gap:48px">
+<h2 style="font-size:60px;font-weight:700;line-height:1.15;color:#1F2933">เขียน Scheduled task ให้ปลอดภัย: 6 ช่อง</h2>
+<table style="font-size:30px;color:#1F2933">
+<tr style="background:#1F2933"><th style="width:24%;color:#FAF8F3;padding:18px 24px;text-align:left">ช่อง</th><th style="width:76%;color:#FAF8F3;padding:18px 24px;text-align:left">ตัวอย่าง: รายงานสถานะโครงการรายสัปดาห์</th></tr>
+<tr style="background:#FFFDF8"><td style="padding:18px 24px">⏰ <b>เมื่อไร</b></td><td style="padding:18px 24px">ทุกวันจันทร์ 08:00 (ก่อนส่งผู้บริหาร 10:00)</td></tr>
+<tr style="background:#F3EDE2"><td style="padding:18px 24px">🟩 <b>Input</b></td><td style="padding:18px 24px">Outlook [PRJ- 7 วัน · SharePoint Project Tracker · Meeting notes</td></tr>
+<tr style="background:#FFFDF8"><td style="padding:18px 24px">🟦 <b>Process</b></td><td style="padding:18px 24px">สรุป 1 หน้า · ความเสี่ยงสูงสุด 3 เรื่อง · ทุกข้อมีที่มา</td></tr>
+<tr style="background:#F3EDE2"><td style="padding:18px 24px">🟦 <b>Output</b></td><td style="padding:18px 24px">ไฟล์ output/weekly_YYYY-MM-DD.docx + Outlook <b>draft</b></td></tr>
+<tr style="background:#FFFDF8"><td style="padding:18px 24px">🟧 <b>Checkpoint</b></td><td style="padding:18px 24px">หยุดก่อนส่ง · ข้อมูลขัดกันให้แยกหัวข้อ</td></tr>
+<tr style="background:#F3EDE2"><td style="padding:18px 24px">🟧 <b>Owner</b></td><td style="padding:18px 24px">คุณวิไลวรรณ (Project Control) ตรวจภายใน 09:30</td></tr>
+</table>
+<aside>[7:30] นี่คือ Input → Process → Output ของ M2 + เพิ่ม 3 ช่องที่งานอัตโนมัติต้องมี: เมื่อไร · Checkpoint · Owner
+prompt เต็มอยู่ใน prompts.md M6-P03 และ Artifact “Automation Card” จะประกอบ prompt จาก 6 ช่องนี้ให้อัตโนมัติ
+เคล็ดลับ: ใส่ชื่อไฟล์ output พร้อมวันที่ทุกครั้ง จะได้ไม่เขียนทับรอบก่อน (copy-before-write ฉบับงานอัตโนมัติ)
+เรื่อง usage (req 13): ทุก step ใช้ token ถ้าตั้ง hourly กับงานใหญ่จะชน weekly limit ของ Team plan เร็ว → เลือกรอบที่ช้าที่สุดที่ยังทันใช้งาน</aside>
+</section>

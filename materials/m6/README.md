@@ -33,9 +33,17 @@
 | 16 Sub-agent / Multi-agent | slide 12 (Anthropic multi-agent research case) | Awareness only |
 
 ## Files
-- `slides.md` / `slides.html` · `workshop.md` · `prompts.md` · `diagrams/` (8)
-- `artifacts/automation-card.html` + `.spec.md` — 6-slot task designer (เมื่อไร · Input · Process · Output · Checkpoint · Owner), safety warnings, copy-ready task prompt, quiz, test-run checklist, Export PDF
-- `data/gen_m6_data.py` → `data/pack/` (synthetic meeting notes, watchlist, fictional news fallback) · `data/build_m6_pack.py` → `data/out/M6_pack(.zip)` (gitignored; reuses M3 emails + SharePoint CSVs read-only)
+
+| Path | What |
+|---|---|
+| **Slides Artifact** · https://claude.ai/artifact/77u51h2Mek9CgrSedciouK | **Delivery deck.** 15 slides built on Claude's core Slides Artifact type; speaker notes on every slide; Present mode; download as PDF/PPTX from Share › Export. All 7 diagrams redrawn natively (boxes + connectors) in the 3 STYLE colours with legend. Private until shared from the page's Share menu |
+| `deck/project/deck.json` + `deck/project/slides/s01–s15.html` | Source files of the Slides Artifact (republish with the Artifact tool, `root: materials/m6/deck`) |
+| `slides.md` → `slides.html` | Content source the Artifact was built from (same 15 slides and notes, minute marks); superseded for delivery |
+| `workshop.md` | Workshop guide, 4 pages |
+| `prompts.md` | M6-P01 … M6-P07 (copy-ready) |
+| `diagrams/` (8) | Mermaid sources of the workflow diagrams |
+| `artifacts/automation-card.html` + `.spec.md` | 6-slot task designer (เมื่อไร · Input · Process · Output · Checkpoint · Owner), safety warnings, copy-ready task prompt, quiz, test-run checklist, Export PDF |
+| `data/gen_m6_data.py` → `data/pack/` · `data/build_m6_pack.py` → `data/out/M6_pack(.zip)` | Synthetic meeting notes, watchlist, fictional news fallback; pack is gitignored and reuses M3 emails + SharePoint CSVs read-only |
 
 ## Build notes
 - Built by the M6 Orca worker over three attempts; each was cut off by API connection loss. The orchestrator wrote this README and `SOURCES.md`, and replaced the story slide (the Replit case was already used in M2) with the Air Canada chatbot case.

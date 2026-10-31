@@ -1,0 +1,22 @@
+<section id="s07" style="background:#FAF8F3;color:#1F2933;font-family:'IBM Plex Sans Thai', Tahoma, sans-serif;padding:128px;display:flex;flex-direction:column;gap:36px">
+<h2 style="font-size:60px;font-weight:700;line-height:1.15;color:#1F2933">Human-in-the-Loop ในงานอัตโนมัติ: 4 กฎ</h2>
+<ol style="font-size:34px;line-height:1.5;color:#3A4651">
+<li><b>ร่างแล้วรอ</b>: เขียนลง output/ หรือ Outlook <b>Drafts</b> เท่านั้น</li>
+<li><b>ไม่ส่งออกเอง</b>: อีเมล / โพสต์ / แชร์ภายนอก ต้องมีคนกดส่ง</li>
+<li><b>เจ้าของงานชัด 1 คน</b>: ชื่ออยู่บนหัวรายงาน ตรวจตามรอบ</li>
+<li><b>ไม่แน่ใจ = หยุด</b>: ข้อมูลขัดกันให้จดไว้ ไม่เดา ไม่แก้ต้นทาง</li>
+</ol>
+<table style="font-size:30px;color:#1F2933">
+<tr style="background:#1F2933"><th style="width:30%;color:#FAF8F3;padding:16px 24px;text-align:left">Approval mode</th><th style="width:44%;color:#FAF8F3;padding:16px 24px;text-align:left">Claude ทำอะไร</th><th style="width:26%;color:#FAF8F3;padding:16px 24px;text-align:left">ใช้ในงานนี้?</th></tr>
+<tr style="background:#FFFDF8"><td style="padding:16px 24px"><b>Manual</b> (ถามก่อน)</td><td style="padding:16px 24px">หยุดขออนุมัติก่อนใช้ Connector/เขียนไฟล์</td><td style="padding:16px 24px">✅ ช่วงทดลอง</td></tr>
+<tr style="background:#F3EDE2"><td style="padding:16px 24px"><b>Auto</b> (มักเป็นค่าเริ่มต้น!)</td><td style="padding:16px 24px">Claude ตรวจความปลอดภัยเองแล้วทำต่อ</td><td style="padding:16px 24px">⚠ เมื่อผ่านทดลอง 4 รอบ</td></tr>
+<tr style="background:#FFFDF8"><td style="padding:16px 24px"><b>Skip</b></td><td style="padding:16px 24px">ไม่ถาม ไม่มีอะไรตรวจ</td><td style="padding:16px 24px">❌ ห้าม</td></tr>
+</table>
+<aside>[6:00] กฎ 4 ข้อนี้มาจาก proposal ของบ้านปู (หัวข้อ Automation): “ร่างและรอตรวจ ไม่ส่งอีเมลหรือเผยแพร่เองโดยไม่มีคนอนุมัติ และกำหนดเจ้าของงานที่ชัดเจน”
+Approval modes ตาม Help Center “Use Claude Cowork safely” (SOURCES #2, #3): Manual = ถามก่อน · Auto = Claude ตรวจแต่ละ action เอง (เช่น data exfiltration, prompt injection) แล้วบล็อกสิ่งที่ไม่ปลอดภัย ไม่ถามเรา · Skip = ไม่ถามและไม่มีอะไรตรวจ
+⚠ เอกสาร Anthropic ระบุว่า “Automatically approve” เป็นค่าเริ่มต้นในบางหน้าจอ (SOURCES #3) และ admin ตั้งค่าเริ่มต้นได้ → ใน workshop ให้ตรวจและเปลี่ยนเป็น Manual เองทุกครั้ง (ยืนยันค่าเริ่มต้นจริงใน dry-run)
+ชื่อปุ่มในแอปอาจต่างจากตาราง ให้ดูความหมาย ไม่ใช่ชื่อ
+admin ของ Team ปิด “Automatically approve” ได้ และบังคับ approval สำหรับ connector ที่เขียนได้ → คำถามเปิดให้ IT ของบ้านปู
+การลบไฟล์ถาวร Claude ต้องขออนุญาตเสมอ แต่เราไม่ควรให้ task มีสิทธิ์ถึงขั้นนั้นตั้งแต่แรก
+เชื่อม Plan → Approve → Execute: งานตั้งเวลาก็ยังเป็น 3 ขั้นนี้ แค่ขั้น Plan/Execute AI ทำตอนเราไม่อยู่ ขั้น Approve ยังเป็นของคน</aside>
+</section>
