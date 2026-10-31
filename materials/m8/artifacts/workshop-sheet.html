@@ -1,0 +1,356 @@
+<title>M8 Workshop</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: one calm column of 5 workshop "pages" (A4 cards) under a sticky progress strip; usage → quiz → traffic light → 30-day plan → check-ins. */
+:root{
+  --paper:#FAF8F3; --surface:#FFFFFF; --ink:#1F2933; --muted:#5B6670; --line:#E3DDCF; --code:#F3EFE6;
+  --human:#E4572E; --ai:#2E86AB; --data:#3BA55C; --warn:#F2A541; --red:#D64545;
+  --tint-green:#E9F6EC; --tint-yellow:#FDF3E1; --tint-red:#FDECEA; --tint-blue:#EAF3F8;
+  --f-body:'IBM Plex Sans Thai',system-ui,sans-serif; --f-mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#161B21; --surface:#1F262E; --ink:#E9ECEF; --muted:#A3ADB7; --line:#34404B; --code:#262F38;
+  --tint-green:#1D3324; --tint-yellow:#3A2F1A; --tint-red:#3B2222; --tint-blue:#1C2C38; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#161B21; --surface:#1F262E; --ink:#E9ECEF; --muted:#A3ADB7; --line:#34404B; --code:#262F38;
+  --tint-green:#1D3324; --tint-yellow:#3A2F1A; --tint-red:#3B2222; --tint-blue:#1C2C38; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:15.5px;line-height:1.65;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.wrap{max-width:820px;margin:0 auto}
+h1,h2,h3{text-wrap:balance;line-height:1.3}
+:focus-visible{outline:3px solid var(--ai);outline-offset:2px}
+
+/* sticky progress strip */
+.strip{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);padding-block:12px 10px;border-bottom:1px solid var(--line);margin-bottom:20px}
+.strip-row{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between}
+.strip-title{font-weight:700;font-size:15px}
+.strip-title span{color:var(--muted);font-weight:400}
+.prog{display:flex;align-items:center;gap:10px;flex:1 1 220px;min-width:0}
+.track{flex:1;height:8px;border-radius:99px;background:var(--line);overflow:hidden}
+.track i{display:block;height:100%;width:0;background:var(--data);transition:width .3s}
+.prog b{font-variant-numeric:tabular-nums;font-size:14px;white-space:nowrap}
+
+header.intro{display:grid;gap:4px;margin-bottom:20px}
+header.intro .eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+header.intro h1{font-size:28px;margin:0}
+header.intro p{margin:0;color:var(--muted)}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px clamp(16px,4vw,32px);margin-bottom:22px;display:grid;gap:14px;min-width:0}
+.card-head{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:baseline;justify-content:space-between}
+.card-head h2{margin:0;font-size:21px}
+.card-head .pg{color:var(--muted);font-weight:600;font-size:13px;letter-spacing:.04em}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:99px;padding:2px 12px;font-size:13px;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.chip::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--warn)}
+.card.done .chip::before{background:var(--data)}
+.goal{margin:0;padding:10px 14px;border-radius:10px;background:var(--code)}
+.goal b{color:var(--ai)}
+h3{font-size:16px;margin:4px 0 0}
+p,ol,ul{margin:0}
+ol,ul{padding-left:1.4em;display:grid;gap:4px}
+ol ul{margin-top:4px}
+code{font-family:var(--f-mono);font-size:.9em;background:var(--code);padding:1px 6px;border-radius:5px}
+
+.tbl{overflow-x:auto;min-width:0}
+table{border-collapse:collapse;width:100%;font-size:14.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--code);font-weight:600}
+td.c{text-align:center}
+td input[type=checkbox]{width:20px;height:20px;accent-color:var(--data);cursor:pointer}
+
+/* routes */
+.routes{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
+.route{border:1px solid var(--line);border-radius:10px;padding:10px 14px;min-width:0}
+.route.a{background:var(--tint-blue)} .route.b{background:var(--tint-green)}
+.route b{display:block}
+
+/* diagram */
+.diagram{overflow-x:auto;min-width:0;border:1px solid var(--line);border-radius:10px;padding:12px;background:var(--surface)}
+.diagram svg{display:block;width:100%;min-width:680px;height:auto}
+.diagram .edge{stroke:var(--ink);fill:none;stroke-width:1.6}
+.diagram .head{fill:var(--ink)}
+.legend{font-size:13px;color:var(--muted)}
+
+/* prompt */
+.prompt{border:1px solid var(--line);border-radius:10px;overflow:hidden;min-width:0}
+.prompt-bar{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px 8px 6px 14px;background:var(--code);border-bottom:1px solid var(--line);font-size:13px;font-weight:600}
+.copy-btn{font:600 13px var(--f-body);border:1px solid var(--ai);color:var(--ai);background:var(--surface);border-radius:7px;padding:4px 12px;cursor:pointer}
+.copy-btn:hover{background:var(--ai);color:#fff}
+.prompt pre{margin:0;padding:14px;overflow-x:auto;font-family:var(--f-mono);font-size:13.5px;line-height:1.6;white-space:pre-wrap;word-break:break-word;background:var(--surface);color:var(--ink)}
+
+/* checkpoint */
+.check{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border:1.5px dashed var(--human);border-radius:10px;cursor:pointer}
+.check input{width:20px;height:20px;margin-top:3px;accent-color:var(--data);flex:none;cursor:pointer}
+.card.done .check{border-style:solid;border-color:var(--data);background:var(--tint-green)}
+.note{font-size:14.5px;padding:8px 12px;border-radius:8px;background:var(--tint-yellow)}
+.ok{color:var(--data);font-weight:600} .no{color:var(--red);font-weight:600}
+.next{font-weight:600;color:var(--ai)}
+footer{font-size:12px;color:var(--muted);text-align:center;margin-top:8px}
+
+@media (prefers-reduced-motion: reduce){.track i{transition:none}}
+
+/* Export PDF (materials/_shared/export-pdf-artifact.html) */
+.export-pdf-btn{font:600 14px 'IBM Plex Sans Thai',sans-serif;background:#1F2933;color:#fff;border:0;border-radius:8px;padding:8px 14px;cursor:pointer}
+.export-pdf-btn:hover{background:#2E86AB}
+.export-pdf-btn[disabled]{opacity:.6;cursor:progress}
+.pdf-export .print-expand,.pdf-export [hidden].print-expand,.pdf-export details{display:block!important;height:auto!important;overflow:visible!important}
+.pdf-export body{background:#fff}
+.pdf-export .card{border-color:#ccc}
+.pdf-export .diagram svg{min-width:0}
+@media print{
+  @page{size:A4;margin:12mm}
+  body{background:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .no-print,.export-pdf-btn,button,nav{display:none!important}
+  .print-expand,[hidden].print-expand,details{display:block!important;height:auto!important;overflow:visible!important}
+  .pdf-page-break{break-before:page}
+  section,.card{break-inside:avoid}
+  .diagram svg{min-width:0}
+}
+</style>
+
+<div class="strip no-print">
+  <div class="wrap strip-row">
+    <div class="strip-title">M8 Workshop <span>· 3 ภารกิจปิดวัน</span></div>
+    <div class="prog" aria-label="ความคืบหน้า">
+      <div class="track"><i id="progBar"></i></div>
+      <b id="progText">0 / 5 หน้า</b>
+    </div>
+    <button class="export-pdf-btn no-print" id="exportPdfBtn" type="button" title="ดาวน์โหลดเป็น PDF">⬇ Export PDF</button>
+  </div>
+</div>
+
+<main class="wrap" data-pdf-root>
+  <header class="intro">
+    <span class="eyebrow">M8 · Security Recap, Quiz &amp; แผน 30 วัน</span>
+    <h1>M8 Workshop · 3 ภารกิจปิดวัน (25 นาที · 16:31–16:56)</h1>
+    <p>ข้อมูลและสถานการณ์ทั้งหมดเป็นข้อมูลสมมติ · ใช้บัญชี <b>Claude Team ของบริษัท</b> เท่านั้น · Artifact ทั้ง 2 ตัวไม่เรียก AI และไม่ส่งคะแนน/แผนไปที่ใด (อยู่ในเครื่องคุณ)</p>
+  </header>
+  <p class="legend">🟧 คน (HITL) · 🟦 AI · 🟩 Data/Connector · ทุกหน้ามี ✅ จุดที่ <b>คุณ</b> ตรวจก่อนไปต่อ</p>
+  <div class="tbl" style="margin-bottom:22px"><table>
+    <thead><tr><th>ภารกิจ</th><th>เวลา</th><th>ใช้อะไร</th></tr></thead>
+    <tbody>
+      <tr><td>1 · ใช้ให้คุ้ม</td><td>5 นาที</td><td>Claude + M8-P01 / M8-P02</td></tr>
+      <tr><td>2 · Security &amp; Usage Quiz + รอบสุดท้าย Traffic Light</td><td>9 + 3 นาที</td><td><code>artifacts/security-quiz.html</code></td></tr>
+      <tr><td>3 · แผน 30 วันของฉัน</td><td>8 นาที</td><td><code>artifacts/plan-30-days.html</code> + M8-P03</td></tr>
+    </tbody>
+  </table></div>
+  <!-- หน้า 1 -->
+  <section class="card" id="page1" data-page="1">
+    <div class="card-head">
+      <div><div class="pg">หน้า 1 / 5 · 16:31–16:36</div><h2>ภารกิจ 1: ใช้ให้คุ้ม</h2></div>
+      <span class="chip">5 นาที</span>
+    </div>
+    <p class="goal"><b>เป้าหมาย:</b> ฝึก 2 นิสัยที่ช่วยไม่ให้ชน weekly limit: เริ่มแชตใหม่ด้วยสรุปสั้น และวางแผน + เลือก model ก่อนลงมือ</p>
+
+    <h3>โจทย์ (เลือก 1 จาก 3 · ข้อมูลสมมติ)</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>#</th><th>สถานการณ์</th><th>Prompt</th></tr></thead>
+      <tbody>
+        <tr><td>A</td><td>คุยกับ Claude เรื่องรายงานรายเดือนมา 2 ชั่วโมง แชตยาวมาก Claude เริ่มลืมเงื่อนไขช่วงแรก</td><td>M8-P01 สรุปสถานะเพื่อเริ่มแชตใหม่</td></tr>
+        <tr><td>B</td><td>ต้องสรุปรายงาน near-miss รายเดือนจาก 8 site ไฟล์ CSV รวม 120,000 แถว</td><td>M8-P02 ขอแผนแบ่งงาน + เลือก model</td></tr>
+        <tr><td>C</td><td>ต้องร่างสไลด์ 10 หน้าทุกเดือนจากข้อมูลชุดเดิม</td><td>M8-P02 (ข้อ 4: Project instructions หรือ Skill?)</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="prompt">
+      <div class="prompt-bar"><span>M8-P02 · วางแผนให้ใช้ usage อย่างคุ้มค่า (สถานการณ์ B หรือ C)</span><button class="copy-btn no-print" type="button" data-copy="p02">Copy</button></div>
+      <pre id="p02">ฉันจะทำงานนี้: {วางสถานการณ์ B หรือ C}
+อย่าเพิ่งลงมือ ช่วยวางแผนให้ใช้ usage อย่างคุ้มค่า:
+1) แบ่งงานเป็นขั้น (ไม่เกิน 5 ขั้น) บอกว่าขั้นไหนควรทดลองกับตัวอย่างเล็กก่อน
+2) แต่ละขั้นแนะนำ model ที่พอดี (Haiku / Sonnet / Opus) พร้อมเหตุผล 1 บรรทัด
+3) ส่วนไหนควรให้เขียนสคริปต์คำนวณแทนการอ่านข้อมูลทั้งหมด
+4) สิ่งที่ควรเก็บไว้ใน Project instructions หรือทำเป็น Skill ถ้างานนี้ทำซ้ำทุกเดือน
+5) จุดที่ฉันต้องตรวจ (Human-in-the-Loop) อย่างน้อย 2 จุด
+ตอบเป็นตาราง: ขั้น · ทำอะไร · model · เหตุผล · จุดตรวจ</pre>
+    </div>
+    <p class="note">สถานการณ์ A: ใช้ M8-P01 ใน <code>prompts.md</code> กับแชตยาว ๆ ที่คุณมีจากวันนี้</p>
+
+    <label class="check" for="ck1a"><input type="checkbox" id="ck1a"><span><b>✅ Checkpoint (คนตรวจ):</b> ไม่มีขั้นที่ใช้ Opus โดยไม่จำเป็น · มีขั้นทดลองกับตัวอย่างเล็ก · มีจุดตรวจของคนอย่างน้อย 2 จุด</span></label>
+    <label class="check" for="ck1b"><input type="checkbox" id="ck1b"><span><b>✅ Checkpoint (คนตรวจ):</b> สรุปจาก M8-P01 ไม่มีข้อมูล 🟡🔴 และอ้างชื่อไฟล์แทนเนื้อหายาว</span></label>
+  </section>
+  <!-- หน้า 2 -->
+  <section class="card pdf-page-break" id="page2" data-page="2">
+    <div class="card-head">
+      <div><div class="pg">หน้า 2 / 5 · 16:36–16:45</div><h2>ภารกิจ 2: Security &amp; Usage Quiz</h2></div>
+      <span class="chip">9 นาที</span>
+    </div>
+    <p class="goal"><b>เป้าหมาย:</b> ทบทวน 6 กฎที่พกกลับบ้าน ด้วยสถานการณ์จริงในงาน 18 ข้อ</p>
+
+    <h3>ขั้นตอน</h3>
+    <ol>
+      <li>เปิด <code>security-quiz.html</code> (ลิงก์ Artifact จากวิทยากร หรือไฟล์ในเครื่อง)</li>
+      <li>ตอบ <b>คนเดียว</b> 18 ข้อ · 6 หมวด: ข้อมูลอ่อนไหว · บัญชี &amp; การแชร์ · Connector &amp; copy-before-write · Human-in-the-Loop · Skill จากภายนอก · ใช้ให้คุ้ม</li>
+      <li>อ่าน <b>เหตุผล</b> ทุกข้อหลังตอบ แม้ตอบถูก เพราะส่วนนี้คือส่วนที่จำได้นานที่สุด</li>
+      <li>ข้อไหนลังเล ให้จดเลขข้อไว้ถามตอน Debrief</li>
+    </ol>
+    <p class="note"><b>กติกาเวลาลังเล:</b> ไม่แน่ใจ → เลือกทางที่ปลอดภัยกว่า (สีเข้มกว่า · ถามก่อน · ร่างแล้วรอตรวจ)</p>
+
+    <label class="check" for="ck2a"><input type="checkbox" id="ck2a"><span><b>✅ Checkpoint (คนตรวจ):</b> อ่านเหตุผลครบ 18 ข้อ · ข้อที่ผิด ให้กลับไปดูสไลด์กฎข้อนั้น (กฎ 1–6) 1 รอบ</span></label>
+  </section>
+
+  <!-- หน้า 3 -->
+  <section class="card pdf-page-break" id="page3" data-page="3">
+    <div class="card-head">
+      <div><div class="pg">หน้า 3 / 5 · 16:45–16:48</div><h2>ภารกิจ 2 (ต่อ): รอบสุดท้าย Traffic Light + Export PDF</h2></div>
+      <span class="chip">3 นาที</span>
+    </div>
+    <p class="goal"><b>เป้าหมาย:</b> ปิดวงจรที่เริ่มตอนเช้า (M1) ตัดสินสีข้อมูลให้เร็วและถูกเหมือนตอนทำงานจริง</p>
+
+    <h3>ขั้นตอน</h3>
+    <ol>
+      <li>หลังข้อ 18 Quiz จะพาเข้า <b>รอบสุดท้าย · Data Traffic Light</b> อัตโนมัติ: การ์ด 6 ใบจาก M1 (C05 · C07 · C10 · C12 · C14 · C15)</li>
+      <li>ใบละ <b>10 วินาที</b> เลือก 🟢 ใช้ได้ · 🟡 ต้อง anonymize · 🔴 ห้ามใส่ Claude</li>
+      <li>ดูหน้าสรุป: คะแนนรวม · คะแนนรายหมวด · เฉลยและเหตุผลทุกข้อ</li>
+      <li>กด <b>⬇ Export PDF</b> → บันทึก PDF เก็บไว้ (หลักฐานการอบรม + ใช้ทบทวน)</li>
+    </ol>
+
+    <h3>การ์ดที่คนลังเลบ่อย (ใช้คุยตอน Debrief)</h3>
+    <ul>
+      <li>C10 ปริมาณขาย + ชื่อลูกค้า → 🟡 ต้อง anonymize ชื่อลูกค้าก่อน</li>
+      <li>C05 รายงานที่ประกาศสาธารณะแล้ว → 🟢 ใช้ได้</li>
+    </ul>
+
+    <label class="check" for="ck3a"><input type="checkbox" id="ck3a"><span><b>✅ Checkpoint (คนตรวจ):</b> PDF มีชื่อ/คะแนน/เหตุผลครบ · ไม่ได้ส่งคะแนนไปที่ใด (Quiz ทำงานในเครื่องเท่านั้น)</span></label>
+  </section>
+<!--P3-->
+  <!-- หน้า 4 -->
+  <section class="card pdf-page-break" id="page4" data-page="4">
+    <div class="card-head">
+      <div><div class="pg">หน้า 4 / 5 · 16:48–16:56</div><h2>ภารกิจ 3: แผน 30 วันของฉัน</h2></div>
+      <span class="chip">8 นาที</span>
+    </div>
+    <p class="goal"><b>เป้าหมาย:</b> ออกจากห้องพร้อม <b>1 งาน · 4 สัปดาห์ · มี buddy · มี check-in</b> ที่ทำได้จริง</p>
+
+    <h3>ขั้นตอน</h3>
+    <ol>
+      <li>เปิด <code>plan-30-days.html</code> · กด <b>ดูตัวอย่างแผน</b> 10 วินาทีเพื่อเห็นภาพ แล้วกด <b>ล้างแผน</b></li>
+      <li><b>ช่อง 1:</b> ชื่อ · ทีม · วันเริ่ม (จันทร์) · buddy · หัวหน้าที่จะเล่าผลสัปดาห์ 4 · ต่อยอดจาก Capstone ทีม (M7)</li>
+      <li><b>ช่อง 2:</b> งานหลัก 1 งาน นึกไม่ออก? กดไอเดีย 💡 หรือใช้ M8-P03 (Interview pattern) ใน Claude
+        <ul><li>เลือก <b>สีของข้อมูล</b> · เครื่องมือ (Chat / Project / Skill / Cowork / Artifact) · Connector (SharePoint / Outlook เท่านั้น) · <b>จุด HITL</b></li></ul>
+      </li>
+      <li><b>ช่อง 3:</b> อ่าน 4 สัปดาห์ แก้ให้เป็นงานของคุณ · วัน check-in ศุกร์คำนวณให้อัตโนมัติ</li>
+      <li><b>ช่อง 4:</b> เวลาก่อน/หลัง และจำนวนครั้ง → ดู "เวลาที่คาดว่าจะประหยัด" · เขียนเงื่อนไข "ถือว่าสำเร็จเมื่อ…" ที่วัดได้</li>
+      <li><b>ช่อง 5:</b> ติ๊กกติกา 6 ข้อ → แถบความพร้อมต้องถึง <b>100%</b></li>
+      <li>กด <b>⬇ Export PDF</b> แล้วเก็บไว้ใน SharePoint/OneDrive ของคุณหรือของทีม</li>
+    </ol>
+
+    <label class="check" for="ck4a"><input type="checkbox" id="ck4a"><span><b>✅ Checkpoint (คนตรวจ):</b> งานหลักเป็น 🟢 (หรือ 🟡 ที่เขียนวิธี anonymize แล้ว) · ถ้า Artifact ขึ้นเตือน 🔴 → เปลี่ยนงาน</span></label>
+    <label class="check" for="ck4b"><input type="checkbox" id="ck4b"><span><b>✅ Checkpoint (คนตรวจ):</b> มีจุด HITL และ buddy · เป้าหมายเวลาหลังใช้ Claude รวมเวลาตรวจแล้ว</span></label>
+  </section>
+  <!-- หน้า 5 -->
+  <section class="card pdf-page-break" id="page5" data-page="5">
+    <div class="card-head">
+      <div><div class="pg">หน้า 5 / 5 · ใช้หลัง 17:00</div><h2>หลังอบรม: 4 check-in ใน 30 วัน</h2></div>
+      <span class="chip">2 นาที + 15 นาที/สัปดาห์</span>
+    </div>
+    <p class="goal"><b>เป้าหมาย:</b> ให้แผนไม่หายไปหลังปิดห้อง ด้วยการคุยกับ buddy ทุกศุกร์ 15 นาที</p>
+
+    <h3>วันนี้ก่อนกลับ (2 นาที)</h3>
+    <p>ใช้ M8-P04 ให้ Claude <b>ร่าง</b> นัด check-in 4 ครั้ง</p>
+    <ul>
+      <li>เชื่อม Outlook อยู่: ให้บันทึกใน <b>Drafts</b> เท่านั้น · คุณเป็นคนกดส่ง/สร้างนัดเอง</li>
+      <li>ไม่เชื่อม: คัดลอกข้อความไปสร้างนัดใน Outlook เอง</li>
+    </ul>
+
+    <h3>ทุกศุกร์ (15 นาที) · ใช้ M8-P07 ทบทวนผลสัปดาห์</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>สัปดาห์</th><th>คุยอะไร</th><th>สิ่งที่ต้องเตรียม</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>เลือกงานถูกไหม · ข้อมูลสีอะไร · ตั้ง Project แล้วหรือยัง</td><td>งานที่ทำครั้งแรก + เวลาที่ใช้</td></tr>
+        <tr><td>2</td><td>ทำจริง 3 ครั้ง ประหยัดเวลาเท่าไร · ตรวจเจอข้อผิดพลาดอะไร</td><td>บันทึกเวลา 3 ครั้ง</td></tr>
+        <tr><td>3</td><td>ทำเป็น Skill/template ได้ไหม · เพื่อนที่ชวนมาลองเป็นอย่างไร</td><td>prompt/Skill ที่ใช้ + usage สัปดาห์นี้</td></tr>
+        <tr><td>4</td><td>สรุปผลให้หัวหน้า · ทำต่อ / ปรับ / หยุด · งานถัดไป</td><td>PDF แผน + ตัวเลขเวลาที่ประหยัด</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>ติดขัดเรื่องอะไร ถามใคร</h3>
+    <ul>
+      <li>ข้อมูลสีไหน / ใช้ได้ไหม → ทีม Hi-I หรือ IT ตามนโยบายบริษัท (ไม่แน่ใจ = ถือเป็นสีที่เข้มกว่า)</li>
+      <li>Skill/Plugin จากภายนอก → ส่ง checklist M5 ให้ผู้อนุมัติก่อนติดตั้ง</li>
+      <li>usage ใกล้เต็ม → M8-P01 เริ่มแชตใหม่ · เลือก model ให้พอดี (<b>ห้าม</b> ย้ายไปใช้บัญชีส่วนตัว)</li>
+    </ul>
+
+    <label class="check" for="ck5a"><input type="checkbox" id="ck5a"><span><b>✅ Checkpoint (คนตรวจ):</b> นัด check-in 4 ครั้งอยู่ในปฏิทินแล้ว (สร้างโดยคุณ) · PDF แผนอยู่ใน SharePoint/OneDrive</span></label>
+  </section>
+  <footer>ข้อมูลทุกส่วนเป็นข้อมูลสมมติเพื่อการอบรม · Banpu · Claude for Business · M8</footer>
+</main>
+
+<script>
+document.documentElement.lang = 'th';
+document.body.setAttribute('data-pdf-name', 'M8-Workshop');
+(function () {
+  var KEY = 'm8-workshop-v1', state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { state = {}; }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+  var pages = Array.prototype.slice.call(document.querySelectorAll('section.card[data-page]'));
+  function update() {
+    var done = 0;
+    pages.forEach(function (p) {
+      var boxes = p.querySelectorAll('.check input[type=checkbox]');
+      var all = boxes.length > 0 && Array.prototype.every.call(boxes, function (b) { return b.checked; });
+      p.classList.toggle('done', all);
+      if (all) done++;
+    });
+    document.getElementById('progBar').style.width = (done / pages.length * 100) + '%';
+    document.getElementById('progText').textContent = done + ' / ' + pages.length + ' หน้า';
+  }
+  document.querySelectorAll('input[type=checkbox]').forEach(function (b) {
+    if (state[b.id]) b.checked = true;
+    b.addEventListener('change', function () { state[b.id] = b.checked; save(); update(); });
+  });
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var pre = document.getElementById(btn.dataset.copy);
+      var text = pre.textContent;
+      function selectIt() {
+        var r = document.createRange(); r.selectNodeContents(pre);
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        btn.textContent = 'เลือกข้อความแล้ว กด Ctrl+C';
+      }
+      try {
+        navigator.clipboard.writeText(text).then(function () { btn.textContent = 'Copied ✓'; }, selectIt);
+      } catch (e) { selectIt(); }
+      setTimeout(function () { btn.textContent = 'Copy'; }, 2200);
+    });
+  });
+  update();
+})();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script>
+(function () {
+  var btn = document.getElementById('exportPdfBtn');
+  var downloads = null;
+  try {
+    if (window.claude && typeof window.claude.use === 'function') {
+      window.claude.use('downloads').then(function (d) { downloads = d; }, function () {});
+    }
+  } catch (e) {}
+  btn.addEventListener('click', async function () {
+    var name = (document.body.dataset.pdfName || document.title || 'export').replace(/[\\/:*?"<>|]+/g, '-') + '.pdf';
+    if (!downloads || !window.html2pdf) { window.print(); return; }
+    var label = btn.textContent;
+    btn.disabled = true; btn.textContent = 'กำลังสร้าง PDF…';
+    document.documentElement.classList.add('pdf-export');
+    try {
+      var root = document.querySelector('[data-pdf-root]') || document.body;
+      var blob = await window.html2pdf().set({
+        margin: [10, 10, 10, 10],
+        image: { type: 'jpeg', quality: 0.95 },
+        html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff',
+          ignoreElements: function (el) { return el.classList && el.classList.contains('no-print'); } },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+        pagebreak: { mode: ['css', 'legacy'], before: '.pdf-page-break', avoid: ['section', '.card'] }
+      }).from(root).outputPdf('blob');
+      await downloads.save({ filename: name, data: blob });
+    } catch (err) {
+      if (!err || (err.code !== 'declined' && err.code !== 'rate_limited')) { window.print(); }
+    } finally {
+      document.documentElement.classList.remove('pdf-export');
+      btn.disabled = false; btn.textContent = label;
+    }
+  });
+})();
+</script>

@@ -44,6 +44,19 @@
 | `artifacts/plan-30-days.html` + spec | 30-day adoption plan with readiness meter, hours-saved counter, safety warnings, Export PDF |
 | `trainer/answer-key.md` | Answers + reasons for the quiz and final round |
 
+## Claude Artifacts (claude.ai)
+
+All private until shared from each page's Share menu. Published 31 Oct 2026 with `capabilities: {downloads: true}` (Export PDF = html2pdf.js → `downloads.save`, fallback `window.print()`).
+
+| Artifact | File | claude.ai URL | Export PDF |
+|---|---|---|---|
+| M8 Slides (20 slides) | `deck/project/` | https://claude.ai/artifact/Uix5PCdLVDFT2EpceDUi1Q | ✅ (Share › Export, PDF/PPTX) |
+| M8 Workshop (ใบงาน 5 หน้า) | `artifacts/workshop-sheet.html` | https://claude.ai/artifact/CQD1FRgAQ1T27Lx4MSJ59L | ✅ |
+| Security & Usage Quiz (18 ข้อ + Traffic Light 6 ใบ) | `artifacts/security-quiz.html` | https://claude.ai/artifact/L6PcYj1MiRy7Aah9cUVgsv | ✅ |
+| แผน 30 วันของฉัน | `artifacts/plan-30-days.html` | https://claude.ai/artifact/Dn5jDTNdz6YBP8DT23T7Nt | ✅ |
+
+Fixes made for publishing: removed each existing page's own `<!doctype>/<html>/<head>/<body>` wrapper (publisher adds its skeleton; `lang="th"` and `data-pdf-name` now set by script) · replaced the old `onclick="window.print()"` Export PDF button and styles with `materials/_shared/export-pdf-artifact.html` · added `.pdf-export` CSS mirroring each page's existing print rules (quiz PDF shows only the result + review; plan PDF shows the print header). No other behaviour changed. `data/sync_quiz.py` still works (it rewrites only the `quiz-data` JSON block).
+
 ## Build notes
 - Built by the M8 Orca worker over two attempts; both were cut off by API connection loss. The orchestrator finished the 30-day plan Artifact script, its spec, `workshop.md`, `SOURCES.md` and this README.
 
