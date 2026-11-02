@@ -46,6 +46,7 @@
 ## Claude Artifacts (claude.ai)
 
 All private until shared from each page's Share menu. Published 31 Oct 2026 with `capabilities: {downloads: true}`.
+Theme: Ducky Engineer (วิศวกรเป็ด) applied 2 Nov 2026 to the deck and both pages (Sarabun, #FFD066/#231F20/#0684C9/#F4F4F4, logo badge; role colours kept), same URLs.
 
 | Artifact | File | claude.ai URL | Export PDF |
 |---|---|---|---|
