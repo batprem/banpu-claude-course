@@ -23,7 +23,12 @@
 <div style="display:flex;flex-direction:row;gap:12px;align-items:center"><div style="width:32px;height:32px;background:#3BA55C;border-radius:6px"></div><p style="font-size:24px;color:#3D3839">Data/Connector</p></div>
 </div>
 <div style="position:absolute;right:40px;bottom:32px;width:88px;height:88px;background:#FFFDF8;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(35,31,32,0.15)"><img src="/_blob/a0d87a59192d15fe4c5ccb53b36c37c0" alt="Ducky Engineer" style="width:72px;height:72px;object-fit:contain"></div>
-<aside>[8:00] เทคนิค iterate: feedback ที่ดีคือ “เฉพาะเจาะจง + เหตุผล” เช่น “ย้ายกราฟราคาพลังงานไปล่างสุด เพราะผู้บริหารดูไซต์ก่อน” ไม่ใช่ “ทำให้สวยขึ้น”
+<aside>Artifact ที่ดีไม่ได้เสร็จในรอบเดียวครับ เราทำแบบ v1, v2, v3
+เริ่มจากบรีฟก่อน ใครเป็นคนดู และดูเพื่อตัดสินใจอะไร จากนั้นให้ Claude ทำ v1 Dashboard ออกมา แล้วให้คนดูจริงให้ feedback 1 ถึง 3 ข้อ ถ้ายังไม่ใช่ ก็ปรับเป็น v2, v3 แก้เฉพาะจุด พอแล้วค่อย Publish แชร์ในองค์กร หรือ Export เป็น PDF
+เทคนิคสำคัญคือ สั่งแก้ทีละ 1 ถึง 3 เรื่อง และบอกเสมอว่าอย่าเปลี่ยนส่วนอื่น feedback ที่ดีต้องเฉพาะเจาะจงและมีเหตุผล เช่น ย้ายกราฟราคาพลังงานไปไว้ล่างสุด เพราะผู้บริหารดูไซต์ก่อน ไม่ใช่แค่บอกว่าทำให้สวยขึ้นหน่อย
+ถ้าทำใน Chat Artifact จะเก็บเวอร์ชันไว้ให้ กดสลับดูเวอร์ชันก่อนหน้าได้ ถ้าทำใน Cowork ให้บันทึกเป็นไฟล์แยก dashboard_v1, dashboard_v2 และตั้งชื่อเวอร์ชันให้จำง่าย ถ้ายังไม่แน่ใจเรื่องหน้าตา ใช้ Prototype first จาก M2 ได้ครับ ขอ 3 layout ก่อน แล้วเลือกหนึ่งแบบ
+----------
+[8:00] เทคนิค iterate: feedback ที่ดีคือ “เฉพาะเจาะจง + เหตุผล” เช่น “ย้ายกราฟราคาพลังงานไปล่างสุด เพราะผู้บริหารดูไซต์ก่อน” ไม่ใช่ “ทำให้สวยขึ้น”
 Artifact เก็บเวอร์ชันให้ กดสลับดูเวอร์ชันก่อนหน้าได้ (ใน Chat) ถ้าทำใน Cowork ให้บันทึกเป็นไฟล์ dashboard_v1.html, _v2.html (copy-before-write)
 ใช้ Prototype first (M2) ได้: ขอ 3 layout ก่อน แล้วเลือก 1 → M4-P05</aside>
 </section>

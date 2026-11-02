@@ -12,7 +12,14 @@
 <tr style="background:#FFFDF8"><td style="padding:16px 20px">5</td><td style="padding:16px 20px">ราคาถ่านหิน/น้ำมัน/LNG</td><td style="padding:16px 20px">CSV สาธารณะ</td><td style="padding:16px 20px">เว็บ (IMF via FRED)</td><td style="padding:16px 20px">ต้องอ้างที่มา + วันที่</td></tr>
 </table>
 <div style="position:absolute;right:40px;bottom:32px;width:88px;height:88px;background:#FFFDF8;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(35,31,32,0.15)"><img src="/_blob/a0d87a59192d15fe4c5ccb53b36c37c0" alt="Ducky Engineer" style="width:72px;height:72px;object-fit:contain"></div>
-<aside>[3:30] 4 แหล่งแรกเป็นข้อมูลภายใน (สมมติ) แหล่งที่ 5 เป็นข้อมูลจริงสาธารณะ: ราคาถ่านหินออสเตรเลีย Brent และ LNG เอเชีย รายเดือน ถึง ก.ย. 2026 (SOURCES.md #2)
+<aside>ทีนี้มาดูวัตถุดิบของเราครับ Monthly Operations Report เดือนกันยายน 2569 ใช้ข้อมูล 5 แหล่ง ย้ำนะครับว่าเป็นข้อมูลสมมติทั้งหมด
+แหล่งที่หนึ่ง Excel ผลผลิตและต้นทุนของ 6 ไซต์ อยู่ในโฟลเดอร์หรือ SharePoint กับดักคือหน่วย บางช่องเป็นล้านบาท บางช่องเป็นบาทต่อหน่วย
+แหล่งที่สอง Shift log รถขน เป็น CSV ประมาณ 172,000 แถว ใหญ่จนอ่านทีละแถวไม่ได้
+แหล่งที่สามและสี่ มาทาง Connector ที่เราเรียนใน M3 คือ Project Tracker กับ Issue Log ใน SharePoint List และอีเมลอัปเดตโครงการใน Outlook 20 ฉบับ กับดักคือสถานะใน List อาจไม่ตรงกับอีเมล เพราะข่าวล่าสุดมักอยู่ในอีเมล
+แหล่งที่ห้า เป็นข้อมูลจริงสาธารณะ ราคาถ่านหิน น้ำมัน และ LNG จาก IMF ผ่าน FRED ข้อนี้ต้องอ้างที่มาและวันที่เสมอ
+สิ่งที่อยากให้สังเกตคือ แต่ละแหล่งมีนิยามไม่เหมือนกัน อย่าง shift log นับดินกับถ่านหินที่ขนทั้งหมด ไม่ใช่ปริมาณขาย เพราะฉะนั้นต้องเขียนนิยามไว้ในรายงานด้วยครับ
+----------
+[3:30] 4 แหล่งแรกเป็นข้อมูลภายใน (สมมติ) แหล่งที่ 5 เป็นข้อมูลจริงสาธารณะ: ราคาถ่านหินออสเตรเลีย Brent และ LNG เอเชีย รายเดือน ถึง ก.ย. 2026 (SOURCES.md #2)
 Requirement 1 + 4: M365 First (SharePoint/Outlook) + หลายรูปแบบ ภายใน + ภายนอก
 ชี้กับดัก: แต่ละแหล่งมี “นิยาม” ต่างกัน เช่น shift log นับดิน+ถ่านหินที่ขนทั้งหมด ไม่ใช่ปริมาณขาย ต้องเขียนนิยามไว้ในรายงาน</aside>
 </section>

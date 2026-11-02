@@ -9,7 +9,14 @@
 </table>
 <p style="font-size:32px;line-height:1.4;color:#231F20;background:#E2F1FA;border-radius:12px;padding:20px 32px">ตัวอย่างใน workshop: Monthly_Ops_Report_2569-09_FULL.docx = <b>~37 MB</b></p>
 <div style="position:absolute;right:40px;bottom:32px;width:88px;height:88px;background:#FFFDF8;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(35,31,32,0.15)"><img src="/_blob/a0d87a59192d15fe4c5ccb53b36c37c0" alt="Ducky Engineer" style="width:72px;height:72px;object-fit:contain"></div>
-<aside>[11:00] Requirement 7: ใช้ไฟล์จริงขนาดจริงใน data/out/ (สร้างด้วย gen_m4_data.py) รายงาน Word ~37 MB มีรูปสังเคราะห์ 14 ภาพ
+<aside>ทีนี้มาคุยเรื่องข้อจำกัดจริงกันครับ เพราะรายงานจริงมักใหญ่กว่าที่คิด
+เจอบ่อยที่สุดคือแนบอีเมลไม่ได้ เพราะมีรูปหน้างานความละเอียดสูงหลายสิบภาพ Outlook จะแจ้งว่าไฟล์เกินขนาด
+อย่างที่สองคือบันทึกหรืออัปโหลดเข้า Claude ไม่ได้ เพราะไฟล์เกินขนาดต่อไฟล์ เราจะเห็นว่าอัปโหลดล้มเหลว
+อย่างที่สามคือ Claude ตอบไม่ครบ เพราะข้อมูลยาวเกิน context สังเกตได้จากตัวเลขบางไซต์หายไป
+และอย่างที่สี่ usage หมดเร็ว เพราะเราให้อ่านทั้งไฟล์ซ้ำ ๆ จะมีแจ้งเตือน limit ขึ้นมา
+ใน workshop วันนี้เรามีไฟล์ตัวอย่างขนาดจริง Monthly_Ops_Report_2569-09_FULL.docx ประมาณ 37 MB ครับ ใน M2 เราเรียนวิธีอ่านไฟล์ใหญ่ไปแล้ว ส่วน M4 จะเน้นการส่งออกรายงานใหญ่ ว่าทำยังไงให้ถึงมือคนรับครับ
+----------
+[11:00] Requirement 7: ใช้ไฟล์จริงขนาดจริงใน data/out/ (สร้างด้วย gen_m4_data.py) รายงาน Word ~37 MB มีรูปสังเคราะห์ 14 ภาพ
 ขนาดสูงสุดของไฟล์แนบขึ้นกับการตั้งค่า Exchange/Outlook ขององค์กร (ค่าที่พบบ่อย 20–35 MB) ให้ถาม IT บ้านปูก่อนสอน อย่าจำตัวเลขจากที่อื่น
 ขีดจำกัดการอัปโหลดของ Claude เปลี่ยนตามแผนและเวลา: ดู support.claude.com บทความ “Upload files to Claude” (SOURCES #6) และทดสอบใน dry-run
 M2 สอนการ “อ่าน” ไฟล์ใหญ่ M4 เน้นการ “ส่งออก” รายงานใหญ่</aside>

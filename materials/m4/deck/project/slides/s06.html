@@ -10,7 +10,13 @@
 </div>
 <p style="font-size:34px;font-weight:600;line-height:1.4;color:#231F20;background:#FFF3D1;border-left:10px solid #E4572E;padding:24px 36px">กติกา <b>ตรวจ 3 ตัวเลข</b>: สุ่ม 3 ค่าแล้วเปิดไฟล์ต้นทางเทียบ</p>
 <div style="position:absolute;right:40px;bottom:32px;width:88px;height:88px;background:#FFFDF8;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(35,31,32,0.15)"><img src="/_blob/a0d87a59192d15fe4c5ccb53b36c37c0" alt="Ducky Engineer" style="width:72px;height:72px;object-fit:contain"></div>
-<aside>[5:00] ทวน Prompt framework จาก M2 (Input → Process → Output) และ Plan → Approve → Execute
+<aside>พอมีวัตถุดิบแล้ว เราสั่งงานยังไงครับ ใช้ Prompt framework เดิมจาก M2 เลย Input, Process, Output และทำแบบ Plan, Approve, Execute
+Input คือบอก 5 แหล่งให้ชัด ชื่อไฟล์อะไร ลิสต์ไหน โฟลเดอร์อีเมลไหน
+Process คือสรุปเดือนกันยายน 2569 เทียบกับ Budget และเดือนก่อน ตรงนี้มีสองจุดสำคัญครับ ข้อแรก CSV ใหญ่ ให้ Cowork เขียนสคริปต์สรุป ห้ามอ่านทีละแถว ประหยัด usage และแม่นกว่า ข้อสอง ทุกตัวเลขต้องบอกว่ามาจากไฟล์ไหน แถวไหน เวลาเราตรวจจะได้เร็ว
+Output คือตารางสรุป 3 ประเด็นเด่น 3 ความเสี่ยง แล้วให้หยุดรอเราตรวจก่อน ยังไม่ต้องทำเป็นเอกสาร
+แล้วตรวจยังไงครับ ใช้กติกาตรวจ 3 ตัวเลข เลือกตัวที่ใหญ่สุด ตัวที่แย่สุด และสุ่มอีกหนึ่งตัว เปิดไฟล์ต้นทางเทียบ ถ้าผิดแม้แต่ตัวเดียว ให้ตรวจทั้งหมดครับ
+----------
+[5:00] ทวน Prompt framework จาก M2 (Input → Process → Output) และ Plan → Approve → Execute
 จุดสำคัญ 2 ข้อ: (1) ไฟล์ใหญ่ให้ Cowork เขียนสคริปต์ ประหยัด usage และแม่นกว่า (2) บังคับให้แนบ “ที่มา” ทุกตัวเลข จะตรวจได้เร็ว
 Prompt เต็ม = M4-P02 ใน prompts.md
 กติกาตรวจ 3 ตัวเลข: ตัวที่ใหญ่สุด ตัวที่แย่สุด และตัวสุ่ม 1 ตัว ถ้าผิดแม้ตัวเดียว ให้ตรวจทั้งหมด</aside>
