@@ -26,8 +26,18 @@
 <div style="display:flex;flex-direction:row;gap:12px;align-items:center"><div style="width:32px;height:32px;background:#3BA55C;border-radius:6px"></div><p style="font-size:24px;color:#3D3839">Data/Connector</p></div>
 </div>
 <div style="position:absolute;right:40px;bottom:32px;width:88px;height:88px;background:#FFFDF8;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(35,31,32,0.15)"><img src="/_blob/32dfbe84ed57fc46b09005dc066e61d2" alt="Ducky Engineer" style="width:72px;height:72px;object-fit:contain"></div>
-<aside>(12:30–13:45) ใช้ไฟล์จริงจาก data/out/: production_shift_log_2566-2568.csv (197,280 แถว ~13 MB) และ annual_review_synthetic_320p.pdf (320 หน้า)
-Demo สั้น: ถาม "ค่าปรับส่งของล่าช้าในสัญญา supplier คือเท่าไร" — คำตอบอยู่หน้า 47 (Clause 9.3: 0.15%/วัน สูงสุด 10%) ดูว่า Claude อ้างหน้าได้ไหม
-ตัวเลขขีดจำกัดของ upload / context เปลี่ยนตามรุ่นและแผน — ให้ดูที่ support.claude.com และทดสอบใน dry-run ก่อนสอน อย่าจำตัวเลข
-ย้ำ usage: งานใหญ่กิน weekly limit ของ Team plan — ทำ pilot เล็กก่อนเสมอ (ต่อใน M8)</aside>
+<aside>งานจริงไม่ได้มีแค่ไม่กี่ไฟล์ครับ สไลด์นี้คือข้อจำกัดเมื่อเจอข้อมูลขนาดจริง และวิธีแก้
+เจอ CSV ประมาณสองแสนแถว อาการคือ Claude อ่านไม่หมด สรุปผิด และใช้ usage เยอะ วิธีแก้คือให้ Cowork เขียนสคริปต์สรุป แทนการอ่านทีละแถว
+เจอ PDF 320 หน้า อาการคือตอบจากบางส่วน และไม่บอกเลขหน้า วิธีแก้คือขอสารบัญก่อน แล้วอ่านทีละบท และขอเลขหน้าทุกครั้ง
+เจอไฟล์ 1,500 ไฟล์ จะช้า และหลุดบางไฟล์ วิธีแก้คือทำ inventory ก่อน ทำ pilot แล้วค่อยทำทีละโฟลเดอร์
+ส่วนผลลัพธ์ที่ใหญ่จนแนบอีเมลไม่ได้ ให้ส่งสรุปพร้อมลิงก์ SharePoint แทน ซึ่งเราจะเรียนใน M3 กับ M4
+หลักคือ ดูโครงก่อน เลือกส่วน แบ่งบทหรือเขียนสคริปต์ ได้ผลสรุปพร้อมเลขหน้าหรือเลขแถว แล้วคนตรวจครับ
+ลองดูกันครับ ผมจะถามจาก PDF นี้ว่า ค่าปรับส่งของล่าช้าในสัญญา supplier คือเท่าไร แล้วดูว่า Claude อ้างเลขหน้าได้ไหม
+อีกเรื่องที่ต้องย้ำ งานใหญ่กิน weekly limit ของ Team plan ครับ ทำ pilot เล็กก่อนเสมอ
+----------
+[12:30–13:45] ประมาณ 1 นาทีกว่า
+ไฟล์ขนาดจริง (ข้อมูลจำลอง) จาก data/out/: production_shift_log_2566-2568.csv (197,280 แถว ~13 MB) และ annual_review_synthetic_320p.pdf (320 หน้า)
+Demo สั้น: ถาม "ค่าปรับส่งของล่าช้าในสัญญา supplier คือเท่าไร" — เฉลยหน้า 47 (Clause 9.3: 0.15%/วัน สูงสุด 10%) ดูว่า Claude อ้างหน้าได้ไหม
+ระวัง: ตัวเลขขีดจำกัด upload / context เปลี่ยนตามรุ่นและแผน — ดู support.claude.com และทดสอบใน dry-run ก่อนสอน อย่าจำตัวเลข
+ย้ำ usage: งานใหญ่กิน weekly limit ของ Team plan — pilot เล็กก่อนเสมอ (ต่อใน M8)</aside>
 </section>

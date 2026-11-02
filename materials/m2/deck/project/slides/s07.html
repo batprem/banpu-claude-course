@@ -32,6 +32,13 @@
 <div style="display:flex;flex-direction:row;gap:12px;align-items:center"><div style="width:32px;height:32px;background:#3BA55C;border-radius:6px"></div><p style="font-size:24px;color:#3D3839">Data/Connector</p></div>
 </div>
 <div style="position:absolute;right:40px;bottom:32px;width:88px;height:88px;background:#FFFDF8;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(35,31,32,0.15)"><img src="/_blob/32dfbe84ed57fc46b09005dc066e61d2" alt="Ducky Engineer" style="width:72px;height:72px;object-fit:contain"></div>
-<aside>(7:30–8:00) สามแบบนี้ใช้ต่อกันได้: ให้ Claude ทวนเป้าหมาย → สัมภาษณ์เราเพื่อเก็บบริบท → ทำตัวอย่างให้เลือกก่อนทำจริง
-ทั้งสามแบบคือ HITL ที่ต้นทาง: แก้ความเข้าใจผิดตอนที่ยังถูก ก่อนเสียเวลาและ usage กับงานเต็ม</aside>
+<aside>ต่อไปคือ Prompt Patterns สามแบบครับ และสามแบบนี้ใช้ต่อกันได้
+แบบแรก Use your own words เราสั่งงาน แล้วให้ Claude ทวนเป้าหมายด้วยคำของตัวเอง เราดูว่าตรงไหม
+แบบที่สอง Interview pattern ให้ Claude ถามเราทีละหนึ่งข้อ เราตอบวนไปจนครบ แล้ว Claude เขียน brief ให้เรายืนยัน
+แบบที่สาม Prototype first ให้ Claude ทำตัวอย่างสามแบบ เราเลือกหนึ่ง แล้วค่อยทำฉบับเต็ม
+สังเกตว่าทั้งสามแบบมีจุดสีส้มที่คนตัดสินใจเสมอครับ นี่คือ Human-in-the-Loop ที่ต้นทาง แก้ความเข้าใจผิดตอนที่ยังถูก ก่อนจะเสียเวลาและ usage ไปกับงานเต็ม
+----------
+[7:30–8:00] ประมาณ 30 วินาที เป็นสไลด์ภาพรวมก่อนลงทีละแบบ
+ลำดับที่ใช้ต่อกัน: Claude ทวนเป้าหมาย → สัมภาษณ์เราเพื่อเก็บบริบท → ทำตัวอย่างให้เลือกก่อนทำจริง
+ประเด็นหลัก: ทั้งสามแบบ = HITL ที่ต้นทาง แก้ความเข้าใจผิดตอนที่ยังถูก ก่อนเสียเวลาและ usage กับงานเต็ม</aside>
 </section>

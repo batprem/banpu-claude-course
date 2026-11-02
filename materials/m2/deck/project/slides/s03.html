@@ -22,14 +22,18 @@
 <div style="display:flex;flex-direction:row;gap:12px;align-items:center"><div style="width:32px;height:32px;background:#3BA55C;border-radius:6px"></div><p style="font-size:24px;color:#3D3839">Data/Connector</p></div>
 </div>
 <div style="position:absolute;right:40px;bottom:32px;width:88px;height:88px;background:#FFFDF8;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(35,31,32,0.15)"><img src="/_blob/32dfbe84ed57fc46b09005dc066e61d2" alt="Ducky Engineer" style="width:72px;height:72px;object-fit:contain"></div>
-<aside>(1:30–3:00) ตารางเทียบ (พูดประกอบ):
+<aside>ก่อนสั่งงาน เราต้องถามตัวเองก่อนครับว่า งานนี้ใช้ไฟล์แบบไหน
+ถ้าถามครั้งเดียว ไม่กี่ไฟล์ ประมาณหนึ่งถึงห้าไฟล์ ก็ Upload ในแชตได้เลยครับ เช่น สรุป PDF ใบเสนอราคา supplier ฉบับนี้ Claude อ่านแล้วตอบ จบ แต่ระวังนิดนึง ไฟล์ใหญ่อาจอัปโหลดไม่ผ่าน
+ถ้าเป็นงานซ้ำ ใช้ทุกสัปดาห์ทุกเดือน ใช้ Project ครับ เช่น รายงานประจำเดือนของทีม ที่ต้องใช้ template และคำศัพท์เดิมทุกครั้ง Project จะเก็บเอกสารอ้างอิงและคำสั่งประจำไว้ให้ ข้อระวังคือถ้าไม่อัปเดตเอกสาร ความรู้ใน Project ก็จะล้าสมัย
+แต่ถ้าไฟล์เยอะ และต้องสร้างไฟล์ใหม่ เช่น รวม Excel 13 ไฟล์จาก 6 ไซต์ แล้วทำ dashboard อันนี้ให้ Cowork เข้าถึงโฟลเดอร์ครับ เพราะ Cowork อ่าน เขียน สร้าง และย้ายไฟล์ได้
+และเพราะมันลงมือได้ กฎของเราคือ ให้สิทธิ์เฉพาะโฟลเดอร์ทำงานของงานนี้ เช่น Documents/Claude-Workshop/M2 ไม่ใช่ทั้งไดรฟ์ และให้ทำกับโฟลเดอร์สำเนาเสมอ เราเรียกว่า copy-before-write
+ส่วนการเชื่อมไป SharePoint กับ Outlook ผ่าน Connector เราจะเรียนกันใน M3 ครับ
+----------
+[1:30–3:00] ประมาณ 1 นาทีครึ่ง พูดประกอบตารางเทียบ
 - เหมาะกับ: Upload ในแชต = ถามครั้งเดียว 1–5 ไฟล์ · Project = งานซ้ำ ใช้เอกสารอ้างอิงเดิม · Cowork + โฟลเดอร์ = ไฟล์เยอะ ต้องสร้าง/ย้ายไฟล์
 - Claude ทำได้: Upload = อ่าน + ตอบ · Project = อ่าน + คำสั่งประจำ · Cowork = อ่าน เขียน สร้างไฟล์ ย้ายไฟล์
 - ระวัง: Upload = ไฟล์ใหญ่อัปโหลดไม่ผ่าน · Project = ความรู้ล้าสมัยถ้าไม่อัปเดต · Cowork = ให้สิทธิ์เฉพาะโฟลเดอร์สำเนา
-ตัวอย่างบ้านปูสมมติ:
-- Upload: "สรุป PDF ใบเสนอราคา supplier ฉบับนี้" → ครั้งเดียว
-- Project: "รายงานประจำเดือนของทีม" ที่ต้องใช้ template + คำศัพท์เดิมทุกเดือน
-- Cowork folder: "รวม Excel 13 ไฟล์จาก 6 ไซต์ แล้วทำ dashboard" → ต้องอ่านหลายไฟล์และสร้างไฟล์ใหม่
-กฎ: ให้ Cowork เข้าถึงโฟลเดอร์ทำงานเฉพาะงาน (เช่น Documents/Claude-Workshop/M2) ไม่ใช่ทั้งไดรฟ์ — และใช้สำเนา (copy-before-write)
-Connector ไป SharePoint/Outlook จะเรียนใน M3</aside>
+ตัวอย่างบ้านปูสมมติ: Upload "สรุป PDF ใบเสนอราคา supplier ฉบับนี้" · Project "รายงานประจำเดือนของทีม" · Cowork folder "รวม Excel 13 ไฟล์จาก 6 ไซต์ แล้วทำ dashboard"
+กฎ: Cowork เข้าถึงเฉพาะโฟลเดอร์งาน (เช่น Documents/Claude-Workshop/M2) ไม่ใช่ทั้งไดรฟ์ + copy-before-write
+Connector ไป SharePoint/Outlook = M3 (M365 เท่านั้น)</aside>
 </section>

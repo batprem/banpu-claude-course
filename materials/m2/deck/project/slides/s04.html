@@ -23,8 +23,14 @@
 <div style="display:flex;flex-direction:row;gap:12px;align-items:center"><div style="width:32px;height:32px;background:#3BA55C;border-radius:6px"></div><p style="font-size:24px;color:#3D3839">Data/Connector</p></div>
 </div>
 <div style="position:absolute;right:40px;bottom:32px;width:88px;height:88px;background:#FFFDF8;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(35,31,32,0.15)"><img src="/_blob/32dfbe84ed57fc46b09005dc066e61d2" alt="Ducky Engineer" style="width:72px;height:72px;object-fit:contain"></div>
-<aside>(3:00–4:30) Prompt ที่ดีตอบ 3 คำถาม: เอาอะไรเข้า (Input) ทำอะไร (Process) ได้อะไรออก ที่ไหน รูปแบบไหน (Output)
-ข้อผิดพลาดที่เห็นบ่อย: บอกแค่ Process ("วิเคราะห์ให้หน่อย") → Claude เดา input และ output เอง
-ชี้ว่าเส้นประย้อนกลับ = คนตรวจผลแล้วปรับ prompt — นี่คือ HITL ที่เล็กที่สุด
-ให้ดู Prompt Playground ตัวอย่างที่ 1 (before/after) ถ้ามีเวลา</aside>
+<aside>รู้แล้วว่าจะให้ไฟล์แบบไหน ต่อไปคือสั่งงานยังไงให้ได้ผลครับ
+Prompt ที่ดีตอบสามคำถาม หนึ่ง Input เอาอะไรเข้า ไฟล์หรือโฟลเดอร์ไหน ข้อมูลอะไร สอง Process ให้ Claude ทำอะไร ทีละขั้น สาม Output ได้อะไรออกมา รูปแบบไหน เก็บที่ไหน ชื่อไฟล์อะไร
+ข้อผิดพลาดที่เจอบ่อยที่สุดคือ บอกแค่ Process ครับ เช่น วิเคราะห์ให้หน่อย แล้ว Claude ก็ต้องเดา input และ output เอง
+ลองดูตัวอย่างด้านล่างครับ Input คือไฟล์ทั้งหมดในโฟลเดอร์ input รายงานผลผลิต 6 ไซต์ ปี 2566 ถึง 2568 Process คือรวมเป็นตารางเดียว เทียบ Budget vs Actual รายไซต์รายปี Output คือ Excel หนึ่งไฟล์ในโฟลเดอร์ output ชื่อ ops_summary.xlsx พร้อมสรุปห้าบรรทัด
+แล้วสังเกตเส้นประสีส้มครับ หลังได้ผล คนตรวจว่าตรงเป้าหมายไหม ถ้าไม่ตรงก็ย้อนกลับไปปรับ prompt นี่คือ Human-in-the-Loop ที่เล็กที่สุด
+----------
+[3:00–4:30] ประมาณ 1 นาทีครึ่ง
+Cue: ชี้เส้นประย้อนกลับ = คนตรวจผลแล้วปรับ prompt (HITL ที่เล็กที่สุด)
+ข้อผิดพลาดที่เห็นบ่อย: บอกแค่ Process ("วิเคราะห์ให้หน่อย") → Claude เดา input/output เอง
+ถ้ามีเวลา: เปิด Prompt Playground ตัวอย่างที่ 1 (before/after)</aside>
 </section>
