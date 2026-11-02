@@ -60,6 +60,8 @@ All private until shared from each page's Share menu. Every page except the Slid
 | Prompt Playground | `artifacts/prompt-playground.html` | https://claude.ai/artifact/LQ7Mh4vNj4syXPARm6ucV8 | ✅ |
 | Prototype Gallery | `artifacts/prototype-gallery.html` | https://claude.ai/artifact/3s1YpuHwGK7QvSn7ogm2Aq | ✅ |
 
+Theme: Ducky Engineer (วิศวกรเป็ด) applied 2 Nov 2026 to the deck and all 5 pages (Sarabun, #FFD066/#231F20/#0684C9/#F4F4F4, logo badge; role colours kept), republished to the same URLs above.
+
 ## Build notes
 - Built by the M2 Orca worker; it was cut off twice by API connection loss before finishing. The orchestrator wrote this README, `SOURCES.md` and the 4 Artifact specs and reviewed the module.
 
