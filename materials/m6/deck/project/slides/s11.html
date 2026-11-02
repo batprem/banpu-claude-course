@@ -30,7 +30,16 @@
 <div style="display:flex;flex-direction:row;gap:12px;align-items:center"><div style="width:32px;height:32px;background:#3BA55C;border-radius:6px"></div><p style="font-size:24px;color:#3D3839">Data/Connector</p></div>
 </div>
 <div style="position:absolute;right:40px;bottom:32px;width:88px;height:88px;background:#FFFDF8;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(35,31,32,0.15)"><img src="/_blob/5a1d3f73ab9db749300a5dec0c215916" alt="Ducky Engineer" style="width:72px;height:72px;object-fit:contain"></div>
-<aside>[12:00] Requirement 15 (Awareness) 1 นาที: “Dashboard ที่ทำใน M4 refresh เองไหม?” → ไม่ เป็น snapshot ณ เวลาที่สร้าง (M1 แตะไว้แล้ว)
+<aside>มีคำถามที่เจอบ่อยครับ Dashboard ที่เราทำใน M4 มัน refresh เองไหม
+คำตอบคือ ไม่ครับ มันเป็น snapshot ภาพ ณ เวลาที่สร้าง
+Dashboard มี 3 แบบ แบบแรก Real-time หรือ Live อ่านจากระบบต้นทางทุกครั้งที่เปิด อย่าง SCADA หรือ ERP
+แบบที่สอง Scheduled refresh ดึงข้อมูลใหม่จากไฟล์หรือ SharePoint ตามรอบ เช่นทุกเช้า 7 โมง ที่เห็นคือภาพ ณ รอบล่าสุด
+แบบที่สามคือ Claude Artifact ที่เราทำวันนี้ เป็น snapshot ของข้อมูลตอนสร้าง
+ถ้าอยากได้ dashboard ใหม่ทุกวันจันทร์ ก็ใช้ Scheduled task สั่งให้สร้าง dashboard ใหม่จากข้อมูลล่าสุด เท่านี้ก็เป็น scheduled refresh แบบง่ายแล้วครับ
+ก่อนจะขอ real-time ลองถามตัวเองก่อนว่า เราต้องตัดสินใจเร็วแค่ไหน ส่วนใหญ่รายงานผู้บริหาร รายวันหรือรายสัปดาห์ก็พอ และถูกกว่า
+และสำหรับคนอ่าน ให้ดูวันที่ของข้อมูลเสมอนะครับ
+----------
+[12:00] Requirement 15 (Awareness) 1 นาที: “Dashboard ที่ทำใน M4 refresh เองไหม?” → ไม่ เป็น snapshot ณ เวลาที่สร้าง (M1 แตะไว้แล้ว)
 3 แบบ: Real-time = อ่านต้นทางทุกครั้ง (เช่น Power BI DirectQuery, ระบบควบคุมโรงงาน) · Scheduled refresh = ดึงข้อมูลใหม่ตามรอบ (เช่น Power BI import model ตั้ง refresh ได้หลายครั้งต่อวันตาม license, SOURCES #7) · Artifact ในคอร์สนี้ = snapshot
 ถ้าอยากได้ dashboard ใหม่ทุกจันทร์ → ใช้ Scheduled task สั่ง “สร้าง dashboard ใหม่จากข้อมูลล่าสุด” = scheduled refresh แบบง่าย
 คำถามที่ควรถามก่อนขอ real-time: “ตัดสินใจเร็วแค่ไหน?” ส่วนใหญ่รายงานผู้บริหาร = รายวัน/รายสัปดาห์ก็พอ และถูกกว่า

@@ -10,7 +10,19 @@
 <tr style="background:#FFF3D1"><td style="padding:18px 24px">🟧 <b>Owner</b></td><td style="padding:18px 24px">คุณวิไลวรรณ (Project Control) ตรวจภายใน 09:30</td></tr>
 </table>
 <div style="position:absolute;right:40px;bottom:32px;width:88px;height:88px;background:#FFFDF8;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(35,31,32,0.15)"><img src="/_blob/5a1d3f73ab9db749300a5dec0c215916" alt="Ducky Engineer" style="width:72px;height:72px;object-fit:contain"></div>
-<aside>[7:30] นี่คือ Input → Process → Output ของ M2 + เพิ่ม 3 ช่องที่งานอัตโนมัติต้องมี: เมื่อไร · Checkpoint · Owner
+<aside>แล้วจะเขียน Scheduled task ให้ปลอดภัยยังไง ใช้ 6 ช่องนี้ครับ
+ถ้าจำได้ Input → Process → Output คือสูตรจาก M2 งานอัตโนมัติแค่เพิ่มอีก 3 ช่อง คือ เมื่อไร Checkpoint และ Owner
+ลองดูตัวอย่าง รายงานสถานะโครงการรายสัปดาห์
+เมื่อไร ทุกวันจันทร์ 8 โมง เพราะต้องส่งผู้บริหารก่อน 10 โมง
+Input คืออีเมล PRJ ย้อนหลัง 7 วัน Project Tracker ใน SharePoint และ Meeting notes
+Process สรุปหนึ่งหน้า ความเสี่ยงสูงสุด 3 เรื่อง และทุกข้อมีที่มา
+Output เป็นไฟล์ในโฟลเดอร์ output ที่มีวันที่ในชื่อไฟล์ พร้อม draft ใน Outlook
+Checkpoint หยุดก่อนส่ง ถ้าข้อมูลขัดกันให้แยกเป็นหัวข้อ
+Owner คือคุณวิไลวรรณจาก Project Control ตรวจให้เสร็จภายใน 9 โมงครึ่ง
+เคล็ดลับครับ ใส่วันที่ในชื่อไฟล์ทุกครั้ง จะได้ไม่เขียนทับรอบก่อน
+และทุกรอบใช้ usage ถ้าตั้งทุกชั่วโมงกับงานใหญ่ จะชน weekly limit เร็ว ให้เลือกรอบที่ช้าที่สุดที่ยังทันใช้งานครับ
+----------
+[7:30] นี่คือ Input → Process → Output ของ M2 + เพิ่ม 3 ช่องที่งานอัตโนมัติต้องมี: เมื่อไร · Checkpoint · Owner
 prompt เต็มอยู่ใน prompts.md M6-P03 และ Artifact “Automation Card” จะประกอบ prompt จาก 6 ช่องนี้ให้อัตโนมัติ
 เคล็ดลับ: ใส่ชื่อไฟล์ output พร้อมวันที่ทุกครั้ง จะได้ไม่เขียนทับรอบก่อน (copy-before-write ฉบับงานอัตโนมัติ)
 เรื่อง usage (req 13): ทุก step ใช้ token ถ้าตั้ง hourly กับงานใหญ่จะชน weekly limit ของ Team plan เร็ว → เลือกรอบที่ช้าที่สุดที่ยังทันใช้งาน</aside>

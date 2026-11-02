@@ -13,7 +13,17 @@
 <tr style="background:#FFFDF8"><td style="padding:16px 24px"><b>Skip</b></td><td style="padding:16px 24px">ไม่ถาม ไม่มีอะไรตรวจ</td><td style="padding:16px 24px">❌ ห้าม</td></tr>
 </table>
 <div style="position:absolute;right:40px;bottom:32px;width:88px;height:88px;background:#FFFDF8;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(35,31,32,0.15)"><img src="/_blob/5a1d3f73ab9db749300a5dec0c215916" alt="Ducky Engineer" style="width:72px;height:72px;object-fit:contain"></div>
-<aside>[6:00] กฎ 4 ข้อนี้มาจาก proposal ของบ้านปู (หัวข้อ Automation): “ร่างและรอตรวจ ไม่ส่งอีเมลหรือเผยแพร่เองโดยไม่มีคนอนุมัติ และกำหนดเจ้าของงานที่ชัดเจน”
+<aside>ทีนี้มาดูกฎ Human-in-the-Loop สำหรับงานอัตโนมัติครับ มี 4 ข้อ
+ข้อหนึ่ง ร่างแล้วรอ เขียนลง output หรือ Outlook Drafts เท่านั้น
+ข้อสอง ไม่ส่งออกเอง อีเมล โพสต์ หรือการแชร์ภายนอก ต้องมีคนกดส่ง
+ข้อสาม เจ้าของงานชัด 1 คน ชื่ออยู่บนหัวรายงาน และตรวจตามรอบ
+ข้อสี่ ไม่แน่ใจให้หยุด ข้อมูลขัดกันให้จดไว้ ไม่เดา ไม่แก้ต้นทาง
+กฎนี้มาจาก proposal ของเราเองครับ ร่างและรอตรวจ ไม่ส่งหรือเผยแพร่เองโดยไม่มีคนอนุมัติ และมีเจ้าของงานชัดเจน
+ตารางข้างล่างคือ Approval mode Manual คือถามก่อน ช่วงทดลองเราใช้อันนี้ Auto คือ Claude ตรวจความปลอดภัยเองแล้วทำต่อโดยไม่ถามเรา ใช้ได้เมื่อผ่านการทดลอง 4 รอบแล้ว ส่วน Skip คือไม่ถาม ไม่มีอะไรตรวจ ห้ามใช้ครับ
+ระวังนิดหนึ่ง บางหน้าจอค่าเริ่มต้นเป็นแบบอนุมัติอัตโนมัติ ตอน workshop ให้ตรวจและเปลี่ยนเป็น Manual เองทุกครั้ง
+สรุปคือ งานตั้งเวลาก็ยังเป็น Plan → Approve → Execute แค่ AI ทำ Plan กับ Execute ตอนเราไม่อยู่ แต่ Approve ยังเป็นของคนครับ
+----------
+[6:00] กฎ 4 ข้อนี้มาจาก proposal ของบ้านปู (หัวข้อ Automation): “ร่างและรอตรวจ ไม่ส่งอีเมลหรือเผยแพร่เองโดยไม่มีคนอนุมัติ และกำหนดเจ้าของงานที่ชัดเจน”
 Approval modes ตาม Help Center “Use Claude Cowork safely” (SOURCES #2, #3): Manual = ถามก่อน · Auto = Claude ตรวจแต่ละ action เอง (เช่น data exfiltration, prompt injection) แล้วบล็อกสิ่งที่ไม่ปลอดภัย ไม่ถามเรา · Skip = ไม่ถามและไม่มีอะไรตรวจ
 ⚠ เอกสาร Anthropic ระบุว่า “Automatically approve” เป็นค่าเริ่มต้นในบางหน้าจอ (SOURCES #3) และ admin ตั้งค่าเริ่มต้นได้ → ใน workshop ให้ตรวจและเปลี่ยนเป็น Manual เองทุกครั้ง (ยืนยันค่าเริ่มต้นจริงใน dry-run)
 ชื่อปุ่มในแอปอาจต่างจากตาราง ให้ดูความหมาย ไม่ใช่ชื่อ

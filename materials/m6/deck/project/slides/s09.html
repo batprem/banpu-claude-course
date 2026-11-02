@@ -24,7 +24,16 @@
 <div style="display:flex;flex-direction:row;gap:12px;align-items:center"><div style="width:32px;height:32px;background:#3BA55C;border-radius:6px"></div><p style="font-size:24px;color:#3D3839">Data/Connector</p></div>
 </div>
 <div style="position:absolute;right:40px;bottom:32px;width:88px;height:88px;background:#FFFDF8;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(35,31,32,0.15)"><img src="/_blob/5a1d3f73ab9db749300a5dec0c215916" alt="Ducky Engineer" style="width:72px;height:72px;object-fit:contain"></div>
-<aside>[8:30] สาธิตสด 2.5 นาที ตาม README “Demo script” ใช้ M6-P01 (ร่างครั้งแรกในแชต) แล้ว M6-P02 (แปลงเป็น scheduled task)
+<aside>ทีนี้มาดูของจริงกันครับ ผมจะสาธิต Weekly Energy &amp; Ops Insight ให้ดูประมาณสองนาทีครึ่ง
+ขั้นแรก ผมบอกสิ่งที่ต้องการด้วยคำของผมเอง แล้วสังเกตนะครับ Claude จะทวนเป้าหมายกลับมาก่อน ผมยืนยันแล้วมันถึงเริ่มทำ
+ขั้นที่สอง มันอ่าน 3 แหล่ง คือข่าวพลังงานบนเว็บ 7 วันล่าสุด อีเมลใน Outlook กล่องทดสอบ และ Meeting notes
+ขั้นที่สาม มันร่าง Weekly Insight 5 หัวข้อ ทุกข้อมีที่มา
+ขั้นที่สี่ ดูท้ายร่างครับ มีป้ายหยุดรอคนตรวจ และไม่ได้ส่งอีเมลใด ๆ ออกไป
+ขั้นที่ห้า ผมแปลงงานนี้เป็น Scheduled task ทุกจันทร์ 8 โมง แล้วเลือก approval แบบถามก่อน
+ขั้นสุดท้าย กด Run now หนึ่งครั้ง แล้วตรวจรอบทดสอบ
+ระหว่างดู ลองจับ 4 จุดนี้นะครับ ทวนเป้าหมาย มีที่มาทุกข้อ หยุดรอคนตรวจ และถามก่อนทุกครั้ง
+----------
+[8:30] สาธิตสด 2.5 นาที ตาม README “Demo script” ใช้ M6-P01 (ร่างครั้งแรกในแชต) แล้ว M6-P02 (แปลงเป็น scheduled task)
 แหล่ง: Web (ข่าวพลังงานสาธารณะ 7 วัน) · Outlook กล่องทดสอบ (อีเมล M3 20 ฉบับ) · โฟลเดอร์ meeting_notes ของ M6 (6 ไฟล์)
 ไฮไลต์ที่ต้องชี้ให้ห้องเห็น: (1) Claude ทวนเป้าหมายก่อน (2) ร่างมีที่มาทุกข้อ (3) ท้ายร่างมี 🛑 “หยุดรอคนตรวจ” และไม่ได้ส่งอีเมล (4) ตอนตั้ง task เลือก approval แบบถามก่อน
 สำรอง: ถ้าเน็ต/connector มีปัญหา ใช้ news_fallback.md + .eml ในเครื่อง หรือเปิดผลลัพธ์ตัวอย่าง data/weekly_insight_example.md ในสไลด์ถัดไป</aside>

@@ -25,7 +25,15 @@
 <div style="display:flex;flex-direction:row;gap:12px;align-items:center"><div style="width:32px;height:32px;background:#3BA55C;border-radius:6px"></div><p style="font-size:24px;color:#3D3839">Data/Connector</p></div>
 </div>
 <div style="position:absolute;right:40px;bottom:32px;width:88px;height:88px;background:#FFFDF8;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(35,31,32,0.15)"><img src="/_blob/5a1d3f73ab9db749300a5dec0c215916" alt="Ducky Engineer" style="width:72px;height:72px;object-fit:contain"></div>
-<aside>[2:45] ประเด็นที่คนเข้าใจผิดบ่อยที่สุด อ้างอิง Help Center ของ Anthropic (SOURCES #1, #4, เข้าถึง 30 ต.ค. 2026):
+<aside>ต่อไปเป็นเรื่องที่คนเข้าใจผิดบ่อยที่สุดครับ งานจะรันจริงตอนไหน
+พอถึงเวลา Claude จะดูก่อนว่างานนี้ต้องใช้ไฟล์หรือแอปในเครื่องเราไหม
+ถ้าไม่ใช้ ใช้แค่ Connector กับ Web งานจะรันบน cloud ของ Anthropic เราปิดเครื่อง ปิดแอปได้เลย ผลลัพธ์ออกมาเป็นไฟล์ใน output หรือร่างใน Outlook Drafts
+แต่ถ้างานใช้โฟลเดอร์ในเครื่อง งานจะรันในเครื่องเราเท่านั้น ต้องเปิดเครื่อง ไม่ sleep และเปิด Claude Desktop ไว้
+ถ้าไม่ครบ งานก็ไม่รันตามเวลาครับ
+แล้วรอบที่พลาดไปจะรันชดเชยไหม ตอนนี้ Help Center ยังไม่บอกชัด เพราะฉะนั้นนิสัยที่ดีที่สุดคือ เช็ก past runs ทุกเช้าวันจันทร์
+สรุปง่าย ๆ ครับ งานที่ใช้ SharePoint กับ Outlook เป็นหลัก ไม่ต้องเปิดเครื่องทิ้งไว้ ส่วนงานที่ใช้โฟลเดอร์ใน Documents ต้องเปิดเครื่อง และปิด sleep ช่วงเวลานั้นไว้
+----------
+[2:45] ประเด็นที่คนเข้าใจผิดบ่อยที่สุด อ้างอิง Help Center ของ Anthropic (SOURCES #1, #4, เข้าถึง 30 ต.ค. 2026):
 - “Scheduled tasks run remotely … even when your computer is asleep or the Claude Desktop app is closed”
 - แต่ “If a scheduled task requires local files or apps, it will only run locally” → ต้องเปิดเครื่อง ไม่ sleep และเปิด Claude Desktop ไว้
 - Help Center ยังไม่บอกชัดว่ารอบที่พลาดตอนปิดเครื่องจะรันชดเชยหรือไม่ → สอนให้ “เช็ก past runs ทุกเช้าวันจันทร์” ดีที่สุด

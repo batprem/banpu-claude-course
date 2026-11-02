@@ -27,7 +27,17 @@
 <div style="display:flex;flex-direction:row;gap:12px;align-items:center"><div style="width:32px;height:32px;background:#3BA55C;border-radius:6px"></div><p style="font-size:24px;color:#3D3839">Data/Connector</p></div>
 </div>
 <div style="position:absolute;right:40px;bottom:32px;width:88px;height:88px;background:#FFFDF8;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(35,31,32,0.15)"><img src="/_blob/5a1d3f73ab9db749300a5dec0c215916" alt="Ducky Engineer" style="width:72px;height:72px;object-fit:contain"></div>
-<aside>[5:00] นี่คือ requirement 10 ภายนอก (Web) + ภายใน (Email, Meeting) → Insight รายวัน/รายสัปดาห์
+<aside>ต่อไปคือ Automatic Monitoring ครับ ให้ Claude เฝ้าดูเรื่องที่เราสนใจแทนเรา
+แหล่งข้อมูลมีทั้งข้างนอกและข้างใน ข้างนอกคือ Web เช่น ข่าวพลังงานสาธารณะ ข้างในคือ Email ใน Outlook เช่น หัวเรื่องที่ขึ้นต้นด้วย PRJ หรืออีเมลขออนุมัติ และ Meeting notes ใน SharePoint
+ตั้งเวลาได้ทั้งแบบ Daily เช่น 7 โมงครึ่งทุกเช้า หรือ Weekly เช่น จันทร์ 8 โมง
+Daily เหมาะกับเรื่องเร็ว อย่างข่าวตลาด หรืออีเมลขออนุมัติ ส่วน Weekly เหมาะกับภาพรวม อย่างสถานะโครงการ และ action items
+Claude จะอ่านและคัดกรองตาม watchlist คือรายการว่าเราเฝ้าดูอะไร เช่น คำค้นข่าว หัวเรื่องอีเมล โฟลเดอร์ประชุม
+ผลที่ได้คือ Insight ฉบับร่าง มีสรุป ความเสี่ยง action และที่มา
+ที่มาสำคัญมากครับ ทุกข้อต้องมีลิงก์ข่าว หัวเรื่องอีเมลพร้อมวันที่ หรือชื่อไฟล์ประชุม เพื่อให้คนตรวจเปิดดูได้ในคลิกเดียว
+แล้วเจ้าของงานตรวจ ผ่านก็ส่งต่อเอง ไม่ผ่านก็บอก Claude แก้ หรือปรับ watchlist
+อีกข้อที่ต้องระวัง อย่าใส่ข้อมูลภายในลงในคำค้นเว็บนะครับ
+----------
+[5:00] นี่คือ requirement 10 ภายนอก (Web) + ภายใน (Email, Meeting) → Insight รายวัน/รายสัปดาห์
 watchlist = รายการ “เฝ้าดูอะไร” เขียนไว้ใน task เช่น คำค้นข่าว, หัวเรื่องอีเมล [PRJ-, โฟลเดอร์ Meeting Notes (ตัวอย่างใน data/pack/watchlist.md)
 Daily เหมาะกับเรื่องเร็ว (ข่าวตลาด อีเมลขออนุมัติ) · Weekly เหมาะกับภาพรวม (สถานะโครงการ action items)
 จุดสำคัญ: Insight ต้องมี ที่มาทุกข้อ (ลิงก์ข่าว, หัวเรื่องอีเมล+วันที่, ชื่อไฟล์ประชุม) เพราะคนตรวจต้องเปิดดูได้ใน 1 คลิก

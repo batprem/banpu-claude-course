@@ -23,7 +23,16 @@
 <div style="display:flex;flex-direction:row;gap:12px;align-items:center"><div style="width:32px;height:32px;background:#3BA55C;border-radius:6px"></div><p style="font-size:24px;color:#3D3839">Data/Connector</p></div>
 </div>
 <div style="position:absolute;right:40px;bottom:32px;width:88px;height:88px;background:#FFFDF8;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(35,31,32,0.15)"><img src="/_blob/5a1d3f73ab9db749300a5dec0c215916" alt="Ducky Engineer" style="width:72px;height:72px;object-fit:contain"></div>
-<aside>[4:00] ทวน M4: เราทำ 3 กล่องแรกเสร็จแล้ว (Monthly Ops Report) วันนี้เติมกล่องสุดท้าย
+<aside>จำ Document Factory จาก M4 ได้ไหมครับ
+เราทำ 3 กล่องแรกเสร็จแล้ว คือ ดึงข้อมูลจากหลายแหล่ง SharePoint, Outlook, Excel แล้วให้ Claude รวมและวิเคราะห์ ออกมาเป็นรายงานร่าง จะเป็น Word, PPTX หรือ Artifact ก็ได้
+วันนี้เราเติมกล่องสุดท้าย คือ Schedule กับ Distribution
+สังเกตว่า Schedule เป็นเส้นประนะครับ เพราะนาฬิกาทำหน้าที่แค่ปลุกให้เริ่มทำงาน ไม่ได้ข้ามการตรวจ
+หลังได้ร่าง เจ้าของงานตรวจและอนุมัติก่อน ถ้ายังไม่ผ่านก็วนกลับไปให้ Claude แก้
+พอผ่านแล้ว การส่งต่อที่ปลอดภัยมี 2 แบบ แบบแรก Claude สร้าง draft ใน Outlook แล้วเรากดส่งเอง แบบที่สอง Claude วางไฟล์ไว้ใน output แล้วเรา upload หรือแชร์ใน SharePoint เอง
+สิ่งที่ห้ามคือ ให้ task ส่งอีเมลออกนอกองค์กรเอง หรือเขียนทับไฟล์ต้นทางบน SharePoint
+ตัวอย่างงานแรกที่เหมาะจะตั้งเวลา ก็คืออีเมลของคุณชัยวัฒน์ที่เราเห็นใน M3 ขอรายงานสถานะโครงการหนึ่งหน้า ส่งทุกจันทร์ก่อน 10 โมงครับ
+----------
+[4:00] ทวน M4: เราทำ 3 กล่องแรกเสร็จแล้ว (Monthly Ops Report) วันนี้เติมกล่องสุดท้าย
 Schedule = เส้นประ เพราะ “นาฬิกา” แค่ปลุกให้เริ่ม Process ไม่ได้ข้ามการตรวจ
 Distribution ในองค์กรเรามี 2 แบบที่ปลอดภัย: (1) Claude สร้าง draft ใน Outlook แล้วคนกดส่งเอง (2) Claude วางไฟล์ใน output/ แล้วคน upload/แชร์ใน SharePoint เอง
 ห้าม: ให้ task ส่งอีเมลออกนอกองค์กรเอง หรือเขียนทับไฟล์ต้นทางบน SharePoint (ทวน copy-before-write จาก M2/M3)

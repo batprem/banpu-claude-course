@@ -33,7 +33,15 @@
 <div style="display:flex;flex-direction:row;gap:12px;align-items:center"><div style="width:32px;height:32px;background:#3BA55C;border-radius:6px"></div><p style="font-size:24px;color:#3D3839">Data/Connector</p></div>
 </div>
 <div style="position:absolute;right:40px;bottom:32px;width:88px;height:88px;background:#FFFDF8;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(35,31,32,0.15)"><img src="/_blob/5a1d3f73ab9db749300a5dec0c215916" alt="Ducky Engineer" style="width:72px;height:72px;object-fit:contain"></div>
-<aside>[13:00] Requirement 16 (Awareness เท่านั้น ไม่มี hands-on) 1 นาที
+<aside>อีกเรื่องที่ควรรู้ไว้ครับ Sub-agent กับ Multi-agent
+สมมติเราขอ Weekly Insight ในงานใหญ่ Claude อาจมี lead agent เป็นคนวางแผน แล้วแบ่งงานให้ sub-agent หลายตัวทำขนานกัน ตัวหนึ่งดูข่าวเว็บ ตัวหนึ่งดูอีเมล Outlook อีกตัวดูบันทึกประชุมใน SharePoint แล้ว lead agent รวมผล
+เหมือนหัวหน้าทีมแบ่งงานให้ลูกทีม 3 คน แล้วรวมเป็นรายงานเดียว ได้เร็วขึ้นและกว้างขึ้น
+มีเคสจริงครับ Anthropic เล่าถึงระบบ Research ของ Claude ว่าผลประเมินภายในดีกว่า agent เดี่ยวราว 90 เปอร์เซ็นต์ แต่ใช้ token ประมาณ 15 เท่าของแชตปกติ
+แปลว่าค่าแรง หรือ usage สูงขึ้นมาก
+ใน Cowork เราไม่ต้องตั้งเอง Claude อาจแตก sub-agent เองในงานใหญ่ และ Plugin บางตัวก็มี sub-agent มาด้วย อย่างที่เห็นใน M5
+สิ่งที่ต้องจำคือ ไม่ว่าจะกี่ agent คนยังต้องตรวจผลรวมก่อนส่งต่อ และงานเล็กใช้ agent เดียวก็พอ ประหยัด weekly limit ครับ
+----------
+[13:00] Requirement 16 (Awareness เท่านั้น ไม่มี hands-on) 1 นาที
 เคสจริง: Anthropic เขียนเล่าระบบ Research ของ Claude (มิ.ย. 2025, SOURCES #8): lead agent วางแผนแล้วแตกงานให้ sub-agent หลายตัวค้นขนานกัน ผลประเมินภายในดีกว่า agent เดี่ยว 90.2% แต่ใช้ token มากกว่าแชตปกติประมาณ 15 เท่า และไม่เหมาะกับงานที่ทุกส่วนต้องรู้บริบทเดียวกันตลอด
 แปลเป็นภาษางาน: เหมือนหัวหน้าทีมแบ่งงานให้ลูกทีม 3 คน แล้วรวมรายงาน ได้เร็วและกว้างขึ้น แต่ “ค่าแรง” (usage) สูงขึ้นมาก
 ใน Cowork: Claude อาจแตก sub-agent เองในงานใหญ่ และ Plugin บางตัวมี sub-agent มาด้วย (M5) เราไม่ต้องตั้งเอง
