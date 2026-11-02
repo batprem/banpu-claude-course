@@ -34,7 +34,7 @@ Each module README has the same list under `## Claude Artifacts (claude.ai)`.
 
 | Module | Artifact | Source in repo | claude.ai URL | Export PDF |
 |---|---|---|---|---|
-| M1 | Slides · 42 slides (incl. speaker intro) | `m1/deck/project/` | https://claude.ai/artifact/B5QugBgGE4eWMe69TrCvbv | Share › Export (PDF/PPTX) |
+| M1 | Slides · 43 slides (incl. speaker intro + agenda) | `m1/deck/project/` | https://claude.ai/artifact/B5QugBgGE4eWMe69TrCvbv | Share › Export (PDF/PPTX) |
 | M1 | Workshop sheet · 4 หน้า | `m1/artifacts/workshop-sheet.html` | https://claude.ai/artifact/W9dt4fKCCRZn4pZMXycNdR | ✅ |
 | M1 | Data Traffic Light (เกม 15 ใบ) | `m1/artifacts/data-traffic-light.html` | https://claude.ai/artifact/F9jhpdSui1ybEe4M794LvZ | ✅ |
 | M2 | Slides · 15 slides | `m2/deck/project/` | https://claude.ai/artifact/3kKwMXkqyNFfRMEQxCQVwu | Share › Export (PDF/PPTX) |
