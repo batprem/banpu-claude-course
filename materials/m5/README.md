@@ -66,6 +66,8 @@ Regenerate: `python3 materials/m5/data/sync_audit_sample.py` · `python3 tools/b
 
 All private until shared from each page's Share menu. Published 31 Oct 2026 with `capabilities: {downloads: true}`.
 
+Theme: Ducky Engineer (วิศวกรเป็ด) applied 2 Nov 2026 to the deck and both pages, same URLs (see materials/_shared/DUCKY_THEME_BRIEF.md).
+
 | Artifact | File | claude.ai URL | Export PDF |
 |---|---|---|---|
 | M5 Slides (10 slides) | `deck/project/` | https://claude.ai/artifact/PRZrJe9wv2nWeJSaTFy416 | ✅ (Share › Export, PDF/PPTX) |
