@@ -48,6 +48,8 @@
 
 All private until shared from each page's Share menu. Published 31 Oct 2026 with `capabilities: {downloads: true}` (Export PDF = html2pdf.js → `downloads.save`, fallback `window.print()`).
 
+Theme: Ducky Engineer (วิศวกรเป็ด) applied 2 Nov 2026 to the deck and all 3 pages (Sarabun · #FFD066/#231F20/#0684C9/#F4F4F4 · logo badge), republished to the same URLs; diagram role colours unchanged.
+
 | Artifact | File | claude.ai URL | Export PDF |
 |---|---|---|---|
 | M8 Slides (20 slides) | `deck/project/` | https://claude.ai/artifact/Uix5PCdLVDFT2EpceDUi1Q | ✅ (Share › Export, PDF/PPTX) |
