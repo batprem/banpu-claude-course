@@ -26,8 +26,16 @@
 <div style="display:flex;flex-direction:row;gap:12px;align-items:center"><div style="width:32px;height:32px;background:#3BA55C;border-radius:6px"></div><p style="font-size:24px;color:#3D3839">Data/Connector</p></div>
 </div>
 <div style="position:absolute;right:40px;bottom:32px;width:88px;height:88px;background:#FFFDF8;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(35,31,32,0.15)"><img src="/_blob/b12309c268df8504ddbc70a38d8fc121" alt="Ducky Engineer" style="width:72px;height:72px;object-fit:contain"></div>
-<aside>[8:30] นี่คือ use case ที่คุ้มที่สุดของ Connector: งาน “ไล่หา” ที่กินเวลาเช้าวันจันทร์
+<aside>คราวนี้มาถึง use case ที่คุ้มที่สุดของ Connector ครับ คืองานไล่หาที่กินเวลาเช้าวันจันทร์ของเรา
+เริ่มจากคุณ ตั้งคำถาม บอกช่วงเวลา และบอกแหล่งที่อนุญาต จากนั้น Claude วางแผนค้น แล้วกระจายไปสามแหล่ง
+แหล่งแรก Outlook อีเมลอัปเดต อีเมลขออนุมัติ สรุปประชุม แหล่งที่สอง SharePoint List อย่าง Project Tracker กับ Issue Log และแหล่งที่สาม ไฟล์บน SharePoint อย่าง Shared_Capex_Tracker
+แล้ว Claude รวมและเทียบ หาจุดที่แหล่งข้อมูลขัดกัน ได้สรุป 1 หน้า พร้อมอ้างที่มาทุกข้อ
+สูตร prompt คือ คำถาม บวกช่วงเวลา บวกแหล่งที่อนุญาต บวกรูปแบบผลลัพธ์ แล้วสั่งว่า อ้างที่มาทุกข้อ และบอกจุดที่แหล่งข้อมูลขัดกัน
+คุณค่าที่แท้จริงอยู่ที่จุดที่ขัดกันครับ เช่น Tracker บอก On track แต่อีเมลบอกว่าของส่งไม่ครบ
+และสุดท้ายเหมือนเดิม คุณตรวจ ที่มาจริงไหม ตัวเลขตรงต้นทางไหมครับ
+----------
+[8:30] use case ที่คุ้มที่สุดของ Connector: งาน “ไล่หา” ที่กินเวลาเช้าวันจันทร์
 สูตร prompt: คำถาม + ช่วงเวลา + แหล่งที่อนุญาต + รูปแบบผลลัพธ์ + “อ้างที่มาทุกข้อ” + “บอกจุดที่แหล่งข้อมูลขัดกัน”
-SharePoint List: Connector อ่านไฟล์ในคลังเอกสาร จึงให้ Export List เป็น CSV ไว้ใน SharePoint (ดูข้อจำกัดอีกสไลด์)
-คุณค่าที่แท้จริงคือ “จุดที่ขัดกัน” เช่น Tracker บอก On track แต่อีเมลบอกว่าของส่งไม่ครบ</aside>
+SharePoint List: Connector อ่านไฟล์ในคลังเอกสาร → ให้ Export List เป็น CSV ไว้ใน SharePoint (ดูข้อจำกัดใน s13)
+เน้นคุณค่า “จุดที่ขัดกัน” เช่น Tracker บอก On track แต่อีเมลบอกของส่งไม่ครบ</aside>
 </section>

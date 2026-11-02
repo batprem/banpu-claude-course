@@ -11,8 +11,15 @@
 <li>Write tools (ส่งเมล · แก้ไฟล์) เป็นตัวเลือกแยกที่ admin ต้องเปิดเพิ่ม</li>
 </ul>
 <div style="position:absolute;right:40px;bottom:32px;width:88px;height:88px;background:#FFFDF8;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(35,31,32,0.15)"><img src="/_blob/b12309c268df8504ddbc70a38d8fc121" alt="Ducky Engineer" style="width:72px;height:72px;object-fit:contain"></div>
-<aside>[3:00] ให้คนเข้าใจว่าทำไมบางคนเห็น บางคนไม่เห็น: ขึ้นกับการตั้งค่าขององค์กร
-สำคัญ: Connector ใช้ delegated permissions ไฟล์ที่เราไม่มีสิทธิ์เปิด Claude ก็เปิดไม่ได้ แต่ไฟล์ที่เราเปิดได้ “ทั้งหมด” Claude ก็ค้นได้ทั้งหมด (ตั้ง allowlist เฉพาะ site ไม่ได้) จึงต้องระวังคำถามที่กว้างเกินไป
-Write tools: admin ต้อง re-consent และเปิดแยก ค่าเริ่มต้นเป็น read-only (SOURCES #1)
-คำถามเปิดให้ IT: Banpu เปิด write tools หรือไม่ (ดู README)</aside>
+<aside>หลายคนอาจสงสัยว่า ทำไมเพื่อนข้าง ๆ เห็นปุ่ม Connect แต่เราไม่เห็น คำตอบคือมันขึ้นกับการตั้งค่าขององค์กรครับ มีสามคน สามขั้น
+คนแรกคือ Claude Owner ฝั่ง Hi-I หรือ IT เป็นคนเพิ่ม Connector ใน Organization settings ว่าจะเปิดให้ทั้งทีมหรือไม่
+คนที่สองคือ Entra Global Admin ของ IT ให้ consent ครั้งเดียว และเลือกได้ว่าจะปิดบางส่วน เช่น ปิด Mail
+คนที่สามคือเราเองครับ เข้า Customize → Connectors → Connect แล้ว login ด้วยบัญชีบริษัท
+จุดที่สำคัญมากคือ Claude เห็นเท่าที่เราเห็น ไฟล์ที่เราไม่มีสิทธิ์เปิด Claude ก็เปิดไม่ได้ แต่ไฟล์ทั้งหมดที่เราเปิดได้ Claude ก็ค้นได้ทั้งหมดเหมือนกัน เพราะฉะนั้นระวังคำถามที่กว้างเกินไปนะครับ
+ถ้ายังไม่มีปุ่ม Connect ไม่ต้องหาทางเลี่ยง แจ้ง IT ครับ ส่วน Write tools อย่างส่งเมลหรือแก้ไฟล์ เป็นตัวเลือกแยกที่ admin ต้องเปิดเพิ่ม
+----------
+[3:00] เป้าหมาย: ให้คนเข้าใจว่าทำไมบางคนเห็น บางคนไม่เห็น ขึ้นกับการตั้งค่าขององค์กร
+Connector ใช้ delegated permissions: ไฟล์ที่เราไม่มีสิทธิ์ Claude เปิดไม่ได้ · ไฟล์ที่เราเปิดได้ “ทั้งหมด” Claude ค้นได้ทั้งหมด (ตั้ง allowlist เฉพาะ site ไม่ได้)
+Write tools: admin ต้อง re-consent และเปิดแยก · ค่าเริ่มต้นเป็น read-only (SOURCES #1)
+Open question ให้ IT: Banpu เปิด write tools หรือไม่ (ดู README)</aside>
 </section>

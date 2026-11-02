@@ -9,8 +9,15 @@
 <tr style="background:#FFFDF8"><td style="padding:18px 28px">Write tools ส่งไฟล์แนบไม่ได้ · ไม่มีขั้นยืนยันในตัว</td><td style="padding:18px 28px">ให้ร่างไว้ คนส่งเอง · ใช้ลิงก์ SharePoint</td></tr>
 </table>
 <div style="position:absolute;right:40px;bottom:32px;width:88px;height:88px;background:#FFFDF8;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(35,31,32,0.15)"><img src="/_blob/b12309c268df8504ddbc70a38d8fc121" alt="Ducky Engineer" style="width:72px;height:72px;object-fit:contain"></div>
-<aside>[13:00] ข้อมูลจาก Claude Help Center ณ 30 ต.ค. 2026 (SOURCES #1, #2) ตรวจซ้ำสัปดาห์ที่สอน
-“ค้นอาจไม่ครบ” เป็นข้อสังเกตจากการใช้งาน ไม่ใช่ตัวเลขทางการ: Connector คืนผลค้นหาเป็นชุด ๆ ไม่ใช่ทุกฉบับ จึงต้องขอให้ Claude “บอกรายการที่มาที่ใช้” แล้วเราดูว่ามีอะไรขาดไหม
+<aside>ก่อนลงมือ มาดูข้อจำกัดของ Connector และทางเลี่ยงกันครับ
+ข้อแรก SharePoint List ยังไม่ได้ระบุว่าค้นได้ ทางเลี่ยงคือ Export List เป็น CSV หรือ Excel ไว้ในคลังเอกสาร
+ข้อสอง เราจำกัด site ไม่ได้ Claude ค้นทุกที่ที่เราเข้าได้ ทางเลี่ยงคือระบุ site โฟลเดอร์ หรือชื่อไฟล์ใน prompt เลย จำ Data Traffic Light จาก M1 ได้ไหมครับ ถ้าถามกว้าง ๆ อาจดึงข้อมูลสีแดงมาโดยไม่ตั้งใจ
+ข้อสาม ค้นอาจไม่ครบ และไฟล์ใหญ่อาจอ่านไม่หมด ทางเลี่ยงคือถามเจาะจง ขอรายการที่มา และแบ่งช่วงเวลา
+ข้อสี่ ไฟล์เข้ารหัส หรือบางชนิดอย่าง OneNote เปิดไม่ได้ ให้ใช้ไฟล์ Word Excel PDF หรือ CSV แทน
+และข้อห้า Write tools ส่งไฟล์แนบไม่ได้ และไม่มีขั้นยืนยันในตัว ทางเลี่ยงคือให้ Claude ร่างไว้ แล้วคนส่งเอง และใช้ลิงก์ SharePoint แทนไฟล์แนบครับ
+----------
+[13:00] ข้อมูลจาก Claude Help Center ณ 30 ต.ค. 2026 (SOURCES #1, #2) · ตรวจซ้ำสัปดาห์ที่สอน
+“ค้นอาจไม่ครบ” เป็นข้อสังเกตจากการใช้งาน ไม่ใช่ตัวเลขทางการ: Connector คืนผลค้นหาเป็นชุด ๆ ไม่ใช่ทุกฉบับ → ขอให้ Claude “บอกรายการที่มาที่ใช้” แล้วดูว่ามีอะไรขาด
 Requirement 7: ข้อจำกัดจริง + workaround
 ความปลอดภัย: Claude เห็นทุกอย่างที่เราเห็น ถามกว้าง ๆ อาจดึงข้อมูล 🔴 มาโดยไม่ตั้งใจ → ระบุขอบเขตเสมอ (ทบทวน Data Traffic Light จาก M1)</aside>
 </section>

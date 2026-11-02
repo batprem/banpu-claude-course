@@ -22,11 +22,21 @@
 <div style="display:flex;flex-direction:row;gap:12px;align-items:center"><div style="width:32px;height:32px;background:#3BA55C;border-radius:6px"></div><p style="font-size:24px;color:#3D3839">Data/Connector</p></div>
 </div>
 <div style="position:absolute;right:40px;bottom:32px;width:88px;height:88px;background:#FFFDF8;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(35,31,32,0.15)"><img src="/_blob/b12309c268df8504ddbc70a38d8fc121" alt="Ducky Engineer" style="width:72px;height:72px;object-fit:contain"></div>
-<aside>[1:00] ชี้ทีละกล่อง
+<aside>ภาพนี้คือวิธีที่ Claude ทำงานกับข้อมูลของบริษัทครับ ดูตามลูกศรไปด้วยกัน
+เริ่มจากคุณ บอกเป้าหมาย และบอกขอบเขตว่าให้ค้นจากแหล่งไหน
+จากนั้น AI คือ Claude จะวางแผนว่าต้องค้นอะไร จากที่ไหน
+แล้วก็ Connect ผ่าน Connector ที่ IT อนุมัติเท่านั้น คือ SharePoint กับ Outlook จุดสำคัญคือ Claude เห็นเท่าที่บัญชีของเราเห็น ไม่มากกว่านั้นครับ
+ต่อไปคือ Data อีเมล ไฟล์ Word Excel PDF และ SharePoint List
+แล้ว Execute คือสรุป ร่าง หรือ "เสนอ" การแก้ไข สังเกตนะครับว่าเสนอ ไม่ใช่แก้เลย
+และกล่องสุดท้ายสีแดง คือคุณตรวจก่อนนำไปใช้หรือบันทึก นี่คือ Human-in-the-Loop ถ้ายังไม่ถูก ก็สั่งแก้ แล้ววนกลับไปที่ AI
+ประโยคที่อยากให้จำคือ Connector คือท่อ ไม่ใช่ใบอนุญาตให้ทำอะไรก็ได้ครับ
+----------
+[1:00] ชี้ทีละกล่องตามลูกศร
 - AI: Claude วางแผนว่าต้องค้นอะไร จากไหน
-- Connect: ผ่าน Connector ที่ IT อนุมัติเท่านั้น Claude เห็น เท่าที่บัญชีเราเห็น (delegated permissions) ไม่มากกว่านั้น
+- Connect: ผ่าน Connector ที่ IT อนุมัติเท่านั้น · Claude เห็นเท่าที่บัญชีเราเห็น (delegated permissions)
 - Data: อีเมล ไฟล์ Word/Excel/PDF ใน SharePoint
 - Execute: สรุป ร่าง หรือ “เสนอ” การแก้ไข
-- จุดสุดท้ายคือเราตรวจ ก่อนนำไปใช้หรือบันทึก (Human-in-the-Loop)
-ประโยคจำ: “Connector คือท่อ ไม่ใช่ใบอนุญาตให้ทำอะไรก็ได้”</aside>
+- จุดสุดท้าย: เราตรวจก่อนนำไปใช้หรือบันทึก (Human-in-the-Loop)
+ประโยคจำ: “Connector คือท่อ ไม่ใช่ใบอนุญาตให้ทำอะไรก็ได้”
+สีในแผนภาพ: แดง = คน (HITL) · ฟ้า = AI · เขียว = Data/Connector</aside>
 </section>

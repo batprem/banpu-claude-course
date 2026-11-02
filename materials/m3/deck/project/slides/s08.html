@@ -22,7 +22,15 @@
 <div style="display:flex;flex-direction:row;gap:12px;align-items:center"><div style="width:32px;height:32px;background:#3BA55C;border-radius:6px"></div><p style="font-size:24px;color:#3D3839">Data/Connector</p></div>
 </div>
 <div style="position:absolute;right:40px;bottom:32px;width:88px;height:88px;background:#FFFDF8;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(35,31,32,0.15)"><img src="/_blob/b12309c268df8504ddbc70a38d8fc121" alt="Ducky Engineer" style="width:72px;height:72px;object-fit:contain"></div>
-<aside>[6:00] อธิบายแบบภาษาคน: Excel บน SharePoint รองรับ co-authoring เมื่อคนแก้ผ่าน Excel แต่ถ้าเครื่องมือใดดาวน์โหลดไปแก้ทั้งไฟล์แล้วอัปโหลดทับ ระบบจะเห็นเป็น “ไฟล์เวอร์ชันใหม่ทั้งไฟล์” ไม่ใช่การแก้ทีละเซลล์
+<aside>ทีนี้มาดูว่า Excel ที่หลายคนแก้พร้อมกัน พังได้อย่างไรครับ
+ปกติ Excel บน SharePoint รองรับ co-authoring คือหลายคนแก้พร้อมกันได้ ถ้าทุกคนแก้ผ่าน Excel
+แต่ดูภาพนี้ครับ PM Site D แก้แท็บ Site D ส่วน Finance แก้ Spent_Confirmed อยู่ในไฟล์เดียวกัน
+แล้ว Claude อ่านไฟล์ตอน 09:00 แก้ทั้งไฟล์ แล้วเขียนกลับตอน 09:20 สิ่งที่ AI อ่านคือภาพถ่ายของไฟล์ ณ เวลาหนึ่ง พอเขียนกลับทั้งไฟล์ ระบบจะเห็นเป็นไฟล์เวอร์ชันใหม่ทั้งไฟล์ ไม่ใช่การแก้ทีละเซลล์
+ผลคือ งานของคนอื่นช่วง 09:00 ถึง 09:20 หาย สูตรใน Summary กลายเป็นตัวเลข dropdown หรือ format ก็อาจหาย และแท็บที่ไม่ใช่ของเราก็ถูกแตะ
+คำถามคือ ใครจะรู้ตัว แล้วรู้เมื่อไรครับ ข่าวดีคือ SharePoint มี Version history ย้อนกลับได้ แต่ต้องมีคนรู้ตัวก่อนนะครับ
+----------
+[6:00] อธิบายแบบภาษาคน: co-authoring ใช้ได้เมื่อคนแก้ผ่าน Excel · ถ้าเครื่องมือใดดาวน์โหลดไปแก้ทั้งไฟล์แล้วอัปโหลดทับ = “ไฟล์เวอร์ชันใหม่ทั้งไฟล์” ไม่ใช่การแก้ทีละเซลล์
 ความเสี่ยงที่พบบ่อย: (1) ทับงานคนอื่น (2) สูตรถูกแทนด้วยตัวเลข (3) dropdown/format หาย (4) แก้แท็บที่ไม่ใช่ของเรา
-ข่าวดี: SharePoint มี Version history ย้อนได้ (SOURCES #3) แต่ต้องมีคนรู้ตัวก่อน</aside>
+ข่าวดี: SharePoint มี Version history ย้อนได้ (SOURCES #3) แต่ต้องมีคนรู้ตัวก่อน
+ถามห้องที่กล่อง “ใครรู้ตัว? เมื่อไร?” แล้วรอคำตอบสั้น ๆ</aside>
 </section>

@@ -8,10 +8,18 @@
 <div style="background:#FFFDF8;border:2px solid #E2E2E2;border-radius:16px;padding:20px 32px;display:flex;flex-direction:row;gap:28px;align-items:center"><p style="font-size:44px;font-weight:700;color:#E4572E">5</p><p style="font-size:32px;line-height:1.35">ตรวจ: คลิกที่มา 2 ข้อ เทียบตัวเลขกับต้นทาง</p></div>
 </div>
 <div style="position:absolute;right:40px;bottom:32px;width:88px;height:88px;background:#FFFDF8;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(35,31,32,0.15)"><img src="/_blob/b12309c268df8504ddbc70a38d8fc121" alt="Ducky Engineer" style="width:72px;height:72px;object-fit:contain"></div>
-<aside>[9:30] Demo สด 2 นาที (ทำล่วงหน้าใน dry-run แล้วเก็บผลไว้เป็น fallback)
+<aside>มาดูของจริงกันครับ Demo นี้ใช้ข้อมูลสมมติทั้งหมด
+แหล่งที่หนึ่ง Outlook ทดสอบ มีอีเมล 20 ฉบับ ย้อนหลัง 4 สัปดาห์ แหล่งที่สอง SharePoint ทดสอบ มี Project_Tracker.csv, Issue_Log.csv และ Shared_Capex_Tracker_2569.xlsx
+ผมจะวาง Prompt M3-P02 ขอสรุป 1 หน้า ความเสี่ยง 3 เรื่อง และคำขออนุมัติที่ค้าง ดูไปด้วยกันนะครับว่า Claude ไปค้นอะไรบ้าง
+ดูตรงนี้ครับ PRJ-101 ใน Tracker บอก On track แต่อีเมลบอกว่าของส่งไม่ครบ นี่คือจุดที่ขัดกัน
+มี PRJ-105 ขออนุมัติงบเพิ่ม 3.8 ล้านบาท ค้างอยู่ถึง 31 ตุลาคม และ PRJ-104 สถานะ Delayed รอใบอนุญาต
+ขั้นสุดท้ายห้ามข้ามครับ ผมจะคลิกที่มาสักสองข้อ แล้วเทียบตัวเลขกับต้นทางให้ดู
+----------
+[9:30] Demo สด 2 นาที (ทำล่วงหน้าใน dry-run แล้วเก็บผลไว้เป็น fallback)
 - เปิด Claude Desktop → ตรวจว่าเปิด Connector Microsoft 365 แล้ว
 - วาง M3-P02 (ใน prompts.md) ให้ห้องเห็นว่า Claude ค้นอะไรบ้าง (tool calls)
 - ไฮไลต์ 3 สิ่งที่ควรเห็น: (1) PRJ-101 ขัดกันระหว่าง Tracker กับอีเมล (2) PRJ-105 ขออนุมัติงบเพิ่ม 3.8 ล้านบาท ค้างถึง 31 ต.ค. (3) PRJ-104 Delayed รอใบอนุญาต
-- ถ้า Claude ไม่เจอบางอย่าง ให้ถามต่อแบบเจาะจง (M3-P03) แล้วบอกห้องว่า “นี่คือเหตุผลที่ต้องตรวจ”
-- ถ้าไม่มี test tenant: ใช้โฟลเดอร์ pack/ ใน Cowork แทน (อีเมลเป็นไฟล์ .eml)</aside>
+- ถ้า Claude ไม่เจอบางอย่าง: ถามต่อแบบเจาะจง (M3-P03) แล้วบอกห้องว่า “นี่คือเหตุผลที่ต้องตรวจ”
+- ถ้าไม่มี test tenant: ใช้โฟลเดอร์ pack/ ใน Cowork แทน (อีเมลเป็นไฟล์ .eml)
+- ถ้าผลจริงไม่ตรงกับที่บอกในสคริปต์ ให้พูดตามผลที่เห็นจริง หรือเปิดผล fallback</aside>
 </section>
