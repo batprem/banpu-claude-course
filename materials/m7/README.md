@@ -65,6 +65,8 @@ Regenerate the data pack + ZIPs: `python3 materials/m7/data/gen_m7_data.py` (nee
 
 All private until shared from each page's Share menu. Published 31 Oct 2026 with `capabilities: {downloads: true}`.
 
+Theme: Ducky Engineer (วิศวกรเป็ด) applied 2 Nov 2026 to the deck and both pages, same URLs (Sarabun, #FFD066/#231F20/#0684C9/#F4F4F4, logo badge; role colours kept; `build_workshop_sheet.py` applies it on every rebuild).
+
 | Artifact | File | claude.ai URL | Export PDF |
 |---|---|---|---|
 | M7 Slides (10 slides) | `deck/project/` | https://claude.ai/artifact/17aWEiXMohcTuVjq2mKxzh | ✅ (Share › Export, PDF/PPTX) |
