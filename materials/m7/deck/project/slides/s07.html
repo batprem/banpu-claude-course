@@ -23,8 +23,17 @@
 <div style="display:flex;flex-direction:row;gap:12px;align-items:center"><div style="width:32px;height:32px;background:#3BA55C;border-radius:6px"></div><p style="font-size:24px;color:#3D3839">Data/Connector</p></div>
 </div>
 <div style="position:absolute;right:40px;bottom:32px;width:88px;height:88px;background:#FFFDF8;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(35,31,32,0.15)"><img src="/_blob/dfbb88f7cd6976fc7e61ad449409c6ab" alt="Ducky Engineer" style="width:72px;height:72px;object-fit:contain"></div>
-<aside>[6:30] ทำให้ดูว่า “Canvas ที่ครบ” หน้าตาเป็นอย่างไร ใช้เวลา 1 นาที ไม่ต้อง demo จริง
-ไล่ 4 ช่อง: Data = incident_log.csv (เหมือน export จาก SharePoint List) + อีเมล Outlook 3 ฉบับ · Connector = SharePoint/Outlook ในวันจริง หรือโฟลเดอร์ ZIP ถ้าไม่มี test tenant (เส้นทาง B ของ M3)
+<aside>เพื่อให้เห็นภาพ ขอยกตัวอย่าง Canvas ที่ครบ 1 โจทย์ครับ คือ UC2 รายงาน Incident รายสัปดาห์ ผมไม่ demo จริงนะครับ แค่ไล่ให้ดูทีละช่อง
+Data มี 2 ก้อน คือ incident_log.csv ที่เหมือน export มาจาก SharePoint List กับอีเมล 3 ฉบับใน Outlook
+Connector ในงานจริงคือ SharePoint กับ Outlook ถ้าวันนี้ไม่มี test tenant ก็ใช้โฟลเดอร์จาก ZIP แทน
+แล้วให้ Cowork ทำความสะอาดข้อมูลและเทียบกับสัปดาห์ก่อน
+HITL มี 2 จุดครับ จุดแรก คนตรวจข้อมูลผิดปกติก่อนวิเคราะห์ เช่น วันที่ผิด หรือตัวพิมพ์ไม่ตรงกัน จุดที่สอง ผู้จัดการ HSE อนุมัติก่อนส่ง
+Output คือร่างรายงาน HSE รายสัปดาห์ เทียบสัปดาห์ล่าสุดกับสัปดาห์ก่อน พร้อมร่างอีเมลถึงผู้จัดการ HSE
+Trade-off ข้อมูลส่วนใหญ่เป็นสีเขียวเพราะเป็นข้อมูลสมมติ แต่ในงานจริง ชื่อพนักงานเป็นสีเหลือง ต้องตัดออกก่อน เราทำแค่ร่างอีเมล ไม่ส่งเอง และข้อมูลไม่ใหญ่ ไม่ต้องใช้ model ใหญ่ครับ
+----------
+[6:30] 1 นาที · ไม่ต้อง demo จริง แค่ให้เห็นว่า “Canvas ที่ครบ” หน้าตาเป็นอย่างไร
+Data = incident_log.csv (เหมือน export จาก SharePoint List) + อีเมล Outlook 3 ฉบับ
+Connector = SharePoint/Outlook ในวันจริง หรือโฟลเดอร์ ZIP ถ้าไม่มี test tenant (เส้นทาง B ของ M3)
 Output = รายงานสัปดาห์ล่าสุดเทียบสัปดาห์ก่อน + ร่างอีเมลถึงผู้จัดการ HSE · HITL 2 จุด: ตรวจข้อมูลผิดปกติก่อนวิเคราะห์ และผู้จัดการอนุมัติก่อนส่ง
 Trade-off: อีเมล 01 มีประโยคพูดถึงพนักงานที่บาดเจ็บ ในงานจริงต้อง anonymize (🟡) · ข้อมูลไม่ใหญ่ ใช้ model เบาได้ (M8)</aside>
 </section>

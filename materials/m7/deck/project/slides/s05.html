@@ -8,8 +8,16 @@
 <tr style="background:#FFF3D1"><td style="padding:20px 24px"><b>✋ HITL</b></td><td style="padding:20px 24px">ใครอนุมัติก่อนส่ง/บันทึก?</td><td style="padding:20px 24px">Plan → Approve → Execute · copy-before-write</td></tr>
 </table>
 <div style="position:absolute;right:40px;bottom:32px;width:88px;height:88px;background:#FFFDF8;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(35,31,32,0.15)"><img src="/_blob/dfbb88f7cd6976fc7e61ad449409c6ab" alt="Ducky Engineer" style="width:72px;height:72px;object-fit:contain"></div>
-<aside>[4:30] ทีมที่ได้คะแนนสูงไม่ใช่ทีมที่ demo สวยที่สุด แต่เป็นทีมที่บอกได้ว่า “อะไรยังไม่ควรให้ Claude ทำ”
-ตัวอย่าง trade-off ที่ดี: “รายงาน incident ใช้ชื่อพนักงานไม่ได้ (🔴/🟡) เราจึงตัดคอลัมน์ชื่อก่อนส่งเข้า Cowork”
-ตัวอย่าง usage: งานรายสัปดาห์ที่สั่งด้วย prompt ยาวทุกครั้ง → ทำเป็น Skill (M5) แล้วตั้ง Scheduled task (M6) แต่ Scheduled task ต้องเปิดเครื่องไว้
+<aside>ขอฝากเรื่องที่สำคัญที่สุดเรื่องหนึ่งก่อนลงมือครับ ทีมที่ได้คะแนนสูงไม่ใช่ทีมที่ demo สวยที่สุด แต่เป็นทีมที่บอกได้ว่า อะไรยังไม่ควรให้ Claude ทำ
+ก่อนจะบอกว่า “ใช้ได้จริง” ให้ถามตัวเองตามตารางนี้
+มุมแรก ความปลอดภัย ข้อมูลสีอะไร ใครเห็นผลลัพธ์ ถ้าสีเหลืองให้ anonymize ถ้าสีแดงไม่ใส่ Claude ตามที่เรียนใน M1
+มุมที่สอง ข้อจำกัด ไฟล์ใหญ่หรือเยอะเกินไหม งานนี้ต้องเปิดเครื่องไว้ไหม ทางแก้คือแบ่งไฟล์ หรือสรุปก่อน
+มุมที่สาม Usage ทำบ่อยแค่ไหน ใช้ model อะไร เช่น งานรายสัปดาห์ที่ต้องพิมพ์ prompt ยาวทุกครั้ง ทำเป็น Skill แบบ M5 แล้วตั้ง Scheduled task แบบ M6 ได้ แต่อย่าลืมว่า Scheduled task ต้องเปิดเครื่องไว้
+มุมสุดท้าย HITL ใครอนุมัติก่อนส่งหรือบันทึก ใช้ Plan → Approve → Execute กับ copy-before-write
+ตัวอย่าง trade-off ที่ดี เช่น “รายงาน incident ใช้ชื่อพนักงานไม่ได้ เราจึงตัดคอลัมน์ชื่อก่อนส่งเข้า Cowork” แบบนี้แหละครับคำตอบที่ผมอยากได้ยิน
+----------
+[4:30] ~1 นาที · ประโยคเปิดคือหัวใจ: คะแนนสูง = บอกได้ว่า “อะไรยังไม่ควรให้ Claude ทำ” ไม่ใช่ demo สวย
+ตัวอย่าง trade-off ที่ดี: รายงาน incident ใช้ชื่อพนักงานไม่ได้ (🔴/🟡) → ตัดคอลัมน์ชื่อก่อนส่งเข้า Cowork
+ตัวอย่าง usage: งานรายสัปดาห์ที่สั่งด้วย prompt ยาวทุกครั้ง → Skill (M5) + Scheduled task (M6) · ระวัง: Scheduled task ต้องเปิดเครื่องไว้
 เกณฑ์ rubric ข้อ 3 คือ trade-off ข้อนี้โดยตรง</aside>
 </section>
