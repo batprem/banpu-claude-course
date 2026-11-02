@@ -43,7 +43,7 @@ Lecture 15 นาที (รวม Demo ~3) · Workshop 25 นาที · ถ�
 
 | Path | What |
 |---|---|
-| **Slides Artifact** · https://claude.ai/artifact/KgQ57jcEaEb58SShmpLqkr | **Delivery deck.** 15 slides built on Claude's core Slides Artifact type; speaker notes on every slide; Present mode; download as PDF/PPTX from Share › Export. All 5 Mermaid diagrams redrawn natively (boxes + connectors) in the 3 STYLE colours with legend. Private until shared from the page's Share menu |
+| **Slides Artifact** · https://claude.ai/artifact/KgQ57jcEaEb58SShmpLqkr | **Delivery deck.** 15 slides built on Claude's core Slides Artifact type; speaker notes on every slide; Present mode; download as PDF/PPTX from Share › Export. All 5 Mermaid diagrams redrawn natively (boxes + connectors) in the 3 STYLE colours with legend. Shared "Anyone with the link" (checked 2 Nov 2026) |
 | `deck/project/deck.json` + `deck/project/slides/s01–s15.html` | Source files of the Slides Artifact (republish with the Artifact tool, `root: materials/m4/deck`) |
 | `slides.md` → `slides.html` | Content source the Artifact was built from (same 15 slides and notes); superseded for delivery |
 | `workshop.md` | Workshop guide, 5 A4 pages (goal · prompt ID · ✅ checkpoint · time per step) |
@@ -71,7 +71,7 @@ Reused read-only: `m2/data/core/ops_monthly_clean.csv` (history), `m3/data/pack/
 
 ## Claude Artifacts (claude.ai)
 
-All private until shared from each page's Share menu. Published 31 Oct 2026 with `capabilities: {downloads: true}`.
+All shared "Anyone with the link" (checked 2 Nov 2026, Ducky Engineer restyle; sharing is set from each page's Share menu). Published 31 Oct 2026 with `capabilities: {downloads: true}`.
 
 Theme: Ducky Engineer (วิศวกรเป็ด) applied 2 Nov 2026 to the deck and all three pages (Sarabun, #FFD066/#231F20/#0684C9/#F4F4F4, logo badge; role colours kept), same URLs.
 

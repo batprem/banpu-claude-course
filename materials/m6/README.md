@@ -36,7 +36,7 @@
 
 | Path | What |
 |---|---|
-| **Slides Artifact** · https://claude.ai/artifact/77u51h2Mek9CgrSedciouK | **Delivery deck.** 15 slides built on Claude's core Slides Artifact type; speaker notes on every slide; Present mode; download as PDF/PPTX from Share › Export. All 7 diagrams redrawn natively (boxes + connectors) in the 3 STYLE colours with legend. Private until shared from the page's Share menu |
+| **Slides Artifact** · https://claude.ai/artifact/77u51h2Mek9CgrSedciouK | **Delivery deck.** 15 slides built on Claude's core Slides Artifact type; speaker notes on every slide; Present mode; download as PDF/PPTX from Share › Export. All 7 diagrams redrawn natively (boxes + connectors) in the 3 STYLE colours with legend. Shared "Anyone with the link" (checked 2 Nov 2026) |
 | `deck/project/deck.json` + `deck/project/slides/s01–s15.html` | Source files of the Slides Artifact (republish with the Artifact tool, `root: materials/m6/deck`) |
 | `slides.md` → `slides.html` | Content source the Artifact was built from (same 15 slides and notes, minute marks); superseded for delivery |
 | `workshop.md` | Workshop guide, 4 pages |
@@ -47,7 +47,7 @@
 
 ## Claude Artifacts (claude.ai)
 
-All private until shared from each page's Share menu. Published 31 Oct 2026 with `capabilities: {downloads: true}`.
+All shared "Anyone with the link" (checked 2 Nov 2026, Ducky Engineer restyle; sharing is set from each page's Share menu). Published 31 Oct 2026 with `capabilities: {downloads: true}`.
 
 Theme: Ducky Engineer (วิศวกรเป็ด) applied 2 Nov 2026 to the deck (yellow cover + logo, logo badge on s02–s15, Sarabun, #FFD066/#231F20/#0684C9/#F4F4F4) and both pages (apply_ducky_page_theme.py + yellow header accents), republished to the same URLs.
 

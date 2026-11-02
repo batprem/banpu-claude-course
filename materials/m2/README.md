@@ -37,7 +37,7 @@
 
 | Path | What |
 |---|---|
-| **Slides Artifact** · https://claude.ai/artifact/3kKwMXkqyNFfRMEQxCQVwu | **Delivery deck.** 15 slides built on Claude's core Slides Artifact type; speaker notes on every slide; Present mode; download as PDF/PPTX from Share › Export. All 8 Mermaid diagrams redrawn natively (boxes + connectors) in the 3 STYLE colours with legend; 2 `img/` illustrations uploaded as assets. Private until shared from the page's Share menu |
+| **Slides Artifact** · https://claude.ai/artifact/3kKwMXkqyNFfRMEQxCQVwu | **Delivery deck.** 15 slides built on Claude's core Slides Artifact type; speaker notes on every slide; Present mode; download as PDF/PPTX from Share › Export. All 8 Mermaid diagrams redrawn natively (boxes + connectors) in the 3 STYLE colours with legend; 2 `img/` illustrations uploaded as assets. Shared "Anyone with the link" (checked 2 Nov 2026) |
 | `deck/project/deck.json` + `deck/project/slides/s01–s15.html` | Source files of the Slides Artifact (republish with the Artifact tool, `root: materials/m2/deck`) |
 | `slides.md` → `slides.html` | Content source the Artifact was built from (same 15 slides and notes); superseded for delivery |
 
@@ -49,7 +49,7 @@
 
 ## Claude Artifacts (claude.ai)
 
-All private until shared from each page's Share menu. Every page except the Slides deck is published with `capabilities: {downloads: true}` and the shared `materials/_shared/export-pdf-artifact.html` snippet (html2pdf → downloads, fallback window.print). To republish, use the Artifact tool with the same file path, or pass the URL from another session.
+All shared "Anyone with the link" (checked 2 Nov 2026, Ducky Engineer restyle; sharing is set from each page's Share menu). Every page except the Slides deck is published with `capabilities: {downloads: true}` and the shared `materials/_shared/export-pdf-artifact.html` snippet (html2pdf → downloads, fallback window.print). To republish, use the Artifact tool with the same file path, or pass the URL from another session.
 
 | Artifact | File | claude.ai URL | Export PDF |
 |---|---|---|---|

@@ -34,7 +34,7 @@
 
 | Path | What |
 |---|---|
-| **Slides Artifact** · https://claude.ai/artifact/Uix5PCdLVDFT2EpceDUi1Q | **Delivery deck.** 20 slides built on Claude's core Slides Artifact type; speaker notes on every slide; Present mode; download as PDF/PPTX from Share › Export. All 9 diagrams redrawn natively (boxes + connectors) in the 3 STYLE colours with legend. Private until shared from the page's Share menu |
+| **Slides Artifact** · https://claude.ai/artifact/Uix5PCdLVDFT2EpceDUi1Q | **Delivery deck.** 20 slides built on Claude's core Slides Artifact type; speaker notes on every slide; Present mode; download as PDF/PPTX from Share › Export. All 9 diagrams redrawn natively (boxes + connectors) in the 3 STYLE colours with legend. Shared "Anyone with the link" (checked 2 Nov 2026) |
 | `deck/project/deck.json` + `deck/project/slides/s01–s20.html` | Source files of the Slides Artifact (republish with the Artifact tool, `root: materials/m8/deck`) |
 | `slides.md` → `slides.html` | Content source the Artifact was built from (same 20 slides and notes); superseded for delivery |
 | `workshop.md` | Workshop guide, 5 pages |
@@ -46,7 +46,7 @@
 
 ## Claude Artifacts (claude.ai)
 
-All private until shared from each page's Share menu. Published 31 Oct 2026 with `capabilities: {downloads: true}` (Export PDF = html2pdf.js → `downloads.save`, fallback `window.print()`).
+All shared "Anyone with the link" (checked 2 Nov 2026, Ducky Engineer restyle; sharing is set from each page's Share menu). Published 31 Oct 2026 with `capabilities: {downloads: true}` (Export PDF = html2pdf.js → `downloads.save`, fallback `window.print()`).
 
 Theme: Ducky Engineer (วิศวกรเป็ด) applied 2 Nov 2026 to the deck and all 3 pages (Sarabun · #FFD066/#231F20/#0684C9/#F4F4F4 · logo badge), republished to the same URLs; diagram role colours unchanged.
 

@@ -58,7 +58,7 @@ Add a one-line legend under each diagram in slides: `🟧 คน (HITL) · 🟦 
 - `materials/<mN>/artifacts/<name>.html`, single self-contained HTML file meant to be pasted into Claude as an Artifact (or opened locally). Plus `materials/<mN>/artifacts/<name>.spec.md` (purpose, users, interactions, data, engagement mechanic).
 - Must include an **Export PDF** button using the snippet in `materials/_shared/export-pdf.html` (window.print + print CSS that hides controls and shows all content).
 - No external network calls except fonts/CDN libraries; no real data; no calls to AI from the Artifact unless the spec justifies it (it consumes Team plan usage).
-- Font: `IBM Plex Sans Thai` (Google Fonts). Colours from the table above.
+- Font: `Sarabun` (Google Fonts) since the Ducky Engineer theme (2 Nov 2026). Chrome colours: duck yellow `#FFD066`, ink `#231F20`, accent blue `#0684C9`, background `#F4F4F4`; the role colours in the table above stay for diagrams. Pages get the logo badge via `tools/apply_ducky_page_theme.py`; see `materials/_shared/DUCKY_THEME_BRIEF.md`.
 
 ## Stories & sources
 - Each module: at least one story or real public case, with a source link.

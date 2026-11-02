@@ -12,6 +12,7 @@ Workers were repeatedly cut off by API connection loss ("Connection lost mid-res
 - Workshop sheets: every `workshop.md` is now `materials/<mN>/artifacts/workshop-sheet.html` (same page count, copy-ready prompts, checkbox checkpoints, progress bar, workshop diagrams) and every existing interactive Artifact was published as its own Artifact. Built by Orca Claude workers following `materials/_shared/WORKSHOP_ARTIFACT_BRIEF.md`.
 - Export PDF on every published page: `materials/_shared/export-pdf-artifact.html` builds an A4 PDF in the page (html2pdf.js 0.10.1) and offers it through the `downloads` capability; it falls back to the browser print dialog where that is unavailable (e.g. the file opened locally).
 - Review: the orchestrator checked every module (counts vs source, diagrams + legend, notes, no text under 24px on slides, Export PDF markers, no Samsung, URLs in README) and confirmed each published file equals the committed file before committing per module.
+- **2 Nov 2026 — Ducky Engineer (วิศวกรเป็ด) theme, approved by Prem (logo use approved):** all 8 Slides decks, all 8 workshop sheets and all 13 interactive pages were restyled and republished to their same URLs: Sarabun; duck yellow `#FFD066`, ink `#231F20`, accent blue `#0684C9`, background `#F4F4F4`; yellow cover with the logo and yellow section dividers; small logo badge bottom-right on every other slide and on every page; story slides get a yellow bar and blue eyebrow. Diagram role colours (HITL/AI/Data) are unchanged; content, counts, notes and Export PDF unchanged. M1 deck by the orchestrator (`0010ddd`), everything else by Orca Claude workers (max 2 at a time) following `materials/_shared/DUCKY_THEME_BRIEF.md`, each reviewed (old palette/font gone, badge counts, role-colour counts unchanged except story bars, published files equal the repo) and committed per module.
 - M1's opening story was changed on Prem's request: the Samsung 2023 case is removed everywhere and replaced by the July 2025 shared-ChatGPT-chats-in-Google case (Fast Company; SOURCES #1–2).
 
 ## Modules
@@ -29,12 +30,7 @@ Workers were repeatedly cut off by API connection loss ("Connection lost mid-res
 ## Claude Artifacts on claude.ai (all 29)
 Each module README has the same list under `## Claude Artifacts (claude.ai)`.
 
-**Visibility (checked 31 Oct 2026): all 29 are still private.** Prem asked for "anyone with the link, no login". That could not be done from this session:
-- The Artifact tool cannot change sharing or visibility; it is set only from each page's **Share** menu on claude.ai, by the owner.
-- A logged-out `curl` returns HTTP 200 for all 29 URLs, but every response is the same generic app shell (title "Claude Artifact", ~35 KB, no module content); the Artifact content and the access check load afterwards in the browser. So HTTP 200 does **not** show the page is public. A real check means opening each link in a private/incognito window after sharing.
-- Expected limits when sharing:
-  - The 8 Slides decks get the `assets` and `mcp` (Google Drive) capabilities from the Slides type. Per the Artifact runtime docs, pages with these are organisation-internal and cannot be shared publicly. Expect at most "everyone in the organisation" for the decks; the PDF/PPTX export (Share › Export) is the way to hand a deck to people outside.
-  - The 21 workshop and interactive pages declare only `downloads`, so the page itself does not block public sharing. Whether a public link is allowed depends on the account's plan and admin settings (M4's notes cite the Help Center saying Team-plan Artifacts are shared within the organisation only).
+**Visibility (re-checked 2 Nov 2026): all 29 are shared "Anyone with the link".** Every republish during the Ducky Engineer restyle printed the sharing state the service holds, and all 29 reported "readable by anyone with the link" (sharing was set by the owner from each page's Share menu; the Artifact tool itself cannot change it, and republishing to the same URL keeps it). The service adds that an organisation setting can still block public links, and a logged-out `curl` only returns the generic app shell (HTTP 200), so do one incognito check per Artifact type before the training day.
 
 | Module | Artifact | Source in repo | claude.ai URL | Export PDF |
 |---|---|---|---|---|
@@ -85,7 +81,8 @@ Republish after an edit: decks with the Artifact tool (`url` + `root: materials/
 - `materials/_shared/export-pdf.html` — original print-based Export PDF snippet (local files only).
 - `materials/_shared/export-pdf-artifact.html` — Export PDF for published Artifacts (html2pdf.js → `downloads.save`, print fallback).
 - `materials/_shared/SLIDES_ARTIFACT_BRIEF.md` · `materials/_shared/WORKSHOP_ARTIFACT_BRIEF.md` — worker briefs for the Slides decks and the workshop/interactive Artifacts.
-- `materials/m7/artifacts/build_workshop_sheet.py` — regenerates the 13-page M7 workshop sheet from `workshop.md`.
+- `materials/m7/artifacts/build_workshop_sheet.py` — regenerates the 13-page M7 workshop sheet from `workshop.md` (applies the Ducky theme itself).
+- `tools/apply_ducky_page_theme.py` — idempotent Ducky theme for learner pages (Sarabun, palette, embedded logo badge `materials/_shared/ducky-logo-160.datauri.txt`); `materials/_shared/DUCKY_THEME_BRIEF.md` — theme rules for decks and pages.
 
 ## Open questions for Prem / Hi-I (consolidated)
 **Banpu tenant & IT**
@@ -111,7 +108,7 @@ Republish after an edit: decks with the Artifact tool (`url` + `root: materials/
 14. Matt Pocock `grill-me` licence (MIT per listings): confirm against the repo LICENSE before printing handouts (M2).
 
 **Claude Artifacts (new, 31 Oct)**
-15. Sharing: all 29 Artifacts are private to Prem's account. Prem asked for public links (no login); the tool cannot set this. Open each URL, Share menu → the widest option offered (public link where the plan allows; otherwise the organisation), then check each in an incognito window. If public links are not allowed, decide between organisation-only sharing (learners log in with their Banpu Team account) and PDF exports for anyone outside.
+15. Sharing: all 29 Artifacts report "Anyone with the link" (2 Nov 2026). Before the training day, open one deck, one workshop sheet and one interactive page in an incognito window to confirm the Banpu organisation setting does not block public links.
 16. Live check still to do in the browser: click Export PDF on each page once (the in-page PDF path was not clicked through in this session) and download one deck as PDF from Share › Export, checking Thai rendering and that the 3-colour diagrams survive.
 17. Prototype Gallery (M2) shared voting expects a shared store that claude.ai does not provide, so votes stay per browser. Switch it to the Artifact `db` capability for a room-wide tally?
 18. While the decks were being written, a second writer re-saved near-identical copies of some slides (every deck; most likely the Slides page in an open browser tab normalising files). All versions were read and kept/merged and the repo equals what is published; worth confirming no other session was editing.

@@ -48,7 +48,7 @@ Learners form 5 teams (6–8 people), pick one of 5 synthetic use cases (standin
 
 | Path | What |
 |---|---|
-| **Slides Artifact** · https://claude.ai/artifact/17aWEiXMohcTuVjq2mKxzh | **Delivery deck.** 10 slides built on Claude's core Slides Artifact type; speaker notes on every slide; Present mode; download as PDF/PPTX from Share › Export. All 5 diagrams redrawn natively (boxes + connectors) in the 3 STYLE colours with legend. Private until shared from the page's Share menu |
+| **Slides Artifact** · https://claude.ai/artifact/17aWEiXMohcTuVjq2mKxzh | **Delivery deck.** 10 slides built on Claude's core Slides Artifact type; speaker notes on every slide; Present mode; download as PDF/PPTX from Share › Export. All 5 diagrams redrawn natively (boxes + connectors) in the 3 STYLE colours with legend. Shared "Anyone with the link" (checked 2 Nov 2026) |
 | `deck/project/deck.json` + `deck/project/slides/s01–s10.html` | Source files of the Slides Artifact (republish with the Artifact tool, `root: materials/m7/deck`) |
 | `slides.md` → `slides.html` | Content source the Artifact was built from (same 10 slides and notes, minute marks); superseded for delivery |
 | `README.md` · `SOURCES.md` | This file · sources |
@@ -63,7 +63,7 @@ Regenerate the data pack + ZIPs: `python3 materials/m7/data/gen_m7_data.py` (nee
 
 ## Claude Artifacts (claude.ai)
 
-All private until shared from each page's Share menu. Published 31 Oct 2026 with `capabilities: {downloads: true}`.
+All shared "Anyone with the link" (checked 2 Nov 2026, Ducky Engineer restyle; sharing is set from each page's Share menu). Published 31 Oct 2026 with `capabilities: {downloads: true}`.
 
 Theme: Ducky Engineer (วิศวกรเป็ด) applied 2 Nov 2026 to the deck and both pages, same URLs (Sarabun, #FFD066/#231F20/#0684C9/#F4F4F4, logo badge; role colours kept; `build_workshop_sheet.py` applies it on every rebuild).
 
