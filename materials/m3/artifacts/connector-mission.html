@@ -74,7 +74,7 @@ footer{max-width:920px;margin:0 auto;padding:8px 16px 32px;font-size:13px;opacit
   <h2>ด่าน 1 · เลือกเส้นทาง <small>3 นาที</small></h2>
   <div class="routes no-print">
     <button data-route="A">เส้นทาง A · Test tenant (M365 Connector)</button>
-    <button data-route="B">เส้นทาง B · โฟลเดอร์ M3_SamplePack + Cowork</button>
+    <button data-route="B">เส้นทาง B · โฟลเดอร์ materials/m3/data/pack + Cowork</button>
   </div>
   <p id="routeText">ยังไม่ได้เลือก</p>
   <label class="chk"><input type="checkbox" data-k="c1"> ฉันใช้บัญชีทดสอบ / Sample Pack เท่านั้น ไม่เปิดไฟล์หรือกล่องจดหมายจริง</label>
@@ -171,7 +171,7 @@ function copy(text,btn){const done=()=>{const o=btn.textContent;btn.textContent=
 
 // Stage 1 route
 function route(){const r=st.route;document.querySelectorAll("[data-route]").forEach(b=>b.classList.toggle("on",b.dataset.route===r));
-  document.getElementById("routeText").textContent=r==="A"?"เส้นทาง A: ใช้ Microsoft 365 Connector กับบัญชีทดสอบ · prompt เริ่ม M3-P01":r==="B"?"เส้นทาง B: ใช้โฟลเดอร์ M3_SamplePack ใน Cowork · prompt เริ่ม M3-P08":"ยังไม่ได้เลือก";
+  document.getElementById("routeText").textContent=r==="A"?"เส้นทาง A: ใช้ Microsoft 365 Connector กับบัญชีทดสอบ · prompt เริ่ม M3-P01":r==="B"?"เส้นทาง B: ใช้โฟลเดอร์ banpu-claude-course-master/materials/m3/data/pack ใน Cowork · prompt เริ่ม M3-P08":"ยังไม่ได้เลือก";
   document.getElementById("p2").textContent=r==="B"?"M3-P08":"M3-P01";}
 document.querySelectorAll("[data-route]").forEach(b=>b.onclick=()=>{st.route=b.dataset.route;save();route();update()});
 document.querySelectorAll("[data-copy]").forEach(b=>b.onclick=()=>{const k=b.dataset.copy==="p01"&&st.route==="B"?"p08":b.dataset.copy;copy(PROMPTS[k],b)});

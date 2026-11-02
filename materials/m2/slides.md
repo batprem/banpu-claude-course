@@ -65,7 +65,7 @@ flowchart LR
 - Upload: "สรุป PDF ใบเสนอราคา supplier ฉบับนี้" → ครั้งเดียว
 - Project: "รายงานประจำเดือนของทีม" ที่ต้องใช้ template + คำศัพท์เดิมทุกเดือน
 - Cowork folder: "รวม Excel 13 ไฟล์จาก 6 ไซต์ แล้วทำ dashboard" → ต้องอ่านหลายไฟล์และสร้างไฟล์ใหม่
-กฎ: ให้ Cowork เข้าถึงโฟลเดอร์ทำงานเฉพาะงาน (เช่น Documents/Claude-Workshop/M2) ไม่ใช่ทั้งไดรฟ์ — และใช้สำเนา (copy-before-write)
+กฎ: ให้ Cowork เข้าถึงโฟลเดอร์ทำงานเฉพาะงาน (เช่น banpu-claude-course-master/materials/m2/data/pack) ไม่ใช่ทั้งไดรฟ์ — และใช้สำเนา (copy-before-write)
 Connector ไป SharePoint/Outlook จะเรียนใน M3
 
 ---
@@ -338,7 +338,7 @@ Research: ใช้ข้อมูลสาธารณะเท่านั้�
 ---
 # เช็กลิสต์ก่อนลงมือ
 
-- ☐ ทำสำเนาโฟลเดอร์ Sample Pack ไว้ที่ `Documents/Claude-Workshop/M2/`
+- ☐ ดาวน์โหลด ZIP ของ repo แล้วแตกไฟล์ → ใช้โฟลเดอร์ `banpu-claude-course-master/materials/m2/data/pack/`
 - ☐ ให้ Cowork เข้าถึง **เฉพาะ** โฟลเดอร์นี้
 - ☐ เปิด Workshop Companion · Excel Detective · Prototype Gallery
 - ☐ ทุก prompt มี Input → Process → Output
@@ -348,4 +348,4 @@ Research: ใช้ข้อมูลสาธารณะเท่านั้�
 
 ???
 (14:40–15:00) ให้ทุกคนทำข้อ 1–2 ตอนนี้เลย ผู้ช่วยเดินดูว่าเลือกโฟลเดอร์ถูก (ไม่ใช่ทั้ง Documents)
-ถ้าใครยังไม่มี Sample Pack: ใช้ไฟล์ zip ที่แจกใน SharePoint ของห้อง (ผู้จัดเตรียม) — ห้ามใช้ Google Drive
+ถ้าใครยังไม่มีไฟล์: ดาวน์โหลด ZIP ของ repo (github.com/batprem/banpu-claude-course → Code → Download ZIP) แล้วแตกไฟล์ — ห้ามใช้ Google Drive

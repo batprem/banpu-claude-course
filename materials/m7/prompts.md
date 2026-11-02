@@ -1,6 +1,6 @@
 # M7 · Prompt templates (copy-ready)
 
-ใช้กับข้อมูลสมมติใน `data/uc1_*` … `data/uc5_*` (ZIP `M7_uc*.zip`) หรือข้อมูล 🟢 ของทีมเท่านั้น · ส่วนใน `{วงเล็บปีกกา}` ให้ทีมแก้ก่อนวาง
+ใช้กับข้อมูลสมมติใน `banpu-claude-course-master/materials/m7/data/uc1_*` … `uc5_*` (จาก ZIP ของ repo) หรือข้อมูล 🟢 ของทีมเท่านั้น · ส่วนใน `{วงเล็บปีกกา}` ให้ทีมแก้ก่อนวาง
 Prompt พื้นฐานที่ใช้ซ้ำจากโมดูลก่อน (ไม่คัดลอกซ้ำที่นี่): `M2-P01` Input → Process → Output · `M2-P02` Plan → Approve → Execute · `M2-P03` Use your own words · `M2-P04` Interview pattern · `M2-P05` Prototype first · `M3-P05` ทำสำเนาก่อนแก้ · `M3-P08` ใช้โฟลเดอร์แทน Connector · `M4-P04` ตรวจ 3 ตัวเลข · `M4-P06` Report → Dashboard Artifact · `M6-P04` Weekly Energy & Ops Insight
 
 | ID | ใช้ตอน (workshop หน้า) | เครื่องมือ | ใคร |
@@ -56,7 +56,7 @@ Prompt พื้นฐานที่ใช้ซ้ำจากโมดูล�
 ## M7-P03 · Restate + Plan ก่อนลงมือ (Cowork, โฟลเดอร์สำเนา)
 
 ```text
-โฟลเดอร์ที่ให้สิทธิ์คือสำเนาของ data pack {M7_uc2_incident_weekly} (ข้อมูลสมมติ) อ่าน BRIEF.md ก่อน
+โฟลเดอร์ที่ให้สิทธิ์คือโฟลเดอร์โจทย์ {materials/m7/data/uc2_incident_weekly} จาก ZIP ของ repo (ข้อมูลสมมติ) อ่าน BRIEF.md ก่อน
 
 ก่อนทำอะไร:
 1) ทวนเป้าหมายด้วยคำพูดของคุณเอง 3 บรรทัด (Use your own words)

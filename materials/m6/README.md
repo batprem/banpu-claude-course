@@ -43,7 +43,7 @@
 | `prompts.md` | M6-P01 … M6-P07 (copy-ready) |
 | `diagrams/` (8) | Mermaid sources of the workflow diagrams |
 | `artifacts/automation-card.html` + `.spec.md` | 6-slot task designer (เมื่อไร · Input · Process · Output · Checkpoint · Owner), safety warnings, copy-ready task prompt, quiz, test-run checklist, Export PDF |
-| `data/gen_m6_data.py` → `data/pack/` · `data/build_m6_pack.py` → `data/out/M6_pack(.zip)` | Synthetic meeting notes, watchlist, fictional news fallback; pack is gitignored and reuses M3 emails + SharePoint CSVs read-only |
+| `data/gen_m6_data.py` → `data/pack/input/` · `data/build_m6_pack.py` → `data/pack/` (input/ + output/, committed; learners open `banpu-claude-course-master/materials/m6/data/pack` from the repo ZIP) | Synthetic meeting notes, watchlist, fictional news fallback; the pack reuses M3 emails + SharePoint CSVs read-only |
 
 ## Claude Artifacts (claude.ai)
 
@@ -63,5 +63,5 @@ Theme: Ducky Engineer (วิศวกรเป็ด) applied 2 Nov 2026 to the
 ## Open questions for Prem
 1. **Run conditions changed recently:** Anthropic Help Center pages disagree on whether scheduled tasks run remotely when the laptop is asleep/closed or only locally. Re-check SOURCES #1/#4 the week of training and confirm in the dry-run on Banpu's Team account.
 2. Approval-mode default: confirm whether Banpu's admins can (and will) disable "Automatically approve" and require approval for write-capable connectors.
-3. Route A needs the M3 test tenant (Outlook Drafts); otherwise everyone uses route B (local `M6_pack`).
+3. Route A needs the M3 test tenant (Outlook Drafts); otherwise everyone uses route B (local `banpu-claude-course-master/materials/m6/data/pack`).
 4. Scheduled tasks consume Team-plan usage on every run — agree a guideline (e.g. weekly, not hourly) with Hi-I.

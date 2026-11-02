@@ -28,7 +28,7 @@ Requirement ที่ครอบคลุม: 1 (M365 First), 3 (Connectors), 4
 
 ???
 [0:30] อ่านเร็ว ๆ บอกว่าครึ่งหลังทุกคนจะได้ลงมือกับ "กล่องจดหมายทดสอบ" และ "SharePoint ทดสอบ" ที่มีข้อมูลสมมติ
-ถ้า IT ยังไม่ได้เตรียม test tenant มีเส้นทางสำรองเป็นโฟลเดอร์ Sample Pack ในเครื่อง ได้ฝึกเหมือนกัน
+ถ้า IT ยังไม่ได้เตรียม test tenant มีเส้นทางสำรองเป็นโฟลเดอร์ materials/m3/data/pack จาก ZIP ของ repo ได้ฝึกเหมือนกัน
 
 ---
 
@@ -289,7 +289,7 @@ flowchart LR
 🟧 คน (HITL) · 🟦 AI · 🟩 Data/Connector
 
 - **เส้นทาง A:** บัญชีทดสอบ + SharePoint/Outlook ทดสอบ
-- **เส้นทาง B (สำรอง):** โฟลเดอร์ `M3_SamplePack` ในเครื่อง + Cowork
+- **เส้นทาง B (สำรอง):** โฟลเดอร์ `materials/m3/data/pack` (ZIP ของ repo) + Cowork
 - เปิด Artifact **Connector Mission** ตามไปทีละด่าน แล้ว Export PDF ตอนจบ
 
 ???

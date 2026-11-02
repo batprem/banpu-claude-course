@@ -58,7 +58,7 @@ Lecture 10 นาที (13:40–13:50) · Workshop 20 นาที (13:50–14:
 | `data/sync_audit_sample.py` | Embeds the fake Skill files + flags into the Artifact; fails if a flag no longer matches exactly one line |
 | `SOURCES.md` | 12 link-only sources (1 case with 2 sources) |
 
-Data reused read-only from M2: `materials/m2/data/workshop_b_scattered/solar_F_2023_2025.xlsx` (test dataset A), `materials/m2/data/core/ops_monthly_clean.csv` (dataset B), and the Site B 2567 figures in `materials/m2/data/answer_key/insights.md` (example report). M5 generates no new data files.
+Data reused read-only from M2: `materials/m2/data/pack/input/workshop_b_scattered/solar_F_2023_2025.xlsx` (test dataset A), `materials/m2/data/core/ops_monthly_clean.csv` (dataset B), and the Site B 2567 figures in `materials/m2/data/answer_key/insights.md` (example report). M5 generates no new data files.
 
 Regenerate: `python3 materials/m5/data/sync_audit_sample.py` · `python3 tools/build_slides.py materials/m5/slides.md` · ZIP: `cd materials/m5/skill-example && python3 -m zipfile -c banpu-standard-report.zip banpu-standard-report/`
 

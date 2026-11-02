@@ -132,6 +132,7 @@ footer{font-size:12px;color:var(--muted);text-align:center;margin-top:8px}
 
   <!-- หน้า 1 -->
   <div class="ws-artifacts" style="background:#FFF3D1;color:#231F20;border:1px solid #F2D58A;border-left:8px solid #FFD066;border-radius:12px;padding:14px 18px;margin:16px 0 20px;break-inside:avoid"><p style="margin:0 0 6px;font-weight:700;font-size:17px;color:#231F20">🔗 Artifact ที่ใช้ใน Workshop นี้</p><p style="margin:0 0 6px;font-size:14px;color:#3D3839">คลิกเพื่อเปิดในแท็บใหม่ · ทุกลิงก์เปิดได้ด้วยลิงก์นี้ (Anyone with the link)</p><ul style="margin:0;padding-left:20px;font-size:16px"><li style="margin:6px 0;line-height:1.5"><a href="https://claude.ai/artifact/F4gquxgXQwnB8cSTo3hsBq" target="_blank" rel="noopener" style="color:#0684C9;font-weight:700;text-decoration:underline">Connector Mission ↗</a> <span style="color:#3D3839">— ภารกิจ Connector SharePoint/Outlook ทีละด่าน</span><br><span style="font-size:13px;color:#5E5859;word-break:break-all">https://claude.ai/artifact/F4gquxgXQwnB8cSTo3hsBq</span></li></ul></div><!-- /ws-artifacts -->
+<div class="ws-setup" style="background:#FFFDF8;color:#231F20;border:1px solid #CFE6F5;border-left:8px solid #0684C9;border-radius:12px;padding:14px 18px;margin:0 0 20px;break-inside:avoid"><p style="margin:0 0 6px;font-weight:700;font-size:17px;color:#231F20">🧰 เตรียมไฟล์ก่อนเริ่ม (ทำครั้งเดียว ใช้ได้ทั้งวัน · 2 นาที)</p><ol style="margin:0;padding-left:22px;font-size:16px;line-height:1.55"><li>ดาวน์โหลด ZIP ของ repo: เปิด <a href="https://github.com/batprem/banpu-claude-course" target="_blank" rel="noopener" style="color:#0684C9;font-weight:700;text-decoration:underline">github.com/batprem/banpu-claude-course ↗</a> → ปุ่ม <b>Code</b> → <b>Download ZIP</b> (หรือ <a href="https://github.com/batprem/banpu-claude-course/archive/refs/heads/master.zip" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline">ลิงก์ดาวน์โหลดตรง</a>)<br><span style="font-size:13px;color:#5E5859;word-break:break-all">https://github.com/batprem/banpu-claude-course/archive/refs/heads/master.zip</span></li><li>คลิกขวาไฟล์ ZIP → <b>Extract All</b> (Mac: ดับเบิลคลิก) ไว้ใน Documents → ได้โฟลเดอร์ <code>banpu-claude-course-master/</code></li><li>Workshop นี้ใช้: เส้นทาง B (ไม่มี test tenant): ใน Cowork เลือกโฟลเดอร์ <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/tree/master/materials/m3/data/pack"><code>banpu-claude-course-master/materials/m3/data/pack</code></a> (<code>outlook/</code> + <code>sharepoint/</code>)</li></ol><p style="margin:8px 0 0;font-size:14px;color:#3D3839">ZIP คือต้นฉบับ (copy-before-write): ถ้าไฟล์เสียหรืออยากเริ่มใหม่ ให้แตก ZIP ใหม่ · ถ้าแตกไว้แล้วตั้งแต่โมดูลก่อน ข้ามข้อ 1–2 ได้ · ข้อมูลทั้งหมดเป็นข้อมูลสมมติ</p></div><!-- /ws-setup -->
 <section class="card" id="page1" data-page="1">
     <div class="card-head">
       <div><div class="pg">หน้า 1 / 6</div><h2>เตรียม + เลือกเส้นทาง</h2></div>
@@ -143,7 +144,7 @@ footer{font-size:12px;color:var(--muted);text-align:center;margin-top:8px}
       <thead><tr><th></th><th>เส้นทาง A · Test tenant</th><th>เส้นทาง B · โฟลเดอร์สำรอง</th></tr></thead>
       <tbody>
         <tr><th>ใช้เมื่อ</th><td>IT เตรียมบัญชีทดสอบ + site <code>M3-Training</code> + mailbox ทดสอบแล้ว</td><td>ไม่เห็น Microsoft 365 ใน Connectors หรือ login ไม่ผ่านภายใน 2 นาที</td></tr>
-        <tr><th>ข้อมูล</th><td>อีเมล 20 ฉบับใน mailbox ทดสอบ · Project Tracker, Issue Log, Shared_Capex_Tracker_2569.xlsx บน site</td><td>โฟลเดอร์ <code>M3_SamplePack/</code> <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/tree/master/materials/m3/data/pack">(= โฟลเดอร์ <code>materials/m3/data/pack</code>)</a> (outlook/*.eml + sharepoint/*) ในเครื่อง เปิดผ่าน Cowork</td></tr>
+        <tr><th>ข้อมูล</th><td>อีเมล 20 ฉบับใน mailbox ทดสอบ · Project Tracker, Issue Log, Shared_Capex_Tracker_2569.xlsx บน site</td><td>โฟลเดอร์ <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/tree/master/materials/m3/data/pack"><code>banpu-claude-course-master/materials/m3/data/pack</code></a> (outlook/*.eml + sharepoint/*) ในเครื่อง เปิดผ่าน Cowork</td></tr>
         <tr><th>Prompt เริ่ม</th><td>M3-P01</td><td>M3-P08</td></tr>
       </tbody>
     </table></div>
@@ -152,10 +153,10 @@ footer{font-size:12px;color:var(--muted);text-align:center;margin-top:8px}
     <ol>
       <li>เปิด Claude Desktop → Settings → Connectors ดูว่ามี <b>Microsoft 365</b> หรือไม่</li>
       <li>ยกมือถ้า <b>ไม่เห็น</b> → ไปเส้นทาง B ทันที (อย่าเสียเวลาแก้ login เกิน 2 นาที)</li>
-      <li>เส้นทาง B: แตกไฟล์ <code>M3_SamplePack.zip</code> <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/tree/master/materials/m3/data/pack">(ZIP ของโฟลเดอร์ <code>materials/m3/data/pack</code>)</a> ไว้ที่ Desktop แล้วให้ Cowork เข้าถึง <b>เฉพาะ</b> โฟลเดอร์นี้</li>
+      <li>เส้นทาง B: ใน ZIP ของ repo ที่แตกไว้ ให้ Cowork เข้าถึง <b>เฉพาะ</b> โฟลเดอร์ <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/tree/master/materials/m3/data/pack"><code>banpu-claude-course-master/materials/m3/data/pack</code></a></li>
     </ol>
 
-    <label class="check" for="ck1"><input type="checkbox" id="ck1"><span><b>✅ Checkpoint:</b> ใช้บัญชีทดสอบ / โฟลเดอร์ Sample Pack เท่านั้น ไม่เปิดไฟล์งานจริง ไม่เปิดกล่องจดหมายจริง (ทบทวน Data Traffic Light จาก M1)</span></label>
+    <label class="check" for="ck1"><input type="checkbox" id="ck1"><span><b>✅ Checkpoint:</b> ใช้บัญชีทดสอบ / โฟลเดอร์ <code>materials/m3/data/pack</code> เท่านั้น ไม่เปิดไฟล์งานจริง ไม่เปิดกล่องจดหมายจริง (ทบทวน Data Traffic Light จาก M1)</span></label>
   </section>
 
   <!-- หน้า 2 -->
@@ -276,7 +277,7 @@ footer{font-size:12px;color:var(--muted);text-align:center;margin-top:8px}
     </div>
     <p class="legend">🟧 คน (HITL) · 🟦 AI · 🟩 Data/Connector</p>
 
-    <h3>ขั้นตอน (ทำใน Cowork ทั้งเส้นทาง A และ B · เส้นทาง A ให้ดาวน์โหลดไฟล์จาก site ทดสอบมาไว้ในโฟลเดอร์ทำงานก่อน)</h3>
+    <h3>ขั้นตอน (ทำใน Cowork ทั้งเส้นทาง A และ B · เส้นทาง A ให้ดาวน์โหลดไฟล์จาก site ทดสอบมาไว้ในโฟลเดอร์ใหม่ <code>banpu-claude-course-master/materials/m3/data/route_a/</code> ก่อน)</h3>
     <ol>
       <li>วาง <b>M3-P05</b> → Claude ทำสำเนา <code>_COPY_Shared_Capex_Tracker_2569_[ชื่อเล่น]_[YYYYMMDD].xlsx</code> แล้ว <b>หยุดรอ</b></li>
       <li>วาง <b>M3-P06</b> → Claude เสนอแผน: แท็บ Site D แถว PRJ-105 · Forecast_MTHB 95 → 98.8 · Note "รออนุมัติงบเพิ่ม 3.8 ลบ. (อีเมล 26 ต.ค.)"</li>

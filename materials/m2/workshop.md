@@ -5,12 +5,11 @@
 
 ## หน้า 1 · เตรียมโฟลเดอร์ทำงาน (3 นาที · 10:45–10:48)
 
-**เป้าหมาย:** Cowork เห็นเฉพาะโฟลเดอร์สำเนาของ workshop นี้ (copy-before-write)
+**เป้าหมาย:** Cowork เห็นเฉพาะโฟลเดอร์ pack ของ workshop นี้ (ZIP คือต้นฉบับ = copy-before-write)
 
-1. แตก Sample Data Pack (จาก SharePoint ของห้องอบรม) แล้ว **คัดลอก** ไปไว้ที่
-   `Documents/Claude-Workshop/M2/input/` — ต้องเห็นโฟลเดอร์ `workshop_b_scattered/`
-2. สร้างโฟลเดอร์ว่าง `Documents/Claude-Workshop/M2/output/`
-3. เปิด Claude Desktop → Cowork → เลือกโฟลเดอร์ `Documents/Claude-Workshop/M2` (**ไม่ใช่** ทั้ง Documents)
+1. เปิดโฟลเดอร์ `banpu-claude-course-master/materials/m2/data/pack` จาก ZIP ที่แตกไว้ (ดู "เตรียมไฟล์" ด้านบน) — ใน `input/` ต้องเห็นโฟลเดอร์ `workshop_b_scattered/`
+2. ผลลัพธ์ทั้งหมดเขียนลง `banpu-claude-course-master/materials/m2/data/pack/output/` (มีอยู่แล้วใน ZIP)
+3. เปิด Claude Desktop → Cowork → เลือกโฟลเดอร์ `banpu-claude-course-master/materials/m2/data/pack` (**ไม่ใช่** ทั้ง Documents หรือทั้ง repo)
 4. เปิด Artifact 3 ตัว: Workshop Companion · Excel Detective · Prototype Gallery
 
 **Prompt ทดสอบ (M2-P02 แบบย่อ):**
@@ -121,7 +120,7 @@ flowchart LR
 
 **เป้าหมาย:** ฝึกสั่งให้ Claude "เสนอแต่ไม่ลงมือ" กับโฟลเดอร์รก (วิทยากรสาธิตเต็มกับ ~1,500 ไฟล์แล้ว)
 
-1. วิทยากรแจก `messy_folder_sample/` (ประมาณ 100 ไฟล์ ตัดมาจากชุด 1,500 ไฟล์) → คัดลอกไปไว้ใน `input/`
+1. ใช้โฟลเดอร์ `input/messy_folder_sample/` (ประมาณ 100 ไฟล์ ตัดมาจากชุด 1,500 ไฟล์ · อยู่ใน ZIP แล้ว ไม่ต้องคัดลอก)
 2. copy **M2-P16** แก้ path เป็น `input/messy_folder_sample`
 
 ✅ **Checkpoint (คนตัดสินใจ):**

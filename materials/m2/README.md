@@ -44,8 +44,9 @@
 - `slides.md` / `slides.html` · `workshop.md` · `prompts.md` · `diagrams/` (8) · `img/` (2 generated illustrations)
 - `artifacts/`: Workshop Companion · Prompt Playground · Excel Detective · Prototype Gallery (each `.html` + `.spec.md`, Export PDF)
 - `data/` — **core Sample Data Pack** (owner M2, reused read-only by M3–M7):
-  - `generate_core_pack.py` (seed 2569) → `core/ops_monthly_clean.{csv,xlsx}` (fictional sites, 3 years, Budget vs Actual), `workshop_b_scattered/` (13 messy files), `answer_key/insights.md` (trainer only)
+  - `generate_core_pack.py` (seed 2569) → `core/ops_monthly_clean.{csv,xlsx}` (fictional sites, 3 years, Budget vs Actual), `pack/input/workshop_b_scattered/` (13 messy files), `answer_key/insights.md` (trainer only)
   - `generate_messy_folder.py` → `out/` messy folder (~1,500 files) · `generate_big_files.py` → `out/` 200k-row CSV + 320-page PDF. `out/` is gitignored; regenerate with `python3 data/generate_*.py`.
+  - `build_m2_pack.py` → copies the learner files into `pack/input/` (committed: `messy_folder_sample/` ~100 files, the 13 MB CSV, the 320-page PDF). **Learner folder** = `banpu-claude-course-master/materials/m2/data/pack` from the repo ZIP (`input/` + `output/`); `answer_key/` stays outside it.
 
 ## Claude Artifacts (claude.ai)
 

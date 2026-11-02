@@ -318,7 +318,7 @@ flowchart LR
 ```
 🟧 คน (HITL) · 🟦 AI · 🟩 Data/Connector
 
-เปิด Artifact **Automation Card** · โฟลเดอร์ `Documents/Claude-Workshop/M6/` · prompt M6-P03–P06
+เปิด Artifact **Automation Card** · โฟลเดอร์ `banpu-claude-course-master/materials/m6/data/pack/` · prompt M6-P03–P06
 
 ???
 [14:30] บรีฟ 30 วินาที แล้วเริ่มจับเวลา 14:25

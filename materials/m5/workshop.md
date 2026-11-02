@@ -21,7 +21,7 @@ flowchart LR
 **เป้าหมาย:** มี Skill `banpu-standard-report` เปิดใช้งานในบัญชี Claude Team ของเรา และรู้ว่า Skill นี้ทำอะไร ขอเข้าถึงอะไร
 
 **ขั้นตอน**
-1. ดาวน์โหลด `banpu-standard-report.zip` จากวิทยากร (2 นาที)
+1. สร้าง `banpu-standard-report.zip` เอง: คลิกขวาโฟลเดอร์ `banpu-claude-course-master/materials/m5/skill-example/banpu-standard-report` → **Compress** (Windows: Send to → Compressed (zipped) folder) — ZIP ต้องมีโฟลเดอร์ `banpu-standard-report/` อยู่ชั้นบนสุด (2 นาที)
 2. อ่านก่อนติดตั้ง: เปิด Chat ใหม่ แนบ `SKILL.md` แล้ววาง prompt (1 นาที)
 
 ```text
@@ -43,7 +43,7 @@ flowchart LR
 **เป้าหมาย:** พิสูจน์ว่า Skill ทำให้ได้รายงาน "หน้าตาเดียวกัน" แม้ข้อมูลเปลี่ยน (ตัวอย่างใน Skill คือเหมือง Site B · วันนี้ทดสอบกับโซลาร์ Site F) และฝึกตรวจผลแบบ Human-in-the-Loop
 
 **ขั้นตอน**
-1. เปิด **Chat ใหม่** (หรือ Cowork ที่ให้สิทธิ์โฟลเดอร์สำเนา) แนบ `solar_F_2023_2025.xlsx` จาก `materials/m2/data/workshop_b_scattered/` (ไฟล์อ่านอย่างเดียว ทำสำเนาก่อน = copy-before-write)
+1. เปิด **Chat ใหม่** (หรือ Cowork ที่ให้สิทธิ์โฟลเดอร์สำเนา) แนบ `solar_F_2023_2025.xlsx` จาก `materials/m2/data/pack/input/workshop_b_scattered/` (ไฟล์อ่านอย่างเดียว ทำสำเนาก่อน = copy-before-write)
 2. วาง prompt โดย **ไม่บอกชื่อ Skill** (2 นาทีรวมรอผล)
 
 ```text

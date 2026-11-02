@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-"""Assemble the learner "M4 pack" (upload to the training SharePoint site; learners copy it to
-Documents/Claude-Workshop/M4/input/). Reads M2/M3 data read-only. Output: data/out/M4_pack/input/ (gitignored).
+"""Assemble the learner "M4 pack" in data/pack/input/ (committed, so it is in the repo ZIP learners
+download: banpu-claude-course-master/materials/m4/data/pack/). Reads M3 data read-only.
+data/pack/output/ is where learners' results go.
 
 Run gen_m4_data.py first. Usage: python3 materials/m4/data/build_m4_pack.py
 """
@@ -9,7 +10,7 @@ import shutil
 
 HERE = pathlib.Path(__file__).resolve().parent
 M3 = HERE.parent.parent / "m3" / "data" / "pack"
-DST = HERE / "out" / "M4_pack" / "input"
+DST = HERE / "pack" / "input"
 
 
 def main():

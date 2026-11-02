@@ -11,7 +11,7 @@ Goal: a safe sandbox so learners never practise on real mailboxes or shared file
 6. **Restrict who can authenticate** (optional): Entra admin center → the Claude M365 enterprise application → *Assignment required = Yes* → assign the test accounts.
 
 ## Fallback (no test tenant)
-Distribute `M3_SamplePack.zip` = the `pack/` folder (outlook/ + sharepoint/). Learners use Cowork on that folder with prompt M3-P08. No IT setup needed.
+Learners download the repo ZIP (github.com/batprem/banpu-claude-course → Code → Download ZIP) and use the folder `banpu-claude-course-master/materials/m3/data/pack` (outlook/ + sharepoint/). They use Cowork on that folder with prompt M3-P08. No IT setup needed.
 
 ## Regenerate
 `python3 materials/m3/data/gen_m3_data.py` (deterministic, seed 303).

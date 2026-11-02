@@ -11,7 +11,7 @@ Learners on laptops, solo, during the 20-minute workshop (opened on page 1, revi
 ## Interactions
 1. **Tab 1 · การ์ด 6 ช่อง**
    - 3 template buttons prefill the card: (ก) Weekly project status (M6-P03), (ข) Weekly Energy & Ops Insight (M6-P04), (ค) own task (M6-P05, 🟢 data only).
-   - Route switch: A = Connector (SharePoint/Outlook test tenant, runs in the cloud) · B = local folder `Documents/Claude-Workshop/M6/` (computer on + not asleep + Claude Desktop open).
+   - Route switch: A = Connector (SharePoint/Outlook test tenant, runs in the cloud) · B = local folder `banpu-claude-course-master/materials/m6/data/pack/` (from the repo ZIP) (computer on + not asleep + Claude Desktop open).
    - Input/Output chips, checkpoint checklist, approval mode buttons (Manual / Auto / Skip), owner + backup + review deadline.
    - Live readiness meter "x/6" and badge **พร้อมตั้งเวลา** when all 6 slots pass; per-slot ✓ marks.
    - Warnings (rules from slides 8–9): 🔴 Skip selected, auto-send, overwriting the source (copy-before-write), sharing outside without approval, 🔴 data (salary/personal); ⚠ Auto selected (use Manual until 4 clean runs), hourly cadence (usage), Outlook Drafts needs route A, no internal names in web search terms, date in output file name, Owner must be 1 person + backup.

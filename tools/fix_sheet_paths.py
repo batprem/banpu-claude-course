@@ -5,7 +5,8 @@ For each <code>…</code> outside prompts (<pre>), scripts, styles and the ws-ar
 - repo material  -> <a class="repo-link" href="…/blob|tree/master/<path>"><code><shown text></code></a>
                     (shown text = the real repo path, unless a short name is kept on purpose)
 - built file not kept in git (gitignored ZIP/large data) -> name kept, plus a link to the script/folder it is built from
-- learner working paths (Documents/…, input/, output/…), e-mails, code tokens -> unchanged (not repo materials)
+- learner-local paths are written as banpu-claude-course-master/materials/… (the extracted repo ZIP); the ones that
+  exist in the repo link to it, new folders (output/, capstone_<ทีม>/) and e-mails/code tokens stay plain
 Every target is checked against `git ls-files`. Runs once per file (skips a file that already has repo links).
 Usage: python3 tools/fix_sheet_paths.py m1 … m8      (M7: called by build_workshop_sheet.py instead)
 """
@@ -23,37 +24,34 @@ BRANCH = "master"  # the repo's only branch (there is no 'main')
 M = {
     "m1": {"artifacts/data-traffic-light.html": ("materials/m1/artifacts/data-traffic-light.html", None),
            "data-traffic-light.html": ("materials/m1/artifacts/data-traffic-light.html", None)},
-    "m2": {"workshop_b_scattered/": ("materials/m2/data/workshop_b_scattered", "workshop_b_scattered/"),
-           "เก่า_ไม่ใช้/": ("materials/m2/data/workshop_b_scattered/เก่า_ไม่ใช้", "เก่า_ไม่ใช้/"),
-           "messy_folder_sample/": ("GEN", "materials/m2/data/generate_messy_folder.py", "สร้างด้วย"),
-           "input/messy_folder_sample": ("GEN", "materials/m2/data/generate_messy_folder.py", "สร้างด้วย")},
-    "m3": {"artifacts/connector-mission.html": ("materials/m3/artifacts/connector-mission.html", None),
-           "M3_SamplePack.zip": ("GEN", "materials/m3/data/pack", "ZIP ของโฟลเดอร์"),
-           "M3_SamplePack/": ("GEN", "materials/m3/data/pack", "= โฟลเดอร์")},
-    "m4": {"energy_prices_public_2023-2026.csv": ("materials/m4/data/energy_prices_public_2023-2026.csv", None),
-           "ops_monthly_2566-2569.xlsx": ("materials/m4/data/ops_monthly_2566-2569.xlsx", None),
-           "shift_log_2568-2569.csv": ("GEN", "materials/m4/data/gen_m4_data.py", "สร้างด้วย"),
-           "Monthly_Ops_Report_2569-09_FULL.docx": ("GEN", "materials/m4/data/gen_m4_data.py", "สร้างด้วย"),
-           "m3_outlook/*.eml": ("GEN", "materials/m3/data/pack/outlook", "จาก"),
-           "m3_sharepoint/*.csv": ("GEN", "materials/m3/data/pack/sharepoint", "จาก")},
+    "m2": {"workshop_b_scattered/": ("materials/m2/data/pack/input/workshop_b_scattered", "workshop_b_scattered/"),
+           "เก่า_ไม่ใช้/": ("materials/m2/data/pack/input/workshop_b_scattered/เก่า_ไม่ใช้", "เก่า_ไม่ใช้/"),
+           "messy_folder_sample/": ("materials/m2/data/pack/input/messy_folder_sample", "messy_folder_sample/"),
+           "input/messy_folder_sample": ("materials/m2/data/pack/input/messy_folder_sample", "input/messy_folder_sample")},
+    "m3": {"artifacts/connector-mission.html": ("materials/m3/artifacts/connector-mission.html", None)},
+    "m4": {"energy_prices_public_2023-2026.csv": ("materials/m4/data/pack/input/energy_prices_public_2023-2026.csv", "input/energy_prices_public_2023-2026.csv"),
+           "ops_monthly_2566-2569.xlsx": ("materials/m4/data/pack/input/ops_monthly_2566-2569.xlsx", "input/ops_monthly_2566-2569.xlsx"),
+           "shift_log_2568-2569.csv": ("materials/m4/data/pack/input/shift_log_2568-2569.csv", "input/shift_log_2568-2569.csv"),
+           "Monthly_Ops_Report_2569-09_FULL.docx": ("materials/m4/data/pack/input/Monthly_Ops_Report_2569-09_FULL.docx", "input/Monthly_Ops_Report_2569-09_FULL.docx"),
+           "m3_outlook/*.eml": ("materials/m4/data/pack/input/m3_outlook", "input/m3_outlook/*.eml"),
+           "m3_sharepoint/*.csv": ("materials/m4/data/pack/input/m3_sharepoint", "input/m3_sharepoint/*.csv")},
     "m5": {"SKILL.md": ("materials/m5/skill-example/banpu-standard-report/SKILL.md", None),
            "banpu-standard-report/": ("materials/m5/skill-example/banpu-standard-report", "banpu-standard-report/"),
            "skill-example/banpu-standard-report/": ("materials/m5/skill-example/banpu-standard-report", "materials/m5/skill-example/banpu-standard-report/"),
            "examples/example-report-site-b.md": ("materials/m5/skill-example/banpu-standard-report/examples/example-report-site-b.md", None),
            "skill-audit-sample/": ("materials/m5/skill-audit-sample", "materials/m5/skill-audit-sample/"),
            "skill-security-checklist.html": ("materials/m5/artifacts/skill-security-checklist.html", None),
-           "solar_F_2023_2025.xlsx": ("materials/m2/data/workshop_b_scattered/solar_F_2023_2025.xlsx", None),
-           "materials/m2/data/workshop_b_scattered/": ("materials/m2/data/workshop_b_scattered", "materials/m2/data/workshop_b_scattered/"),
+           "solar_F_2023_2025.xlsx": ("materials/m2/data/pack/input/workshop_b_scattered/solar_F_2023_2025.xlsx", None),
+           "materials/m2/data/pack/input/workshop_b_scattered/": ("materials/m2/data/pack/input/workshop_b_scattered", "materials/m2/data/pack/input/workshop_b_scattered/"),
            "banpu-standard-report.zip": ("GEN", "materials/m5/skill-example/README.md", "ZIP ของโฟลเดอร์ skill · วิธีสร้าง")},
     "m6": {},
     "m7": {"artifacts/show-share-board.html": ("materials/m7/artifacts/show-share-board.html", None),
-           "data/out/M7_uc1…uc5.zip": ("GEN", "materials/m7/data/gen_m7_data.py", "สร้างด้วย"),
+           "banpu-claude-course-master/materials/m7/data/uc1…uc5_*/": ("materials/m7/data", "banpu-claude-course-master/materials/m7/data/uc1…uc5_*/"),
+           "banpu-claude-course-master/materials/m7/data/uc2_incident_weekly/": ("materials/m7/data/uc2_incident_weekly", "banpu-claude-course-master/materials/m7/data/uc2_incident_weekly/"),
+           "banpu-claude-course-master/materials/m7/data/uc…/": ("materials/m7/data", "banpu-claude-course-master/materials/m7/data/uc…/"),
            "BRIEF.md": ("materials/m7/data", "BRIEF.md"),
-           "M7_uc1_contract_summary.zip": ("GEN", "materials/m7/data/uc1_contract_summary", "ZIP ของโฟลเดอร์"),
-           "M7_uc2_incident_weekly.zip": ("GEN", "materials/m7/data/uc2_incident_weekly", "ZIP ของโฟลเดอร์"),
-           "M7_uc3_esg_consolidation.zip": ("GEN", "materials/m7/data/uc3_esg_consolidation", "ZIP ของโฟลเดอร์"),
-           "M7_uc4_meeting_actions.zip": ("GEN", "materials/m7/data/uc4_meeting_actions", "ZIP ของโฟลเดอร์"),
-           "M7_uc5_energy_market_brief.zip": ("GEN", "materials/m7/data/uc5_energy_market_brief", "ZIP ของโฟลเดอร์"),
+           **{f"materials/m7/data/{uc}/": (f"materials/m7/data/{uc}", f"materials/m7/data/{uc}/") for uc in (
+               "uc1_contract_summary", "uc2_incident_weekly", "uc3_esg_consolidation", "uc4_meeting_actions", "uc5_energy_market_brief")},
            "contract_register.csv": ("materials/m7/data/uc1_contract_summary/contract_register.csv", "contract_register.csv"),
            "contracts/": ("materials/m7/data/uc1_contract_summary/contracts", "contracts/"),
            "incident_log.csv": ("materials/m7/data/uc2_incident_weekly/incident_log.csv", "incident_log.csv"),

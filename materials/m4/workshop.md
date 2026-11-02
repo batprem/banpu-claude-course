@@ -26,7 +26,7 @@ flowchart LR
     classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;
 ```
 
-1. ดาวน์โหลด **M4 pack** จาก SharePoint ของห้องอบรม แล้ว **คัดลอก** ไปที่ `Documents/Claude-Workshop/M4/input/` (copy-before-write)
+1. เปิดโฟลเดอร์ `banpu-claude-course-master/materials/m4/data/pack` จาก ZIP ที่แตกไว้ — ไฟล์ทั้งหมดด้านล่างอยู่ใน `input/` แล้ว (ZIP คือต้นฉบับ = copy-before-write)
 
 | # | ไฟล์ / แหล่ง | ขนาด |
 |---|---|---|
@@ -37,7 +37,7 @@ flowchart LR
 | 5 | `energy_prices_public_2023-2026.csv` (IMF via FRED) | 4 KB · 45 เดือน |
 | + | `Monthly_Ops_Report_2569-09_FULL.docx` (ใช้หน้า 5) | ~37 MB |
 
-2. สร้างโฟลเดอร์ว่าง `output/` · เปิด Cowork → เลือกโฟลเดอร์ `Documents/Claude-Workshop/M4` เท่านั้น
+2. ผลลัพธ์เขียนลง `output/` (มีอยู่แล้ว) · เปิด Cowork → เลือกโฟลเดอร์ `banpu-claude-course-master/materials/m4/data/pack` เท่านั้น
 3. Copy **M4-P01** (อ่านอย่างเดียว)
 
 ✅ **Checkpoint (คนตรวจ):** ตารางของ Claude มีครบ 5 แหล่ง · CSV ถูก "ดูแค่หัว + 5 แถว" ไม่ใช่อ่านทั้งไฟล์ · ถ้า Connector ไม่ขึ้น ใช้ไฟล์สำรองใน `input/` ได้เลย ไม่ต้องรอ

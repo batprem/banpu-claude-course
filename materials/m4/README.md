@@ -54,7 +54,7 @@ Lecture 15 นาที (รวม Demo ~3) · Workshop 25 นาที · ถ�
 | `data/gen_m4_data.py` | Makes `ops_monthly_2566-2569.xlsx` (M2 history + new Jan–Sep 2569, 270 rows, committed), `out/shift_log_2568-2569.csv` (172,260 rows, 11 MB), `out/Monthly_Ops_Report_2569-09_FULL.docx` (~37 MB), `dashboard_data.json` |
 | `data/fetch_energy_prices.py` → `energy_prices_public_2023-2026.csv`, `raw/` | Real public prices (IMF via FRED): coal AU, Brent, LNG Asia, Jan 2023–Sep 2026 (`--offline` rebuilds from `raw/`) |
 | `data/sync_dashboard.py` | Writes `dashboard_data.json` + causes into the dashboard HTML |
-| `data/build_m4_pack.py` | Assembles the learner pack `data/out/M4_pack/input/` (27 files, ~49 MB) incl. M3 SharePoint CSV/.eml fallbacks (read-only copy) |
+| `data/build_m4_pack.py` | Assembles the learner pack `data/pack/input/` (27 files, ~49 MB, committed so it is in the repo ZIP; learners open `banpu-claude-course-master/materials/m4/data/pack`, results go to `pack/output/`) incl. M3 SharePoint CSV/.eml fallbacks (read-only copy) |
 | `data/answer_key.md` | Trainer answers: per-site numbers, shift log, projects, prices, file-size results |
 | `data/.gitignore` | `out/` (large generated files) |
 | `SOURCES.md` | 8 entries (1 story, 1 public dataset, docs), all link-only |
@@ -64,7 +64,7 @@ Regenerate:
 python3 materials/m4/data/fetch_energy_prices.py        # week of training (network)
 python3 materials/m4/data/gen_m4_data.py                # ~20 s
 python3 materials/m4/data/sync_dashboard.py
-python3 materials/m4/data/build_m4_pack.py              # then upload out/M4_pack to the training SharePoint site
+python3 materials/m4/data/build_m4_pack.py              # then commit data/pack/ (learners get it in the repo ZIP)
 python3 tools/build_slides.py materials/m4/slides.md
 ```
 Reused read-only: `m2/data/core/ops_monthly_clean.csv` (history), `m3/data/pack/sharepoint/*.csv`, `m3/data/pack/outlook/*.eml`.

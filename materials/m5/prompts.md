@@ -36,7 +36,7 @@
 แสดงเฉพาะส่วนที่เปลี่ยน (ก่อน → หลัง) แล้วให้ไฟล์ SKILL.md ฉบับเต็มให้ดาวน์โหลด
 ```
 
-## M5-P03 · ทดสอบกับข้อมูลชุดใหม่ (แนบ `solar_F_2023_2025.xlsx` จาก `materials/m2/data/workshop_b_scattered/`)
+## M5-P03 · ทดสอบกับข้อมูลชุดใหม่ (แนบ `solar_F_2023_2025.xlsx` จาก `materials/m2/data/pack/input/workshop_b_scattered/`)
 
 ตั้งใจ **ไม่บอกชื่อ Skill** เพื่อทดสอบว่า description เขียนดีพอให้ Claude เลือกใช้เอง
 

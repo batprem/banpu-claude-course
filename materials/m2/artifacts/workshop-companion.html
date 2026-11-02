@@ -86,7 +86,7 @@ footer{font-size:13px;opacity:.7;text-align:center;padding:16px}
 const STEPS = [
  {t:"1 · เตรียมโฟลเดอร์ทำงาน", min:3, tag:"d", goal:"Cowork เห็นเฉพาะโฟลเดอร์สำเนาของ workshop นี้ (copy-before-write)",
   prompts:[["M2-P02 (ย่อ) · ทดสอบสิทธิ์","บอกรายชื่อโฟลเดอร์ย่อยและจำนวนไฟล์ในโฟลเดอร์ที่คุณเข้าถึงได้ ห้ามสร้าง แก้ ย้าย หรือลบไฟล์ใด ๆ"]],
-  checks:[["คัดลอก Sample Data Pack ไปที่ Documents/Claude-Workshop/M2/input/",0],["สร้างโฟลเดอร์ output/ ว่าง",0],["เลือกโฟลเดอร์ M2 ใน Cowork (ไม่ใช่ทั้ง Documents)",1],["Claude นับได้ 13 ไฟล์ใน workshop_b_scattered/",1]],
+  checks:[["ดาวน์โหลด ZIP ของ repo แล้วแตกไฟล์ → ได้ banpu-claude-course-master/",0],["ใน Cowork เลือกโฟลเดอร์ banpu-claude-course-master/materials/m2/data/pack (มี input/ และ output/)",0],["ไม่ได้เลือกทั้ง Documents หรือทั้ง repo",1],["Claude นับได้ 13 ไฟล์ใน workshop_b_scattered/",1]],
   tip:"ถ้า Claude เห็นไฟล์งานจริงของคุณ แปลว่าเลือกโฟลเดอร์กว้างเกินไป"},
  {t:"2 · Workshop B: Explore → Find → Align", min:6, tag:"a", goal:"รู้ว่าไฟล์ไหนใช้/ไม่ใช้ และ map คอลัมน์ หน่วย ชื่อไซต์ ให้ตรงกัน",
   prompts:[["M2-P06 · Explore + Find files",`Input: โฟลเดอร์ input/workshop_b_scattered/ (รวมโฟลเดอร์ย่อย)

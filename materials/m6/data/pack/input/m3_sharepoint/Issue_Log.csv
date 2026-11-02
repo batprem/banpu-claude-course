@@ -1,0 +1,57 @@
+﻿IssueID,ProjectID,Site,Title,Category,Severity,Status,Owner,OpenedDate,ClosedDate
+ISS-001,PRJ-101,Site A,อะไหล่ล่าช้าจาก supplier,Supply,High,In progress,สมศักดิ์ ทดสอบ,2026-09-15,
+ISS-002,PRJ-101,Site A,แบบก่อสร้างต้องแก้ไข,Design,Low,Closed,สมศักดิ์ ทดสอบ,2026-07-18,2026-07-20
+ISS-003,PRJ-101,Site A,รอผลอนุมัติ change order,Approval,Medium,Closed,สมศักดิ์ ทดสอบ,2026-09-25,2026-10-19
+ISS-004,PRJ-101,Site A,อะไหล่ล่าช้าจาก supplier,Supply,High,Closed,สมศักดิ์ ทดสอบ,2026-07-30,2026-08-05
+ISS-005,PRJ-101,Site A,ฝนตกหนัก หยุดงานหน้างาน,Weather,Medium,Open,สมศักดิ์ ทดสอบ,2026-07-27,
+ISS-006,PRJ-101,Site A,รอใบอนุญาตจากหน่วยงานรัฐ,Permit,High,In progress,สมศักดิ์ ทดสอบ,2026-10-14,
+ISS-007,PRJ-101,Site A,ค่าใช้จ่ายเกินงบช่วง,Cost,High,In progress,สมศักดิ์ ทดสอบ,2026-09-06,
+ISS-008,PRJ-102,Site A,ค่าใช้จ่ายเกินงบช่วง,Cost,High,Open,สมศักดิ์ ทดสอบ,2026-10-21,
+ISS-009,PRJ-102,Site A,ฝนตกหนัก หยุดงานหน้างาน,Weather,Medium,Open,สมศักดิ์ ทดสอบ,2026-10-09,
+ISS-010,PRJ-102,Site A,ผลทดสอบไม่ผ่านรอบแรก,Quality,Medium,Open,สมศักดิ์ ทดสอบ,2026-09-21,
+ISS-011,PRJ-103,Site B,ค่าใช้จ่ายเกินงบช่วง,Cost,High,Closed,มะลิ ฝึกงาน,2026-09-09,2026-09-14
+ISS-012,PRJ-103,Site B,ฝนตกหนัก หยุดงานหน้างาน,Weather,Medium,Closed,มะลิ ฝึกงาน,2026-09-01,2026-09-15
+ISS-013,PRJ-103,Site B,อะไหล่ล่าช้าจาก supplier,Supply,High,In progress,มะลิ ฝึกงาน,2026-08-11,
+ISS-014,PRJ-103,Site B,รอใบอนุญาตจากหน่วยงานรัฐ,Permit,High,In progress,มะลิ ฝึกงาน,2026-07-22,
+ISS-015,PRJ-104,Site C,แบบก่อสร้างต้องแก้ไข,Design,Low,Closed,มะลิ ฝึกงาน,2026-07-01,2026-07-07
+ISS-016,PRJ-104,Site C,ฝนตกหนัก หยุดงานหน้างาน,Weather,Medium,Closed,มะลิ ฝึกงาน,2026-08-02,2026-08-25
+ISS-017,PRJ-104,Site C,อะไหล่ล่าช้าจาก supplier,Supply,High,In progress,มะลิ ฝึกงาน,2026-09-18,
+ISS-018,PRJ-105,Site D,ค่าใช้จ่ายเกินงบช่วง,Cost,High,Open,กัญญา ตัวอย่าง,2026-09-07,
+ISS-019,PRJ-105,Site D,ค่าใช้จ่ายเกินงบช่วง,Cost,High,Closed,กัญญา ตัวอย่าง,2026-07-25,2026-08-23
+ISS-020,PRJ-105,Site D,ฝนตกหนัก หยุดงานหน้างาน,Weather,Medium,Closed,กัญญา ตัวอย่าง,2026-09-25,2026-10-12
+ISS-021,PRJ-106,Site E,ฝนตกหนัก หยุดงานหน้างาน,Weather,Medium,Closed,กัญญา ตัวอย่าง,2026-09-12,2026-10-02
+ISS-022,PRJ-106,Site E,ผลทดสอบไม่ผ่านรอบแรก,Quality,Medium,Closed,กัญญา ตัวอย่าง,2026-07-10,2026-07-16
+ISS-023,PRJ-106,Site E,รอใบอนุญาตจากหน่วยงานรัฐ,Permit,High,Closed,กัญญา ตัวอย่าง,2026-09-05,2026-09-18
+ISS-024,PRJ-106,Site E,ข้อมูล SCADA ไม่ส่งเข้าระบบ,IT/OT,Medium,Open,กัญญา ตัวอย่าง,2026-08-23,
+ISS-025,PRJ-106,Site E,near-miss ระหว่างยกของ,Safety,High,Closed,กัญญา ตัวอย่าง,2026-09-23,2026-09-25
+ISS-026,PRJ-106,Site E,ข้อมูล SCADA ไม่ส่งเข้าระบบ,IT/OT,Medium,Closed,กัญญา ตัวอย่าง,2026-10-10,2026-10-24
+ISS-027,PRJ-106,Site E,แบบก่อสร้างต้องแก้ไข,Design,Low,Closed,กัญญา ตัวอย่าง,2026-07-10,2026-07-28
+ISS-028,PRJ-107,Site F,ผู้รับเหมาขาดแรงงาน,Resource,Medium,Open,ประวิทย์ จำลอง,2026-09-08,
+ISS-029,PRJ-107,Site F,ข้อมูล SCADA ไม่ส่งเข้าระบบ,IT/OT,Medium,Closed,ประวิทย์ จำลอง,2026-09-19,2026-10-12
+ISS-030,PRJ-107,Site F,ฝนตกหนัก หยุดงานหน้างาน,Weather,Medium,Open,ประวิทย์ จำลอง,2026-07-20,
+ISS-031,PRJ-107,Site F,ค่าใช้จ่ายเกินงบช่วง,Cost,High,Closed,ประวิทย์ จำลอง,2026-09-21,2026-10-21
+ISS-032,PRJ-108,Site F,ผู้รับเหมาขาดแรงงาน,Resource,Medium,Open,ประวิทย์ จำลอง,2026-08-29,
+ISS-033,PRJ-108,Site F,อะไหล่ล่าช้าจาก supplier,Supply,High,Open,ประวิทย์ จำลอง,2026-09-13,
+ISS-034,PRJ-108,Site F,รอใบอนุญาตจากหน่วยงานรัฐ,Permit,High,Open,ประวิทย์ จำลอง,2026-08-12,
+ISS-035,PRJ-108,Site F,ข้อมูล SCADA ไม่ส่งเข้าระบบ,IT/OT,Medium,Open,ประวิทย์ จำลอง,2026-07-20,
+ISS-036,PRJ-109,Site B,แบบก่อสร้างต้องแก้ไข,Design,Low,Open,วิไลวรรณ สมมติ,2026-09-07,
+ISS-037,PRJ-109,Site B,ฝนตกหนัก หยุดงานหน้างาน,Weather,Medium,Open,วิไลวรรณ สมมติ,2026-07-03,
+ISS-038,PRJ-109,Site B,ค่าใช้จ่ายเกินงบช่วง,Cost,High,Closed,วิไลวรรณ สมมติ,2026-09-22,2026-09-24
+ISS-039,PRJ-109,Site B,แบบก่อสร้างต้องแก้ไข,Design,Low,Open,วิไลวรรณ สมมติ,2026-08-19,
+ISS-040,PRJ-109,Site B,อะไหล่ล่าช้าจาก supplier,Supply,High,Open,วิไลวรรณ สมมติ,2026-08-08,
+ISS-041,PRJ-110,Site D,ฝนตกหนัก หยุดงานหน้างาน,Weather,Medium,Closed,กัญญา ตัวอย่าง,2026-08-21,2026-08-28
+ISS-042,PRJ-110,Site D,near-miss ระหว่างยกของ,Safety,High,In progress,กัญญา ตัวอย่าง,2026-09-30,
+ISS-043,PRJ-110,Site D,ผู้รับเหมาขาดแรงงาน,Resource,Medium,Closed,กัญญา ตัวอย่าง,2026-10-02,2026-10-17
+ISS-044,PRJ-110,Site D,ผู้รับเหมาขาดแรงงาน,Resource,Medium,Closed,กัญญา ตัวอย่าง,2026-09-09,2026-09-29
+ISS-045,PRJ-110,Site D,แบบก่อสร้างต้องแก้ไข,Design,Low,Closed,กัญญา ตัวอย่าง,2026-07-10,2026-07-19
+ISS-046,PRJ-110,Site D,near-miss ระหว่างยกของ,Safety,High,Closed,กัญญา ตัวอย่าง,2026-10-09,2026-10-23
+ISS-047,PRJ-110,Site D,ข้อมูล SCADA ไม่ส่งเข้าระบบ,IT/OT,Medium,Closed,กัญญา ตัวอย่าง,2026-10-02,2026-10-18
+ISS-048,PRJ-111,Site F,near-miss ระหว่างยกของ,Safety,High,Open,ประวิทย์ จำลอง,2026-08-09,
+ISS-049,PRJ-111,Site F,แบบก่อสร้างต้องแก้ไข,Design,Low,Open,ประวิทย์ จำลอง,2026-10-04,
+ISS-050,PRJ-111,Site F,ข้อมูล SCADA ไม่ส่งเข้าระบบ,IT/OT,Medium,In progress,ประวิทย์ จำลอง,2026-10-22,
+ISS-051,PRJ-112,Site C,ข้อมูล SCADA ไม่ส่งเข้าระบบ,IT/OT,Medium,Closed,มะลิ ฝึกงาน,2026-07-31,2026-08-29
+ISS-052,PRJ-112,Site C,ผลทดสอบไม่ผ่านรอบแรก,Quality,Medium,Closed,มะลิ ฝึกงาน,2026-09-02,2026-09-07
+ISS-053,PRJ-112,Site C,near-miss ระหว่างยกของ,Safety,High,Open,มะลิ ฝึกงาน,2026-08-17,
+ISS-054,PRJ-112,Site C,ผู้รับเหมาขาดแรงงาน,Resource,Medium,Open,มะลิ ฝึกงาน,2026-07-01,
+ISS-055,PRJ-101,Site A,ลูกกลิ้งสายพานล็อตใหม่ส่งไม่ครบ 40 ชิ้น,Supply,High,Open,สมศักดิ์ ทดสอบ,2026-10-20,
+ISS-056,PRJ-105,Site D,พบรอยร้าวท่อ superheater เพิ่ม 2 จุด,Quality,High,In progress,กัญญา ตัวอย่าง,2026-10-22,

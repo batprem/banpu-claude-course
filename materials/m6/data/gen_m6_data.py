@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Generate the M6 Automation sample pack (synthetic, small, safe to commit).
 
-Output: materials/m6/data/pack/
+Output: materials/m6/data/pack/input/
   meeting_notes/*.md   6 synthetic meeting notes, week 43–44 of 2569 (Oct 2026)
   news_fallback.md     synthetic energy-news headlines (backup if web search is blocked)
   watchlist.md         what the Weekly Insight watches (topics, keywords, owners)
@@ -11,7 +11,7 @@ Every person, site, number and email is fictional. Run: python3 materials/m6/dat
 """
 import pathlib
 
-OUT = pathlib.Path(__file__).resolve().parent / "pack"
+OUT = pathlib.Path(__file__).resolve().parent / "pack" / "input"
 
 MEETINGS = [
     ("2026-10-19_safety-standdown-site-a.md", "Safety Stand-down · Site A (เหมืองสมมติ ภูผาทอง)", "19 ต.ค. 2569 · 08:00–08:30",

@@ -11,15 +11,15 @@
 | | เส้นทาง A · Test tenant | เส้นทาง B · โฟลเดอร์สำรอง |
 |---|---|---|
 | ใช้เมื่อ | IT เตรียมบัญชีทดสอบ + site `M3-Training` + mailbox ทดสอบแล้ว | ไม่เห็น Microsoft 365 ใน Connectors หรือ login ไม่ผ่านภายใน 2 นาที |
-| ข้อมูล | อีเมล 20 ฉบับใน mailbox ทดสอบ · Project Tracker, Issue Log, Shared_Capex_Tracker_2569.xlsx บน site | โฟลเดอร์ `M3_SamplePack/` (outlook/*.eml + sharepoint/*) ในเครื่อง เปิดผ่าน Cowork |
+| ข้อมูล | อีเมล 20 ฉบับใน mailbox ทดสอบ · Project Tracker, Issue Log, Shared_Capex_Tracker_2569.xlsx บน site | โฟลเดอร์ `banpu-claude-course-master/materials/m3/data/pack` (outlook/*.eml + sharepoint/*) ในเครื่อง เปิดผ่าน Cowork |
 | Prompt เริ่ม | M3-P01 | M3-P08 |
 
 **ขั้นตอน**
 1. เปิด Claude Desktop → Settings → Connectors ดูว่ามี **Microsoft 365** หรือไม่
 2. ยกมือถ้า **ไม่เห็น** → ไปเส้นทาง B ทันที (อย่าเสียเวลาแก้ login เกิน 2 นาที)
-3. เส้นทาง B: แตกไฟล์ `M3_SamplePack.zip` ไว้ที่ Desktop แล้วให้ Cowork เข้าถึง **เฉพาะ** โฟลเดอร์นี้
+3. เส้นทาง B: ใน ZIP ของ repo ที่แตกไว้ ให้ Cowork เข้าถึง **เฉพาะ** โฟลเดอร์ `banpu-claude-course-master/materials/m3/data/pack`
 
-✅ **Checkpoint:** ใช้บัญชีทดสอบ / โฟลเดอร์ Sample Pack เท่านั้น — ไม่เปิดไฟล์งานจริง ไม่เปิดกล่องจดหมายจริง (ทบทวน Data Traffic Light จาก M1)
+✅ **Checkpoint:** ใช้บัญชีทดสอบ / โฟลเดอร์ `materials/m3/data/pack` เท่านั้น — ไม่เปิดไฟล์งานจริง ไม่เปิดกล่องจดหมายจริง (ทบทวน Data Traffic Light จาก M1)
 
 ## หน้า 2 · เชื่อม SharePoint/Outlook แบบอ่านอย่างเดียว (5 นาที · 11:33–11:38)
 
@@ -103,7 +103,7 @@ flowchart LR
 ```
 🟧 คน (HITL) · 🟦 AI · 🟩 Data/Connector
 
-**ขั้นตอน** (ทำใน Cowork ทั้งเส้นทาง A และ B — เส้นทาง A ให้ดาวน์โหลดไฟล์จาก site ทดสอบมาไว้ในโฟลเดอร์ทำงานก่อน)
+**ขั้นตอน** (ทำใน Cowork ทั้งเส้นทาง A และ B — เส้นทาง A ให้ดาวน์โหลดไฟล์จาก site ทดสอบมาไว้ในโฟลเดอร์ใหม่ `banpu-claude-course-master/materials/m3/data/route_a/` ก่อน)
 1. วาง **M3-P05** → Claude ทำสำเนา `_COPY_Shared_Capex_Tracker_2569_[ชื่อเล่น]_[YYYYMMDD].xlsx` แล้ว **หยุดรอ**
 2. วาง **M3-P06** → Claude เสนอแผน: แท็บ Site D แถว PRJ-105 · Forecast_MTHB 95 → 98.8 · Note "รออนุมัติงบเพิ่ม 3.8 ลบ. (อีเมล 26 ต.ค.)"
 3. อ่านแผน ถ้ามีการแตะแท็บอื่น/สูตร/format → ตอบว่า "ไม่อนุมัติ แก้แผน" ถ้าถูกต้อง → พิมพ์ **อนุมัติ**

@@ -4,7 +4,7 @@
 Writes (small, committed):
   core/ops_monthly_clean.csv / .xlsx   tidy monthly production & cost, 6 fictional sites,
                                        Jan 2023–Dec 2025 (พ.ศ. 2566–2568), Budget vs Actual
-  workshop_b_scattered/                the same data, deliberately scattered and inconsistent
+  pack/input/workshop_b_scattered/                the same data, deliberately scattered and inconsistent
                                        (Workshop B / Excel Detective)
   answer_key/insights.md               trainer answers: traps per file + key numbers
 
@@ -112,7 +112,7 @@ def by_site(rows, code):
 
 
 def write_scattered(rows):
-    d = HERE / "workshop_b_scattered"
+    d = HERE / "pack" / "input" / "workshop_b_scattered"
     if d.exists():
         shutil.rmtree(d)
     d.mkdir()
@@ -267,4 +267,4 @@ if __name__ == "__main__":
     write_scattered(rows)
     worst, _ = write_answer_key(rows)
     print(f"{len(rows)} rows · worst variance: Site {worst[0]} {worst[1] + 543}")
-    print("files:", sorted(p.name for p in (HERE / "workshop_b_scattered").rglob("*") if p.is_file()))
+    print("files:", sorted(p.name for p in (HERE / "pack" / "input" / "workshop_b_scattered").rglob("*") if p.is_file()))

@@ -1,0 +1,4 @@
+M6 pack · ข้อมูลสมมติทั้งหมด
+1) ใน Cowork เลือกโฟลเดอร์ banpu-claude-course-master/materials/m6/data/pack (ZIP ที่ดาวน์โหลดคือต้นฉบับ)
+2) Scheduled task อ่านได้เฉพาะ input/ และเขียนได้เฉพาะ output/
+3) task ที่ใช้โฟลเดอร์ในเครื่อง รันเฉพาะตอนเครื่องเปิดและ Claude Desktop เปิดอยู่

@@ -1,7 +1,7 @@
 # M2 · Prompt templates (copy-ready)
 
 ใช้กับ Claude Desktop / Cowork · ข้อมูลทั้งหมดใน Sample Data Pack เป็นข้อมูลจำลอง
-โฟลเดอร์ทำงานมาตรฐานของห้อง: `Documents/Claude-Workshop/M2/` (มี `input/` และ `output/`) — ให้ Cowork เข้าถึงเฉพาะโฟลเดอร์นี้
+โฟลเดอร์ทำงานมาตรฐานของห้อง: `banpu-claude-course-master/materials/m2/data/pack/` (จาก ZIP ของ repo) (มี `input/` และ `output/`) — ให้ Cowork เข้าถึงเฉพาะโฟลเดอร์นี้
 คำใน `[วงเล็บเหลี่ยม]` = แก้ให้ตรงงานของคุณ
 
 | ID | ใช้เมื่อ | Pattern / ขั้น |
@@ -31,7 +31,7 @@ Output: [รูปแบบ + ที่เก็บ + ชื่อไฟล์ �
 ```text
 ก่อนลงมือ ให้เสนอแผนเป็นรายการขั้นตอน และบอกว่าจะสร้าง/แก้/ย้ายไฟล์ใดบ้าง
 ห้ามสร้าง แก้ ย้าย หรือลบไฟล์ใด ๆ จนกว่าฉันจะพิมพ์ว่า "อนุมัติ"
-ทำงานเฉพาะในโฟลเดอร์ [Documents/Claude-Workshop/M2] และเขียนผลลัพธ์ลง output/ เท่านั้น
+ทำงานเฉพาะในโฟลเดอร์ [banpu-claude-course-master/materials/m2/data/pack] และเขียนผลลัพธ์ลง output/ เท่านั้น
 เมื่อทำเสร็จ ให้สรุป log ว่าทำอะไรกับไฟล์ไหนบ้าง
 ```
 

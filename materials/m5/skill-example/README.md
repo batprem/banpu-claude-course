@@ -11,7 +11,7 @@ banpu-standard-report/
 
 ## ติดตั้งเพื่อทดสอบ (ผู้เรียน)
 
-1. ดาวน์โหลด `banpu-standard-report.zip` ที่วิทยากรแชร์ (โฟลเดอร์ `banpu-standard-report/` ต้องอยู่ชั้นบนสุดของ ZIP)
+1. คลิกขวาโฟลเดอร์ `banpu-claude-course-master/materials/m5/skill-example/banpu-standard-report` (จาก ZIP ของ repo ที่แตกไว้) → Compress / Send to → Compressed (zipped) folder → ได้ `banpu-standard-report.zip` (โฟลเดอร์ `banpu-standard-report/` ต้องอยู่ชั้นบนสุดของ ZIP)
 2. Claude Desktop → **Settings → Capabilities → Skills** (บางเวอร์ชันอยู่ที่ Customize → Skills) → **Upload skill** → เลือก ZIP
 3. เปิดสวิตช์ Skill และตรวจว่า Code execution / file creation เปิดอยู่ (ถ้าเมนูไม่มี ให้แจ้งวิทยากร: admin ต้องเปิดให้)
 4. ทดสอบด้วย prompt `M5-P03` ใน `../prompts.md`

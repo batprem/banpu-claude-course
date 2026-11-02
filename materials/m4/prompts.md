@@ -1,7 +1,7 @@
 # M4 · Prompt templates (copy-ready)
 
 ใช้กับ Claude Desktop / Cowork · ข้อมูลภายในทั้งหมดเป็นข้อมูลจำลอง · ราคาพลังงานเป็นข้อมูลสาธารณะจริง (IMF via FRED)
-โฟลเดอร์ทำงานของห้อง: `Documents/Claude-Workshop/M4/` (มี `input/` และ `output/`) ให้ Cowork เข้าถึงเฉพาะโฟลเดอร์นี้
+โฟลเดอร์ทำงานของห้อง: `banpu-claude-course-master/materials/m4/data/pack/` (จาก ZIP ของ repo) (มี `input/` และ `output/`) ให้ Cowork เข้าถึงเฉพาะโฟลเดอร์นี้
 คำใน `[วงเล็บเหลี่ยม]` = แก้ให้ตรงงานของคุณ · Connector ที่ใช้: SharePoint และ Outlook (M365) เท่านั้น
 
 | ID | ใช้เมื่อ | ขั้นใน Document Factory |

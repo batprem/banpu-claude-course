@@ -20,8 +20,8 @@ flowchart LR
 **เป้าหมาย:** เลือกงาน 1 งาน แล้วกรอก 6 ช่องให้ครบก่อนแตะ Claude
 
 **ขั้นตอน**
-1. (2 นาที) ดาวน์โหลด **M6 pack** จาก SharePoint ของห้องอบรม แล้ว **คัดลอก** ไปที่ `Documents/Claude-Workshop/M6/` (copy-before-write) ในโฟลเดอร์มี `input/` (อีเมล M3 · Project Tracker · meeting notes 6 ไฟล์ · watchlist) และ `output/` ว่าง
-   - ถ้ามีรายงานจาก M4 ให้คัดลอกไฟล์ไปไว้ที่ `input/m4_report/`
+1. (2 นาที) เปิดโฟลเดอร์ `banpu-claude-course-master/materials/m6/data/pack` จาก ZIP ที่แตกไว้ (ZIP คือต้นฉบับ = copy-before-write) ในโฟลเดอร์มี `input/` (อีเมล M3 · Project Tracker · meeting notes 6 ไฟล์ · watchlist) และ `output/` ว่าง
+   - ถ้ามีรายงานจาก M4 (`banpu-claude-course-master/materials/m4/data/pack/output/`) ให้คัดลอกไฟล์ไปไว้ที่ `input/m4_report/`
 2. (3 นาที) เปิด Artifact **Automation Card** แล้วเลือกงาน 1 งาน:
 
 | งาน | เหมาะกับใคร | Prompt |
@@ -44,7 +44,7 @@ flowchart LR
 
 **วิธีที่ 1 · Set up manually (แนะนำ)**
 1. Claude Desktop → แถบซ้าย **Scheduled** → **New task** → **Set up manually**
-2. กรอก: ชื่องาน · Prompt (กด **Copy prompt** ใน Automation Card หรือคัดลอก M6-P03/P04 จาก `prompts.md`) · ความถี่ **Weekly · จันทร์ 08:00** · โฟลเดอร์ `Documents/Claude-Workshop/M6` (เส้นทาง B)
+2. กรอก: ชื่องาน · Prompt (กด **Copy prompt** ใน Automation Card หรือคัดลอก M6-P03/P04 จาก `prompts.md`) · ความถี่ **Weekly · จันทร์ 08:00** · โฟลเดอร์ `banpu-claude-course-master/materials/m6/data/pack` (เส้นทาง B)
 3. **Approval mode = Manual** ⚠ ค่าเริ่มต้นมักเป็น Auto ตรวจแล้วเปลี่ยนเอง
 4. กด Save/Schedule
 
@@ -108,7 +108,7 @@ Checkpoint: บรรทัดแรก "สถานะ: ร่าง · รอ
 1. (1 นาที) เลือก 1 ทาง แล้วติ๊กในการ์ด:
    - **Pause** ← ค่าแนะนำหลังอบรม ถ้ายังไม่ได้รับอนุญาตให้ใช้กับข้อมูลจริง (นโยบาย IT/Hi-I)
    - **เก็บไว้รันทดลอง 4 สัปดาห์** ← เฉพาะเส้นทาง A บน test tenant หรือข้อมูล 🟢 · ตั้งปฏิทินเตือน "เช็ก past runs ทุกจันทร์ 09:00"
-2. (1 นาที) ใน Automation Card กด **⬇ Export PDF** → Save as PDF → เก็บไว้ที่ `Documents/Claude-Workshop/M6/output/`
+2. (1 นาที) ใน Automation Card กด **⬇ Export PDF** → Save as PDF → เก็บไว้ที่ `banpu-claude-course-master/materials/m6/data/pack/output/`
 3. (1 นาที) Debrief: ตอบ 2 คำถามกับคนข้าง ๆ
    - "task ของคุณ **หยุดรอคน** ตรงไหน?"
    - "ถ้าคุณลาพักร้อน ใครเป็นเจ้าของแทน?"

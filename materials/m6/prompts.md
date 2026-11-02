@@ -1,7 +1,7 @@
 # M6 · Prompt templates (copy-ready)
 
 ข้อมูลทั้งหมดเป็นข้อมูลสมมติ · Connector ที่ใช้: **SharePoint + Outlook** เท่านั้น · ทุก prompt มีกฎ "ร่างแล้วรอ ไม่ส่งเอง"
-แทนค่าใน `[วงเล็บเหลี่ยม]` ก่อนใช้ · เส้นทาง A = Connector (test tenant) · เส้นทาง B = โฟลเดอร์ในเครื่อง `Documents/Claude-Workshop/M6/`
+แทนค่าใน `[วงเล็บเหลี่ยม]` ก่อนใช้ · เส้นทาง A = Connector (test tenant) · เส้นทาง B = โฟลเดอร์ในเครื่อง `banpu-claude-course-master/materials/m6/data/pack/` (จาก ZIP ของ repo)
 
 | ID | ใช้ที่ | ทำอะไร |
 |---|---|---|
@@ -53,7 +53,7 @@ Approval: ให้ถามฉันก่อนทุก action ที่เ�
 
 ## M6-P03 · Workshop (ก): รายงานสถานะโครงการรายสัปดาห์
 
-ใส่ในช่อง Prompt ของ **Scheduled → New task → Set up manually** · รอบ: Weekly (จันทร์ 08:00) · โฟลเดอร์: `Documents/Claude-Workshop/M6`
+ใส่ในช่อง Prompt ของ **Scheduled → New task → Set up manually** · รอบ: Weekly (จันทร์ 08:00) · โฟลเดอร์: `banpu-claude-course-master/materials/m6/data/pack`
 
 ```text
 งาน: ร่าง "รายงานสถานะโครงการรายสัปดาห์" 1 หน้า ภาษาไทย ให้ [ชื่อเจ้าของงาน] ตรวจก่อน 09:30

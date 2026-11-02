@@ -1,6 +1,6 @@
 # M7 Workshop · Capstone: Use Case จริงของเรา (65 นาที · 15:10–16:15)
 
-ข้อมูลทุกไฟล์เป็นข้อมูลสมมติ · Data pack: `data/out/M7_uc1…uc5.zip` (แต่ละ ZIP มี `BRIEF.md`) · Prompt: `prompts.md` (M7-P01…P10) · บอร์ด: `artifacts/show-share-board.html` · ทีมละ 6–8 คน (คลาส 30–40 คน = 5 ทีม)
+ข้อมูลทุกไฟล์เป็นข้อมูลสมมติ · Data pack: `banpu-claude-course-master/materials/m7/data/uc1…uc5_*/` (แต่ละโฟลเดอร์มี `BRIEF.md`) · Prompt: `prompts.md` (M7-P01…P10) · บอร์ด: `artifacts/show-share-board.html` · ทีมละ 6–8 คน (คลาส 30–40 คน = 5 ทีม)
 
 ## หน้า 1 · ภาพรวม 65 นาที และบทบาทในทีม (อ่าน 1 นาที · 15:10)
 
@@ -58,7 +58,7 @@ flowchart LR
 **ขั้นตอน**
 1. นับ 1–5 วนทั้งห้อง หรือนั่งตามทีมที่ Hi-I จัด · ตั้งชื่อทีมสั้น ๆ (1 นาที)
 2. โหวตเลือกโจทย์ในทีม: ใครมีงานคล้ายโจทย์ไหนมากที่สุด เลือกอันนั้น (2 นาที)
-3. ผู้ขับ Cowork ดาวน์โหลด ZIP จากลิงก์ SharePoint ของคลาส แตกไฟล์ใส่โฟลเดอร์ใหม่ `capstone_<ทีม>` (นี่คือ**สำเนา**) (2 นาที)
+3. ผู้ขับ Cowork เปิดโฟลเดอร์โจทย์จาก ZIP ของ repo ที่แตกไว้ เช่น `banpu-claude-course-master/materials/m7/data/uc2_incident_weekly/` (ZIP คือ**ต้นฉบับ** แตกใหม่ได้เสมอ) · BYO: สร้างโฟลเดอร์ใหม่ `banpu-claude-course-master/materials/m7/capstone_<ทีม>/` (2 นาที)
 
 **BYO (โจทย์ของทีมเอง):** ได้ ถ้าตอบ "ใช่" ทั้ง 3 ข้อ: ① อธิบายได้โดยไม่ต้องเปิดไฟล์จริง ② สร้างข้อมูลจำลองได้ใน 5 นาทีด้วย `M7-P02` ③ ข้อมูลจริงในอนาคตอยู่บน SharePoint/Outlook ไม่ใช่ระบบอื่น · ถ้าไม่ครบ เลือก UC ที่ใกล้ที่สุดแล้วเล่าโจทย์จริงตอนนำเสนอแทน
 
@@ -67,7 +67,7 @@ flowchart LR
 ```
 (ฉบับเต็ม `M7-P02`)
 
-✅ **Checkpoint:** โฟลเดอร์ `capstone_<ทีม>` เปิดได้ เห็น `BRIEF.md` · ไม่มีไฟล์งานจริงของบริษัทในโฟลเดอร์
+✅ **Checkpoint:** โฟลเดอร์โจทย์ของทีม (`uc…` หรือ `capstone_<ทีม>`) เปิดได้ เห็น `BRIEF.md` · ไม่มีไฟล์งานจริงของบริษัทในโฟลเดอร์
 🧑‍🏫 **วิทยากร:** ถ้า 3 ทีมขึ้นไปเลือกโจทย์เดียวกัน ไม่ต้องห้าม แต่ชวนทีมที่ 3 ลอง BYO หรือ UC4 (ง่ายสุด) · ติดตั้ง ZIP ไม่ได้ → USB สำรอง
 
 ## หน้า 3 · ② Use-case Canvas: Data → Connector → Output (5 นาที · 15:15–15:20)
@@ -148,11 +148,11 @@ flowchart LR
 🟧 คน (HITL) · 🟦 AI · 🟩 Data/Connector
 
 **ขั้นตอน**
-1. เปิด **Cowork** · ให้สิทธิ์เฉพาะโฟลเดอร์ `capstone_<ทีม>` (สำเนา = copy-before-write) · สร้างโฟลเดอร์ย่อย `output/` (1 นาที)
+1. เปิด **Cowork** · ให้สิทธิ์เฉพาะโฟลเดอร์โจทย์ของทีม `banpu-claude-course-master/materials/m7/data/uc…/` หรือ `capstone_<ทีม>/` (ZIP คือต้นฉบับ = copy-before-write) · สร้างโฟลเดอร์ย่อย `output/` (1 นาที)
 2. วาง prompt (2 นาทีรวมรอผล)
 
 ```text
-โฟลเดอร์ที่ให้สิทธิ์คือสำเนาของ data pack {M7_uc…} (ข้อมูลสมมติ) อ่าน BRIEF.md ก่อน
+โฟลเดอร์ที่ให้สิทธิ์คือโฟลเดอร์โจทย์ {materials/m7/data/uc…} จาก ZIP ของ repo (ข้อมูลสมมติ) อ่าน BRIEF.md ก่อน
 1) ทวนเป้าหมายด้วยคำพูดของคุณเอง 3 บรรทัด  2) สำรวจไฟล์แบบอ่านอย่างเดียว + สิ่งที่ดูผิดปกติ
 3) เสนอแผนไม่เกิน 6 ขั้น ห้ามแก้ต้นฉบับ เขียนลง output/ เท่านั้น ห้ามส่ง/บันทึกลงระบบใด
 หยุดรอให้เราพิมพ์ "อนุมัติ" ก่อนลงมือ
@@ -208,7 +208,7 @@ flowchart LR
 ```
 🟧 คน (HITL) · 🟦 AI · 🟩 Data/Connector
 
-**Data (`M7_uc1_contract_summary.zip`):** `contracts/` สัญญา .docx 3 ฉบับ (CT-2569-014 อะไหล่สายพาน · -022 อาหารแคมป์ · -031 ล้างแผงโซลาร์) · `contract_register.csv` 12 สัญญา · `BRIEF.md`
+**Data (`materials/m7/data/uc1_contract_summary/`):** `contracts/` สัญญา .docx 3 ฉบับ (CT-2569-014 อะไหล่สายพาน · -022 อาหารแคมป์ · -031 ล้างแผงโซลาร์) · `contract_register.csv` 12 สัญญา · `BRIEF.md`
 **Connector วันจริง:** SharePoint document library ของจัดซื้อ (อ่านอย่างเดียว) · วันนี้: โฟลเดอร์สำเนา
 
 **Prompt หลัก** (หลัง "อนุมัติ" แผนจาก P03)
@@ -241,7 +241,7 @@ flowchart LR
 ```
 🟧 คน (HITL) · 🟦 AI · 🟩 Data/Connector
 
-**Data (`M7_uc2_incident_weekly.zip`):** `incident_log.csv` 155 เหตุการณ์ 8 สัปดาห์ (3 ส.ค.–27 ก.ย. 2026) 4 Site · `emails/` 3 ฉบับ (.eml) · `BRIEF.md`
+**Data (`materials/m7/data/uc2_incident_weekly/`):** `incident_log.csv` 155 เหตุการณ์ 8 สัปดาห์ (3 ส.ค.–27 ก.ย. 2026) 4 Site · `emails/` 3 ฉบับ (.eml) · `BRIEF.md`
 **Connector วันจริง:** SharePoint List (Issue/Incident Log) + Outlook · วันนี้: โฟลเดอร์สำเนา (เส้นทาง B ของ M3, `M3-P08`)
 
 **Prompt หลัก**
@@ -274,7 +274,7 @@ flowchart LR
 ```
 🟧 คน (HITL) · 🟦 AI · 🟩 Data/Connector
 
-**Data (`M7_uc3_esg_consolidation.zip`):** Site A `.xlsx` (2 ชีต, kWh/ลิตร) · Site C `.csv` (หัวอังกฤษ, MWh/ตัน) · Site F `.xlsx` (**รายไตรมาส**) · Site G `.csv` (MMBtu, หัวไทย) · `emission_factors_SYNTHETIC.csv` · `esg_targets_2568.csv` · `BRIEF.md`
+**Data (`materials/m7/data/uc3_esg_consolidation/`):** Site A `.xlsx` (2 ชีต, kWh/ลิตร) · Site C `.csv` (หัวอังกฤษ, MWh/ตัน) · Site F `.xlsx` (**รายไตรมาส**) · Site G `.csv` (MMBtu, หัวไทย) · `emission_factors_SYNTHETIC.csv` · `esg_targets_2568.csv` · `BRIEF.md`
 **Connector วันจริง:** โฟลเดอร์ SharePoint ที่แต่ละ Site อัปโหลด · วันนี้: โฟลเดอร์สำเนา (เหมือน Workshop B ของ M2)
 
 **Prompt หลัก**
@@ -308,7 +308,7 @@ flowchart LR
 ```
 🟧 คน (HITL) · 🟦 AI · 🟩 Data/Connector
 
-**Data (`M7_uc4_meeting_actions.zip`):** `meetings/` 4 ไฟล์ (7 ก.ย. .md · 14 ก.ย. .txt · 21 ก.ย. ESG sync **.vtt transcript** · 28 ก.ย. .md) · `action_tracker_sharepoint_list_export.csv` (ID 101–105) · `owners.md` (อีเมล @example.com) · `BRIEF.md`
+**Data (`materials/m7/data/uc4_meeting_actions/`):** `meetings/` 4 ไฟล์ (7 ก.ย. .md · 14 ก.ย. .txt · 21 ก.ย. ESG sync **.vtt transcript** · 28 ก.ย. .md) · `action_tracker_sharepoint_list_export.csv` (ID 101–105) · `owners.md` (อีเมล @example.com) · `BRIEF.md`
 **Connector วันจริง:** SharePoint List (tracker) + Outlook (draft) · วันนี้: โฟลเดอร์สำเนา
 
 **Prompt หลัก**
@@ -341,7 +341,7 @@ flowchart LR
 ```
 🟧 คน (HITL) · 🟦 AI · 🟩 Data/Connector
 
-**Data (`M7_uc5_energy_market_brief.zip`):** `prices_weekly_SYNTHETIC.csv` (8 สัปดาห์: ดัชนีถ่านหินสมมติ NEX-6000 · LNG · น้ำมันอ้างอิง · บาท/ดอลลาร์) · `news_snippets_SYNTHETIC.csv` (ข่าวสมมติ 12 ข่าว ลิงก์ news.example.com) · `internal_view.md` · `BRIEF.md`
+**Data (`materials/m7/data/uc5_energy_market_brief/`):** `prices_weekly_SYNTHETIC.csv` (8 สัปดาห์: ดัชนีถ่านหินสมมติ NEX-6000 · LNG · น้ำมันอ้างอิง · บาท/ดอลลาร์) · `news_snippets_SYNTHETIC.csv` (ข่าวสมมติ 12 ข่าว ลิงก์ news.example.com) · `internal_view.md` · `BRIEF.md`
 **Connector วันจริง:** เว็บสาธารณะ (web search) + SharePoint (มุมมองภายใน) · วันนี้: โฟลเดอร์สำเนา (ห้ามค้นเว็บแทนข่าวสมมติในเวิร์กช็อป เพื่อให้ทุกทีมตรวจคำตอบเดียวกันได้)
 
 **Prompt หลัก**
