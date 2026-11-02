@@ -34,7 +34,7 @@
 
 | Path | What |
 |---|---|
-| **Slides Artifact** · https://claude.ai/artifact/Uix5PCdLVDFT2EpceDUi1Q | **Delivery deck.** 20 slides built on Claude's core Slides Artifact type; speaker notes on every slide; Present mode; download as PDF/PPTX from Share › Export. All 9 diagrams redrawn natively (boxes + connectors) in the 3 STYLE colours with legend. Shared "Anyone with the link" (checked 2 Nov 2026) |
+| **Slides Artifact** · https://claude.ai/artifact/Uix5PCdLVDFT2EpceDUi1Q | **Delivery deck.** 21 slides (20 + evaluation QR s19b) built on Claude's core Slides Artifact type; speaker notes on every slide; Present mode; download as PDF/PPTX from Share › Export. All 9 diagrams redrawn natively (boxes + connectors) in the 3 STYLE colours with legend. Shared "Anyone with the link" (checked 2 Nov 2026) |
 | `deck/project/deck.json` + `deck/project/slides/s01–s20.html` | Source files of the Slides Artifact (republish with the Artifact tool, `root: materials/m8/deck`) |
 | `slides.md` → `slides.html` | Content source the Artifact was built from (same 20 slides and notes); superseded for delivery |
 | `workshop.md` | Workshop guide, 5 pages |
@@ -52,7 +52,7 @@ Theme: Ducky Engineer (วิศวกรเป็ด) applied 2 Nov 2026 to the
 
 | Artifact | File | claude.ai URL | Export PDF |
 |---|---|---|---|
-| M8 Slides (20 slides) | `deck/project/` | https://claude.ai/artifact/Uix5PCdLVDFT2EpceDUi1Q | ✅ (Share › Export, PDF/PPTX) |
+| M8 Slides (21 slides incl. evaluation QR) | `deck/project/` | https://claude.ai/artifact/Uix5PCdLVDFT2EpceDUi1Q | ✅ (Share › Export, PDF/PPTX) |
 | M8 Workshop (ใบงาน 5 หน้า) | `artifacts/workshop-sheet.html` | https://claude.ai/artifact/CQD1FRgAQ1T27Lx4MSJ59L | ✅ |
 | Security & Usage Quiz (18 ข้อ + Traffic Light 6 ใบ) | `artifacts/security-quiz.html` | https://claude.ai/artifact/L6PcYj1MiRy7Aah9cUVgsv | ✅ |
 | แผน 30 วันของฉัน | `artifacts/plan-30-days.html` | https://claude.ai/artifact/Dn5jDTNdz6YBP8DT23T7Nt | ✅ |

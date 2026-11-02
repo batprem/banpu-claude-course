@@ -59,7 +59,7 @@ Each module README has the same list under `## Claude Artifacts (claude.ai)`.
 | M7 | Slides · 10 slides | `m7/deck/project/` | https://claude.ai/artifact/17aWEiXMohcTuVjq2mKxzh | Share › Export (PDF/PPTX) |
 | M7 | Workshop sheet · 13 หน้า | `m7/artifacts/workshop-sheet.html` (from `build_workshop_sheet.py`) | https://claude.ai/artifact/GYFfuKNKMURfsooszp4cKc | ✅ |
 | M7 | Show & Share Board | `m7/artifacts/show-share-board.html` | https://claude.ai/artifact/VncwbAfqEmSuDFBtGfx5uy | ✅ |
-| M8 | Slides · 20 slides | `m8/deck/project/` | https://claude.ai/artifact/Uix5PCdLVDFT2EpceDUi1Q | Share › Export (PDF/PPTX) |
+| M8 | Slides · 21 slides (incl. evaluation QR) | `m8/deck/project/` | https://claude.ai/artifact/Uix5PCdLVDFT2EpceDUi1Q | Share › Export (PDF/PPTX) |
 | M8 | Workshop sheet · 5 หน้า | `m8/artifacts/workshop-sheet.html` | https://claude.ai/artifact/CQD1FRgAQ1T27Lx4MSJ59L | ✅ |
 | M8 | Security & Usage Quiz | `m8/artifacts/security-quiz.html` | https://claude.ai/artifact/L6PcYj1MiRy7Aah9cUVgsv | ✅ |
 | M8 | แผน 30 วันของฉัน | `m8/artifacts/plan-30-days.html` | https://claude.ai/artifact/Dn5jDTNdz6YBP8DT23T7Nt | ✅ |
