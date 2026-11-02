@@ -29,8 +29,17 @@
 <div style="display:flex;flex-direction:row;gap:12px;align-items:center"><div style="width:32px;height:32px;background:#3BA55C;border-radius:6px"></div><p style="font-size:24px;color:#3D3839">Data/Connector</p></div>
 </div>
 <div style="position:absolute;right:40px;bottom:32px;width:88px;height:88px;background:#FFFDF8;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(35,31,32,0.15)"><img src="/_blob/6bb8a532df9dca25aa6052791f191c9b" alt="Ducky Engineer" style="width:72px;height:72px;object-fit:contain"></div>
-<aside>[6:00] AI → Connect → Data → Execute จาก M3 ทวนในภาพเดียว
-Read ความเสี่ยงต่ำ · Write ความเสี่ยงสูง เพราะไฟล์ที่แชร์มีคนอื่นใช้อยู่ (นึกถึง Capex Tracker ที่หายครึ่งไฟล์ในเดโม M3)
+<aside>กฎข้อ 3 และ 4 ครับ Connector ที่อนุมัติ และ copy-before-write
+ภาพนี้คือ AI → Connect → Data → Execute จาก M3 ในภาพเดียว
+Connector ที่อนุมัติในบ้านปูมีแค่ SharePoint กับ Outlook ครับ Google Drive หรือ Connector อื่นไม่อนุญาต
+และให้ Claude อ่านก่อนเสมอ เพราะการอ่านความเสี่ยงต่ำ แต่การเขียนความเสี่ยงสูง ไฟล์ที่แชร์มีคนอื่นใช้อยู่ด้วย
+ยังจำ Capex Tracker ที่หายไปครึ่งไฟล์ในเดโม M3 ได้ไหมครับ? นั่นแหละคือเหตุผล
+ถามตัวเองว่างานนี้ต้องเขียนหรือแก้ไหม? ถ้าไม่ ให้ Claude สรุปหรือทำรายงานลงโฟลเดอร์ output
+ถ้าต้องแก้ ทำสำเนาก่อน แล้วให้ Claude ทำงานบนสำเนา ตรวจผล ถ้าไม่ผ่านก็แก้บนสำเนาต่อ
+ถ้าผ่าน "คน" เป็นคนแทนที่หรืออัปโหลดไฟล์จริง และแจ้งเจ้าของไฟล์ ไม่ใช่ให้ Claude ทับเองครับ
+----------
+[6:00] AI → Connect → Data → Execute จาก M3 ทวนในภาพเดียว
+Read ความเสี่ยงต่ำ · Write ความเสี่ยงสูง เพราะไฟล์ที่แชร์มีคนอื่นใช้อยู่ (Capex Tracker ที่หายครึ่งไฟล์ในเดโม M3)
 ถ้ามีคนถามเรื่อง Google Drive / Connector อื่น: ไม่อนุญาตในบ้านปู ให้ใช้ SharePoint หรือ Outlook หรือดาวน์โหลดไฟล์ 🟢 มาใส่โฟลเดอร์สำเนาแทน
 คนเป็นผู้แทนที่ไฟล์จริงและแจ้งเจ้าของไฟล์ ไม่ใช่ให้ Claude ทับเอง</aside>
 </section>

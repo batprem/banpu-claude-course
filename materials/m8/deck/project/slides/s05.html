@@ -25,7 +25,15 @@
 <div style="display:flex;flex-direction:row;gap:12px;align-items:center"><div style="width:32px;height:32px;background:#3BA55C;border-radius:6px"></div><p style="font-size:24px;color:#3D3839">Data/Connector</p></div>
 </div>
 <div style="position:absolute;right:40px;bottom:32px;width:88px;height:88px;background:#FFFDF8;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(35,31,32,0.15)"><img src="/_blob/6bb8a532df9dca25aa6052791f191c9b" alt="Ducky Engineer" style="width:72px;height:72px;object-fit:contain"></div>
-<aside>[4:00] diagram เดียวกับ M1 แบบย่อ ทุกกล่องที่เป็นคำถามคือสีส้ม = คนตัดสิน
+<aside>กฎข้อ 1 ครับ Data Traffic Light ก่อนวางข้อมูลทุกครั้ง
+ภาพนี้คือ diagram เดียวกับเมื่อเช้าใน M1 แบบย่อ สังเกตว่ากล่องคำถามทุกกล่องเป็นสีส้ม แปลว่าคนเป็นคนตัดสิน ไม่ใช่ Claude
+คำถามแรก ข้อมูลนี้อ่อนไหวไหม? เช่น ข้อมูลบุคคล สุขภาพ การเงินที่ยังไม่เปิดเผย ความลับการค้า หรือรหัสผ่าน ถ้าใช่ เป็นสีแดง ห้ามใส่ Claude ให้ใช้เครื่องมือที่บริษัทกำหนด
+ถ้าไม่ ถามต่อว่ามีชื่อคน เบอร์โทร หรือชื่อคู่ค้า ลูกค้าไหม? ถ้ามี เป็นสีเหลือง ต้อง anonymize ก่อน แล้วจึงเป็นสีเขียว
+สุดท้าย ใช้บัญชี Claude Team ของบริษัทอยู่หรือเปล่า? ถ้าเป็นบัญชีส่วนตัว หยุดครับ
+มี 2 จุดที่หลายคนพลาดในเกมเมื่อเช้า หนึ่ง ลบชื่อออกแล้ว ข้อมูลสุขภาพก็ยังเป็นสีแดงอยู่ สอง anonymize "ก่อน" ส่ง ไม่ใช่ส่งไปแล้วให้ Claude ลบให้ทีหลังครับ
+เดี๋ยวรอบสุดท้ายของ Quiz เราจะใช้การ์ด 6 ใบจากเกม M1 อีกครั้งนะครับ
+----------
+[4:00] diagram เดียวกับ M1 แบบย่อ · กล่องคำถามทุกกล่องสีส้ม = คนตัดสิน
 ย้ำ 2 จุดที่คนพลาดบ่อยในเกมเมื่อเช้า: (1) ลบชื่อแล้วข้อมูลสุขภาพก็ยัง 🔴 (2) anonymize "ก่อน" ส่ง ไม่ใช่ให้ Claude ลบให้ทีหลัง
-รอบสุดท้ายของ Quiz จะใช้การ์ด 6 ใบจากเกม M1 อีกครั้ง</aside>
+รอบสุดท้ายของ Quiz ใช้การ์ด 6 ใบจากเกม M1 อีกครั้ง</aside>
 </section>

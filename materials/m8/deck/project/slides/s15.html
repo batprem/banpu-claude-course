@@ -10,8 +10,17 @@
 <tr style="background:#FFF3D1"><td style="padding:14px 24px">5</td><td style="padding:14px 24px">แชตยาวเกิน → M8-P01 สรุป แล้วเริ่มแชตใหม่ใน Project</td><td style="padding:14px 24px">–</td></tr>
 </table>
 <div style="position:absolute;right:40px;bottom:32px;width:88px;height:88px;background:#FFFDF8;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(35,31,32,0.15)"><img src="/_blob/6bb8a532df9dca25aa6052791f191c9b" alt="Ducky Engineer" style="width:72px;height:72px;object-fit:contain"></div>
-<aside>[15:00] ตัวอย่างสมมติ ใช้ข้อมูลรูปแบบเดียวกับ Monthly Operations Report ใน M4
+<aside>มาดูตัวอย่างจริงกันครับ งานรายงานรายเดือน ทำแบบคุ้ม ใช้ข้อมูลรูปแบบเดียวกับ Monthly Operations Report ใน M4
+ขั้นแรกทำครั้งเดียว ตั้ง Project ชื่อ "รายงานเดือน" ใส่ instructions template และกติกา M8-P05 ไว้ การลงทุนตรงนี้คืนทุนตั้งแต่เดือนที่ 2 เหมือน Skill ใน M5
+ขั้น 1 ให้ Claude วางแผนว่าจะใช้ไฟล์ไหน คอลัมน์ไหน ใช้ Sonnet
+ขั้น 2 ทดลองกับข้อมูล 1 site ก่อน แล้วตรวจ 3 ตัวเลข ขั้นนี้คือการแบ่งงาน ถ้าผิดตั้งแต่ site แรก เราเสียแค่รอบเล็ก ไม่ใช่ทั้งรอบ
+ขั้น 3 รันครบทุก site ด้วยสคริปต์ที่ผ่านแล้ว ยังใช้ Sonnet
+ขั้น 4 ขัดภาษาบทสรุปผู้บริหาร ใช้ Haiku ก็พอ
+และขั้น 5 ถ้าแชตยาวเกิน ใช้ M8-P01 สรุป แล้วเริ่มแชตใหม่ใน Project
+สังเกตไหมครับว่าทั้งงานนี้ไม่ต้องใช้ Opus เลย เก็บ Opus ไว้ใช้เมื่องานยากจริงครับ
+----------
+[15:00] ตัวอย่างสมมติ ใช้ข้อมูลรูปแบบเดียวกับ Monthly Operations Report ใน M4
 ประเด็น: Opus ไม่จำเป็นในงานนี้ ใช้เมื่องานยากจริง เช่น วิเคราะห์ความเสี่ยงหลายเงื่อนไขที่ Sonnet ทำได้ไม่ดี
-ขั้น 2 คือ "แบ่งงาน" ที่ช่วยทั้งคุณภาพและ usage: ถ้าผิดตั้งแต่ site แรก เราเสียแค่รอบเล็ก ไม่ใช่ทั้งรอบ
-ขั้น "ครั้งเดียว" คือการลงทุนที่คืนทุนตั้งแต่เดือนที่ 2 (เหมือน Skill ใน M5)</aside>
+ขั้น 2 คือ "แบ่งงาน" ที่ช่วยทั้งคุณภาพและ usage: ผิดตั้งแต่ site แรก เสียแค่รอบเล็ก
+ขั้น "ครั้งเดียว" = การลงทุนที่คืนทุนตั้งแต่เดือนที่ 2 (เหมือน Skill ใน M5)</aside>
 </section>
