@@ -73,6 +73,8 @@ Reused read-only: `m2/data/core/ops_monthly_clean.csv` (history), `m3/data/pack/
 
 All private until shared from each page's Share menu. Published 31 Oct 2026 with `capabilities: {downloads: true}`.
 
+Theme: Ducky Engineer (วิศวกรเป็ด) applied 2 Nov 2026 to the deck and all three pages (Sarabun, #FFD066/#231F20/#0684C9/#F4F4F4, logo badge; role colours kept), same URLs.
+
 | Artifact | File | claude.ai URL | Export PDF |
 |---|---|---|---|
 | M4 Slides (15 slides) | `deck/project/` | https://claude.ai/artifact/KgQ57jcEaEb58SShmpLqkr | ✅ (Share › Export, PDF/PPTX) |
