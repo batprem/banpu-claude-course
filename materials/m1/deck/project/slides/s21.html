@@ -28,8 +28,14 @@
 <div style="display:flex;flex-direction:row;gap:12px;align-items:center"><div style="width:32px;height:32px;background:#3BA55C;border-radius:6px"></div><p style="font-size:24px;color:#3D3839">Data/Connector</p></div>
 </div>
 <div style="position:absolute;right:40px;bottom:32px;width:88px;height:88px;background:#FFFDF8;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(35,31,32,0.15)"><img src="/_blob/8b2d9995016f2d366523c5ee4a48bf9c" alt="Ducky Engineer" style="width:72px;height:72px;object-fit:contain"></div>
-<aside>[18:00] ทำ demo จริงตาม prompts.md:
+<aside>นี่คืองานเดียวกัน ทำสองวิธีครับ ผมจะทำให้ดูสดตามภาพนี้
+ทางซ้ายคือ Chat ธรรมดา ผมอัปโหลดไฟล์ site_ops_sample แล้วพิมพ์ prompt Claude จะตอบเป็นโค้ดหรือ Artifact ในหน้าแชต จากนั้นผมต้อง copy ไปบันทึกเอง และถ้าตัวเลขผิด ผมต้องสั่งแก้ แล้ว copy ใหม่ทีละรอบ
+ทางขวาคือ Cowork ผมให้สิทธิ์โฟลเดอร์แล้วบอกเป้าหมาย Claude สำรวจไฟล์และเสนอแผน ตรงนี้ผมจะหยุดให้ดูครับ นี่คือจุด Human-in-the-Loop ผมอนุมัติแผน แล้ว Claude ก็สร้าง dashboard.html ในโฟลเดอร์ output ตรวจเอง แก้เอง
+แต่ทั้งสองทาง สุดท้ายคนต้องตรวจตัวเลขก่อนแชร์ครับ เริ่มรอบแรกกันเลย อย่าลืมนับนะครับ
+----------
+[18:00] ทำ demo จริงตาม prompts.md:
 1) Chat: แนบไฟล์ วาง M1-P01 → ได้ Artifact/โค้ด → เราต้อง copy ไปบันทึกเป็น .html เอง ถ้าตัวเลขผิดต้องสั่งแก้แล้ว copy ใหม่
 2) Cowork: ชี้โฟลเดอร์ วาง M1-P02 → Claude สำรวจไฟล์ เสนอแผน (หยุดตรงนี้ ชี้ว่าเป็น HITL) → อนุมัติ → Claude สร้าง output/dashboard.html และตรวจผลเอง
+Demo รวม ~5 นาที (ถึง [23:00])
 แผนสำรองถ้าเน็ต/usage มีปัญหา: เปิดไฟล์ผลที่เตรียมไว้ล่วงหน้า (ทำใน dry-run)</aside>
 </section>

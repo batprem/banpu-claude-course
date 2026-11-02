@@ -8,6 +8,11 @@
 <li>ใช้ Skill ที่บริษัทสร้างหรือรับรองก่อนเสมอ</li>
 </ul>
 <div style="position:absolute;right:40px;bottom:32px;width:88px;height:88px;background:#FFFDF8;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(35,31,32,0.15)"><img src="/_blob/8b2d9995016f2d366523c5ee4a48bf9c" alt="Ducky Engineer" style="width:72px;height:72px;object-fit:contain"></div>
-<aside>[32:00] Requirement 9 ระดับ "แนะนำแนวคิด" ใน M1 ลงมือตรวจจริงด้วย checklist ใน M5
-Anthropic เองระบุในเอกสาร Skills สำหรับองค์กรว่า Skill ที่ไม่หวังดีอาจสั่งให้ Claude รันโค้ด เข้าถึงไฟล์ หรือส่งข้อมูลออก และไม่ควรใช้ Skill จากแหล่งที่ไม่น่าเชื่อถือโดยไม่ audit (SOURCES #3)</aside>
+<aside>ต่อไปเป็นความเสี่ยงใหม่ครับ Skill จากภายนอก
+อย่างที่บอกไป Skill คือคำสั่ง บวกไฟล์ และบางครั้งมี script ที่รันได้ Skill แบบนี้แชร์กันง่ายมากบน GitHub หรือโซเชียล แต่ยังไม่มีใคร audit
+Skill ที่ไม่หวังดี อาจสั่งให้ Claude อ่านไฟล์ หรือส่งข้อมูลออกไปข้างนอกได้ เรื่องนี้ Anthropic เองก็เขียนไว้ในเอกสาร Skills สำหรับองค์กรว่า Skill ที่ไม่หวังดีอาจสั่งให้ Claude รันโค้ด เข้าถึงไฟล์ หรือส่งข้อมูลออก และไม่ควรใช้ Skill จากแหล่งที่ไม่น่าเชื่อถือโดยไม่ audit
+หลักของเราจึงง่ายครับ ใช้ Skill ที่บริษัทสร้างหรือรับรองก่อนเสมอ วันนี้รู้แนวคิดไว้ก่อน แล้วเราจะลงมือตรวจจริงด้วย checklist ใน M5
+----------
+[32:00] Requirement 9 ระดับ "แนะนำแนวคิด" ใน M1 ลงมือตรวจจริงด้วย checklist ใน M5
+ที่มา: Anthropic เอกสาร Skills สำหรับองค์กร: Skill ที่ไม่หวังดีอาจสั่งให้ Claude รันโค้ด เข้าถึงไฟล์ หรือส่งข้อมูลออก และไม่ควรใช้ Skill จากแหล่งที่ไม่น่าเชื่อถือโดยไม่ audit (SOURCES #3)</aside>
 </section>

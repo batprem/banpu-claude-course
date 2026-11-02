@@ -27,6 +27,13 @@
 <div style="display:flex;flex-direction:row;gap:12px;align-items:center"><div style="width:32px;height:32px;background:#3BA55C;border-radius:6px"></div><p style="font-size:24px;color:#3D3839">Data/Connector</p></div>
 </div>
 <div style="position:absolute;right:40px;bottom:32px;width:88px;height:88px;background:#FFFDF8;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(35,31,32,0.15)"><img src="/_blob/8b2d9995016f2d366523c5ee4a48bf9c" alt="Ducky Engineer" style="width:72px;height:72px;object-fit:contain"></div>
-<aside>[5:00] ชี้ทีละกล่อง: เป้าหมายมาจากเรา, Claude คิดและวางแผน, เราอนุมัติแผน (Human-in-the-Loop), แล้วจึงลงมือกับไฟล์/SharePoint/Outlook, สุดท้ายเราตรวจผล
-ถ้าผลยังไม่ได้ วนกลับไปคิดใหม่ ไม่ใช่เริ่มจากศูนย์</aside>
+<aside>นี่คือวงจรการทำงานของ Agent ครับ คิด วางแผน ลงมือ
+เริ่มจากกล่องสีส้มซ้ายสุด คือเราบอกเป้าหมาย จากนั้น Claude คิดเพื่อเข้าใจงาน แล้ววางแผนแตกเป็นขั้นตอน
+ถึงตรงนี้ Claude ยังไม่ทำอะไรครับ ต้องรอเราอนุมัติแผนก่อน นี่คือ Human-in-the-Loop ถ้าเราสั่งแก้ ก็วนกลับไปวางแผนใหม่ ถ้าใช่ Claude จึงลงมืออ่านหรือสร้างไฟล์ ทำงานกับไฟล์ SharePoint และ Outlook
+สุดท้าย เราตรวจผลก่อนใช้จริง ถ้ายังไม่ได้ ก็วนกลับไปคิดใหม่ ไม่ต้องเริ่มจากศูนย์
+สังเกตสีนะครับ ส้มคือคน ฟ้าคือ AI เขียวคือข้อมูลและ Connector จุดที่ต้องตัดสินใจเป็นของคนทั้งหมด
+----------
+[5:00] ชี้ทีละกล่อง: เป้าหมายมาจากเรา, Claude คิดและวางแผน, เราอนุมัติแผน (Human-in-the-Loop), แล้วจึงลงมือกับไฟล์/SharePoint/Outlook, สุดท้ายเราตรวจผล
+ถ้าผลยังไม่ได้ วนกลับไปคิดใหม่ ไม่ใช่เริ่มจากศูนย์
+Legend บนสไลด์: ส้ม = คน (HITL) · ฟ้า = AI · เขียว = Data/Connector</aside>
 </section>
