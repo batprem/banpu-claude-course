@@ -66,6 +66,8 @@ All private until shared from each page's Share menu. Published 31 Oct 2026 with
 | M1 Workshop (ใบงาน 4 หน้า) | `artifacts/workshop-sheet.html` | https://claude.ai/artifact/W9dt4fKCCRZn4pZMXycNdR | ✅ |
 | Data Traffic Light (เกม 15 ใบ) | `artifacts/data-traffic-light.html` | https://claude.ai/artifact/F9jhpdSui1ybEe4M794LvZ | ✅ |
 
+**Theme (2 Nov 2026):** both learner pages above now use the Ducky Engineer (วิศวกรเป็ด) theme (Sarabun, yellow #FFD066 header with ink text, #0684C9 buttons, logo badge; role colours unchanged), republished to the same URLs.
+
 ## Stories / cases
 1. Shared ChatGPT chats in Google, Jul–Aug 2025: users ticked "Make this chat discoverable" when sharing; Fast Company found ~4,500 indexed chats, some with names and confidential work content; OpenAI removed the feature (slide 3; SOURCES #1–2). Replaced the earlier 2023 opening case on Prem's request (31 Oct 2026).
 2. Cato Networks, Dec 2025: a modified open-source Skill silently downloaded and ran ransomware in a test environment (slide 33; SOURCES #3–5).
