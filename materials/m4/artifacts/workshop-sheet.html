@@ -128,7 +128,7 @@ footer{font-size:12px;color:var(--muted);text-align:center;margin-top:8px}
     <span class="eyebrow">M4 · Document Factory &amp; Artifact as Output Layer</span>
     <h1>M4 Workshop · Monthly Operations Report จาก 5 แหล่ง (25 นาที)</h1>
     <p>ข้อมูลภายในทั้งหมดเป็นข้อมูลจำลอง (ไซต์สมมติ คนสมมติ อีเมล @example.com) · ราคาพลังงานเป็นข้อมูลสาธารณะจริง (IMF via FRED)</p>
-    <p>Prompt เต็มอยู่ใน <code>prompts.md</code> (และในใบงานนี้ กด Copy ได้) · Artifact ช่วยเล่น: <b>Output Picker</b> · เฉลยให้เทียบหลังจบหน้า 4: <b>Monthly Ops Dashboard</b></p>
+    <p>Prompt เต็มอยู่ใน <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/blob/master/materials/m4/prompts.md"><code>materials/m4/prompts.md</code></a> (และในใบงานนี้ กด Copy ได้) · Artifact ช่วยเล่น: <b>Output Picker</b> · เฉลยให้เทียบหลังจบหน้า 4: <b>Monthly Ops Dashboard</b></p>
     <p class="legend">สีในแผนภาพ: 🟧 คน (HITL) · 🟦 AI · 🟩 Data/Connector</p>
   </header>
 
@@ -176,12 +176,12 @@ footer{font-size:12px;color:var(--muted);text-align:center;margin-top:8px}
     <div class="tbl"><table>
       <thead><tr><th>#</th><th>ไฟล์ / แหล่ง</th><th>ขนาด</th></tr></thead>
       <tbody>
-        <tr><td>1</td><td><code>ops_monthly_2566-2569.xlsx</code> (6 ไซต์ ม.ค. 2566–ก.ย. 2569)</td><td>25 KB · 270 แถว</td></tr>
-        <tr><td>2</td><td><code>shift_log_2568-2569.csv</code> (3 เหมือง × 30 รถ × 3 กะ)</td><td>~11 MB · ~172,000 แถว</td></tr>
-        <tr><td>3</td><td>SharePoint List <code>Project_Tracker</code>, <code>Issue_Log</code> (สำรอง: <code>m3_sharepoint/*.csv</code>)</td><td>12 โครงการ · 56 issue</td></tr>
-        <tr><td>4</td><td>อีเมล <code>[PRJ-…]</code> ใน Outlook (สำรอง: <code>m3_outlook/*.eml</code>)</td><td>20 ฉบับ</td></tr>
-        <tr><td>5</td><td><code>energy_prices_public_2023-2026.csv</code> (IMF via FRED)</td><td>4 KB · 45 เดือน</td></tr>
-        <tr><td>+</td><td><code>Monthly_Ops_Report_2569-09_FULL.docx</code> (ใช้หน้า 5)</td><td>~37 MB</td></tr>
+        <tr><td>1</td><td><a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/blob/master/materials/m4/data/ops_monthly_2566-2569.xlsx"><code>materials/m4/data/ops_monthly_2566-2569.xlsx</code></a> (6 ไซต์ ม.ค. 2566–ก.ย. 2569)</td><td>25 KB · 270 แถว</td></tr>
+        <tr><td>2</td><td><code>shift_log_2568-2569.csv</code> <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/blob/master/materials/m4/data/gen_m4_data.py">(สร้างด้วย <code>materials/m4/data/gen_m4_data.py</code>)</a> (3 เหมือง × 30 รถ × 3 กะ)</td><td>~11 MB · ~172,000 แถว</td></tr>
+        <tr><td>3</td><td>SharePoint List <code>Project_Tracker</code>, <code>Issue_Log</code> (สำรอง: <code>m3_sharepoint/*.csv</code> <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/tree/master/materials/m3/data/pack/sharepoint">(จาก <code>materials/m3/data/pack/sharepoint</code>)</a>)</td><td>12 โครงการ · 56 issue</td></tr>
+        <tr><td>4</td><td>อีเมล <code>[PRJ-…]</code> ใน Outlook (สำรอง: <code>m3_outlook/*.eml</code> <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/tree/master/materials/m3/data/pack/outlook">(จาก <code>materials/m3/data/pack/outlook</code>)</a>)</td><td>20 ฉบับ</td></tr>
+        <tr><td>5</td><td><a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/blob/master/materials/m4/data/energy_prices_public_2023-2026.csv"><code>materials/m4/data/energy_prices_public_2023-2026.csv</code></a> (IMF via FRED)</td><td>4 KB · 45 เดือน</td></tr>
+        <tr><td>+</td><td><code>Monthly_Ops_Report_2569-09_FULL.docx</code> <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/blob/master/materials/m4/data/gen_m4_data.py">(สร้างด้วย <code>materials/m4/data/gen_m4_data.py</code>)</a> (ใช้หน้า 5)</td><td>~37 MB</td></tr>
       </tbody>
     </table></div>
     <ol start="2">

@@ -126,7 +126,7 @@ footer{font-size:12px;color:var(--muted);text-align:center;margin-top:8px}
   <header class="intro">
     <span class="eyebrow">M3 · Microsoft 365 Connectors อย่างปลอดภัย</span>
     <h1>M3 Workshop · ค้นข้ามแหล่ง + แก้อย่างปลอดภัย (30 นาที · 11:30–12:00)</h1>
-    <p>ข้อมูลทั้งหมดเป็นข้อมูลสมมติจาก Sample Pack M3 · Connector ที่ใช้ได้: <b>SharePoint + Outlook</b> เท่านั้น (ไม่ใช้ Google Drive) · เปิด Artifact <b>Connector Mission</b> (<code>artifacts/connector-mission.html</code>) ไว้คู่กัน แล้วติ๊กตามทีละด่าน</p>
+    <p>ข้อมูลทั้งหมดเป็นข้อมูลสมมติจาก Sample Pack M3 · Connector ที่ใช้ได้: <b>SharePoint + Outlook</b> เท่านั้น (ไม่ใช้ Google Drive) · เปิด Artifact <b>Connector Mission</b> (<a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/blob/master/materials/m3/artifacts/connector-mission.html"><code>materials/m3/artifacts/connector-mission.html</code></a>) ไว้คู่กัน แล้วติ๊กตามทีละด่าน</p>
     <p class="legend">🟧 คน (HITL) · 🟦 AI · 🟩 Data/Connector · ทุกหน้ามี ✅ จุดที่ <b>คุณ</b> ต้องตรวจก่อนไปต่อ</p>
   </header>
 
@@ -143,7 +143,7 @@ footer{font-size:12px;color:var(--muted);text-align:center;margin-top:8px}
       <thead><tr><th></th><th>เส้นทาง A · Test tenant</th><th>เส้นทาง B · โฟลเดอร์สำรอง</th></tr></thead>
       <tbody>
         <tr><th>ใช้เมื่อ</th><td>IT เตรียมบัญชีทดสอบ + site <code>M3-Training</code> + mailbox ทดสอบแล้ว</td><td>ไม่เห็น Microsoft 365 ใน Connectors หรือ login ไม่ผ่านภายใน 2 นาที</td></tr>
-        <tr><th>ข้อมูล</th><td>อีเมล 20 ฉบับใน mailbox ทดสอบ · Project Tracker, Issue Log, Shared_Capex_Tracker_2569.xlsx บน site</td><td>โฟลเดอร์ <code>M3_SamplePack/</code> (outlook/*.eml + sharepoint/*) ในเครื่อง เปิดผ่าน Cowork</td></tr>
+        <tr><th>ข้อมูล</th><td>อีเมล 20 ฉบับใน mailbox ทดสอบ · Project Tracker, Issue Log, Shared_Capex_Tracker_2569.xlsx บน site</td><td>โฟลเดอร์ <code>M3_SamplePack/</code> <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/tree/master/materials/m3/data/pack">(= โฟลเดอร์ <code>materials/m3/data/pack</code>)</a> (outlook/*.eml + sharepoint/*) ในเครื่อง เปิดผ่าน Cowork</td></tr>
         <tr><th>Prompt เริ่ม</th><td>M3-P01</td><td>M3-P08</td></tr>
       </tbody>
     </table></div>
@@ -152,7 +152,7 @@ footer{font-size:12px;color:var(--muted);text-align:center;margin-top:8px}
     <ol>
       <li>เปิด Claude Desktop → Settings → Connectors ดูว่ามี <b>Microsoft 365</b> หรือไม่</li>
       <li>ยกมือถ้า <b>ไม่เห็น</b> → ไปเส้นทาง B ทันที (อย่าเสียเวลาแก้ login เกิน 2 นาที)</li>
-      <li>เส้นทาง B: แตกไฟล์ <code>M3_SamplePack.zip</code> ไว้ที่ Desktop แล้วให้ Cowork เข้าถึง <b>เฉพาะ</b> โฟลเดอร์นี้</li>
+      <li>เส้นทาง B: แตกไฟล์ <code>M3_SamplePack.zip</code> <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/tree/master/materials/m3/data/pack">(ZIP ของโฟลเดอร์ <code>materials/m3/data/pack</code>)</a> ไว้ที่ Desktop แล้วให้ Cowork เข้าถึง <b>เฉพาะ</b> โฟลเดอร์นี้</li>
     </ol>
 
     <label class="check" for="ck1"><input type="checkbox" id="ck1"><span><b>✅ Checkpoint:</b> ใช้บัญชีทดสอบ / โฟลเดอร์ Sample Pack เท่านั้น ไม่เปิดไฟล์งานจริง ไม่เปิดกล่องจดหมายจริง (ทบทวน Data Traffic Light จาก M1)</span></label>
@@ -175,7 +175,7 @@ footer{font-size:12px;color:var(--muted);text-align:center;margin-top:8px}
 ถ้าค้นไม่เจอ ให้บอกตรง ๆ ว่าไม่เจอ อย่าเดา</pre>
     </div>
 
-    <p><b>เส้นทาง B</b> · วาง M3-P08 (ใน <code>prompts.md</code>) ให้ Cowork นับจำนวนอีเมล โครงการ และ issue ที่ยัง Open</p>
+    <p><b>เส้นทาง B</b> · วาง M3-P08 (ใน <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/blob/master/materials/m3/prompts.md"><code>materials/m3/prompts.md</code></a>) ให้ Cowork นับจำนวนอีเมล โครงการ และ issue ที่ยัง Open</p>
     <p class="note"><b>ดูอะไรระหว่างรอ:</b> Claude เรียกเครื่องมืออะไรบ้าง (search mail / search SharePoint) นี่คือขั้น <b>Connect → Data</b> ใน AI → Connect → Data → Execute</p>
 
     <div class="checks">
