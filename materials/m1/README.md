@@ -42,7 +42,7 @@ Lecture 40 นาที (รวม Demo 8) · Workshop 20 นาที
 
 | Path | What |
 |---|---|
-| **Slides Artifact** · https://claude.ai/artifact/B5QugBgGE4eWMe69TrCvbv | **Delivery deck.** 41 slides built on Claude's core Slides Artifact type; speaker notes on every slide; Present mode; download as PDF/PPTX from Share › Export. All 7 diagrams redrawn natively (boxes + connectors) in the 3 STYLE colours with legend. Shared "Anyone with the link" (checked 2 Nov 2026) |
+| **Slides Artifact** · https://claude.ai/artifact/B5QugBgGE4eWMe69TrCvbv | **Delivery deck.** 42 slides (41 + speaker intro s01b) built on Claude's core Slides Artifact type; speaker notes on every slide; Present mode; download as PDF/PPTX from Share › Export. All 7 diagrams redrawn natively (boxes + connectors) in the 3 STYLE colours with legend. Shared "Anyone with the link" (checked 2 Nov 2026) |
 | `deck/project/deck.json` + `deck/project/slides/s01–s41.html` | **Ducky Engineer (วิศวกรเป็ด) branding prototype, 2 Nov 2026:** Sarabun, duck yellow #FFD066 / ink #231F20 / blue #0684C9 / bg #F4F4F4, logo on the cover and a small logo badge on every slide; diagram role colours (HITL/AI/Data) unchanged. M2–M8 not restyled yet. Source files of the Slides Artifact (republish with the Artifact tool, `root: materials/m1/deck`) |
 | `slides.md` → `slides.html` | Content source the Artifact was built from (same 41 slides and notes); superseded for delivery |
 | `workshop.md` | Workshop guide, 4 A4 pages |
@@ -62,7 +62,7 @@ All shared "Anyone with the link" (checked 2 Nov 2026, Ducky Engineer restyle; s
 
 | Artifact | File | claude.ai URL | Export PDF |
 |---|---|---|---|
-| M1 Slides (41 slides) | `deck/project/` | https://claude.ai/artifact/B5QugBgGE4eWMe69TrCvbv | ✅ (Share › Export, PDF/PPTX) |
+| M1 Slides (42 slides incl. speaker intro) | `deck/project/` | https://claude.ai/artifact/B5QugBgGE4eWMe69TrCvbv | ✅ (Share › Export, PDF/PPTX) |
 | M1 Workshop (ใบงาน 4 หน้า) | `artifacts/workshop-sheet.html` | https://claude.ai/artifact/W9dt4fKCCRZn4pZMXycNdR | ✅ |
 | Data Traffic Light (เกม 15 ใบ) | `artifacts/data-traffic-light.html` | https://claude.ai/artifact/F9jhpdSui1ybEe4M794LvZ | ✅ |
 
