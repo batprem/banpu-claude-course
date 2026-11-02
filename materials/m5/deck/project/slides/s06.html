@@ -22,7 +22,9 @@
 <div style="display:flex;flex-direction:row;gap:12px;align-items:center"><div style="width:32px;height:32px;background:#3BA55C;border-radius:6px"></div><p style="font-size:24px;color:#3D3839">Data/Connector</p></div>
 </div>
 <div style="position:absolute;right:40px;bottom:32px;width:88px;height:88px;background:#FFFDF8;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(35,31,32,0.15)"><img src="/_blob/1f6577b9699f75e28b3b55e62983f6ca" alt="Ducky Engineer" style="width:72px;height:72px;object-fit:contain"></div>
-<aside>[6:00] กลไกนี้ Anthropic เรียกว่า progressive disclosure: ตอนเริ่มแชต Claude เห็นแค่ชื่อ + description ของทุก Skill (ประมาณ 100 token ต่อ Skill) จะอ่าน SKILL.md (แนะนำไม่เกิน ~5,000 token) และไฟล์อื่นเมื่องานตรงเท่านั้น (SOURCES #3, #10)
-พูดตรง ๆ: Skill ไม่ได้ทำให้ฟรี เมื่อใช้ Skill ก็ยังอ่าน SKILL.md แต่ที่ประหยัดจริงคือ (1) ไม่ต้อง paste คำสั่ง/ตัวอย่างยาวซ้ำ (2) รอบแก้ “ขอหัวข้อแบบนี้ ไม่ใช่แบบนั้น” หายไป (3) งานรูปแบบชัดใช้ model เบากว่าได้
-เชื่อม requirement 13 และ M8 (เคล็ดลับ usage): แชตใหม่ + Skill ดีกว่าแชตยาวที่สะสมคำสั่ง</aside>
+<aside>หลายคนถามว่า Skill ช่วยประหยัด usage จริงไหม ดูกลไกนี้ครับ Anthropic เรียกว่า progressive disclosure ตอนเริ่มแชต Claude เห็นแค่ชื่อกับ description ของทุก Skill ประมาณ 100 token ต่อ Skill เท่านั้น แล้วถามตัวเองว่างานนี้ตรงกับ Skill ไหนไหม ถ้าใช่ ค่อยอ่าน SKILL.md และ template เมื่อจำเป็น ถ้าไม่ใช่ ก็ไม่โหลดเนื้อหา ไม่เสีย token เพิ่ม แต่ผมขอพูดตรง ๆ นะครับ Skill ไม่ได้ทำให้ฟรี เวลาใช้ Skill ก็ยังต้องอ่าน SKILL.md อยู่ ที่ประหยัดจริงมีสามข้อ หนึ่ง ไม่ต้องวางคำสั่งกับตัวอย่างยาว ๆ ซ้ำทุกแชต สอง ได้รูปแบบถูกตั้งแต่รอบแรก รอบแก้แบบ "ขอหัวข้อแบบนี้ ไม่ใช่แบบนั้น" หายไป สาม งานที่รูปแบบชัดใช้ model ที่เบากว่าได้ เคล็ดลับคือ แชตใหม่คู่กับ Skill ดีกว่าแชตยาวที่สะสมคำสั่งไว้เยอะ ๆ ครับ
+----------
+[6:00] progressive disclosure: เริ่มแชต Claude เห็นแค่ชื่อ + description ทุก Skill (~100 token ต่อ Skill) อ่าน SKILL.md (แนะนำไม่เกิน ~5,000 token) และไฟล์อื่นเมื่องานตรงเท่านั้น (SOURCES #3, #10)
+ข้อควรระวัง: อย่าพูดว่า Skill ทำให้ฟรี เมื่อใช้ Skill ก็ยังอ่าน SKILL.md
+เชื่อม requirement 13 และ M8 (เคล็ดลับ usage)</aside>
 </section>

@@ -19,8 +19,10 @@
 <div style="display:flex;flex-direction:row;gap:12px;align-items:center"><div style="width:32px;height:32px;background:#3BA55C;border-radius:6px"></div><p style="font-size:24px;color:#3D3839">Data/Connector</p></div>
 </div>
 <div style="position:absolute;right:40px;bottom:32px;width:88px;height:88px;background:#FFFDF8;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(35,31,32,0.15)"><img src="/_blob/1f6577b9699f75e28b3b55e62983f6ca" alt="Ducky Engineer" style="width:72px;height:72px;object-fit:contain"></div>
-<aside>[8:00] ต่อยอดจาก 4 คำถามใน M1 (ที่มา · สิทธิ์ · Script · ส่งออก) เพิ่มอีก 2: คำสั่งแอบแฝง (prompt injection ใน comment/ไฟล์อ้างอิง) และผู้อนุมัติ/เวอร์ชันตายตัว
-Anthropic แนะนำให้ใช้ Skill จากแหล่งที่เชื่อถือได้เท่านั้น และ audit ทุกไฟล์ก่อนใช้: ดู script, URL ภายนอก, คำสั่งที่ไม่ตรงกับจุดประสงค์ของ Skill (SOURCES #9)
-Claude ช่วย “อ่านและสรุปความเสี่ยง” ได้ (prompt M5-P05) แต่ห้ามให้ติดตั้งหรือรัน script ระหว่างตรวจ และคนเป็นผู้ตัดสินใจ
-ผู้อนุมัติในบ้านปู: เสนอทีม Hi-I / IT (ต้องยืนยันกับคุณเก๊ ดู README)</aside>
+<aside>แล้วถ้าเป็น Skill จากภายนอกล่ะครับ จาก GitHub จาก marketplace หรือเพื่อนส่งมา ก่อนติดตั้งให้ใช้ Checklist 6 ข้อนี้ เมื่อเช้าใน M1 เรามี 4 คำถาม คือ ที่มา สิทธิ์ Script และการส่งข้อมูลออก วันนี้เพิ่มอีกสองข้อ ข้อห้าคือคำสั่งแอบแฝง หรือ prompt injection ที่ซ่อนอยู่ใน comment หรือไฟล์อ้างอิง ข้อหกคือมีผู้อนุมัติและเวอร์ชันที่ตายตัว ขั้นแรกให้อ่านทุกไฟล์ก่อน ให้ Claude ช่วยอ่านและสรุปความเสี่ยงได้ แต่ห้ามให้ติดตั้งหรือรัน script ระหว่างตรวจ และคนเป็นคนตัดสินใจครับ Anthropic เองก็แนะนำให้ใช้ Skill จากแหล่งที่เชื่อถือได้เท่านั้น และ audit ทุกไฟล์ก่อนใช้ ผลมีสามทางครับ พบธงแดงข้อสำคัญ ไม่ติดตั้ง ลบทิ้ง แล้วแจ้ง Hi-I หรือ IT ไม่แน่ใจ ส่งทีม Hi-I หรือ IT ตรวจ ผ่านและมีผู้อนุมัติ ก็ใช้เวอร์ชันที่อนุมัติ และเก็บสำเนาไว้ใน SharePoint ครับ
+----------
+[8:00] ต่อยอดจาก 4 คำถามใน M1 (ที่มา · สิทธิ์ · Script · ส่งออก) + 2 ข้อใหม่: คำสั่งแอบแฝง (prompt injection ใน comment/ไฟล์อ้างอิง) และผู้อนุมัติ/เวอร์ชันตายตัว
+Anthropic: ใช้ Skill จากแหล่งที่เชื่อถือได้เท่านั้น และ audit ทุกไฟล์ก่อนใช้ ดู script, URL ภายนอก, คำสั่งที่ไม่ตรงกับจุดประสงค์ของ Skill (SOURCES #9)
+Prompt M5-P05 = ให้ Claude อ่านและสรุปความเสี่ยง · ข้อควรระวัง: ห้ามให้ติดตั้งหรือรัน script ระหว่างตรวจ คนเป็นผู้ตัดสินใจ
+Open question: ผู้อนุมัติในบ้านปู เสนอทีม Hi-I / IT (ต้องยืนยันกับคุณเก๊ ดู README)</aside>
 </section>
