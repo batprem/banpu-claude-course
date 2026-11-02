@@ -16,6 +16,7 @@ SNIP = HERE.parents[1] / '_shared' / 'export-pdf-artifact.html'
 sys.dont_write_bytecode = True  # keep tools/ clean when importing the theme helper
 sys.path.insert(0, str(HERE.parents[2] / 'tools'))
 from apply_ducky_page_theme import theme as ducky_theme  # noqa: E402
+from add_workshop_links import insert as add_workshop_links  # noqa: E402
 
 
 def inline(s):
@@ -230,6 +231,7 @@ def main():
 </main>
 {SCRIPT}{scripts}'''
     doc = ducky_theme(doc)  # Sarabun, ink/paper hexes, logo badge (tools/apply_ducky_page_theme.py)
+    doc = add_workshop_links(doc, 'm7')  # 'Artifact ที่ใช้ใน Workshop นี้' box (tools/add_workshop_links.py)
     OUT.write_text(doc, encoding='utf-8')
     print(f'{OUT.name}: {n} pages, {counter["p"]} prompts, {doc.count("class=\"diagram mmd")} diagrams')
 
