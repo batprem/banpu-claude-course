@@ -49,6 +49,8 @@
 
 All private until shared from each page's Share menu. Published 31 Oct 2026 with `capabilities: {downloads: true}`.
 
+Theme: Ducky Engineer (วิศวกรเป็ด) applied 2 Nov 2026 to the deck (yellow cover + logo, logo badge on s02–s15, Sarabun, #FFD066/#231F20/#0684C9/#F4F4F4) and both pages (apply_ducky_page_theme.py + yellow header accents), republished to the same URLs.
+
 | Artifact | File | claude.ai URL | Export PDF |
 |---|---|---|---|
 | M6 Slides (15 slides) | `deck/project/` | https://claude.ai/artifact/77u51h2Mek9CgrSedciouK | ✅ (Share › Export, PDF/PPTX) |
