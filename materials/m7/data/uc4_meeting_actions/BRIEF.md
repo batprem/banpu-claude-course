@@ -3,7 +3,7 @@
 
 **เจ้าของโจทย์ (สมมติ):** ทีม Ops Planning ประชุมทุกสัปดาห์ action item กระจายอยู่ในบันทึกหลายรูปแบบ งานหลุดบ่อยเพราะไม่มีใครรวมเข้า tracker
 
-| Canvas | ตั้งต้น (ทีมปรับได้) |
+| Canvas | ตั้งต้น (ปรับได้) |
 |---|---|
 | Data | `meetings/` 4 ไฟล์ (.md .txt .vtt transcript) · `action_tracker_sharepoint_list_export.csv` (tracker เดิม) · `owners.md` |
 | Connector | วันจริง: SharePoint List (tracker) + Outlook (ร่างอีเมลติดตาม) · วันนี้: โฟลเดอร์ใน Cowork |

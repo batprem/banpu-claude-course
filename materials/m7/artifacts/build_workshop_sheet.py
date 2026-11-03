@@ -195,7 +195,7 @@ def main():
     intro = ' '.join(x for x in tl[1:] if x.strip())
     style = re.search(r'<style>(.*?)</style>', M6.read_text(encoding='utf-8'), re.S).group(1)
     style = style.replace('/* Layout: one calm column of 4 workshop "pages"', '/* Layout: one calm column of 13 workshop "pages"')
-    style = style.replace('design → schedule → test run → decide.', 'team → canvas → build → present.')
+    style = style.replace('design → schedule → test run → decide.', 'choose → canvas → build → self-check.')
     snip = SNIP.read_text(encoding='utf-8')
     scripts = snip[snip.index('<script src='):]
     btn = re.search(r'<button class="export-pdf-btn[^>]*>.*?</button>\n', scripts).group(0)

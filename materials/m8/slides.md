@@ -11,7 +11,7 @@ duration: 45 min (Lecture 20 / Workshop 25)
 16:15–17:00 · 45 นาที (บรรยาย 20 · Workshop 25)
 
 ???
-[0:00 · 16:15] ต่อจาก Show & Share ของ M7 ทันที ชมทีมที่ชนะโหวต 10 วินาที แล้วเข้าเรื่อง
+[0:00 · 16:15] ต่อจาก M7 ทันที (ทุกคน Export PDF การ์ดงานของตัวเองแล้ว) ชมความตั้งใจ 10 วินาที แล้วเข้าเรื่อง
 Requirement ที่ปิดในโมดูลนี้: 2 (Security & ข้อมูลอ่อนไหว · Personal vs Team), 3 (Connector · copy-before-write), 9 (Third-party Skill · ย้ำ), 13 (ใช้ให้คุ้ม · Hands-on เบา)
 ให้ทุกคนเปิด 2 ไฟล์รอไว้: `artifacts/security-quiz.html` และ `artifacts/plan-30-days.html` (หรือลิงก์ Artifact ที่ Hi-I แชร์ให้)
 บอกตรง ๆ: "45 นาทีสุดท้ายนี้ สิ่งที่เราอยากให้ติดตัวกลับไปคือ กฎ 6 ข้อ และแผน 1 หน้า"
@@ -26,7 +26,7 @@ flowchart LR
     U --> Q["③ Quiz 18 ข้อ<br/>+ รอบสุดท้าย Traffic Light<br/>12 นาที"]:::human
     C[("การ์ด Data Traffic Light<br/>จาก M1 (อ่านอย่างเดียว)")]:::data --> Q
     Q --> P["④ แผน 30 วันของฉัน<br/>Artifact + Export PDF<br/>8 นาที"]:::human
-    M7[("การ์ดทีมจาก M7<br/>Show & Share PDF")]:::data --> P
+    M7[("การ์ดงานของฉันจาก M7<br/>Capstone Board PDF")]:::data --> P
     P --> E["⑤ Q&A · แบบประเมิน · ปิด<br/>4 นาที"]:::human
     classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
     classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
@@ -341,7 +341,7 @@ flowchart LR
 [16:00] อธิบาย 30 วินาที แล้วเริ่มนับเวลา (16:31)
 ภารกิจ 1 ทำในบัญชี Claude Team ของตัวเอง ใช้ข้อความสมมติในคู่มือเท่านั้น
 ภารกิจ 2 Quiz เปิดไฟล์ HTML หรือลิงก์ Artifact ไม่เรียก AI ไม่กิน usage · คะแนนไม่ถูกส่งไปไหน (อยู่ในเครื่อง)
-ภารกิจ 3 ต่อจากการ์ดทีม M7: เอา "แผนต่อยอด" ของทีมมาเป็นแผนส่วนตัว
+ภารกิจ 3 ต่อจากการ์ดงานของฉันใน M7: เอา "ก้าวต่อไป 30 วัน" มาเป็นแผนส่วนตัว
 
 ---
 
@@ -349,7 +349,7 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-    U[("use case ของฉัน<br/>+ การ์ดทีมจาก M7")]:::data --> I["Interview pattern<br/>Claude ถามทีละข้อ"]:::ai
+    U[("use case ของฉัน<br/>+ การ์ดงานของฉันจาก M7")]:::data --> I["Interview pattern<br/>Claude ถามทีละข้อ"]:::ai
     I --> W1["สัปดาห์ 1<br/>เลือก 1 งาน 🟢 · ตั้ง Project"]:::human
     W1 --> W2["สัปดาห์ 2<br/>ทำจริง 3 ครั้ง · จดเวลา"]:::ai
     W2 --> W3["สัปดาห์ 3<br/>ทำ Skill / Template · ชวนเพื่อน 1 คน"]:::ai

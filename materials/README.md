@@ -20,4 +20,4 @@
 - Sample Data Pack — synthetic data lives in each module's `data/` folder (generator scripts committed; large outputs regenerated).
 
 ## Engagement Artifacts (owner module)
-Workshop Companion (M2) · Prompt Playground (M2) · Data Traffic Light game (M1, reused in M8) · Prototype Gallery (M2/M4) · Excel Detective (M2) · Show & Share board (M7)
+Workshop Companion (M2) · Prompt Playground (M2) · Data Traffic Light game (M1, reused in M8) · Prototype Gallery (M2/M4) · Excel Detective (M2) · Capstone Board (M7, individual)

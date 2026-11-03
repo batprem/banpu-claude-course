@@ -3,7 +3,7 @@
 
 **เจ้าของโจทย์ (สมมติ):** ทีม ESG รวบรวมข้อมูลพลังงาน น้ำ และการปล่อยก๊าซจาก 4 Site ทุกปี แต่ละ Site ส่งไฟล์คนละรูปแบบ คนละหน่วย คนละความถี่
 
-| Canvas | ตั้งต้น (ทีมปรับได้) |
+| Canvas | ตั้งต้น (ปรับได้) |
 |---|---|
 | Data | `site_A_energy_water_2568.xlsx` (kWh, ลิตร) · `site_C_esg_2568.csv` (MWh, ตัน) · `site_F_solar_2568.xlsx` (รายไตรมาส) · `site_G_utilities_2568.csv` (MMBtu) · `emission_factors_SYNTHETIC.csv` · `esg_targets_2568.csv` |
 | Connector | วันจริง: SharePoint folder ที่แต่ละ Site อัปโหลด · วันนี้: โฟลเดอร์ใน Cowork |

@@ -17,7 +17,7 @@ M5 Skills & Plugins · M6 Automation · M7 Capstone · M8 Security recap, quiz, 
 Slide workflow · Scattered Excel → Insight · AI→Connect→Data→Execute · Document Factory → Schedule · Monitoring · Chat/Project/Skill/Agent/Artifact decision tree · Data Traffic Light
 
 ## Engagement Artifacts
-Workshop Companion (steps, checklist, copy-prompt) · Prompt Playground (before/after) · Data Traffic Light game · Prototype Gallery (vote) · Excel Detective (missions) · Show & Share board
+Workshop Companion (steps, checklist, copy-prompt) · Prompt Playground (before/after) · Data Traffic Light game · Prototype Gallery (vote) · Excel Detective (missions) · Capstone Board (M7 individual self-check)
 
 ## Build order
 1. Lock the TOC  2. Sample Data Pack  3. Prompt templates  4. Lecture slides  5. Workshop guides + diagrams  6. Quiz/checklists/appendix  7. Dry-run on a Claude Team account (usage + timing)

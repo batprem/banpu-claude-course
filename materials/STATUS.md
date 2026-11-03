@@ -24,7 +24,7 @@ Workers were repeatedly cut off by API connection loss ("Connection lost mid-res
 | M4 Document Factory & Artifacts | 40′ | 15 (15) | 5 (5) | 6 | Monthly Ops Dashboard (v1/v2) · Output Picker | Deloitte Australia AI-error report refund 2025 | worker | `9b18a9f` |
 | M5 Skills & Plugins | 30′ | 10 (10) | 4 (4) | 5 | Skill Security Checklist | ClawHavoc: 341 malicious Skills on ClawHub 2026 | worker | `1801c9d` |
 | M6 Automation | 35′ | 15 (15) | 4 (4) | 8 | Automation Card | Air Canada chatbot ruling 2024 | worker ×3 + orchestrator (README, SOURCES, story swap) | `67c740b` |
-| M7 Capstone | 75′ | 10 (10) | 13 (13) | 9 | Show & Share board | Novo Nordisk clinical documentation with Claude | worker (relaunched once) | `956364d` |
+| M7 Capstone | 75′ | 10 (10) | 13 (13) | 9 | Capstone Board (individual, no presenting) | Novo Nordisk clinical documentation with Claude | worker (relaunched once) | `956364d` |
 | M8 Security recap, Quiz & 30-day plan | 45′ | 20 (20) | 5 (5) | 9 | Security & Usage Quiz (18 Q + Traffic Light final round) · แผน 30 วัน | Microsoft AI research 38TB shared-link exposure (Wiz, 2023) | worker ×2 + orchestrator (plan Artifact script + spec, workshop, README, SOURCES) | `cc778ca` |
 
 ## Claude Artifacts on claude.ai (all 29)
@@ -58,7 +58,7 @@ Each module README has the same list under `## Claude Artifacts (claude.ai)`.
 | M6 | Automation Card | `m6/artifacts/automation-card.html` | https://claude.ai/artifact/HFdt3zwrfBgErGfv6q5TUk | ✅ |
 | M7 | Slides · 10 slides | `m7/deck/project/` | https://claude.ai/artifact/17aWEiXMohcTuVjq2mKxzh | Share › Export (PDF/PPTX) |
 | M7 | Workshop sheet · 13 หน้า | `m7/artifacts/workshop-sheet.html` (from `build_workshop_sheet.py`) | https://claude.ai/artifact/GYFfuKNKMURfsooszp4cKc | ✅ |
-| M7 | Show & Share Board | `m7/artifacts/show-share-board.html` | https://claude.ai/artifact/VncwbAfqEmSuDFBtGfx5uy | ✅ |
+| M7 | Capstone Board (การ์ดงานของฉัน · แกลเลอรี · เช็กลิสต์ตรวจงานตัวเอง) | `m7/artifacts/show-share-board.html` | https://claude.ai/artifact/VncwbAfqEmSuDFBtGfx5uy | ✅ |
 | M8 | Slides · 21 slides (incl. evaluation QR) | `m8/deck/project/` | https://claude.ai/artifact/Uix5PCdLVDFT2EpceDUi1Q | Share › Export (PDF/PPTX) |
 | M8 | Workshop sheet · 5 หน้า | `m8/artifacts/workshop-sheet.html` | https://claude.ai/artifact/CQD1FRgAQ1T27Lx4MSJ59L | ✅ |
 | M8 | Security & Usage Quiz | `m8/artifacts/security-quiz.html` | https://claude.ai/artifact/L6PcYj1MiRy7Aah9cUVgsv | ✅ |

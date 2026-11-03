@@ -3,7 +3,7 @@
 
 **เจ้าของโจทย์ (สมมติ):** ทีม HSE ต้องส่งรายงานทุกเช้าวันจันทร์ 10:00 รวม log จาก 4 Site + อีเมลอัปเดตจาก Site ใช้เวลา 2–3 ชั่วโมงทุกสัปดาห์
 
-| Canvas | ตั้งต้น (ทีมปรับได้) |
+| Canvas | ตั้งต้น (ปรับได้) |
 |---|---|
 | Data | `incident_log.csv` (8 สัปดาห์, เหมือน export จาก SharePoint List) · `emails/` 3 ฉบับ (.eml เหมือน Outlook) |
 | Connector | วันจริง: SharePoint List + Outlook · วันนี้: โฟลเดอร์ใน Cowork (เส้นทาง B ของ M3) |

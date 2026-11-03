@@ -2,7 +2,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap">
 <style>
-/* Layout: one calm column of 13 workshop "pages" (A4 cards) under a sticky progress strip; team → canvas → build → present. */
+/* Layout: one calm column of 13 workshop "pages" (A4 cards) under a sticky progress strip; choose → canvas → build → self-check. */
 :root{
   --paper:#F4F4F4; --surface:#FFFFFF; --ink:#231F20; --muted:#5E5859; --line:#E3DDCF; --code:#F3EFE6;
   --human:#E4572E; --ai:#2E86AB; --data:#3BA55C; --warn:#FFD066; --accent:#0684C9; --red:#D64545;
@@ -150,50 +150,50 @@ header.intro .eyebrow{color:#231F20;font-weight:700}
 <header class="intro">
   <span class="eyebrow">M7 · Capstone</span>
   <h1>M7 Workshop · Capstone: Use Case จริงของเรา (65 นาที · 15:10–16:15)</h1>
-  <p>ข้อมูลทุกไฟล์เป็นข้อมูลสมมติ · Data pack: <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/tree/master/materials/m7/data"><code>banpu-claude-course-master/materials/m7/data/uc1…uc5_*/</code></a> (แต่ละโฟลเดอร์มี <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/tree/master/materials/m7/data"><code>BRIEF.md</code></a>) · Prompt: <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/blob/master/materials/m7/prompts.md"><code>materials/m7/prompts.md</code></a> (M7-P01…P10) · บอร์ด: <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/blob/master/materials/m7/artifacts/show-share-board.html"><code>materials/m7/artifacts/show-share-board.html</code></a> · ทีมละ 6–8 คน (คลาส 30–40 คน = 5 ทีม)</p>
+  <p>ข้อมูลทุกไฟล์เป็นข้อมูลสมมติ · Data pack: <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/tree/master/materials/m7/data"><code>banpu-claude-course-master/materials/m7/data/uc1…uc5_*/</code></a> (แต่ละโฟลเดอร์มี <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/tree/master/materials/m7/data"><code>BRIEF.md</code></a>) · Prompt: <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/blob/master/materials/m7/prompts.md"><code>materials/m7/prompts.md</code></a> (M7-P01…P10) · บอร์ด: <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/blob/master/materials/m7/artifacts/show-share-board.html"><code>materials/m7/artifacts/show-share-board.html</code></a> (Capstone Board) · ทำคนเดียว ทุกคนสร้างต้นแบบของตัวเอง 1 ชิ้น</p>
 </header>
 
-<div class="ws-artifacts" style="background:#FFF3D1;color:#231F20;border:1px solid #F2D58A;border-left:8px solid #FFD066;border-radius:12px;padding:14px 18px;margin:16px 0 20px;break-inside:avoid"><p style="margin:0 0 6px;font-weight:700;font-size:17px;color:#231F20">🔗 Artifact ที่ใช้ใน Workshop นี้</p><p style="margin:0 0 6px;font-size:14px;color:#3D3839">คลิกเพื่อเปิดในแท็บใหม่ · ทุกลิงก์เปิดได้ด้วยลิงก์นี้ (Anyone with the link)</p><ul style="margin:0;padding-left:20px;font-size:16px"><li style="margin:6px 0;line-height:1.5"><a href="https://claude.ai/artifact/VncwbAfqEmSuDFBtGfx5uy" target="_blank" rel="noopener" style="color:#0684C9;font-weight:700;text-decoration:underline">Show &amp; Share Board ↗</a> <span style="color:#3D3839">— การ์ดทีม โหวต rubric และ timer</span><br><span style="font-size:13px;color:#5E5859;word-break:break-all">https://claude.ai/artifact/VncwbAfqEmSuDFBtGfx5uy</span></li></ul></div><!-- /ws-artifacts -->
-<div class="ws-setup" style="background:#FFFDF8;color:#231F20;border:1px solid #CFE6F5;border-left:8px solid #0684C9;border-radius:12px;padding:14px 18px;margin:0 0 20px;break-inside:avoid"><p style="margin:0 0 6px;font-weight:700;font-size:17px;color:#231F20">🧰 เตรียมไฟล์ก่อนเริ่ม (ทำครั้งเดียว ใช้ได้ทั้งวัน · 2 นาที)</p><ol style="margin:0;padding-left:22px;font-size:16px;line-height:1.55"><li>ดาวน์โหลด ZIP ของ repo: เปิด <a href="https://github.com/batprem/banpu-claude-course" target="_blank" rel="noopener" style="color:#0684C9;font-weight:700;text-decoration:underline">github.com/batprem/banpu-claude-course ↗</a> → ปุ่ม <b>Code</b> → <b>Download ZIP</b> (หรือ <a href="https://github.com/batprem/banpu-claude-course/archive/refs/heads/master.zip" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline">ลิงก์ดาวน์โหลดตรง</a>)<br><span style="font-size:13px;color:#5E5859;word-break:break-all">https://github.com/batprem/banpu-claude-course/archive/refs/heads/master.zip</span></li><li>คลิกขวาไฟล์ ZIP → <b>Extract All</b> (Mac: ดับเบิลคลิก) ไว้ใน Documents → ได้โฟลเดอร์ <code>banpu-claude-course-master/</code></li><li>Workshop นี้ใช้: แต่ละทีมใช้โฟลเดอร์โจทย์ใน <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/tree/master/materials/m7/data"><code>banpu-claude-course-master/materials/m7/data</code></a> (<code>uc1_…</code> ถึง <code>uc5_…</code>) แล้วสร้างโฟลเดอร์ย่อย <code>output/</code> ข้างใน · ทีม BYO สร้างโฟลเดอร์ใหม่ <code>banpu-claude-course-master/materials/m7/capstone_&lt;ทีม&gt;/</code></li></ol><p style="margin:8px 0 0;font-size:14px;color:#3D3839">ZIP คือต้นฉบับ (copy-before-write): ถ้าไฟล์เสียหรืออยากเริ่มใหม่ ให้แตก ZIP ใหม่ · ถ้าแตกไว้แล้วตั้งแต่โมดูลก่อน ข้ามข้อ 1–2 ได้ · ข้อมูลทั้งหมดเป็นข้อมูลสมมติ</p></div><!-- /ws-setup -->
+<div class="ws-artifacts" style="background:#FFF3D1;color:#231F20;border:1px solid #F2D58A;border-left:8px solid #FFD066;border-radius:12px;padding:14px 18px;margin:16px 0 20px;break-inside:avoid"><p style="margin:0 0 6px;font-weight:700;font-size:17px;color:#231F20">🔗 Artifact ที่ใช้ใน Workshop นี้</p><p style="margin:0 0 6px;font-size:14px;color:#3D3839">คลิกเพื่อเปิดในแท็บใหม่ · ทุกลิงก์เปิดได้ด้วยลิงก์นี้ (Anyone with the link)</p><ul style="margin:0;padding-left:20px;font-size:16px"><li style="margin:6px 0;line-height:1.5"><a href="https://claude.ai/artifact/VncwbAfqEmSuDFBtGfx5uy" target="_blank" rel="noopener" style="color:#0684C9;font-weight:700;text-decoration:underline">Capstone Board ↗</a> <span style="color:#3D3839">— การ์ดงานของฉัน · เช็กลิสต์ตรวจงานตัวเอง · แกลเลอรี (ดูได้ ไม่บังคับ)</span><br><span style="font-size:13px;color:#5E5859;word-break:break-all">https://claude.ai/artifact/VncwbAfqEmSuDFBtGfx5uy</span></li></ul></div><!-- /ws-artifacts -->
+<div class="ws-setup" style="background:#FFFDF8;color:#231F20;border:1px solid #CFE6F5;border-left:8px solid #0684C9;border-radius:12px;padding:14px 18px;margin:0 0 20px;break-inside:avoid"><p style="margin:0 0 6px;font-weight:700;font-size:17px;color:#231F20">🧰 เตรียมไฟล์ก่อนเริ่ม (ทำครั้งเดียว ใช้ได้ทั้งวัน · 2 นาที)</p><ol style="margin:0;padding-left:22px;font-size:16px;line-height:1.55"><li>ดาวน์โหลด ZIP ของ repo: เปิด <a href="https://github.com/batprem/banpu-claude-course" target="_blank" rel="noopener" style="color:#0684C9;font-weight:700;text-decoration:underline">github.com/batprem/banpu-claude-course ↗</a> → ปุ่ม <b>Code</b> → <b>Download ZIP</b> (หรือ <a href="https://github.com/batprem/banpu-claude-course/archive/refs/heads/master.zip" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline">ลิงก์ดาวน์โหลดตรง</a>)<br><span style="font-size:13px;color:#5E5859;word-break:break-all">https://github.com/batprem/banpu-claude-course/archive/refs/heads/master.zip</span></li><li>คลิกขวาไฟล์ ZIP → <b>Extract All</b> (Mac: ดับเบิลคลิก) ไว้ใน Documents → ได้โฟลเดอร์ <code>banpu-claude-course-master/</code></li><li>Workshop นี้ใช้: เลือกโฟลเดอร์โจทย์ของคุณใน <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/tree/master/materials/m7/data"><code>banpu-claude-course-master/materials/m7/data</code></a> (<code>uc1_…</code> ถึง <code>uc5_…</code>) แล้วสร้างโฟลเดอร์ย่อย <code>output/</code> ข้างใน · ถ้าใช้งานของคุณเอง สร้างโฟลเดอร์ใหม่ <code>banpu-claude-course-master/materials/m7/capstone_&lt;ชื่อคุณ&gt;/</code> (ข้อมูลจำลองเท่านั้น)</li></ol><p style="margin:8px 0 0;font-size:14px;color:#3D3839">ZIP คือต้นฉบับ (copy-before-write): ถ้าไฟล์เสียหรืออยากเริ่มใหม่ ให้แตก ZIP ใหม่ · ถ้าแตกไว้แล้วตั้งแต่โมดูลก่อน ข้ามข้อ 1–2 ได้ · ข้อมูลทั้งหมดเป็นข้อมูลสมมติ</p></div><!-- /ws-setup -->
 <section class="card" id="page1" data-page="1">
-<div class="card-head"><div><div class="pg">หน้า 1 / 13</div><h2>ภาพรวม 65 นาที และบทบาทในทีม</h2></div><span class="chip">อ่าน 1 นาที · 15:10</span></div>
+<div class="card-head"><div><div class="pg">หน้า 1 / 13</div><h2>ภาพรวม 65 นาที และสิ่งที่คุณจะได้</h2></div><span class="chip">อ่าน 1 นาที · 15:10</span></div>
 <div class="diagram mmd" role="img" aria-label="แผนภาพขั้นตอน"><pre class="mmd-src">flowchart LR
-    T[&quot;① ตั้งทีม + เลือก use case&lt;br/&gt;5 นาที&quot;]:::human --&gt; A[&quot;② วิเคราะห์ Canvas&lt;br/&gt;Data → Connector → Output → Trade-off&lt;br/&gt;10 นาที&quot;]:::human
-    D[(&quot;Data pack สมมติ UC1–UC5&lt;br/&gt;หรือ use case ของทีม (🟢 เท่านั้น)&quot;)]:::data --&gt; A
-    A --&gt; B[&quot;③ สร้างต้นแบบด้วย Cowork&lt;br/&gt;21 นาที&quot;]:::ai
+    T[&quot;① เลือกโจทย์ของฉัน&lt;br/&gt;+ เปิดโฟลเดอร์ · 5 นาที&quot;]:::human --&gt; A[&quot;② วิเคราะห์ Canvas&lt;br/&gt;Data → Connector → Output → Trade-off&lt;br/&gt;10 นาที&quot;]:::human
+    D[(&quot;Data pack สมมติ UC1–UC5&lt;br/&gt;หรืองานของคุณเอง (🟢 เท่านั้น)&quot;)]:::data --&gt; A
+    A --&gt; B[&quot;③ สร้างต้นแบบด้วย Cowork&lt;br/&gt;30 นาที&quot;]:::ai
     B --&gt; C{&quot;HITL: ตัวเลข/ที่มา&lt;br/&gt;ถูกไหม?&quot;}:::human
     C -- แก้ --&gt; B
-    C -- ผ่าน --&gt; P[&quot;④ เตรียมนำเสนอ&lt;br/&gt;+ โพสต์ Show &amp; Share board · 4 นาที&quot;]:::human
-    P --&gt; S[&quot;⑤ Show &amp; Share 3 นาที/ทีม&lt;br/&gt;+ feedback 1 นาที · 20 นาที&quot;]:::human
-    S --&gt; V[&quot;⑥ โหวต + สรุป → M8 · 5 นาที&quot;]:::human
+    C -- ผ่าน --&gt; P[&quot;④ ตรวจงานตัวเองด้วยเช็กลิสต์&lt;br/&gt;+ แก้เป็น v2 · 10 นาที&quot;]:::human
+    P --&gt; S[(&quot;⑤ การ์ดงานของฉัน&lt;br/&gt;บน Capstone Board&quot;)]:::data
+    S --&gt; V[&quot;Export PDF + ก้าวต่อไป 30 วัน&lt;br/&gt;→ M8 · 10 นาที&quot;]:::ai
     classDef human fill:#E4572E,color:#fff,stroke:#231F20;
     classDef ai fill:#2E86AB,color:#fff,stroke:#231F20;
     classDef data fill:#3BA55C,color:#fff,stroke:#231F20;</pre></div>
 <p class="legend">🟧 คน (HITL) · 🟦 AI · 🟩 Data/Connector</p>
-<div class="tbl"><table><thead><tr><th>เวลา</th><th>ช่วง</th><th>ผลลัพธ์ที่ต้องมี</th><th>หน้า</th></tr></thead><tbody><tr><td>15:10–15:15</td><td>① ตั้งทีม + เลือกโจทย์</td><td>ชื่อทีม · โจทย์ · บทบาทครบ</td><td>2</td></tr><tr><td>15:15–15:25</td><td>② Canvas + Trade-off</td><td>Canvas 4 ช่อง + diagram</td><td>3–4</td></tr><tr><td>15:25–15:46</td><td>③ สร้างต้นแบบด้วย Cowork</td><td>ต้นแบบ v1 ผ่าน HITL</td><td>5–11</td></tr><tr><td>15:46–15:50</td><td>④ เตรียมนำเสนอ</td><td>การ์ดบนบอร์ด + บท 3 นาที</td><td>12</td></tr><tr><td>15:50–16:10</td><td>⑤ Show &amp; Share</td><td>5 ทีม × (3 นาที + feedback 1)</td><td>13</td></tr><tr><td>16:10–16:15</td><td>⑥ โหวต + สรุป</td><td>PDF บอร์ด → M8</td><td>13</td></tr></tbody></table></div>
-<h3><b>บทบาท (เลือกใน 1 นาที คนละ 1 บท):</b></h3>
-<ul><li>🧭 <b>เจ้าของโจทย์</b> อธิบายว่าใครเจ็บ และ "เสร็จ" หน้าตาเป็นอย่างไร</li><li>🟦 <b>ผู้ขับ Cowork</b> คนเดียวที่พิมพ์ในเครื่อง (ประหยัด usage ทั้งทีม)</li><li>🟧 <b>ผู้ตรวจ HITL</b> เปิดไฟล์ต้นฉบับเทียบตัวเลข มีสิทธิ์ "ไม่อนุมัติ"</li><li>⏱️ <b>ผู้คุมเวลา</b> ดูนาฬิกา เตือนทุก 5 นาที</li><li>🎤 <b>ผู้นำเสนอ</b> กรอกการ์ดบนบอร์ด และพูด 3 นาที</li><li>🔍 <b>นักวิเคราะห์</b> (คนที่ 6–8) ตรวจ Trade-off และหาจุดที่ข้อมูลจะเป็น 🟡/🔴 ในงานจริง</li></ul>
-<label class="check" for="ck1_1"><input type="checkbox" id="ck1_1"><span><b>Checkpoint:</b> ทุกคนในทีมรู้บทของตัวเอง และรู้ว่าจะเปิดหน้าไหนต่อ</span></label>
-<p class="note">🧑‍🏫 <b>วิทยากร:</b> เปิดบอร์ดแท็บ Timer บนจอใหญ่ ตั้ง 5:00 แล้วกดเริ่ม</p>
+<div class="tbl"><table><thead><tr><th>เวลา</th><th>ช่วง</th><th>ผลลัพธ์ที่ต้องมี</th><th>หน้า</th></tr></thead><tbody><tr><td>15:10–15:15</td><td>① เลือกโจทย์ของฉัน + เปิดโฟลเดอร์</td><td>โจทย์ 1 เรื่อง · โฟลเดอร์เปิดได้</td><td>2</td></tr><tr><td>15:15–15:25</td><td>② Canvas + Trade-off</td><td>Canvas 4 ช่อง + diagram</td><td>3–4</td></tr><tr><td>15:25–15:55</td><td>③ สร้างต้นแบบด้วย Cowork (Plan → Approve 5 · ลงมือ + ตรวจแบบ HITL 25)</td><td>ต้นแบบ v1 ผ่าน HITL</td><td>5–11</td></tr><tr><td>15:55–16:05</td><td>④ ตรวจงานตัวเองด้วยเช็กลิสต์ + แก้เป็น v2</td><td>เช็กลิสต์ 4 ข้อ + ต้นแบบ v2</td><td>12</td></tr><tr><td>16:05–16:15</td><td>⑤ เก็บผลงาน: การ์ดงานของฉันบน Capstone Board + Export PDF + ก้าวต่อไป 30 วัน → M8</td><td>การ์ด + PDF</td><td>13</td></tr></tbody></table></div>
+<h3><b>สิ่งที่คุณจะได้ (ทำคนเดียว ไม่ต้องรอใคร):</b></h3>
+<ul><li>📁 <b>ต้นแบบ 1 ชิ้น</b> ในโฟลเดอร์ <code>output/</code> ของคุณ (Excel · Word · Artifact · ร่างอีเมล ตามโจทย์)</li><li>🗂️ <b>การ์ดงานของฉัน</b> บน Capstone Board: Data · Connector · Output · Trade-off · จุดที่คนตรวจ (HITL) · diagram</li><li>📄 <b>PDF 1 ไฟล์</b> การ์ด + เช็กลิสต์ตรวจงานตัวเอง + ก้าวต่อไป 30 วัน (ใช้ต่อใน M8)</li></ul>
+<label class="check" for="ck1_1"><input type="checkbox" id="ck1_1"><span><b>Checkpoint:</b> รู้ว่า 5 ช่วงคืออะไร และจะเปิดหน้าไหนต่อ · เปิด Capstone Board ไว้อีกแท็บแล้ว</span></label>
+<p class="note">🧑‍🏫 <b>วิทยากร:</b> ขึ้นตารางเวลานี้บนจอใหญ่ทิ้งไว้ · ประกาศเวลาทุกต้นช่วง (15:15 · 15:25 · 15:55 · 16:05) · เดินวนช่วยรายคน</p>
 </section>
 
 <section class="card pdf-page-break" id="page2" data-page="2">
-<div class="card-head"><div><div class="pg">หน้า 2 / 13</div><h2>① ตั้งทีม + เลือกโจทย์</h2></div><span class="chip">5 นาที · 15:10–15:15</span></div>
-<p class="goal"><b>เป้าหมาย:</b> ทีมได้โจทย์ 1 เรื่องที่ทำได้จริงใน 21 นาที และได้ data pack ในเครื่องผู้ขับ Cowork</p>
-<h3><b>เมนูโจทย์</b> (รายละเอียดใน <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/tree/master/materials/m7/data"><code>BRIEF.md</code></a> ของแต่ละ ZIP และหน้า 7–11)</h3>
-<div class="tbl"><table><thead><tr><th>โจทย์</th><th>เหมาะกับ</th><th>ความยาก</th><th>ใช้ทักษะจาก</th></tr></thead><tbody><tr><td>UC1 สรุปสัญญาจัดซื้อ</td><td>จัดซื้อ · กฎหมาย · Admin</td><td>⭐⭐</td><td>M2 · M4</td></tr><tr><td>UC2 รายงาน Incident รายสัปดาห์</td><td>HSE · Ops · Site</td><td>⭐⭐</td><td>M3 · M4 · M6</td></tr><tr><td>UC3 รวมข้อมูล ESG 4 Site</td><td>ESG · Data · การเงิน</td><td>⭐⭐⭐</td><td>M2 Workshop B · M4</td></tr><tr><td>UC4 ประชุม → Action tracker</td><td>PMO · ผู้จัดการทุกสาย</td><td>⭐</td><td>M3 · M6</td></tr><tr><td>UC5 Energy market brief</td><td>กลยุทธ์ · Trading · ผู้บริหาร</td><td>⭐⭐</td><td>M4 · M6</td></tr><tr><td>BYO โจทย์ของทีม</td><td>ทีมที่มีงานจริงชัด</td><td>⭐⭐⭐</td><td>ทั้งหมด</td></tr></tbody></table></div>
+<div class="card-head"><div><div class="pg">หน้า 2 / 13</div><h2>① เลือกโจทย์ของฉัน + เปิดโฟลเดอร์</h2></div><span class="chip">5 นาที · 15:10–15:15</span></div>
+<p class="goal"><b>เป้าหมาย:</b> ได้โจทย์ 1 เรื่องที่ทำได้จริงใน 30 นาที และเปิดโฟลเดอร์โจทย์ในเครื่องของตัวเองได้</p>
+<h3><b>เมนูโจทย์</b> (รายละเอียดใน <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/tree/master/materials/m7/data"><code>BRIEF.md</code></a> ของแต่ละโฟลเดอร์และหน้า 7–11)</h3>
+<div class="tbl"><table><thead><tr><th>โจทย์</th><th>เหมาะกับ</th><th>ความยาก</th><th>ใช้ทักษะจาก</th></tr></thead><tbody><tr><td>UC1 สรุปสัญญาจัดซื้อ</td><td>จัดซื้อ · กฎหมาย · Admin</td><td>⭐⭐</td><td>M2 · M4</td></tr><tr><td>UC2 รายงาน Incident รายสัปดาห์</td><td>HSE · Ops · Site</td><td>⭐⭐</td><td>M3 · M4 · M6</td></tr><tr><td>UC3 รวมข้อมูล ESG 4 Site</td><td>ESG · Data · การเงิน</td><td>⭐⭐⭐</td><td>M2 Workshop B · M4</td></tr><tr><td>UC4 ประชุม → Action tracker</td><td>PMO · ผู้จัดการทุกสาย</td><td>⭐</td><td>M3 · M6</td></tr><tr><td>UC5 Energy market brief</td><td>กลยุทธ์ · Trading · ผู้บริหาร</td><td>⭐⭐</td><td>M4 · M6</td></tr><tr><td>ใช้งานของคุณเอง</td><td>คนที่มีงานจริงชัด</td><td>⭐⭐⭐</td><td>ทั้งหมด</td></tr></tbody></table></div>
 <h3><b>ขั้นตอน</b></h3>
-<ol><li>นับ 1–5 วนทั้งห้อง หรือนั่งตามทีมที่ Hi-I จัด · ตั้งชื่อทีมสั้น ๆ (1 นาที)</li><li>โหวตเลือกโจทย์ในทีม: ใครมีงานคล้ายโจทย์ไหนมากที่สุด เลือกอันนั้น (2 นาที)</li><li>ผู้ขับ Cowork เปิดโฟลเดอร์โจทย์จาก ZIP ของ repo ที่แตกไว้ เช่น <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/tree/master/materials/m7/data/uc2_incident_weekly"><code>banpu-claude-course-master/materials/m7/data/uc2_incident_weekly/</code></a> (ZIP คือ<b>ต้นฉบับ</b> แตกใหม่ได้เสมอ) · BYO: สร้างโฟลเดอร์ใหม่ <code>banpu-claude-course-master/materials/m7/capstone_&lt;ทีม&gt;/</code> (2 นาที)</li></ol>
-<p><b>BYO (โจทย์ของทีมเอง):</b> ได้ ถ้าตอบ "ใช่" ทั้ง 3 ข้อ: ① อธิบายได้โดยไม่ต้องเปิดไฟล์จริง ② สร้างข้อมูลจำลองได้ใน 5 นาทีด้วย <code>M7-P02</code> ③ ข้อมูลจริงในอนาคตอยู่บน SharePoint/Outlook ไม่ใช่ระบบอื่น · ถ้าไม่ครบ เลือก UC ที่ใกล้ที่สุดแล้วเล่าโจทย์จริงตอนนำเสนอแทน</p>
-<div class="prompt"><div class="prompt-bar"><span>Prompt</span><button class="copy-btn no-print" type="button" data-copy="pr1">Copy</button></div><pre id="pr1">(BYO) ทีมเรามีงานจริงเรื่อง {…} ไฟล์จริงมีคอลัมน์ {…} ช่วยสร้างข้อมูลจำลองเพื่อฝึก … ใส่กับดัก 2 จุด</pre></div>
+<ol><li>เลือกโจทย์ที่ใกล้งานของคุณที่สุด ไม่แน่ใจ → เลือก UC4 (ง่ายสุด) (1 นาที)</li><li>เปิดโฟลเดอร์โจทย์จาก ZIP ของ repo ที่แตกไว้ เช่น <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/tree/master/materials/m7/data/uc2_incident_weekly"><code>banpu-claude-course-master/materials/m7/data/uc2_incident_weekly/</code></a> (ZIP คือ<b>ต้นฉบับ</b> แตกใหม่ได้เสมอ) แล้วเปิดอ่าน <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/tree/master/materials/m7/data"><code>BRIEF.md</code></a> (2 นาที)</li><li>ใช้งานของคุณเอง: สร้างโฟลเดอร์ใหม่ <code>banpu-claude-course-master/materials/m7/capstone_&lt;ชื่อคุณ&gt;/</code> แล้วใช้ <code>M7-P02</code> สร้างข้อมูลจำลอง (2 นาที)</li></ol>
+<p><b>ใช้งานของคุณเองได้</b> ถ้าตอบ "ใช่" ทั้ง 3 ข้อ: ① อธิบายได้โดยไม่ต้องเปิดไฟล์จริง ② สร้างข้อมูลจำลองได้ใน 5 นาทีด้วย <code>M7-P02</code> ③ ข้อมูลจริงในอนาคตอยู่บน SharePoint/Outlook ไม่ใช่ระบบอื่น · ถ้าไม่ครบ เลือก UC ที่ใกล้ที่สุด แล้วเขียนงานจริงไว้ในช่อง "ก้าวต่อไป 30 วัน" บนการ์ดแทน</p>
+<div class="prompt"><div class="prompt-bar"><span>Prompt</span><button class="copy-btn no-print" type="button" data-copy="pr1">Copy</button></div><pre id="pr1">(งานของคุณเอง) ฉันมีงานจริงเรื่อง {…} ไฟล์จริงมีคอลัมน์ {…} ช่วยสร้างข้อมูลจำลองเพื่อฝึก … ใส่กับดัก 2 จุด</pre></div>
 <p>(ฉบับเต็ม <code>M7-P02</code>)</p>
-<label class="check" for="ck2_1"><input type="checkbox" id="ck2_1"><span><b>Checkpoint:</b> โฟลเดอร์โจทย์ของทีม (<code>uc…</code> หรือ <code>capstone_&lt;ทีม&gt;</code>) เปิดได้ เห็น <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/tree/master/materials/m7/data"><code>BRIEF.md</code></a> · ไม่มีไฟล์งานจริงของบริษัทในโฟลเดอร์</span></label>
-<p class="note">🧑‍🏫 <b>วิทยากร:</b> ถ้า 3 ทีมขึ้นไปเลือกโจทย์เดียวกัน ไม่ต้องห้าม แต่ชวนทีมที่ 3 ลอง BYO หรือ UC4 (ง่ายสุด) · ติดตั้ง ZIP ไม่ได้ → USB สำรอง</p>
+<label class="check" for="ck2_1"><input type="checkbox" id="ck2_1"><span><b>Checkpoint:</b> โฟลเดอร์โจทย์ของฉัน (<code>uc…</code> หรือ <code>capstone_&lt;ชื่อคุณ&gt;</code>) เปิดได้ เห็น <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/tree/master/materials/m7/data"><code>BRIEF.md</code></a> หรือข้อมูลจำลอง · ไม่มีไฟล์งานจริงของบริษัทในโฟลเดอร์</span></label>
+<p class="note">🧑‍🏫 <b>วิทยากร:</b> ไม่ต้องจำกัดว่าโจทย์ละกี่คน · คนที่ลังเลเกิน 2 นาที ชวนเลือก UC4 · ติดตั้ง ZIP ไม่ได้ → USB สำรอง</p>
 </section>
 
 <section class="card pdf-page-break" id="page3" data-page="3">
 <div class="card-head"><div><div class="pg">หน้า 3 / 13</div><h2>② Use-case Canvas: Data → Connector → Output</h2></div><span class="chip">5 นาที · 15:15–15:20</span></div>
-<p class="goal"><b>เป้าหมาย:</b> ทีมตอบครบ 4 ช่องก่อนแตะ Cowork · ใช้ Interview pattern (M2) ให้ Claude ถามเรา ไม่ใช่เราเขียนเองทั้งหมด</p>
+<p class="goal"><b>เป้าหมาย:</b> ตอบครบ 4 ช่องก่อนแตะ Cowork · ใช้ Interview pattern (M2) ให้ Claude ถามคุณ ไม่ใช่คุณเขียนเองทั้งหมด</p>
 <div class="diagram mmd" role="img" aria-label="แผนภาพขั้นตอน"><pre class="mmd-src">flowchart LR
     D[(&quot;Data&lt;br/&gt;ข้อมูลอยู่ไหน · สีอะไร 🟢🟡🔴&quot;)]:::data --&gt; C[(&quot;Connector&lt;br/&gt;SharePoint · Outlook · โฟลเดอร์&quot;)]:::data
     C --&gt; P[&quot;Process&lt;br/&gt;Claude / Cowork ทำอะไร&quot;]:::ai
@@ -206,12 +206,12 @@ header.intro .eyebrow{color:#231F20;font-weight:700}
     classDef data fill:#3BA55C,color:#fff,stroke:#231F20;</pre></div>
 <p class="legend">🟧 คน (HITL) · 🟦 AI · 🟩 Data/Connector</p>
 <h3><b>ขั้นตอน</b></h3>
-<ol><li>ผู้ขับเปิด <b>Chat ใหม่</b> (ยังไม่ใช่ Cowork) วาง prompt แล้วให้เจ้าของโจทย์ตอบทีละคำถาม (4 นาที)</li></ol>
-<div class="prompt"><div class="prompt-bar"><span>Prompt</span><button class="copy-btn no-print" type="button" data-copy="pr2">Copy</button></div><pre id="pr2">เราเป็นทีมในเวิร์กช็อป Capstone เลือกโจทย์ {UC…} ข้อมูลเป็นข้อมูลสมมติทั้งหมด
-ช่วยสัมภาษณ์เราทีละคำถาม (ไม่เกิน 6 ข้อ) เพื่อเติม Canvas: Data · Connector · Output · Trade-off
+<ol><li>เปิด <b>Chat ใหม่</b> (ยังไม่ใช่ Cowork) วาง prompt แล้วตอบทีละคำถาม (4 นาที)</li></ol>
+<div class="prompt"><div class="prompt-bar"><span>Prompt</span><button class="copy-btn no-print" type="button" data-copy="pr2">Copy</button></div><pre id="pr2">ฉันกำลังทำเวิร์กช็อป Capstone คนเดียว เลือกโจทย์ {UC…} ข้อมูลเป็นข้อมูลสมมติทั้งหมด
+ช่วยสัมภาษณ์ฉันทีละคำถาม (ไม่เกิน 6 ข้อ) เพื่อเติม Canvas: Data · Connector · Output · Trade-off
 แล้วสรุปเป็นตาราง + Mermaid flowchart ใช้ classDef human/ai/data + เกณฑ์เสร็จ 3 ข้อ</pre></div>
 <p>(ฉบับเต็มพร้อมสี <code>M7-P01</code> · ถ้าเวลาน้อย ตอบสั้น ๆ ได้ หรือพิมพ์ "ใช้ตาม BRIEF.md")</p>
-<ol start="2"><li>ผู้นำเสนอเปิดบอร์ด แท็บ <b>การ์ดทีม</b> กรอกช่อง Data / Connector / Output ทันทีที่ได้คำตอบ (1 นาที)</li></ol>
+<ol start="2"><li>เปิด Capstone Board แท็บ <b>① การ์ดงานของฉัน</b> กรอกช่อง Data / Connector / Output ทันทีที่ได้คำตอบ (1 นาที)</li></ol>
 <h3><b>ตัวช่วยตอบ</b></h3>
 <ul><li>Data: "ไฟล์อยู่ที่ไหนในวันจริง? ใครอัปเดต? ทุกกี่วัน?"</li><li>Connector: วันนี้ = โฟลเดอร์ใน Cowork · วันจริง = SharePoint / Outlook (M3) · ห้ามคิดถึง Google Drive</li><li>Output: ดู Output Picker ของ M4: คนอ่านเป็นใคร อ่านบนอะไร ต้องแก้ต่อไหม</li></ul>
 <label class="check" for="ck3_1"><input type="checkbox" id="ck3_1"><span><b>Checkpoint:</b> Canvas 3 ช่องแรกมีคำตอบที่<b>วัดได้</b> (เช่น "Excel 1 ชีต 12 แถว" ไม่ใช่ "รายงานสวย ๆ") · มีเกณฑ์เสร็จ 3 ข้อ</span></label>
@@ -219,59 +219,56 @@ header.intro .eyebrow{color:#231F20;font-weight:700}
 
 <section class="card pdf-page-break" id="page4" data-page="4">
 <div class="card-head"><div><div class="pg">หน้า 4 / 13</div><h2>② Trade-off: ความปลอดภัย · ข้อจำกัด · usage</h2></div><span class="chip">5 นาที · 15:20–15:25</span></div>
-<p class="goal"><b>เป้าหมาย:</b> ทีมรู้ก่อนลงมือว่า "ถ้าเป็นข้อมูลจริง อะไรต้องตัด อะไรติดขัด อะไรเปลือง" และวาง HITL ไว้ตรงไหน · rubric ข้อ ③ ให้คะแนนหน้านี้</p>
-<h3><b>ตอบในทีม (นักวิเคราะห์เป็นคนจด · 3 นาที)</b></h3>
-<div class="tbl"><table><thead><tr><th>มุม</th><th>คำถาม</th><th>คำตอบของทีม (เขียนสั้น)</th></tr></thead><tbody><tr><td>🛡️ ความปลอดภัย</td><td>ในงานจริง ข้อมูลนี้สีอะไร 🟢🟡🔴? ช่องไหนต้อง anonymize? ใครเห็น output?</td><td></td></tr><tr><td>⚠️ ข้อจำกัด</td><td>ไฟล์ใหญ่/หลายไฟล์แค่ไหน? ต้องเปิดเครื่องไว้ไหม? Connector เห็นไฟล์นี้ไหม?</td><td></td></tr><tr><td>🔋 Usage</td><td>ทำบ่อยแค่ไหน? model เบาพอไหม? ควรเป็น Skill (M5) หรือ Scheduled task (M6)?</td><td></td></tr><tr><td>✋ HITL</td><td>จุดตรวจ/อนุมัติอยู่ตรงไหน ใครเป็นคนกด? อะไรห้าม AI ทำเอง?</td><td></td></tr></tbody></table></div>
+<p class="goal"><b>เป้าหมาย:</b> รู้ก่อนลงมือว่า "ถ้าเป็นข้อมูลจริง อะไรต้องตัด อะไรติดขัด อะไรเปลือง" และวาง HITL ไว้ตรงไหน · เช็กลิสต์ตรวจงานตัวเองข้อ 3 และ 4 (หน้า 12) ใช้คำตอบจากหน้านี้</p>
+<h3><b>ตอบเอง (จดสั้น ๆ · 3 นาที)</b></h3>
+<div class="tbl"><table><thead><tr><th>มุม</th><th>คำถาม</th><th>คำตอบของฉัน (เขียนสั้น)</th></tr></thead><tbody><tr><td>🛡️ ความปลอดภัย</td><td>ในงานจริง ข้อมูลนี้สีอะไร 🟢🟡🔴? ช่องไหนต้อง anonymize? ใครเห็น output?</td><td></td></tr><tr><td>⚠️ ข้อจำกัด</td><td>ไฟล์ใหญ่/หลายไฟล์แค่ไหน? ต้องเปิดเครื่องไว้ไหม? Connector เห็นไฟล์นี้ไหม?</td><td></td></tr><tr><td>🔋 Usage</td><td>ทำบ่อยแค่ไหน? model เบาพอไหม? ควรเป็น Skill (M5) หรือ Scheduled task (M6)?</td><td></td></tr><tr><td>✋ HITL</td><td>จุดตรวจ/อนุมัติอยู่ตรงไหน ใครเป็นคนกด? อะไรห้าม AI ทำเอง?</td><td></td></tr></tbody></table></div>
 <p><b>ตัวอย่างคำตอบที่ดี (UC2):</b> "ชื่อผู้บาดเจ็บ = 🟡 ตัดก่อน · log มาจาก SharePoint List ต้องมีสิทธิ์อ่าน · ทำทุกสัปดาห์ → Skill + Scheduled task แต่เครื่องต้องเปิด · ผู้จัดการ HSE อนุมัติร่างอีเมลก่อนส่ง"</p>
 <p><b>ตัวอย่างคำตอบที่ยังไม่พอ:</b> "ปลอดภัยเพราะใช้ Claude Team" (Team ไม่ได้ทำให้ข้อมูล 🔴 ใส่ได้ · ดู M1)</p>
-<p><b>วาด diagram ของทีม (2 นาที):</b> ใช้ Mermaid ที่ได้จาก <code>M7-P01</code> หรือเลือกกล่องในบอร์ด แท็บ <b>การ์ดทีม → Diagram</b> (กล่องสี 🟧🟦🟩 อัตโนมัติ) · ต้องมีกล่องสีส้มอย่างน้อย 1 กล่อง</p>
+<p><b>วาด diagram ของฉัน (2 นาที):</b> ใช้ Mermaid ที่ได้จาก <code>M7-P01</code> หรือเลือกกล่องในบอร์ด แท็บ <b>① การ์ดงานของฉัน → Diagram</b> (กล่องสี 🟧🟦🟩 อัตโนมัติ) · ต้องมีกล่องสีส้มอย่างน้อย 1 กล่อง</p>
 <label class="check" for="ck4_1"><input type="checkbox" id="ck4_1"><span><b>Checkpoint:</b> ทุกแถวในตารางมีคำตอบ · diagram มีจุด HITL · การ์ดบนบอร์ดมีช่อง Trade-off แล้ว</span></label>
-<p class="note">🧑‍🏫 <b>วิทยากร:</b> เดินดูช่อง 🛡️ ของทุกทีมก่อน 15:25 ทีมไหนตอบ "ไม่มีความเสี่ยง" ให้ถามว่า "ถ้าไฟล์นี้หลุดไปถึงคู่ค้า ใครเดือดร้อน?"</p>
+<p class="note">🧑‍🏫 <b>วิทยากร:</b> เดินดูช่อง 🛡️ ของแต่ละคนก่อน 15:25 ใครตอบ "ไม่มีความเสี่ยง" ให้ถามว่า "ถ้าไฟล์นี้หลุดไปถึงคู่ค้า ใครเดือดร้อน?"</p>
 </section>
 
 <section class="card pdf-page-break" id="page5" data-page="5">
 <div class="card-head"><div><div class="pg">หน้า 5 / 13</div><h2>③ สร้างต้นแบบ (ก): ตั้งโฟลเดอร์ + Plan → Approve</h2></div><span class="chip">5 นาที · 15:25–15:30</span></div>
-<p class="goal"><b>เป้าหมาย:</b> Cowork เห็นเฉพาะโฟลเดอร์สำเนา ทวนเป้าหมายถูก และเสนอแผนที่ทีมอนุมัติแล้ว</p>
+<p class="goal"><b>เป้าหมาย:</b> Cowork เห็นเฉพาะโฟลเดอร์สำเนา ทวนเป้าหมายถูก และเสนอแผนที่คุณอนุมัติแล้ว</p>
 <div class="diagram mmd" role="img" aria-label="แผนภาพขั้นตอน"><pre class="mmd-src">flowchart LR
-    F[(&quot;โฟลเดอร์ทีม (สำเนา)&lt;br/&gt;copy-before-write&quot;)]:::data --&gt; I[&quot;Interview / Use your own words&lt;br/&gt;M2-P04 · M2-P03&quot;]:::ai
+    F[(&quot;โฟลเดอร์โจทย์ของฉัน (สำเนา)&lt;br/&gt;copy-before-write&quot;)]:::data --&gt; I[&quot;Interview / Use your own words&lt;br/&gt;M2-P04 · M2-P03&quot;]:::ai
     I --&gt; PL[&quot;Claude เสนอแผน&lt;br/&gt;Plan&quot;]:::ai
-    PL --&gt; AP{&quot;ทีมอนุมัติแผน&lt;br/&gt;Approve&quot;}:::human
+    PL --&gt; AP{&quot;ฉันอนุมัติแผน&lt;br/&gt;Approve&quot;}:::human
     AP --&gt; EX[&quot;Cowork ลงมือ&lt;br/&gt;Execute&quot;]:::ai
     EX --&gt; CK{&quot;ตรวจ 3 จุด&lt;br/&gt;ตัวเลข · ที่มา · ห้ามส่งเอง&quot;}:::human
     CK -- ยังไม่ผ่าน --&gt; EX
-    CK -- ผ่าน --&gt; OUT[&quot;ต้นแบบ v1&lt;br/&gt;+ screenshot ลงบอร์ด&quot;]:::ai
+    CK -- ผ่าน --&gt; OUT[&quot;ต้นแบบ v1&lt;br/&gt;ใน output/&quot;]:::ai
     classDef human fill:#E4572E,color:#fff,stroke:#231F20;
     classDef ai fill:#2E86AB,color:#fff,stroke:#231F20;
     classDef data fill:#3BA55C,color:#fff,stroke:#231F20;</pre></div>
 <p class="legend">🟧 คน (HITL) · 🟦 AI · 🟩 Data/Connector</p>
 <h3><b>ขั้นตอน</b></h3>
-<ol><li>เปิด <b>Cowork</b> · ให้สิทธิ์เฉพาะโฟลเดอร์โจทย์ของทีม <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/tree/master/materials/m7/data"><code>banpu-claude-course-master/materials/m7/data/uc…/</code></a> หรือ <code>capstone_&lt;ทีม&gt;/</code> (ZIP คือต้นฉบับ = copy-before-write) · สร้างโฟลเดอร์ย่อย <code>output/</code> (1 นาที)</li><li>วาง prompt (2 นาทีรวมรอผล)</li></ol>
+<ol><li>เปิด <b>Cowork</b> · ให้สิทธิ์เฉพาะโฟลเดอร์โจทย์ของคุณ <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/tree/master/materials/m7/data"><code>banpu-claude-course-master/materials/m7/data/uc…/</code></a> หรือ <code>capstone_&lt;ชื่อคุณ&gt;/</code> (ZIP คือต้นฉบับ = copy-before-write) · สร้างโฟลเดอร์ย่อย <code>output/</code> (1 นาที)</li><li>วาง prompt (2 นาทีรวมรอผล)</li></ol>
 <div class="prompt"><div class="prompt-bar"><span>Prompt</span><button class="copy-btn no-print" type="button" data-copy="pr3">Copy</button></div><pre id="pr3">โฟลเดอร์ที่ให้สิทธิ์คือโฟลเดอร์โจทย์ {materials/m7/data/uc…} จาก ZIP ของ repo (ข้อมูลสมมติ) อ่าน BRIEF.md ก่อน
 1) ทวนเป้าหมายด้วยคำพูดของคุณเอง 3 บรรทัด  2) สำรวจไฟล์แบบอ่านอย่างเดียว + สิ่งที่ดูผิดปกติ
 3) เสนอแผนไม่เกิน 6 ขั้น ห้ามแก้ต้นฉบับ เขียนลง output/ เท่านั้น ห้ามส่ง/บันทึกลงระบบใด
-หยุดรอให้เราพิมพ์ &quot;อนุมัติ&quot; ก่อนลงมือ</pre></div>
+หยุดรอให้ฉันพิมพ์ &quot;อนุมัติ&quot; ก่อนลงมือ</pre></div>
 <p>(ฉบับเต็ม <code>M7-P03</code> · อิงแพตเทิร์น <code>M2-P03</code> Use your own words + <code>M2-P02</code> Plan → Approve → Execute)</p>
-<ol start="3"><li>ทั้งทีมอ่านแผน 1 นาที · ผู้ตรวจ HITL ถาม 2 ข้อ: "ตรงกับ Canvas ไหม?" "มีขั้นไหนแก้ไฟล์ต้นฉบับหรือส่งออกไหม?" · ถ้าไม่ผ่าน พิมพ์แก้แผน ถ้าผ่าน ไปหน้า 6 + หน้าโจทย์ของทีม (หน้า 7–11)</li></ol>
-<label class="check" for="ck5_1"><input type="checkbox" id="ck5_1"><span><b>Checkpoint:</b> Claude ทวนเป้าหมายถูก · แผนเขียนลง <code>output/</code> เท่านั้น · Claude <b>ยังไม่ได้ลงมือ</b> จนกว่าเราพิมพ์ "อนุมัติ"</span></label>
+<ol start="3"><li>อ่านแผน 1 นาที แล้วถามตัวเอง 2 ข้อ: "ตรงกับ Canvas ไหม?" "มีขั้นไหนแก้ไฟล์ต้นฉบับหรือส่งออกไหม?" · ถ้าไม่ผ่าน พิมพ์แก้แผน ถ้าผ่าน ไปหน้า 6 + หน้าโจทย์ของคุณ (หน้า 7–11)</li></ol>
+<label class="check" for="ck5_1"><input type="checkbox" id="ck5_1"><span><b>Checkpoint:</b> Claude ทวนเป้าหมายถูก · แผนเขียนลง <code>output/</code> เท่านั้น · Claude <b>ยังไม่ได้ลงมือ</b> จนกว่าคุณพิมพ์ "อนุมัติ"</span></label>
 <p class="note">💡 ถ้า Cowork ใช้ไม่ได้ในเครื่อง: ใช้ Chat แนบไฟล์จาก ZIP ตรง ๆ (ไฟล์ไม่เกิน 10 ไฟล์) ได้ผลใกล้เคียง</p>
 </section>
 
 <section class="card pdf-page-break" id="page6" data-page="6">
-<div class="card-head"><div><div class="pg">หน้า 6 / 13</div><h2>③ สร้างต้นแบบ (ข): ลงมือ + ตรวจแบบ HITL</h2></div><span class="chip">16 นาที · 15:30–15:46</span></div>
-<p class="goal"><b>เป้าหมาย:</b> ได้ต้นแบบ v1 ที่ทำงานครบ 1 รอบกับข้อมูลสมมติ และผ่านการตรวจของผู้ตรวจ HITL</p>
-<h3><b>จังหวะแนะนำ</b> (ผู้คุมเวลาประกาศ)</h3>
-<ul><li>15:30 พิมพ์ "อนุมัติ" + วาง prompt ของโจทย์ (<code>M7-P04</code>…<code>P08</code> ในหน้า 7–11)</li><li>15:38 ต้องมีผลลัพธ์รอบแรกใน <code>output/</code> แล้ว ถ้ายังไม่มี → ลดขอบเขต (เช่น 1 Site / 1 สัญญา)</li><li>15:40 ผู้ตรวจ HITL วาง <code>M7-P09</code> และ<b>เปิดไฟล์ต้นฉบับเทียบเอง 2 ค่า</b></li><li>15:44 แก้รอบสุดท้าย · จับภาพหน้าจอ 1–2 ภาพไว้โชว์ · 15:46 หยุดสร้าง</li></ul>
-<div class="prompt"><div class="prompt-bar"><span>Prompt</span><button class="copy-btn no-print" type="button" data-copy="pr4">Copy</button></div><pre id="pr4">ก่อนเราจะนำเสนองานนี้ ช่วยตรวจตัวเองเป็นตาราง: 1) ตัวเลขสำคัญ 3 ค่ามาจากไฟล์/แถวไหน คำนวณอย่างไร
-2) ข้อสรุปไหนอนุมาน 3) ข้อมูลผิดปกติที่เจอ 4) มีไฟล์ต้นฉบับถูกแก้หรือมีอะไรถูกส่งออกไหม
-5) ถ้าเป็นข้อมูลจริง ส่วนไหน 🟡/🔴  ห้ามแก้ผลลัพธ์ในขั้นนี้</pre></div>
-<p>(ฉบับเต็ม <code>M7-P09</code>)</p>
-<h3><b>จุดที่ทีมมักติด (วิทยากร/ผู้ช่วยใช้ตอนเดินวน)</b></h3>
-<div class="tbl"><table><thead><tr><th>อาการ</th><th>ทางแก้เร็ว</th></tr></thead><tbody><tr><td>Claude ลงมือก่อนอนุมัติ</td><td>หยุด (Stop) · ตรวจว่าไม่ได้แตะต้นฉบับ · พิมพ์ย้ำกติกาข้อ "รอคำว่าอนุมัติ"</td></tr><tr><td>ผลลัพธ์ยาวเกิน/หลุดโจทย์</td><td>"ทำแค่ {1 Site/1 สัญญา} ให้ครบก่อน" (Prototype first ของ M2)</td></tr><tr><td>อ่าน .docx / .vtt ไม่ได้</td><td>ให้ Cowork แปลงเป็น .txt ใน <code>output/</code> ก่อน หรือแนบใน Chat</td></tr><tr><td>ตัวเลขไม่ตรงกับที่นับเอง</td><td>ขอ "แสดงสูตร/โค้ดที่ใช้นับ" แล้วตรวจเงื่อนไขกรอง (เช่น ตัวพิมพ์ near miss)</td></tr><tr><td>ใกล้ชน usage limit</td><td>หยุดรันซ้ำ · คนเดียวขับ · แชตใหม่ + สรุปสั้น ๆ (M1/M8)</td></tr><tr><td>อยากส่งอีเมลจริง</td><td>ไม่ได้ในวันนี้ · ร่างเป็นไฟล์ หรือ draft ใน Outlook เท่านั้น</td></tr></tbody></table></div>
-<label class="check" for="ck6_1"><input type="checkbox" id="ck6_1"><span><b>Checkpoint (ผู้ตรวจ HITL เซ็นในใจ):</b> ตัวเลข 2 ค่าตรงกับต้นฉบับ · ทุกข้อสรุปบอกที่มาได้ · ไม่มีอะไรถูกส่ง/บันทึกทับ · ต้นแบบ v1 อยู่ใน <code>output/</code></span></label>
+<div class="card-head"><div><div class="pg">หน้า 6 / 13</div><h2>③ สร้างต้นแบบ (ข): ลงมือ + ตรวจแบบ HITL</h2></div><span class="chip">25 นาที · 15:30–15:55</span></div>
+<p class="goal"><b>เป้าหมาย:</b> ได้ต้นแบบ v1 ที่ทำงานครบ 1 รอบกับข้อมูลสมมติ และคุณตรวจแบบ HITL แล้ว</p>
+<h3><b>จังหวะแนะนำ</b> (ดูนาฬิกาเอง วิทยากรประกาศเวลา)</h3>
+<ul><li>15:30 พิมพ์ "อนุมัติ" + วาง prompt ของโจทย์ (<code>M7-P04</code>…<code>P08</code> ในหน้า 7–11)</li><li>15:40 ต้องมีผลลัพธ์รอบแรกใน <code>output/</code> แล้ว ถ้ายังไม่มี → ลดขอบเขต (เช่น 1 Site / 1 สัญญา)</li><li>15:45 ตรวจแบบ HITL: <b>เปิดไฟล์ต้นฉบับเทียบเอง 2 ค่า</b> (Checkpoint ในหน้าโจทย์ของคุณ)</li><li>15:50 แก้รอบสุดท้าย · จับภาพหน้าจอ 1–2 ภาพไว้ใส่การ์ด · 15:55 หยุดสร้าง ไปหน้า 12</li></ul>
+<h3><b>จุดที่มักติด (วิทยากร/ผู้ช่วยใช้ตอนเดินวน)</b></h3>
+<div class="tbl"><table><thead><tr><th>อาการ</th><th>ทางแก้เร็ว</th></tr></thead><tbody><tr><td>Claude ลงมือก่อนอนุมัติ</td><td>หยุด (Stop) · ตรวจว่าไม่ได้แตะต้นฉบับ · พิมพ์ย้ำกติกาข้อ "รอคำว่าอนุมัติ"</td></tr><tr><td>ผลลัพธ์ยาวเกิน/หลุดโจทย์</td><td>"ทำแค่ {1 Site/1 สัญญา} ให้ครบก่อน" (Prototype first ของ M2)</td></tr><tr><td>อ่าน .docx / .vtt ไม่ได้</td><td>ให้ Cowork แปลงเป็น .txt ใน <code>output/</code> ก่อน หรือแนบใน Chat</td></tr><tr><td>ตัวเลขไม่ตรงกับที่นับเอง</td><td>ขอ "แสดงสูตร/โค้ดที่ใช้นับ" แล้วตรวจเงื่อนไขกรอง (เช่น ตัวพิมพ์ near miss)</td></tr><tr><td>ใกล้ชน usage limit</td><td>หยุดรันซ้ำ · แชตใหม่ + สรุปสั้น ๆ (M1/M8)</td></tr><tr><td>อยากส่งอีเมลจริง</td><td>ไม่ได้ในวันนี้ · ร่างเป็นไฟล์ หรือ draft ใน Outlook เท่านั้น</td></tr></tbody></table></div>
+<label class="check" for="ck6_1"><input type="checkbox" id="ck6_1"><span><b>Checkpoint:</b> ต้นแบบ v1 อยู่ใน <code>output/</code> · เปิดไฟล์ต้นฉบับเทียบเองแล้ว 2 ค่า · ไม่มีอะไรถูกส่ง/บันทึกทับ</span></label>
+<p class="note">🧑‍🏫 <b>วิทยากร:</b> 15:40 เดินดูว่าทุกคนมีไฟล์ใน <code>output/</code> แล้ว ใครยังไม่มี ช่วยลดขอบเขตทันที · คนที่เสร็จเร็ว ชี้ไปที่ 🚀 ในหน้าโจทย์</p>
 </section>
 
 <section class="card pdf-page-break" id="page7" data-page="7">
-<div class="card-head"><div><div class="pg">หน้า 7 / 13</div><h2>โจทย์ UC1 สรุปสัญญาจัดซื้อ</h2></div><span class="chip">ใช้ช่วง 15:30–15:46</span></div>
+<div class="card-head"><div><div class="pg">หน้า 7 / 13</div><h2>โจทย์ UC1 สรุปสัญญาจัดซื้อ</h2></div><span class="chip">ใช้ช่วง 15:30–15:55</span></div>
 <div class="diagram mmd" role="img" aria-label="แผนภาพขั้นตอน"><pre class="mmd-src">flowchart LR
     D[(&quot;สัญญา .docx 3 ฉบับ&lt;br/&gt;+ contract_register.csv&lt;br/&gt;SharePoint (สำเนา)&quot;)]:::data --&gt; R[&quot;Cowork อ่านสัญญา&lt;br/&gt;ดึง 8 หัวข้อ + เลขข้อ&quot;]:::ai
     R --&gt; X[&quot;ตาราง Contract Summary&lt;br/&gt;+ เทียบ register&quot;]:::ai
@@ -284,19 +281,19 @@ header.intro .eyebrow{color:#231F20;font-weight:700}
 <p><b>Data (<a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/tree/master/materials/m7/data/uc1_contract_summary"><code>materials/m7/data/uc1_contract_summary/</code></a>):</b> <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/tree/master/materials/m7/data/uc1_contract_summary/contracts"><code>contracts/</code></a> สัญญา .docx 3 ฉบับ (CT-2569-014 อะไหล่สายพาน · -022 อาหารแคมป์ · -031 ล้างแผงโซลาร์) · <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/blob/master/materials/m7/data/uc1_contract_summary/contract_register.csv"><code>contract_register.csv</code></a> 12 สัญญา · <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/tree/master/materials/m7/data"><code>BRIEF.md</code></a></p>
 <p><b>Connector วันจริง:</b> SharePoint document library ของจัดซื้อ (อ่านอย่างเดียว) · วันนี้: โฟลเดอร์สำเนา</p>
 <h3><b>Prompt หลัก</b> (หลัง "อนุมัติ" แผนจาก P03)</h3>
-<div class="prompt"><div class="prompt-bar"><span>Prompt</span><button class="copy-btn no-print" type="button" data-copy="pr5">Copy</button></div><pre id="pr5">อ่านสัญญา .docx 3 ฉบับ ดึง: เลขสัญญา · คู่สัญญา · Site · มูลค่า · การชำระเงิน · วันเริ่ม/สิ้นสุด · ต่ออายุ · ค่าปรับ · ปรับราคา
+<div class="prompt"><div class="prompt-bar"><span>Prompt</span><button class="copy-btn no-print" type="button" data-copy="pr4">Copy</button></div><pre id="pr4">อ่านสัญญา .docx 3 ฉบับ ดึง: เลขสัญญา · คู่สัญญา · Site · มูลค่า · การชำระเงิน · วันเริ่ม/สิ้นสุด · ต่ออายุ · ค่าปรับ · ปรับราคา
 ทุกช่องใส่ &quot;ข้อ x&quot; ถ้าไม่พบเขียน &quot;ไม่พบในสัญญา&quot; · คำนวณวันสุดท้ายที่ต้องแจ้งยกเลิก (แสดงสูตร)
 เทียบ contract_register.csv · บันทึก output/contract_summary.xlsx (Summary + Mismatch) · หมายเหตุ: ไม่ใช่ความเห็นทางกฎหมาย</pre></div>
 <p>(ฉบับเต็ม <code>M7-P04</code>)</p>
 <p><b>Output ที่คาดหวัง:</b> Excel 3 แถว × 10+ คอลัมน์ พร้อมเลขข้อ · ชีต Mismatch (อาจว่าง = ต้องเขียนว่า "ตรงกันทุกช่อง") · สรุป 5 บรรทัด</p>
-<label class="check" for="ck7_1"><input type="checkbox" id="ck7_1"><span><b>Checkpoint (ผู้ตรวจ HITL):</b> เปิด .docx เทียบเอง 2 ช่อง: มูลค่า CT-2569-014 และเงื่อนไขต่ออายุ CT-2569-031</span></label>
-<p class="note key">🔑 <b>คีย์วิทยากร:</b> CT-2569-014 สิ้นสุด 2570-12-31 ต่ออัตโนมัติ แจ้ง 90 วัน → แจ้งภายใน <b>2 ต.ค. 2570</b> · CT-2569-031 สิ้นสุด 2570-01-31 แจ้ง 30 วัน → <b>1 ม.ค. 2570</b> (เชื่อมกับ UC4: shortlist ผู้รับจ้างใหม่) · CT-2569-022 <b>ไม่ต่ออัตโนมัติ</b> → ไม่มีวันแจ้งยกเลิก ต้องทำบันทึกต่ออายุ · ทีมที่ "เดาวัน" ให้ CT-2569-022 = ไม่ผ่าน HITL</p>
+<label class="check" for="ck7_1"><input type="checkbox" id="ck7_1"><span><b>Checkpoint (ตรวจแบบ HITL):</b> เปิด .docx เทียบเอง 2 ช่อง: มูลค่า CT-2569-014 และเงื่อนไขต่ออายุ CT-2569-031</span></label>
+<p class="note key">🔑 <b>คีย์วิทยากร:</b> CT-2569-014 สิ้นสุด 2570-12-31 ต่ออัตโนมัติ แจ้ง 90 วัน → แจ้งภายใน <b>2 ต.ค. 2570</b> · CT-2569-031 สิ้นสุด 2570-01-31 แจ้ง 30 วัน → <b>1 ม.ค. 2570</b> (เชื่อมกับ UC4: shortlist ผู้รับจ้างใหม่) · CT-2569-022 <b>ไม่ต่ออัตโนมัติ</b> → ไม่มีวันแจ้งยกเลิก ต้องทำบันทึกต่ออายุ · ใคร "เดาวัน" ให้ CT-2569-022 = ไม่ผ่าน HITL</p>
 <p class="note">🚀 <b>เสร็จเร็ว:</b> ทำ Skill <code>contract-summary</code> จากขั้นตอนนี้ (M5-P06) หรือ Artifact ปฏิทินแจ้งยกเลิก 12 สัญญา</p>
 <p class="note">🛡️ <b>Trade-off ที่ควรพูด:</b> สัญญาจริงมีราคาและเงื่อนไขเจรจา = 🟡/🔴 → ใช้ฉบับปิดชื่อ/ราคา หรือเริ่มจาก register · ฝ่ายกฎหมายยังเป็นผู้ตีความ</p>
 </section>
 
 <section class="card pdf-page-break" id="page8" data-page="8">
-<div class="card-head"><div><div class="pg">หน้า 8 / 13</div><h2>โจทย์ UC2 รายงาน Incident รายสัปดาห์</h2></div><span class="chip">ใช้ช่วง 15:30–15:46</span></div>
+<div class="card-head"><div><div class="pg">หน้า 8 / 13</div><h2>โจทย์ UC2 รายงาน Incident รายสัปดาห์</h2></div><span class="chip">ใช้ช่วง 15:30–15:55</span></div>
 <div class="diagram mmd" role="img" aria-label="แผนภาพขั้นตอน"><pre class="mmd-src">flowchart LR
     L[(&quot;incident_log.csv&lt;br/&gt;SharePoint List export&quot;)]:::data --&gt; CL[&quot;Cowork ทำความสะอาด&lt;br/&gt;+ เทียบสัปดาห์ก่อน&quot;]:::ai
     E[(&quot;อีเมล 3 ฉบับ&lt;br/&gt;Outlook&quot;)]:::data --&gt; CL
@@ -310,19 +307,19 @@ header.intro .eyebrow{color:#231F20;font-weight:700}
 <p><b>Data (<a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/tree/master/materials/m7/data/uc2_incident_weekly"><code>materials/m7/data/uc2_incident_weekly/</code></a>):</b> <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/blob/master/materials/m7/data/uc2_incident_weekly/incident_log.csv"><code>incident_log.csv</code></a> 155 เหตุการณ์ 8 สัปดาห์ (3 ส.ค.–27 ก.ย. 2026) 4 Site · <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/tree/master/materials/m7/data/uc2_incident_weekly/emails"><code>emails/</code></a> 3 ฉบับ (.eml) · <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/tree/master/materials/m7/data"><code>BRIEF.md</code></a></p>
 <p><b>Connector วันจริง:</b> SharePoint List (Issue/Incident Log) + Outlook · วันนี้: โฟลเดอร์สำเนา (เส้นทาง B ของ M3, <code>M3-P08</code>)</p>
 <h3><b>Prompt หลัก</b></h3>
-<div class="prompt"><div class="prompt-bar"><span>Prompt</span><button class="copy-btn no-print" type="button" data-copy="pr6">Copy</button></div><pre id="pr6">1) ตรวจคุณภาพข้อมูลก่อน (วันที่ผิด ตัวพิมพ์ไม่สม่ำเสมอ ค่าว่าง) แสดงเป็นตาราง แล้วหยุดถามเรา
+<div class="prompt"><div class="prompt-bar"><span>Prompt</span><button class="copy-btn no-print" type="button" data-copy="pr5">Copy</button></div><pre id="pr5">1) ตรวจคุณภาพข้อมูลก่อน (วันที่ผิด ตัวพิมพ์ไม่สม่ำเสมอ ค่าว่าง) แสดงเป็นตาราง แล้วหยุดถามเรา
 2) สรุปสัปดาห์ล่าสุดเทียบสัปดาห์ก่อน แยก Site/ประเภท ไฮไลต์ severity ≥ 3 และงานเปิดเกิน due_date
 3) ใส่ประเด็นจาก emails/ โดยไม่ใส่ชื่อบุคคล  4) output/hse_weekly.docx ≤ 2 หน้า + output/email_draft.txt (ห้ามส่ง)</pre></div>
 <p>(ฉบับเต็ม <code>M7-P05</code>)</p>
 <p><b>Output ที่คาดหวัง:</b> รายงาน 1–2 หน้า: ตารางสรุป · ไฮไลต์ · ประเด็นติดตาม · ร่างอีเมลถึงผู้จัดการ HSE</p>
-<label class="check" for="ck8_1"><input type="checkbox" id="ck8_1"><span><b>Checkpoint (ผู้ตรวจ HITL):</b> นับจำนวนเหตุ Site A สัปดาห์ล่าสุดเองใน Excel (filter วันที่ 21–27 ก.ย.) เทียบกับรายงาน</span></label>
-<p class="note key">🔑 <b>คีย์วิทยากร:</b> ข้อมูลผิด 2 จุด: <code>INC-0061</code> วันที่ 2026-13-02 · <code>INC-0018</code> "near miss" ตัวพิมพ์เล็ก (ถ้าไม่แก้ near miss จะถูกนับแยก) · สัปดาห์ 21–27 ก.ย.: รวม 18 (A 10 · C 6 · F 0 · G 2) เทียบสัปดาห์ก่อน 22 (A 8 · C 13 · F 1 · G 0) · severity ≥ 3: INC-0140, 0146, 0150 · เปิดเกินกำหนด ณ 28 ก.ย. = <b>0 รายการ</b> (ทีมที่แต่งรายการขึ้นมา = ไม่ผ่าน) · อีเมล 01 อ้าง LTI ที่ Site A วันที่ 20 ก.ย. แต่ log <b>ไม่มี</b> → ต้องถามกลับ ไม่ใช่เชื่ออีเมล</p>
+<label class="check" for="ck8_1"><input type="checkbox" id="ck8_1"><span><b>Checkpoint (ตรวจแบบ HITL):</b> นับจำนวนเหตุ Site A สัปดาห์ล่าสุดเองใน Excel (filter วันที่ 21–27 ก.ย.) เทียบกับรายงาน</span></label>
+<p class="note key">🔑 <b>คีย์วิทยากร:</b> ข้อมูลผิด 2 จุด: <code>INC-0061</code> วันที่ 2026-13-02 · <code>INC-0018</code> "near miss" ตัวพิมพ์เล็ก (ถ้าไม่แก้ near miss จะถูกนับแยก) · สัปดาห์ 21–27 ก.ย.: รวม 18 (A 10 · C 6 · F 0 · G 2) เทียบสัปดาห์ก่อน 22 (A 8 · C 13 · F 1 · G 0) · severity ≥ 3: INC-0140, 0146, 0150 · เปิดเกินกำหนด ณ 28 ก.ย. = <b>0 รายการ</b> (ถ้าแต่งรายการขึ้นมา = ไม่ผ่าน) · อีเมล 01 อ้าง LTI ที่ Site A วันที่ 20 ก.ย. แต่ log <b>ไม่มี</b> → ต้องถามกลับ ไม่ใช่เชื่ออีเมล</p>
 <p class="note">🚀 <b>เสร็จเร็ว:</b> แปลงเป็น Document Factory + Scheduled task ทุกจันทร์ 08:00 (M6-P03 แบบเดียวกัน)</p>
 <p class="note">🛡️ <b>Trade-off ที่ควรพูด:</b> ชื่อผู้บาดเจ็บ/ผู้รายงาน = 🟡 · รายงานไปถึงผู้บริหาร → HITL ก่อนส่งเสมอ · ข้อมูลเล็ก ใช้ model เบาได้</p>
 </section>
 
 <section class="card pdf-page-break" id="page9" data-page="9">
-<div class="card-head"><div><div class="pg">หน้า 9 / 13</div><h2>โจทย์ UC3 รวมข้อมูล ESG 4 Site</h2></div><span class="chip">ใช้ช่วง 15:30–15:46</span></div>
+<div class="card-head"><div><div class="pg">หน้า 9 / 13</div><h2>โจทย์ UC3 รวมข้อมูล ESG 4 Site</h2></div><span class="chip">ใช้ช่วง 15:30–15:55</span></div>
 <div class="diagram mmd" role="img" aria-label="แผนภาพขั้นตอน"><pre class="mmd-src">flowchart LR
     S[(&quot;ไฟล์ ESG 4 Site&lt;br/&gt;xlsx/csv คนละหน่วย&quot;)]:::data --&gt; AL[&quot;Cowork จัดหัวคอลัมน์&lt;br/&gt;+ แปลงหน่วย&quot;]:::ai
     EF[(&quot;emission_factors_SYNTHETIC&lt;br/&gt;+ esg_targets&quot;)]:::data --&gt; AL
@@ -336,20 +333,20 @@ header.intro .eyebrow{color:#231F20;font-weight:700}
 <p><b>Data (<a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/tree/master/materials/m7/data/uc3_esg_consolidation"><code>materials/m7/data/uc3_esg_consolidation/</code></a>):</b> Site A <code>.xlsx</code> (2 ชีต, kWh/ลิตร) · Site C <code>.csv</code> (หัวอังกฤษ, MWh/ตัน) · Site F <code>.xlsx</code> (<b>รายไตรมาส</b>) · Site G <code>.csv</code> (MMBtu, หัวไทย) · <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/blob/master/materials/m7/data/uc3_esg_consolidation/emission_factors_SYNTHETIC.csv"><code>emission_factors_SYNTHETIC.csv</code></a> · <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/blob/master/materials/m7/data/uc3_esg_consolidation/esg_targets_2568.csv"><code>esg_targets_2568.csv</code></a> · <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/tree/master/materials/m7/data"><code>BRIEF.md</code></a></p>
 <p><b>Connector วันจริง:</b> โฟลเดอร์ SharePoint ที่แต่ละ Site อัปโหลด · วันนี้: โฟลเดอร์สำเนา (เหมือน Workshop B ของ M2)</p>
 <h3><b>Prompt หลัก</b></h3>
-<div class="prompt"><div class="prompt-bar"><span>Prompt</span><button class="copy-btn no-print" type="button" data-copy="pr7">Copy</button></div><pre id="pr7">1) ทำตารางแปลงหน่วย + mapping หัวคอลัมน์ 4 Site → schema เดียว แล้วรอคำว่า &quot;ผ่าน&quot;
+<div class="prompt"><div class="prompt-bar"><span>Prompt</span><button class="copy-btn no-print" type="button" data-copy="pr6">Copy</button></div><pre id="pr6">1) ทำตารางแปลงหน่วย + mapping หัวคอลัมน์ 4 Site → schema เดียว แล้วรอคำว่า &quot;ผ่าน&quot;
 2) รวมรายเดือนปี 2568 + tCO2e จาก emission_factors_SYNTHETIC (สูตรใน Excel)
 3) ห้ามเติมค่าที่หาย: Site G ต.ค. = &quot;รอข้อมูล&quot; · Site F คงรายไตรมาส · Site A ก.ค. = &quot;ค่าประมาณ&quot;
 4) เทียบ esg_targets → output/esg_2568.xlsx + Dashboard Artifact 1 หน้า (Export PDF)</pre></div>
 <p>(ฉบับเต็ม <code>M7-P06</code> · Dashboard ใช้แนวเดียวกับ <code>M4-P06</code>)</p>
 <p><b>Output ที่คาดหวัง:</b> ตาราง mapping · Excel รวมพร้อมสูตร · Dashboard 1 หน้าที่มีกล่อง "สมมติฐานและข้อมูลที่ขาด"</p>
-<label class="check" for="ck9_1"><input type="checkbox" id="ck9_1"><span><b>Checkpoint (ผู้ตรวจ HITL):</b> ตรวจตารางแปลงหน่วยก่อนพิมพ์ "ผ่าน" (1 MWh = 1,000 kWh) · สุ่ม 1 เดือนของ Site C เทียบ CSV</span></label>
+<label class="check" for="ck9_1"><input type="checkbox" id="ck9_1"><span><b>Checkpoint (ตรวจแบบ HITL):</b> ตรวจตารางแปลงหน่วยก่อนพิมพ์ "ผ่าน" (1 MWh = 1,000 kWh) · สุ่ม 1 เดือนของ Site C เทียบ CSV</span></label>
 <p class="note key">🔑 <b>คีย์วิทยากร:</b> กับดัก 3 จุด = Site G เดือน ต.ค. ว่าง ("รอข้อมูลจาก Site") · Site F มีแค่ Q1–Q4 (ห้ามหาร 3 เป็นรายเดือนโดยไม่บอก) · Site A ชีต Water มีแถว "หมายเหตุ: ก.ค. มิเตอร์เสีย ใช้ค่าประมาณ" ซึ่งอาจถูกอ่านเป็นแถวข้อมูล · เดือนของ Site C เป็น <code>2025-01…12</code> = ปี 2568 · ค่า emission factor เป็นค่าสมมติ ห้ามพูดว่า "ค่าจริง"</p>
 <p class="note">🚀 <b>เสร็จเร็ว:</b> ให้ Claude เขียน "ข้อความขอข้อมูลที่ขาด" ถึง Site G (ร่างเท่านั้น) หรือทำ Prototype first 3 แบบ dashboard (M2-P05)</p>
 <p class="note">🛡️ <b>Trade-off ที่ควรพูด:</b> ตัวเลข ESG ไปถึงรายงานสาธารณะ → HITL 2 ชั้น (เจ้าของข้อมูล Site + ทีม ESG) · ไฟล์จริงหลายสิบไฟล์ → แบ่งรอบละ Site</p>
 </section>
 
 <section class="card pdf-page-break" id="page10" data-page="10">
-<div class="card-head"><div><div class="pg">หน้า 10 / 13</div><h2>โจทย์ UC4 จากบันทึกประชุมสู่ Action tracker</h2></div><span class="chip">ใช้ช่วง 15:30–15:46</span></div>
+<div class="card-head"><div><div class="pg">หน้า 10 / 13</div><h2>โจทย์ UC4 จากบันทึกประชุมสู่ Action tracker</h2></div><span class="chip">ใช้ช่วง 15:30–15:55</span></div>
 <div class="diagram mmd" role="img" aria-label="แผนภาพขั้นตอน"><pre class="mmd-src">flowchart LR
     N[(&quot;บันทึกประชุม 4 ไฟล์&lt;br/&gt;.md .txt .vtt&quot;)]:::data --&gt; EX[&quot;Cowork ดึง action item&lt;br/&gt;ใคร · ทำอะไร · เมื่อไร&quot;]:::ai
     T[(&quot;Action tracker&lt;br/&gt;SharePoint List export&quot;)]:::data --&gt; EX
@@ -363,19 +360,19 @@ header.intro .eyebrow{color:#231F20;font-weight:700}
 <p><b>Data (<a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/tree/master/materials/m7/data/uc4_meeting_actions"><code>materials/m7/data/uc4_meeting_actions/</code></a>):</b> <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/tree/master/materials/m7/data/uc4_meeting_actions/meetings"><code>meetings/</code></a> 4 ไฟล์ (7 ก.ย. .md · 14 ก.ย. .txt · 21 ก.ย. ESG sync <b>.vtt transcript</b> · 28 ก.ย. .md) · <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/blob/master/materials/m7/data/uc4_meeting_actions/action_tracker_sharepoint_list_export.csv"><code>action_tracker_sharepoint_list_export.csv</code></a> (ID 101–105) · <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/blob/master/materials/m7/data/uc4_meeting_actions/owners.md"><code>owners.md</code></a> (อีเมล @example.com) · <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/tree/master/materials/m7/data"><code>BRIEF.md</code></a></p>
 <p><b>Connector วันจริง:</b> SharePoint List (tracker) + Outlook (draft) · วันนี้: โฟลเดอร์สำเนา</p>
 <h3><b>Prompt หลัก</b></h3>
-<div class="prompt"><div class="prompt-bar"><span>Prompt</span><button class="copy-btn no-print" type="button" data-copy="pr8">Copy</button></div><pre id="pr8">1) ดึง action item จาก 4 ไฟล์: งาน · ผู้รับผิดชอบ · กำหนดส่ง · มาจากประชุมไหน (อ้างบรรทัด/เวลา)
+<div class="prompt"><div class="prompt-bar"><span>Prompt</span><button class="copy-btn no-print" type="button" data-copy="pr7">Copy</button></div><pre id="pr7">1) ดึง action item จาก 4 ไฟล์: งาน · ผู้รับผิดชอบ · กำหนดส่ง · มาจากประชุมไหน (อ้างบรรทัด/เวลา)
 2) ไม่มีวันชัด = &quot;ต้องยืนยัน&quot; ห้ามเดา · งานที่ถูกเลื่อน/ปิดในประชุมหลัง ให้อัปเดตสถานะ
 3) รวมกับ tracker เดิม (งานใหม่ต่อ ID 106) · 4) output/action_tracker_new.csv + followup_drafts.md (ร่าง 1 ฉบับ/คน) ห้ามส่ง</pre></div>
 <p>(ฉบับเต็ม <code>M7-P07</code>)</p>
 <p><b>Output ที่คาดหวัง:</b> tracker 13–15 แถว (5 เดิม + 8–10 ใหม่) · ร่างอีเมล 4 ฉบับ (1 ต่อเจ้าของงาน)</p>
-<label class="check" for="ck10_1"><input type="checkbox" id="ck10_1"><span><b>Checkpoint (ผู้ตรวจ HITL):</b> เลือก 2 งาน แล้วเปิดไฟล์ประชุมดูว่าใคร/วันไหนตรงจริง · ตรวจว่าไม่มีวันที่ที่ "แต่งขึ้น"</span></label>
+<label class="check" for="ck10_1"><input type="checkbox" id="ck10_1"><span><b>Checkpoint (ตรวจแบบ HITL):</b> เลือก 2 งาน แล้วเปิดไฟล์ประชุมดูว่าใคร/วันไหนตรงจริง · ตรวจว่าไม่มีวันที่ที่ "แต่งขึ้น"</span></label>
 <p class="note key">🔑 <b>คีย์วิทยากร:</b> ซ่อมท่อไอน้ำ Site C: กำหนด 18 ก.ย. → เลื่อน 25 ก.ย. → <b>ปิดแล้ว</b> 28 ก.ย. · เช็กเงื่อนไขปรับราคา CT-2569-014 → <b>ปิด</b> 14 ก.ย. · scheduled task ของคุณจำลอง: ไม่มีวัน → "ขอ 2 สัปดาห์" → 28 ก.ย. "จะเสนอทางเลือกสัปดาห์หน้า" = <b>ต้องยืนยัน</b> · ตัวเลข Q3 ภายใน 30 ก.ย. แต่ Site F ยังขาด → คุณตัวอย่าง ตาม (<b>ไม่มีวัน</b>) · shortlist ผู้รับจ้างล้างแผง 5 ต.ค. · ตามข้อมูล Site G ภายในศุกร์ (จาก .vtt) · ตารางแปลงหน่วย สิ้นเดือน · "แจ้ง HSE" ใน 14 ก.ย. <b>ไม่ระบุผู้รับผิดชอบ</b> · tracker เดิม ID 103 เลยกำหนด 31 ส.ค. และยัง Not started</p>
 <p class="note">🚀 <b>เสร็จเร็ว:</b> ทำ Artifact "กระดานงานค้าง" แยกตามคน หรือร่าง prompt เป็น Scheduled task หลังประชุมทุกจันทร์ (M6)</p>
 <p class="note">🛡️ <b>Trade-off ที่ควรพูด:</b> transcript จริงอาจมีเรื่องส่วนตัว/HR = 🟡/🔴 · ห้ามให้ AI แก้ SharePoint List เองโดยไม่มีคนอนุมัติ · ร่างอีเมลต้องให้เจ้าของงานยืนยันวัน</p>
 </section>
 
 <section class="card pdf-page-break" id="page11" data-page="11">
-<div class="card-head"><div><div class="pg">หน้า 11 / 13</div><h2>โจทย์ UC5 Energy market brief</h2></div><span class="chip">ใช้ช่วง 15:30–15:46</span></div>
+<div class="card-head"><div><div class="pg">หน้า 11 / 13</div><h2>โจทย์ UC5 Energy market brief</h2></div><span class="chip">ใช้ช่วง 15:30–15:55</span></div>
 <div class="diagram mmd" role="img" aria-label="แผนภาพขั้นตอน"><pre class="mmd-src">flowchart LR
     P[(&quot;ราคารายสัปดาห์ SYNTHETIC&quot;)]:::data --&gt; AN[&quot;Cowork สรุปแนวโน้ม&lt;br/&gt;+ จับคู่ข่าว&quot;]:::ai
     NW[(&quot;ข่าว SYNTHETIC&lt;br/&gt;(วันจริงใช้เว็บสาธารณะ)&quot;)]:::data --&gt; AN
@@ -387,58 +384,72 @@ header.intro .eyebrow{color:#231F20;font-weight:700}
     classDef data fill:#3BA55C,color:#fff,stroke:#231F20;</pre></div>
 <p class="legend">🟧 คน (HITL) · 🟦 AI · 🟩 Data/Connector</p>
 <p><b>Data (<a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/tree/master/materials/m7/data/uc5_energy_market_brief"><code>materials/m7/data/uc5_energy_market_brief/</code></a>):</b> <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/blob/master/materials/m7/data/uc5_energy_market_brief/prices_weekly_SYNTHETIC.csv"><code>prices_weekly_SYNTHETIC.csv</code></a> (8 สัปดาห์: ดัชนีถ่านหินสมมติ NEX-6000 · LNG · น้ำมันอ้างอิง · บาท/ดอลลาร์) · <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/blob/master/materials/m7/data/uc5_energy_market_brief/news_snippets_SYNTHETIC.csv"><code>news_snippets_SYNTHETIC.csv</code></a> (ข่าวสมมติ 12 ข่าว ลิงก์ news.example.com) · <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/blob/master/materials/m7/data/uc5_energy_market_brief/internal_view.md"><code>internal_view.md</code></a> · <a class="repo-link" target="_blank" rel="noopener" style="color:#0684C9;text-decoration:underline" href="https://github.com/batprem/banpu-claude-course/tree/master/materials/m7/data"><code>BRIEF.md</code></a></p>
-<p><b>Connector วันจริง:</b> เว็บสาธารณะ (web search) + SharePoint (มุมมองภายใน) · วันนี้: โฟลเดอร์สำเนา (ห้ามค้นเว็บแทนข่าวสมมติในเวิร์กช็อป เพื่อให้ทุกทีมตรวจคำตอบเดียวกันได้)</p>
+<p><b>Connector วันจริง:</b> เว็บสาธารณะ (web search) + SharePoint (มุมมองภายใน) · วันนี้: โฟลเดอร์สำเนา (ห้ามค้นเว็บแทนข่าวสมมติในเวิร์กช็อป เพื่อให้ทุกคนตรวจคำตอบเดียวกันได้)</p>
 <h3><b>Prompt หลัก</b></h3>
-<div class="prompt"><div class="prompt-bar"><span>Prompt</span><button class="copy-btn no-print" type="button" data-copy="pr9">Copy</button></div><pre id="pr9">1) % เปลี่ยนแปลงสัปดาห์ล่าสุด vs ก่อนหน้า และ vs 4 สัปดาห์ก่อน (ทศนิยม 1 ตำแหน่ง)
+<div class="prompt"><div class="prompt-bar"><span>Prompt</span><button class="copy-btn no-print" type="button" data-copy="pr8">Copy</button></div><pre id="pr8">1) % เปลี่ยนแปลงสัปดาห์ล่าสุด vs ก่อนหน้า และ vs 4 สัปดาห์ก่อน (ทศนิยม 1 ตำแหน่ง)
 2) เลือกข่าวที่เกี่ยวกับ 3 เรื่องใน internal_view.md  3) brief 1 หน้าบนมือถือ: 3 เรื่อง + ลิงก์ · ตารางราคา · ผลต่อธุรกิจ 2 bullet
 4) ห้ามพยากรณ์ราคาเป็นตัวเลข ทุกประโยคชี้ที่มา → output/market_brief.md + Artifact 1 หน้า (Export PDF)</pre></div>
 <p>(ฉบับเต็ม <code>M7-P08</code> · ต่อยอดเป็น <code>M6-P04</code> Weekly Energy &amp; Ops Insight)</p>
 <p><b>Output ที่คาดหวัง:</b> brief ไม่เกิน 1.5 หน้าจอมือถือ ทุกบรรทัดมีที่มา</p>
-<label class="check" for="ck11_1"><input type="checkbox" id="ck11_1"><span><b>Checkpoint (ผู้ตรวจ HITL):</b> คำนวณ % ถ่านหินและ LNG เองด้วยเครื่องคิดเลข · หาประโยคที่ "พยากรณ์" แล้วลบ</span></label>
+<label class="check" for="ck11_1"><input type="checkbox" id="ck11_1"><span><b>Checkpoint (ตรวจแบบ HITL):</b> คำนวณ % ถ่านหินและ LNG เองด้วยเครื่องคิดเลข · หาประโยคที่ "พยากรณ์" แล้วลบ</span></label>
 <p class="note key">🔑 <b>คีย์วิทยากร:</b> สัปดาห์ล่าสุด = 21 ก.ย. 2026 · ถ่านหิน 88.7 (−4.1% สัปดาห์ · −14.1% vs 4 สัปดาห์) · LNG 13.60 (+1.5% · +11.9%) · น้ำมัน 79.3 (−1.0% · −0.8%) · บาท 35.60 (−0.1% · +0.2%) · ข่าวที่ตรง 3 เรื่อง = coal / lng / power · ข่าว oil, fx, carbon ไม่อยู่ในความสนใจตาม internal_view (ใส่ได้เป็น "อื่น ๆ" แต่ไม่ใช่ 3 เรื่องหลัก)</p>
 <p class="note">🚀 <b>เสร็จเร็ว:</b> แปลงเป็น Scheduled task เช้าวันจันทร์ 07:30 (M6) พร้อมจุด HITL ก่อนส่งต่อ</p>
 <p class="note">🛡️ <b>Trade-off ที่ควรพูด:</b> ข่าวจากเว็บต้องตรวจที่มาและวันที่ · มุมมองภายในของทีมกลยุทธ์อาจเป็น 🟡 · ห้ามใช้เป็นคำแนะนำซื้อขาย</p>
 </section>
 
 <section class="card pdf-page-break" id="page12" data-page="12">
-<div class="card-head"><div><div class="pg">หน้า 12 / 13</div><h2>④ เตรียมนำเสนอ + โพสต์การ์ดบนบอร์ด</h2></div><span class="chip">4 นาที · 15:46–15:50</span></div>
-<p class="goal"><b>เป้าหมาย:</b> ทุกทีมมีการ์ดครบบน Show &amp; Share board และบทพูด 3 นาทีที่ไม่เกินเวลา</p>
-<h3><b>ขั้นตอน</b></h3>
-<ol><li>ผู้ขับวาง prompt ในแชตเดิม (1 นาที)</li></ol>
-<div class="prompt"><div class="prompt-bar"><span>Prompt</span><button class="copy-btn no-print" type="button" data-copy="pr10">Copy</button></div><pre id="pr10">ช่วยเตรียมการนำเสนอ 3 นาทีของทีม {ชื่อทีม} จากงานในแชตนี้:
-A) ข้อความการ์ด: ปัญหา · Data · Connector · Output · Trade-off · HITL · ผลที่วัดได้ (ระบุว่าประมาณ)
-B) บทพูด 0:00–0:30 ปัญหา · 0:30–2:00 demo · 2:00–3:00 trade-off + สิ่งที่ยังไม่ควรให้ AI ทำ
-C) ก้าวต่อไปใน 30 วัน 3 ข้อ</pre></div>
-<p>(ฉบับเต็ม <code>M7-P10</code>)</p>
-<ol start="2"><li>ผู้นำเสนอกรอก/วางข้อความลงบอร์ด แท็บ <b>การ์ดทีม</b> ให้ครบทุกช่อง · เลือกกล่อง diagram · ใส่ demo link หรือ note (เช่น "ไฟล์ output/hse_weekly.docx บนเครื่องผู้ขับ") (2 นาที)</li><li>กด <b>📋 คัดลอกรหัสการ์ด</b> แล้วส่งให้วิทยากร (แชตของคลาสใน Teams หรือยื่นเครื่องให้ดู) · วิทยากรกด <b>นำเข้าการ์ด</b> บนบอร์ดหน้าห้อง (1 นาที)</li><li>ซ้อมพูด 1 รอบในทีม ผู้คุมเวลาจับเวลา (1 นาที)</li></ol>
-<h3><b>โครงนำเสนอ 3 นาที</b></h3>
-<div class="tbl"><table><thead><tr><th>เวลา</th><th>พูดอะไร</th><th>เปิดอะไร</th></tr></thead><tbody><tr><td>0:00–0:30</td><td>ใครเจ็บ เสียเวลาเท่าไรต่อสัปดาห์/เดือน</td><td>การ์ดบนบอร์ด</td></tr><tr><td>0:30–2:00</td><td>Demo: ข้อมูลเข้า → Claude ทำอะไร → ผลลัพธ์ · ชี้จุด HITL</td><td>ไฟล์ใน <code>output/</code> หรือ screenshot</td></tr><tr><td>2:00–3:00</td><td>Trade-off 3 มุม · สิ่งที่ "ยังไม่ควรให้ AI ทำ" · ก้าวต่อไป 30 วัน</td><td>diagram บนการ์ด</td></tr></tbody></table></div>
-<label class="check" for="ck12_1"><input type="checkbox" id="ck12_1"><span><b>Checkpoint:</b> การ์ดของทีมขึ้นบนบอร์ดหน้าห้อง · บทพูด ≤ 3 นาที · ไม่มีชื่อคนจริงหรือข้อมูลจริงบนการ์ด</span></label>
-<p class="note">💡 Demo ไม่ทำงานตอนโชว์? ใช้ screenshot ที่เก็บไว้ 15:44 · ไม่ต้องรันใหม่หน้าห้อง (ประหยัด usage และเวลา)</p>
-<p class="note">🧑‍🏫 <b>วิทยากร:</b> จัดลำดับนำเสนอบนบอร์ด (ลากหรือกดลูกศร) ให้โจทย์ซ้ำกันอยู่ติดกันเพื่อเทียบทางแก้</p>
-</section>
-
-<section class="card pdf-page-break" id="page13" data-page="13">
-<div class="card-head"><div><div class="pg">หน้า 13 / 13</div><h2>⑤ Show &amp; Share + ⑥ โหวตและสรุป</h2></div><span class="chip">25 นาที · 15:50–16:15</span></div>
+<div class="card-head"><div><div class="pg">หน้า 12 / 13</div><h2>④ ตรวจงานตัวเองด้วยเช็กลิสต์ + แก้เป็น v2</h2></div><span class="chip">10 นาที · 15:55–16:05</span></div>
+<p class="goal"><b>เป้าหมาย:</b> ตรวจต้นแบบ v1 ของคุณครบ 4 ข้อ ข้อไหน ⚠️ ให้แก้จนเป็น v2 · คุณเป็นคนตรวจงานของตัวเอง</p>
 <div class="diagram mmd" role="img" aria-label="แผนภาพขั้นตอน"><pre class="mmd-src">flowchart LR
-    TM[&quot;ทีมกรอกการ์ดบนบอร์ด&lt;br/&gt;use case · diagram · demo&quot;]:::human --&gt; BD[(&quot;Show &amp; Share board&lt;br/&gt;Artifact&quot;)]:::data
-    BD --&gt; PR[&quot;นำเสนอ 3 นาที&lt;br/&gt;ปัญหา → Demo → Trade-off&quot;]:::human
-    PR --&gt; FB[&quot;วิทยากรให้ feedback&lt;br/&gt;rubric 4 ข้อ · 1 นาที&quot;]:::human
-    PR --&gt; VT[&quot;ทุกคนโหวต&lt;br/&gt;🏆 ใช้ได้จริง · 🛡️ ปลอดภัย · 💡 ไอเดีย&quot;]:::human
-    FB --&gt; PDF[&quot;Export PDF&lt;br/&gt;แผนต่อยอด → M8 แผน 30 วัน&quot;]:::ai
-    VT --&gt; PDF
+    V1[(&quot;ต้นแบบ v1&lt;br/&gt;ใน output/&quot;)]:::data --&gt; AI[&quot;Claude รายงานตัวเอง&lt;br/&gt;M7-P09 · ห้ามแก้ผลลัพธ์&quot;]:::ai
+    AI --&gt; CK{&quot;ฉันตรวจเช็กลิสต์ 4 ข้อ&lt;br/&gt;เปิดไฟล์ต้นฉบับเทียบเอง&quot;}:::human
+    CK -- &quot;⚠️ มีข้อต้องแก้&quot; --&gt; FX[&quot;Claude แก้เฉพาะจุด&lt;br/&gt;บันทึกเป็น v2&quot;]:::ai
+    FX --&gt; CK
+    CK -- &quot;✅ ครบ 4 ข้อ&quot; --&gt; BD[(&quot;ติ๊กเช็กลิสต์บน&lt;br/&gt;Capstone Board แท็บ ③&quot;)]:::data
     classDef human fill:#E4572E,color:#fff,stroke:#231F20;
     classDef ai fill:#2E86AB,color:#fff,stroke:#231F20;
     classDef data fill:#3BA55C,color:#fff,stroke:#231F20;</pre></div>
 <p class="legend">🟧 คน (HITL) · 🟦 AI · 🟩 Data/Connector</p>
-<p><b>ลำดับต่อทีม (3 นาที + feedback 1 นาที × 5 ทีม = 20 นาที):</b> วิทยากรเปิดการ์ดทีมบนบอร์ด → แท็บ Timer 3:00 (เหลือง 0:30 · แดงหมดเวลา) → ทีมนำเสนอ → วิทยากรให้ feedback ตาม rubric 1 นาที → ทีมถัดไป</p>
-<h3><b>Rubric วิทยากร (ข้อละ 1–4 · ใช้เป็นคำแนะนำ ไม่ประกาศคะแนน)</b></h3>
-<div class="tbl"><table><thead><tr><th>เกณฑ์</th><th>1 · เริ่มต้น</th><th>2 · พอใช้</th><th>3 · ดี</th><th>4 · พร้อมต่อยอด</th></tr></thead><tbody><tr><td>① ปัญหาจริง วัดผลได้</td><td>"อยากให้เร็วขึ้น"</td><td>ระบุผู้ใช้</td><td>ระบุเวลา/รอบที่ประหยัด</td><td>มีตัวชี้วัด + เจ้าของงาน</td></tr><tr><td>② ต้นแบบทำงาน</td><td>มีแค่แนวคิด</td><td>ได้ผลบางส่วน</td><td>ครบ 1 รอบกับข้อมูลสมมติ</td><td>ครบ + ทำซ้ำได้ (prompt/Skill)</td></tr><tr><td>③ Trade-off + HITL</td><td>ไม่พูดถึง</td><td>พูดกว้าง ๆ</td><td>ครบ 3 มุม + จุด HITL</td><td>จับกับดักข้อมูลได้ + บอกสิ่งที่ไม่ให้ AI ทำ</td></tr><tr><td>④ ต่อยอด 30 วัน</td><td>ไม่มี</td><td>มีแต่ไม่ชัด</td><td>1–3 ขั้นชัด</td><td>ระบุผู้อนุมัติ/ข้อมูลที่ต้องขอ + Skill/Scheduled task</td></tr></tbody></table></div>
-<p><b>feedback 1 นาที = 1 ชม + 1 ถาม + 1 แนะ</b> เช่น "ชอบที่จับวันที่ผิดได้ · ถ้าใช้ข้อมูลจริง ชื่อผู้บาดเจ็บจะจัดการอย่างไร? · ลองทำเป็น Skill แล้วตั้ง Scheduled task"</p>
-<h3><b>⑥ โหวต + สรุป (5 นาที · 16:10–16:15)</b></h3>
-<ol><li>ทุกคนโหวต 3 หมวด (1 เสียงต่อหมวด ห้ามโหวตทีมตัวเอง): 🏆 ใช้ได้จริงที่สุด · 🛡️ ปลอดภัย/Trade-off ดีที่สุด · 💡 ไอเดียเจ๋งที่สุด · วิทยากรนับมือแล้วกด +1 ในแท็บ <b>โหวต</b> (2 นาที)</li><li>ประกาศผล + ปรบมือ (1 นาที)</li><li>วิทยากรกด <b>⬇ Export PDF</b> บนบอร์ด → อัปโหลดไว้ใน SharePoint ของคลาส · แต่ละทีม Export PDF การ์ดของตัวเอง (1 นาที)</li><li>เชื่อม M8: "ช่อง 'ก้าวต่อไป 30 วัน' บนการ์ด คือร่างแรกของแผน 30 วันที่เราจะเขียนต่อในชั่วโมงหน้า" (1 นาที)</li></ol>
-<label class="check" for="ck13_1"><input type="checkbox" id="ck13_1"><span><b>Checkpoint:</b> ทุกทีมได้นำเสนอ · บอร์ดมีโหวตครบ 3 หมวด · PDF บอร์ดอยู่ใน SharePoint ของคลาส</span></label>
-<p class="note">🧑‍🏫 <b>วิทยากร:</b> ถ้ามี 6 ทีมขึ้นไป ลดเป็น 2 นาทีต่อทีม + feedback รวมท้ายสุด หรือให้ 2 ทีมที่โจทย์ซ้ำนำเสนอคู่กัน · จด use case ที่ได้โหวต 🏆 ส่งทีม Hi-I เป็นผู้สมัคร pilot หลังอบรม</p>
+<h3><b>ขั้นตอน</b></h3>
+<ol><li>วาง prompt ในแชตเดิม ให้ Claude รายงานที่มาของงานตัวเอง (2 นาที)</li></ol>
+<div class="prompt"><div class="prompt-bar"><span>Prompt</span><button class="copy-btn no-print" type="button" data-copy="pr9">Copy</button></div><pre id="pr9">ช่วยตรวจงานนี้ตามเช็กลิสต์ตรวจงานตัวเอง และตอบเป็นตาราง (ยังไม่ต้องแก้):
+1) ตัวเลข/ข้อเท็จจริงสำคัญ 3 ค่า มาจากไฟล์/แถวไหน คำนวณอย่างไร  2) ข้อสรุปไหนอนุมาน ไม่ได้มาจากข้อมูลตรง ๆ
+3) มีข้อมูล 🟡/🔴 หรือข้อมูลจริงของบริษัทไหม · มีไฟล์ต้นฉบับถูกแก้หรือมีอะไรถูกส่ง/บันทึกลงระบบไหม
+4) งานนี้ใครใช้ ประหยัดเวลาประมาณเท่าไร  ห้ามแก้ผลลัพธ์ในขั้นนี้</pre></div>
+<p>(ฉบับเต็ม <code>M7-P09</code>)</p>
+<ol start="2"><li>ตรวจเองทีละข้อ แล้วติ๊กใน Capstone Board แท็บ <b>③ เช็กลิสต์ตรวจงานตัวเอง</b> ✅ ผ่าน หรือ ⚠️ ต้องแก้ + เขียนว่าจะแก้อะไร (5 นาที)</li></ol>
+<h3><b>เช็กลิสต์ตรวจงานตัวเอง</b></h3>
+<div class="tbl"><table><thead><tr><th>ข้อ</th><th>ตรวจอะไร</th><th>✅ / ⚠️</th><th>ถ้า ⚠️ จะแก้อะไร</th></tr></thead><tbody><tr><td>1</td><td>ตัวเลข/ข้อเท็จจริง 2 ค่าตรงกับต้นฉบับ (เปิดไฟล์เทียบเอง)</td><td></td><td></td></tr><tr><td>2</td><td>ทุกข้อสรุปบอกที่มาได้ (ไฟล์ · แถว · ข้อ · เวลา)</td><td></td><td></td></tr><tr><td>3</td><td>ไม่มีข้อมูล 🟡/🔴 หรือข้อมูลจริงของบริษัท · ไม่มีอะไรถูกส่ง/บันทึกลงระบบ</td><td></td><td></td></tr><tr><td>4</td><td>ใช้ได้จริง: บอกได้ว่าใครใช้ ประหยัดเวลาเท่าไร และก้าวต่อไปใน 30 วัน</td><td></td><td></td></tr></tbody></table></div>
+<ol start="3"><li>ข้อไหน ⚠️ พิมพ์ให้ Claude แก้เฉพาะจุดนั้น เช่น "แก้ข้อ 2: ใส่ที่มาทุกบรรทัด บันทึกเป็นไฟล์ใหม่ชื่อ …_v2" แล้วตรวจซ้ำ (3 นาที)</li></ol>
+<label class="check" for="ck12_1"><input type="checkbox" id="ck12_1"><span><b>Checkpoint:</b> เช็กลิสต์ 4 ข้อติ๊กครบบนบอร์ด · เปิดไฟล์ต้นฉบับเทียบเองแล้วอย่างน้อย 2 ค่า (ไม่เชื่อตาราง P09 อย่างเดียว) · มีไฟล์ v2 ใน <code>output/</code> ถ้ามีข้อ ⚠️</span></label>
+<p class="note">💡 ข้อ 4 ยังตอบไม่ได้ ไม่เป็นไร เขียนสิ่งที่ต้องถามหัวหน้าไว้ในช่อง "ก้าวต่อไป 30 วัน" ในหน้า 13</p>
+<p class="note">🧑‍🏫 <b>วิทยากร:</b> เดินวนดูข้อ 1 เป็นหลัก ถามว่า "ค่านี้อยู่แถวไหนในไฟล์ เปิดให้ดูหน่อย" · ใช้คีย์ 🔑 ในหน้า 7–11 ตรวจคำตอบ</p>
+</section>
+
+<section class="card pdf-page-break" id="page13" data-page="13">
+<div class="card-head"><div><div class="pg">หน้า 13 / 13</div><h2>⑤ เก็บผลงาน: การ์ดงานของฉัน + Export PDF + ก้าวต่อไป 30 วัน</h2></div><span class="chip">10 นาที · 16:05–16:15</span></div>
+<p class="goal"><b>เป้าหมาย:</b> การ์ดงานของฉันครบทุกช่องบน Capstone Board · ได้ PDF 1 ไฟล์ · มีก้าวต่อไปใน 30 วันที่ใช้ต่อใน M8</p>
+<div class="diagram mmd" role="img" aria-label="แผนภาพขั้นตอน"><pre class="mmd-src">flowchart LR
+    W[&quot;งานในแชตนี้&lt;br/&gt;ต้นแบบ v2 + เช็กลิสต์&quot;]:::human --&gt; P10[&quot;Claude ร่างการ์ด&lt;br/&gt;+ สรุป 5 บรรทัด · M7-P10&quot;]:::ai
+    P10 --&gt; ME{&quot;ฉันตรวจข้อความ&lt;br/&gt;ไม่มีชื่อคน/ข้อมูลจริง&quot;}:::human
+    ME --&gt; BD[(&quot;การ์ดงานของฉัน&lt;br/&gt;Capstone Board แท็บ ①&quot;)]:::data
+    BD --&gt; PDF[&quot;Export PDF&lt;br/&gt;การ์ด + เช็กลิสต์ + 30 วัน&quot;]:::ai
+    PDF --&gt; M8[&quot;→ M8 แผน 30 วัน&quot;]:::human
+    classDef human fill:#E4572E,color:#fff,stroke:#231F20;
+    classDef ai fill:#2E86AB,color:#fff,stroke:#231F20;
+    classDef data fill:#3BA55C,color:#fff,stroke:#231F20;</pre></div>
+<p class="legend">🟧 คน (HITL) · 🟦 AI · 🟩 Data/Connector</p>
+<h3><b>ขั้นตอน</b></h3>
+<ol><li>วาง prompt ในแชตเดิม (1 นาที)</li></ol>
+<div class="prompt"><div class="prompt-bar"><span>Prompt</span><button class="copy-btn no-print" type="button" data-copy="pr10">Copy</button></div><pre id="pr10">ช่วยสรุปงานในแชตนี้เป็นการ์ดงานของฉัน (ช่องละไม่เกิน 2 บรรทัด):
+A) ปัญหา/ใครได้ประโยชน์ · Data · Connector · Output · Trade-off · จุดที่คนตรวจ (HITL) · ผลที่วัดได้ (ระบุว่าประมาณ)
+B) สรุป 5 บรรทัดสำหรับหัวหน้าหรือตัวเอง: ทำอะไร · ใช้ข้อมูลอะไร · ประหยัดเวลาเท่าไร · ยังไม่ควรให้ AI ทำอะไร · ต้องขออนุมัติอะไร
+C) ก้าวต่อไปใน 30 วัน 3 ข้อ</pre></div>
+<p>(ฉบับเต็ม <code>M7-P10</code>)</p>
+<ol start="2"><li>วางข้อความลงบอร์ด แท็บ <b>① การ์ดงานของฉัน</b> ให้ครบทุกช่อง · เลือกกล่อง diagram · ใส่ demo note (เช่น "ไฟล์ output/hse_weekly_v2.docx ในเครื่องของฉัน") (4 นาที)</li><li>กด <b>⬇ Export PDF</b> บนบอร์ด → ได้ PDF การ์ด + เช็กลิสต์ + ก้าวต่อไป 30 วัน · เก็บไว้ในเครื่องหรือ OneDrive ของคุณ (2 นาที)</li><li>ไม่บังคับ: กด <b>📋 คัดลอกรหัสการ์ด</b> แล้ววางในแชตของคลาสใน Teams · ถ้าเหลือเวลา วางรหัสของเพื่อนในแท็บ <b>② แกลเลอรี</b> แล้วดูเงียบ ๆ ว่าคนอื่นแก้โจทย์เดียวกันอย่างไร (2 นาที)</li><li>เชื่อม M8: "ช่อง 'ก้าวต่อไป 30 วัน' บนการ์ด คือร่างแรกของแผน 30 วันที่เราจะเขียนต่อในชั่วโมงหน้า" (1 นาที)</li></ol>
+<label class="check" for="ck13_1"><input type="checkbox" id="ck13_1"><span><b>Checkpoint:</b> การ์ดครบทุกช่อง · เช็กลิสต์ 4 ข้อติ๊กแล้ว · ได้ไฟล์ PDF ในเครื่อง · ไม่มีชื่อคนจริงหรือข้อมูลจริงบนการ์ด</span></label>
+<p class="note">💡 Export PDF ไม่ได้? กดพิมพ์ของเบราว์เซอร์ (Ctrl+P → Save as PDF) ได้ผลเหมือนกัน</p>
+<p class="note">🧑‍🏫 <b>วิทยากร:</b> 16:10 เตือนให้ทุกคน Export PDF ก่อนไป M8 · ใครอยากส่ง use case ให้ทีม Hi-I พิจารณาเป็น pilot หลังอบรม ให้แนบ PDF การ์ดไว้ในแชตของคลาส (ไม่บังคับ)</p>
 </section>
 
 <footer>Banpu · Claude for Business · M7 Capstone · ข้อมูลทั้งหมดเป็นข้อมูลสมมติ · Connector: SharePoint + Outlook เท่านั้น</footer>

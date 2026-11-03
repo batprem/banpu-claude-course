@@ -31,7 +31,7 @@ USE = {
     "m4": f"ใน Cowork เลือกโฟลเดอร์ {folder('materials/m4/data/pack')} — <code>input/</code> 27 ไฟล์ (มีไฟล์ใหญ่ 11 MB และ 37 MB) · <code>output/</code> = ที่เก็บผลลัพธ์",
     "m5": f"Skill ตัวอย่าง: {folder('materials/m5/skill-example/banpu-standard-report')} · Skill ปลอมสำหรับตรวจ: {folder('materials/m5/skill-audit-sample')} · ไฟล์ทดสอบ: {folder('materials/m2/data/pack/input/workshop_b_scattered')}",
     "m6": f"เส้นทาง B: Cowork และ Scheduled task ใช้โฟลเดอร์ {folder('materials/m6/data/pack')} — อ่าน <code>input/</code> · เขียนได้เฉพาะ <code>output/</code>",
-    "m7": f"แต่ละทีมใช้โฟลเดอร์โจทย์ใน {folder('materials/m7/data')} (<code>uc1_…</code> ถึง <code>uc5_…</code>) แล้วสร้างโฟลเดอร์ย่อย <code>output/</code> ข้างใน · ทีม BYO สร้างโฟลเดอร์ใหม่ <code>{Z}/materials/m7/capstone_&lt;ทีม&gt;/</code>",
+    "m7": f"เลือกโฟลเดอร์โจทย์ของคุณใน {folder('materials/m7/data')} (<code>uc1_…</code> ถึง <code>uc5_…</code>) แล้วสร้างโฟลเดอร์ย่อย <code>output/</code> ข้างใน · ถ้าใช้งานของคุณเอง สร้างโฟลเดอร์ใหม่ <code>{Z}/materials/m7/capstone_&lt;ชื่อคุณ&gt;/</code> (ข้อมูลจำลองเท่านั้น)",
     "m8": f"ไม่ต้องใช้ไฟล์ในเครื่อง (ใช้ Artifact ด้านบน) · ถ้าเปิด Artifact ไม่ได้ ใช้ไฟล์ใน {folder('materials/m8/artifacts')}",
 }
 

@@ -22,7 +22,7 @@ ARTIFACTS = {
            ("Output Picker", "https://claude.ai/artifact/S47Pyq2mMTUk85nZ2HQL67", "เกม 10 ข้อ: งานนี้ควรออกมาเป็นอะไร")],
     "m5": [("Skill Security Checklist", "https://claude.ai/artifact/8M5tgdbZfTgxtFuFkjXqqn", "ล่าธงแดง Skill ปลอม + Checklist แล้ว Export PDF")],
     "m6": [("Automation Card", "https://claude.ai/artifact/HFdt3zwrfBgErGfv6q5TUk", "ออกแบบงานอัตโนมัติ 6 ช่อง + quiz")],
-    "m7": [("Show & Share Board", "https://claude.ai/artifact/VncwbAfqEmSuDFBtGfx5uy", "การ์ดทีม โหวต rubric และ timer")],
+    "m7": [("Capstone Board", "https://claude.ai/artifact/VncwbAfqEmSuDFBtGfx5uy", "การ์ดงานของฉัน · เช็กลิสต์ตรวจงานตัวเอง · แกลเลอรี (ดูได้ ไม่บังคับ)")],
     "m8": [("Security & Usage Quiz", "https://claude.ai/artifact/L6PcYj1MiRy7Aah9cUVgsv", "ควิซ 18 ข้อ + Traffic Light รอบสุดท้าย"),
            ("แผน 30 วัน", "https://claude.ai/artifact/Dn5jDTNdz6YBP8DT23T7Nt", "วางแผน 30 วันของฉัน แล้ว Export PDF")],
 }

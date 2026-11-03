@@ -1,4 +1,4 @@
-<title>Show &amp; Share Board</title>
+<title>Capstone Board</title>
 <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--human:#E4572E;--ai:#2E86AB;--data:#3BA55C;--ink:#231F20;--paper:#F4F4F4;--warn:#FFD066;--accent:#0684C9;
@@ -44,40 +44,34 @@ textarea{min-height:52px;resize:vertical}
 .node.data{background:var(--data);border-radius:18px}
 .arrow{color:var(--ink);font-weight:700}
 .legend{font-size:12px;color:var(--muted)}
-/* board */
+/* cards */
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
 .tcard{background:#fff;border:1px solid var(--line);border-top:6px solid var(--ai);border-radius:14px;padding:12px 14px;position:relative}
 .tcard.uc1{border-top-color:#7a5cc2}.tcard.uc2{border-top-color:var(--human)}.tcard.uc3{border-top-color:var(--data)}
-.tcard.uc4{border-top-color:var(--warn)}.tcard.uc5{border-top-color:var(--ai)}.tcard.byo{border-top-color:var(--ink)}
+.tcard.uc4{border-top-color:var(--warn)}.tcard.uc5{border-top-color:var(--ai)}.tcard.own{border-top-color:var(--ink)}
+.tcard.mine{outline:3px solid var(--warn)}
 .tcard h3{margin:0;font-size:17px}
 .tcard .uc{font-size:12px;color:var(--muted)}
 .tcard dl{margin:8px 0 0;display:grid;grid-template-columns:92px 1fr;gap:3px 8px;font-size:13.5px}
 .tcard dt{color:var(--muted);font-weight:600}
 .tcard dd{margin:0;white-space:pre-wrap;word-break:break-word}
 .tcard .tools{display:flex;gap:4px;flex-wrap:wrap;margin-top:8px}
-.tcard .votes{font-size:14px;margin-top:6px}
-.order{position:absolute;top:8px;right:10px;background:var(--ink);color:#fff;border-radius:999px;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-weight:700}
-.tcard.focus{outline:4px solid var(--warn)}
+.tcard .ckline{font-size:13.5px;margin-top:6px}
+.tag{position:absolute;top:8px;right:10px;background:var(--ink);color:#fff;border-radius:999px;padding:1px 10px;font-size:12px;font-weight:700}
 .empty{color:var(--muted);text-align:center;padding:30px;border:2px dashed var(--line);border-radius:14px}
-/* votes */
+/* self-check */
 table.v{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden}
-table.v th,table.v td{border-bottom:1px solid var(--line);padding:8px;text-align:center;font-size:14px}
-table.v th:first-child,table.v td:first-child{text-align:left}
-.cnt{display:inline-flex;align-items:center;gap:6px}
-.cnt b{min-width:22px;display:inline-block;font-size:18px}
-.winner{background:#FFF3D1}
-/* rubric */
-.rub{display:grid;grid-template-columns:1fr repeat(4,44px);gap:4px;align-items:center;font-size:14px}
-.rub .h{font-size:12px;color:var(--muted);text-align:center}
-.rub input{width:20px;height:20px;justify-self:center;accent-color:var(--human)}
-.score{font-size:22px;font-weight:700;color:var(--human)}
-/* timer */
-.timer{font-size:min(28vw,180px);font-weight:700;text-align:center;line-height:1;border-radius:24px;padding:24px 10px;background:#fff;border:1px solid var(--line);font-variant-numeric:tabular-nums}
-.timer.warn{background:#fff3d6;color:#8a5a00}
-.timer.over{background:var(--human);color:#fff}
-.now{text-align:center;font-size:18px;color:var(--muted);margin-top:8px}
+table.v th,table.v td{border-bottom:1px solid var(--line);padding:8px;text-align:left;font-size:14px;vertical-align:top}
+.ck{display:grid;grid-template-columns:36px 1fr;gap:6px 10px;background:#fff;border:1px solid var(--line);border-left:8px solid var(--line);border-radius:12px;padding:12px 14px;margin:10px 0}
+.ck.ok{border-left-color:var(--data)}.ck.fix{border-left-color:var(--warn)}
+.ck .n{font-size:22px;font-weight:700;color:var(--human);text-align:center}
+.ck b{font-size:15.5px}
+.ck .opts{display:flex;gap:14px;flex-wrap:wrap;margin:6px 0;font-size:15px}
+.ck .opts label{display:flex;gap:6px;align-items:center;cursor:pointer}
+.ck .opts input{width:20px;height:20px;accent-color:var(--accent)}
+.ckscore{font-size:22px;font-weight:700;color:var(--accent)}
 .print-only{display:none}
-@media(max-width:600px){h1{font-size:21px}.tcard dl{grid-template-columns:80px 1fr}}
+@media(max-width:600px){h1{font-size:21px}.tcard dl{grid-template-columns:80px 1fr}.ck{grid-template-columns:28px 1fr}}
 </style>
 <!-- Export PDF snippet (materials/_shared/export-pdf-artifact.html) -->
 <style>
@@ -114,30 +108,27 @@ table.v th:first-child,table.v td:first-child{text-align:left}
 <div class="wrap">
 <header>
   <div>
-    <h1>🎤 Show &amp; Share Board · M7 Capstone</h1>
-    <p class="sub">การ์ดทีม · diagram · demo · โหวต · rubric วิทยากร · ข้อมูลสมมติเพื่อการอบรมเท่านั้น</p>
+    <h1>🗂️ Capstone Board · ผลงานของฉัน</h1>
+    <p class="sub">M7 Capstone · การ์ดงานของฉัน · แกลเลอรี · เช็กลิสต์ตรวจงานตัวเอง · ข้อมูลสมมติเพื่อการอบรมเท่านั้น</p>
   </div>
   <div class="row no-print">
-    <input type="text" id="klass" placeholder="ชื่อคลาส/รุ่น เช่น รุ่น 1 · 12 พ.ย." style="width:220px" aria-label="ชื่อคลาส">
-    <button class="export-pdf-btn no-print" id="exportPdfBtn" type="button" title="ดาวน์โหลดเป็น PDF">⬇ Export PDF</button>
+    <button class="export-pdf-btn no-print" id="exportPdfBtn" type="button" title="ดาวน์โหลดการ์ด + เช็กลิสต์ + ก้าวต่อไป 30 วัน เป็น PDF">⬇ Export PDF</button>
   </div>
 </header>
 
 <nav class="tabs no-print" role="tablist">
-  <button class="tab on" data-tab="form">① การ์ดทีม</button>
-  <button class="tab" data-tab="board">② บอร์ด <span id="nCards"></span></button>
-  <button class="tab" data-tab="vote">③ โหวต</button>
-  <button class="tab" data-tab="rubric">④ Rubric วิทยากร</button>
-  <button class="tab" data-tab="timer">⑤ Timer</button>
+  <button class="tab on" data-tab="form">① การ์ดงานของฉัน</button>
+  <button class="tab" data-tab="gallery">② แกลเลอรี <span id="nCards"></span></button>
+  <button class="tab" data-tab="check">③ เช็กลิสต์ตรวจงานตัวเอง <span id="nCheck"></span></button>
 </nav>
 
-<!-- ① TEAM CARD FORM -->
+<!-- ① MY CARD FORM -->
 <section class="panel on" id="p-form">
-  <div class="row"><span class="toast">กรอกให้ครบ → <b>บันทึกลงบอร์ด</b> (ถ้าเปิดบนเครื่องวิทยากร) หรือ <b>📋 คัดลอกรหัสการ์ด</b> ส่งให้วิทยากร</span>
+  <div class="row"><span class="toast">กรอกให้ครบ → <b>✅ บันทึกการ์ดของฉัน</b> (เก็บในเครื่องนี้) · อยากแบ่งให้เพื่อนดู กด <b>📋 คัดลอกรหัสการ์ด</b> (ไม่บังคับ)</span>
     <div class="meter" title="ความครบของการ์ด"><i id="fill"></i></div><b id="fillTxt">0%</b></div>
   <form id="cardForm" onsubmit="return false">
   <div class="grid2">
-    <label class="f">ชื่อทีม *<input type="text" id="f_team" maxlength="40" placeholder="เช่น ทีมหม้อไอน้ำ"></label>
+    <label class="f">ชื่อ / ชื่อเล่น *<input type="text" id="f_name" maxlength="40" placeholder="เช่น ต้น · HSE Site C"></label>
     <label class="f">โจทย์ *<select id="f_uc">
       <option value="">— เลือกโจทย์ —</option>
       <option value="uc1">UC1 สรุปสัญญาจัดซื้อ</option>
@@ -145,9 +136,8 @@ table.v th:first-child,table.v td:first-child{text-align:left}
       <option value="uc3">UC3 รวมข้อมูล ESG 4 Site</option>
       <option value="uc4">UC4 ประชุม → Action tracker</option>
       <option value="uc5">UC5 Energy market brief</option>
-      <option value="byo">BYO โจทย์ของทีมเอง (ข้อมูลจำลอง)</option>
+      <option value="own">ใช้งานของคุณเอง (ข้อมูลจำลอง)</option>
     </select></label>
-    <label class="f">สมาชิก/บทบาท (ชื่อเล่นก็ได้)<input type="text" id="f_members" placeholder="ผู้ขับ: ต้น · HITL: แอน · นำเสนอ: บี"></label>
   </div>
   <div class="box"><h3>ปัญหา · ใครได้ประโยชน์</h3>
     <textarea id="f_problem" placeholder="ใครเจ็บ เสียเวลาเท่าไร เช่น ทีม HSE ใช้ 3 ชม./สัปดาห์ทำรายงานวันจันทร์"></textarea></div>
@@ -167,8 +157,8 @@ table.v th:first-child,table.v td:first-child{text-align:left}
       <p class="legend">Connector ที่บริษัทเปิด: SharePoint และ Outlook เท่านั้น</p></div>
     <div class="box"><h3><span class="chip c-ai">Output</span>ผลลัพธ์ · คนอ่าน</h3>
       <textarea id="f_output" placeholder="รายงาน Word 2 หน้า + ร่างอีเมลถึงผู้จัดการ HSE"></textarea></div>
-    <div class="box"><h3><span class="chip c-human">HITL</span>ใครตรวจ/อนุมัติ ตรงไหน</h3>
-      <textarea id="f_hitl" placeholder="ผู้ตรวจเทียบตัวเลข 2 ค่า · ผู้จัดการอนุมัติก่อนส่ง"></textarea></div>
+    <div class="box"><h3><span class="chip c-human">HITL</span>จุดที่คนตรวจ · ใครอนุมัติ</h3>
+      <textarea id="f_hitl" placeholder="ฉันเปิดไฟล์เทียบตัวเลข 2 ค่า · ผู้จัดการอนุมัติก่อนส่ง"></textarea></div>
   </div>
   <div class="box"><h3><span class="chip c-warn">Trade-off</span>3 มุม</h3>
     <div class="grid2">
@@ -176,7 +166,7 @@ table.v th:first-child,table.v td:first-child{text-align:left}
       <label class="f">⚠️ ข้อจำกัด<textarea id="f_lim" placeholder="Scheduled task ต้องเปิดเครื่อง · .vtt ต้องแปลงก่อน"></textarea></label>
       <label class="f">🔋 Usage<textarea id="f_use" placeholder="ทำทุกสัปดาห์ → Skill · model เบาพอ"></textarea></label>
     </div></div>
-  <div class="box"><h3>Diagram ของทีม (สูงสุด 6 กล่อง)</h3>
+  <div class="box"><h3>Diagram ของงานนี้ (สูงสุด 6 กล่อง)</h3>
     <div class="grid2">
       <div class="dg-edit" id="dgEdit"></div>
       <div><div class="flow" id="dgPreview"></div>
@@ -186,54 +176,42 @@ table.v th:first-child,table.v td:first-child{text-align:left}
     </div></div>
   <div class="grid2">
     <label class="f">ผลที่วัดได้ (ประมาณ)<input type="text" id="f_measure" placeholder="จาก 3 ชม. เหลือ ~40 นาที + ตรวจ 15 นาที"></label>
-    <label class="f">Demo link / note<input type="text" id="f_demo" placeholder="ไฟล์ output/hse_weekly.docx บนเครื่องผู้ขับ หรือลิงก์ SharePoint ของคลาส"></label>
+    <label class="f">Demo note<input type="text" id="f_demo" placeholder="ไฟล์ output/hse_weekly_v2.docx ในเครื่องของฉัน หรือลิงก์ https://"></label>
   </div>
   <label class="f" style="margin-top:8px">ก้าวต่อไปใน 30 วัน (→ M8)<textarea id="f_next" placeholder="1) ขอสิทธิ์อ่าน SharePoint List จริง 2) ทำ Skill 3) ตั้ง Scheduled task + ผู้อนุมัติ"></textarea></label>
   </form>
   <div class="row no-print">
-    <button class="btn primary" id="saveCard">✅ บันทึกลงบอร์ด</button>
+    <button class="btn primary" id="saveCard">✅ บันทึกการ์ดของฉัน</button>
     <button class="btn" id="copyCode">📋 คัดลอกรหัสการ์ด</button>
+    <button class="btn" id="goCheck">ไป ③ เช็กลิสต์ →</button>
     <button class="btn" id="clearForm">ล้างฟอร์ม</button>
     <span class="toast" id="formMsg"></span>
   </div>
   <textarea id="codeOut" class="no-print" readonly hidden style="font-size:12px;min-height:70px"></textarea>
 </section>
 
-<!-- ② BOARD -->
-<section class="panel" id="p-board">
+<!-- ② GALLERY (read-only browsing) -->
+<section class="panel" id="p-gallery">
+  <p class="sub">ดูเงียบ ๆ ว่าคนอื่นแก้โจทย์อย่างไร (ไม่บังคับ) · วางรหัสการ์ดที่เพื่อนแชร์ในแชตของคลาส</p>
   <div class="row no-print">
-    <textarea id="codeIn" placeholder="วางรหัสการ์ดจากทีม (วางได้หลายรหัส คั่นด้วยบรรทัดใหม่)" style="flex:1 1 380px;min-height:44px"></textarea>
-    <button class="btn primary" id="importBtn">นำเข้าการ์ด</button>
+    <textarea id="codeIn" placeholder="วางรหัสการ์ด M7CARD:… (วางได้หลายรหัส คั่นด้วยบรรทัดใหม่)" style="flex:1 1 380px;min-height:44px"></textarea>
+    <button class="btn primary" id="importBtn">เพิ่มเข้าแกลเลอรี</button>
     <button class="btn" id="sampleBtn">+ การ์ดตัวอย่าง</button>
   </div>
-  <div class="toast" id="boardMsg"></div>
+  <div class="row no-print"><label class="f" style="flex:0 1 280px">ดูเฉพาะโจทย์<select id="gFilter">
+      <option value="">ทุกโจทย์</option>
+      <option value="uc1">UC1</option><option value="uc2">UC2</option><option value="uc3">UC3</option>
+      <option value="uc4">UC4</option><option value="uc5">UC5</option><option value="own">งานของคุณเอง</option>
+    </select></label><span class="toast" id="galMsg"></span></div>
   <div class="cards" id="cards"></div>
 </section>
 
-<!-- ③ VOTE -->
-<section class="panel" id="p-vote">
-  <p class="sub">นับมือแล้วกด +1 · 1 เสียงต่อคนต่อหมวด · ห้ามโหวตทีมตัวเอง</p>
-  <div id="voteTable"></div>
-  <div class="row"><button class="btn" id="resetVotes">รีเซ็ตโหวต</button></div>
-</section>
-
-<!-- ④ RUBRIC -->
-<section class="panel" id="p-rubric">
-  <div class="row"><label class="f" style="flex:1 1 260px">ทีม<select id="rubTeam"></select></label>
-    <div>คะแนนรวม <span class="score" id="rubScore">–</span> / 16</div></div>
-  <div class="box"><div class="rub" id="rubGrid"></div></div>
-  <label class="f">Feedback 1 นาที: 1 ชม · 1 ถาม · 1 แนะ<textarea id="rubNote" placeholder="ชม: … · ถาม: … · แนะ: …"></textarea></label>
-  <p class="legend">ใช้เป็นคำแนะนำ ไม่ประกาศคะแนนหน้าห้อง · พิมพ์รวมใน Export PDF</p>
-</section>
-
-<!-- ⑤ TIMER -->
-<section class="panel" id="p-timer">
-  <div class="row"><button class="btn" data-t="180">3:00</button><button class="btn" data-t="240">4:00</button>
-    <button class="btn" data-t="300">5:00</button><button class="btn" data-t="60">1:00</button>
-    <button class="btn hot" id="tStart">▶ เริ่ม</button><button class="btn" id="tReset">↺</button>
-    <label class="f" style="flex:1 1 200px">ทีมที่กำลังนำเสนอ<select id="tTeam"></select></label></div>
-  <div class="timer" id="tDisp">3:00</div>
-  <div class="now" id="tNow">เหลือง = เหลือ 30 วินาที · แดง = หมดเวลา</div>
+<!-- ③ SELF-CHECK -->
+<section class="panel" id="p-check">
+  <div class="row"><p class="sub" style="flex:1 1 300px">ตรวจต้นแบบของคุณทีละข้อ (ใช้ <b>M7-P09</b> ช่วยหาที่มา แต่<b>เปิดไฟล์ต้นฉบับเทียบเอง</b>) · ข้อไหน ⚠️ เขียนว่าจะแก้อะไร แล้วแก้เป็น v2</p>
+    <div>ผ่านแล้ว <span class="ckscore" id="ckScore">0</span> / 4</div></div>
+  <div id="ckList"></div>
+  <p class="legend">เก็บไว้กับการ์ดของคุณ · พิมพ์รวมใน Export PDF · ไม่มีใครให้คะแนน คุณเป็นคนตรวจงานของตัวเอง</p>
 </section>
 
 <!-- PRINT REPORT -->
@@ -242,42 +220,45 @@ table.v th:first-child,table.v td:first-child{text-align:left}
 <script>
 /* ---------- constants ---------- */
 const UC={uc1:'UC1 สรุปสัญญาจัดซื้อ',uc2:'UC2 รายงาน Incident รายสัปดาห์',uc3:'UC3 รวมข้อมูล ESG 4 Site',
-  uc4:'UC4 ประชุม → Action tracker',uc5:'UC5 Energy market brief',byo:'BYO โจทย์ของทีม'};
+  uc4:'UC4 ประชุม → Action tracker',uc5:'UC5 Energy market brief',own:'ใช้งานของคุณเอง'};
 const TYPES={data:'🟩 Data',ai:'🟦 AI',human:'🟧 คน (HITL)'};
 const TPL={
   uc1:[['data','สัญญา .docx + register'],['ai','ดึง 8 หัวข้อ + เลขข้อ'],['ai','ตาราง + เทียบ register'],['human','จัดซื้อตรวจวันแจ้งยกเลิก'],['ai','Excel + ปฏิทิน']],
   uc2:[['data','incident log + อีเมล'],['ai','ทำความสะอาด + เทียบสัปดาห์'],['human','ตรวจข้อมูลผิดปกติ'],['ai','ร่างรายงาน + ร่างอีเมล'],['human','ผู้จัดการ HSE อนุมัติ']],
   uc3:[['data','ไฟล์ ESG 4 Site'],['ai','mapping + แปลงหน่วย'],['human','ตรวจหน่วย + ข้อมูลขาด'],['ai','ตารางรวม + tCO2e'],['ai','Dashboard Artifact']],
   uc4:[['data','บันทึกประชุม 4 ไฟล์'],['data','tracker เดิม'],['ai','ดึง action item'],['human','เจ้าของงานยืนยันวัน'],['ai','tracker ใหม่ + ร่างอีเมล']],
-  uc5:[['data','ราคา + ข่าว + มุมมองทีม'],['ai','สรุปแนวโน้ม + จับคู่ข่าว'],['human','ตรวจที่มา · ไม่พยากรณ์'],['ai','Brief 1 หน้า']],
-  byo:[['data','ข้อมูลจำลองของทีม'],['ai','Cowork ประมวลผล'],['human','ตรวจ/อนุมัติ'],['ai','Output']]};
-const RUB=[['① ปัญหาจริง วัดผลได้','ระบุผู้ใช้ เวลา/รอบที่ประหยัด เจ้าของงาน'],
-  ['② ต้นแบบทำงาน','ครบ 1 รอบกับข้อมูลสมมติ ทำซ้ำได้'],
-  ['③ Trade-off + HITL','ครบ 3 มุม จับกับดักข้อมูลได้ บอกสิ่งที่ไม่ให้ AI ทำ'],
-  ['④ ต่อยอด 30 วัน','ขั้นชัด ระบุผู้อนุมัติ/ข้อมูลที่ต้องขอ']];
-const VC=[['use','🏆 ใช้ได้จริง'],['safe','🛡️ ปลอดภัย'],['idea','💡 ไอเดีย']];
-const SAMPLE={id:'sample',team:'ทีมตัวอย่าง (ลบได้)',uc:'uc2',members:'ผู้ขับ: เอ · HITL: บี · นำเสนอ: ซี',
+  uc5:[['data','ราคา + ข่าว + มุมมองภายใน'],['ai','สรุปแนวโน้ม + จับคู่ข่าว'],['human','ตรวจที่มา · ไม่พยากรณ์'],['ai','Brief 1 หน้า']],
+  own:[['data','ข้อมูลจำลองของฉัน'],['ai','Cowork ประมวลผล'],['human','ตรวจ/อนุมัติ'],['ai','Output']]};
+/* self-check items: same 4 as workshop.md page 12 */
+const CHECK=[['ตัวเลข/ข้อเท็จจริง 2 ค่าตรงกับต้นฉบับ','เปิดไฟล์ต้นฉบับเทียบเอง ไม่เชื่อตารางของ Claude อย่างเดียว'],
+  ['ทุกข้อสรุปบอกที่มาได้','ไฟล์ · แถว · ข้อ · เวลา · ข้อไหนอนุมานต้องเขียนว่าอนุมาน'],
+  ['ไม่มีข้อมูล 🟡/🔴 หรือข้อมูลจริงของบริษัท · ไม่มีอะไรถูกส่ง/บันทึกลงระบบ','ต้นฉบับไม่ถูกแก้ · อีเมลเป็นร่าง · ไม่มีชื่อคนจริง'],
+  ['ใช้ได้จริง: บอกได้ว่าใครใช้ ประหยัดเวลาเท่าไร และก้าวต่อไปใน 30 วัน','ช่อง "ผลที่วัดได้" และ "ก้าวต่อไปใน 30 วัน" บนการ์ดมีคำตอบ']];
+const SAMPLE={id:'sample',name:'ตัวอย่าง (ลบได้)',uc:'uc2',
   problem:'ทีม HSE (สมมติ) ใช้ ~3 ชม. ทุกเช้าวันจันทร์รวม log 4 Site + อีเมล',
   data:'incident_log.csv 155 แถว + อีเมล 3 ฉบับ · งานจริงมีชื่อผู้บาดเจ็บ',light:'🟡',conn:['SharePoint','Outlook','โฟลเดอร์ใน Cowork'],
-  output:'รายงาน Word 2 หน้า + ร่างอีเมลถึงผู้จัดการ HSE',hitl:'ผู้ตรวจนับ Site A เอง · ผู้จัดการอนุมัติก่อนส่ง',
+  output:'รายงาน Word 2 หน้า + ร่างอีเมลถึงผู้จัดการ HSE',hitl:'นับ Site A เองเทียบรายงาน · ผู้จัดการอนุมัติก่อนส่ง',
   sec:'ตัดชื่อคนก่อนเข้า Cowork · ร่างเท่านั้น',lim:'Scheduled task ต้องเปิดเครื่อง',use:'ทุกสัปดาห์ → ทำเป็น Skill · model เบา',
-  dg:TPL.uc2,measure:'~3 ชม. → ~45 นาทีรวมตรวจ (ประมาณ)',demo:'screenshot รายงาน + email_draft.txt',
-  next:'1) ขอสิทธิ์อ่าน SharePoint List 2) ทำ Skill hse-weekly 3) ทดลอง Scheduled task 4 สัปดาห์'};
+  dg:TPL.uc2,measure:'~3 ชม. → ~45 นาทีรวมตรวจ (ประมาณ)',demo:'output/hse_weekly_v2.docx + email_draft.txt',
+  next:'1) ขอสิทธิ์อ่าน SharePoint List 2) ทำ Skill hse-weekly 3) ทดลอง Scheduled task 4 สัปดาห์',
+  check:{s:['ok','fix','ok','ok'],fix:['','v1 ไม่บอกที่มาของ LTI ในอีเมล 01 → v2 เขียนว่า "log ไม่มี ต้องถามกลับ"','','']}};
 
 /* ---------- state + storage (safe) ---------- */
-const KEY='m7-show-share-v1';
-let S={klass:'',cards:[],votes:{},rub:{},draft:null};
-function load(){try{const t=localStorage.getItem(KEY);if(t)S=Object.assign(S,JSON.parse(t))}catch(e){}}
+const KEY='m7-capstone-board-v1';
+let S={draft:null,gallery:[]};
+function load(){try{const t=localStorage.getItem(KEY);if(t)S=Object.assign(S,JSON.parse(t))}catch(e){}
+  if(!Array.isArray(S.gallery))S.gallery=[];}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
 const $=id=>document.getElementById(id);
 const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function normCheck(k){k=k||{};return {s:[0,1,2,3].map(i=>(k.s||[])[i]==='ok'||(k.s||[])[i]==='fix'?k.s[i]:''),fix:[0,1,2,3].map(i=>String((k.fix||[])[i]||''))}}
+function normCard(c){c.conn=Array.isArray(c.conn)?c.conn:[];c.dg=(Array.isArray(c.dg)?c.dg:[]).slice(0,6);
+  if(!c.name&&c.team)c.name=c.team; c.check=normCheck(c.check);return c}
 
 /* ---------- tabs ---------- */
-document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{
-  document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x===b));
-  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('on',p.id==='p-'+b.dataset.tab));
-  renderAll();
-});
+function openTab(name){document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x.dataset.tab===name));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('on',p.id==='p-'+name));renderAll();}
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>openTab(b.dataset.tab));
 
 /* ---------- diagram editor ---------- */
 let dg=[];
@@ -287,47 +268,51 @@ function drawDgEdit(){
     const n=dg[i]||['ai',''];
     const r=document.createElement('div');r.className='dg-row';
     r.innerHTML='<select aria-label="ชนิดกล่อง '+(i+1)+'">'+Object.entries(TYPES).map(([k,v])=>'<option value="'+k+'"'+(k===n[0]?' selected':'')+'>'+v+'</option>').join('')+
-      '</select><input type="text" maxlength="40" placeholder="กล่อง '+(i+1)+(i<3?'':' (ไม่บังคับ)')+'" value="'+esc(n[1])+'">';
+      '</select><input type="text" maxlength="40" placeholder="กล่อง '+(i+1)+(i<3?'':' (ไม่บังคับ)')+'" value="'+esc(n[1])+'" aria-label="ข้อความกล่อง '+(i+1)+'">';
     r.querySelector('select').onchange=r.querySelector('input').oninput=()=>{readDg();drawFlow($('dgPreview'),dg);updateFill()};
     box.appendChild(r);
   }
 }
 function readDg(){dg=[...$('dgEdit').querySelectorAll('.dg-row')].map(r=>[r.querySelector('select').value,r.querySelector('input').value.trim()]).filter(n=>n[1])}
 function drawFlow(el,nodes){
-  el.innerHTML=(nodes&&nodes.length)?nodes.map((n,i)=>(i?'<span class="arrow">→</span>':'')+'<span class="node '+n[0]+'">'+esc(n[1])+'</span>').join('')
+  el.innerHTML=(nodes&&nodes.length)?flowHTML(nodes)
     :'<span class="legend">ยังไม่มีกล่อง · กด "ใช้แม่แบบของโจทย์" หรือพิมพ์ทางซ้าย</span>';
 }
 function toMermaid(nodes){
   const L=['flowchart LR'];
   nodes.forEach((n,i)=>{const lab=n[1].replace(/"/g,"'");const sh=n[0]==='data'?'[("'+lab+'")]':n[0]==='human'?'{"'+lab+'"}':'["'+lab+'"]';
-    L.push('    N'+i+sh+':::'+n[0]+(i?'':''));if(i)L.push('    N'+(i-1)+' --> N'+i)});
+    L.push('    N'+i+sh+':::'+n[0]);if(i)L.push('    N'+(i-1)+' --> N'+i)});
   L.push('    classDef human fill:#E4572E,color:#fff,stroke:#231F20;','    classDef ai fill:#2E86AB,color:#fff,stroke:#231F20;','    classDef data fill:#3BA55C,color:#fff,stroke:#231F20;');
   return L.join('\n');
 }
-$('dgTpl').onclick=()=>{const uc=$('f_uc').value||'byo';dg=TPL[uc].map(x=>x.slice());drawDgEdit();drawFlow($('dgPreview'),dg);updateFill()};
-$('dgMermaid').onclick=()=>{readDg();copyText(toMermaid(dg),'คัดลอก Mermaid แล้ว · วางในสไลด์หรือให้ Claude วาดต่อได้')};
+$('dgTpl').onclick=()=>{const uc=$('f_uc').value||'own';dg=TPL[uc].map(x=>x.slice());drawDgEdit();drawFlow($('dgPreview'),dg);updateFill()};
+$('dgMermaid').onclick=()=>{readDg();copyText(toMermaid(dg),'คัดลอก Mermaid แล้ว · วางในเอกสารหรือให้ Claude วาดต่อได้')};
 
 /* ---------- form ---------- */
-const FIELDS=['team','uc','members','problem','data','output','hitl','sec','lim','use','measure','demo','next'];
-const REQ=['team','uc','problem','data','output','hitl','sec','lim','use','next'];
+const FIELDS=['name','uc','problem','data','output','hitl','sec','lim','use','measure','demo','next'];
+const REQ=['name','uc','problem','data','output','hitl','sec','lim','use','next'];
+let CK=normCheck(null);
 function readForm(){
   readDg();
   const c={};FIELDS.forEach(f=>c[f]=$('f_'+f).value.trim());
   const l=document.querySelector('input[name=f_light]:checked');c.light=l?l.value:'';
   c.conn=[...document.querySelectorAll('.f_conn:checked')].map(x=>x.value);c.dg=dg.map(x=>x.slice());
+  c.check=normCheck(CK);
   return c;
 }
 function writeForm(c){
   FIELDS.forEach(f=>$('f_'+f).value=c&&c[f]||'');
   document.querySelectorAll('input[name=f_light]').forEach(x=>x.checked=!!c&&x.value===c.light);
   document.querySelectorAll('.f_conn').forEach(x=>x.checked=!!c&&(c.conn||[]).includes(x.value));
-  dg=c&&c.dg?c.dg.map(x=>x.slice()):[];drawDgEdit();drawFlow($('dgPreview'),dg);updateFill();
+  dg=c&&c.dg?c.dg.map(x=>x.slice()):[];CK=normCheck(c&&c.check);
+  drawDgEdit();drawFlow($('dgPreview'),dg);renderCheck();updateFill();
 }
 function missing(c){const m=REQ.filter(f=>!c[f]);if(!c.light)m.push('สีข้อมูล');if(!c.conn.length)m.push('Connector');
-  if(c.dg.length<3)m.push('diagram ≥ 3 กล่อง');else if(!c.dg.some(n=>n[0]==='human'))m.push('กล่อง HITL สีส้ม');return m}
-function updateFill(){const c=readForm();const total=REQ.length+3;const miss=missing(c).length;
+  if(c.dg.length<3)m.push('diagram ≥ 3 กล่อง');else if(!c.dg.some(n=>n[0]==='human'))m.push('กล่อง HITL สีส้ม');
+  if(c.check.s.some(x=>!x))m.push('เช็กลิสต์ตรวจงานตัวเอง (แท็บ ③)');return m}
+function updateFill(){const c=readForm();const total=REQ.length+4;const miss=missing(c).length;
   const p=Math.round((total-miss)/total*100);$('fill').style.width=p+'%';$('fillTxt').textContent=p+'%';
-  S.draft=c;save();}
+  S.draft=c;save();renderReport();}
 document.getElementById('cardForm').addEventListener('input',updateFill);
 document.getElementById('cardForm').addEventListener('change',updateFill);
 function msg(el,t){$(el).textContent=t;setTimeout(()=>{if($(el).textContent===t)$(el).textContent=''},6000)}
@@ -338,118 +323,85 @@ function copyText(t,ok){
 function showCode(t){const o=$('codeOut');o.hidden=false;o.value=t;o.select();msg('formMsg','คัดลอกอัตโนมัติไม่ได้ · เลือกข้อความในกล่องด้านล่างแล้วคัดลอกเอง')}
 function enc(o){const b=new TextEncoder().encode(JSON.stringify(o));let s='';b.forEach(x=>s+=String.fromCharCode(x));return 'M7CARD:'+btoa(s)}
 function dec(t){t=t.trim().replace(/^M7CARD:/,'');const s=atob(t);const b=new Uint8Array([...s].map(ch=>ch.charCodeAt(0)));return JSON.parse(new TextDecoder().decode(b))}
-function upsert(c){c.id=c.id||('t'+Date.now().toString(36)+Math.random().toString(36).slice(2,5));
-  const i=S.cards.findIndex(x=>x.team===c.team);if(i>=0){c.id=S.cards[i].id;S.cards[i]=c}else S.cards.push(c);save();}
 $('saveCard').onclick=()=>{const c=readForm();const m=missing(c);
-  if(!c.team||!c.uc){msg('formMsg','ใส่ชื่อทีมและเลือกโจทย์ก่อน');return}
-  upsert(c);renderAll();msg('formMsg',m.length?'บันทึกแล้ว · ยังขาด: '+m.join(', '):'บันทึกแล้ว ครบทุกช่อง 🎉')};
-$('copyCode').onclick=()=>{const c=readForm();if(!c.team||!c.uc){msg('formMsg','ใส่ชื่อทีมและเลือกโจทย์ก่อน');return}
-  delete c.id;copyText(enc(c),'คัดลอกรหัสการ์ดแล้ว · ส่งให้วิทยากรในแชตของคลาส')};
-$('clearForm').onclick=()=>{writeForm(null);$('codeOut').hidden=true};
+  if(!c.name||!c.uc){msg('formMsg','ใส่ชื่อและเลือกโจทย์ก่อน');return}
+  S.draft=c;save();renderAll();msg('formMsg',m.length?'บันทึกแล้ว · ยังขาด: '+m.join(', '):'บันทึกแล้ว ครบทุกช่อง 🎉 · กด ⬇ Export PDF ได้เลย')};
+$('copyCode').onclick=()=>{const c=readForm();if(!c.name||!c.uc){msg('formMsg','ใส่ชื่อและเลือกโจทย์ก่อน');return}
+  delete c.id;copyText(enc(c),'คัดลอกรหัสการ์ดแล้ว · วางในแชตของคลาสได้ถ้าอยากแบ่งให้เพื่อนดู')};
+$('goCheck').onclick=()=>openTab('check');
+$('clearForm').onclick=function(){if(this.dataset.sure){writeForm(null);$('codeOut').hidden=true;this.textContent='ล้างฟอร์ม';delete this.dataset.sure}
+  else{this.dataset.sure=1;this.textContent='กดอีกครั้งเพื่อล้าง'}};
 $('f_uc').addEventListener('change',()=>{readDg();if(!dg.length)$('dgTpl').click()});
 
-/* ---------- board ---------- */
-$('importBtn').onclick=()=>{let ok=0,bad=0;
-  $('codeIn').value.split(/\s+/).filter(Boolean).forEach(t=>{try{const c=dec(t);if(!c.team)throw 0;
-    c.conn=c.conn||[];c.dg=(c.dg||[]).slice(0,6);delete c.id;upsert(c);ok++}catch(e){bad++}});
-  $('codeIn').value='';renderAll();msg('boardMsg','นำเข้า '+ok+' การ์ด'+(bad?' · อ่านไม่ได้ '+bad+' รหัส':''))};
-$('sampleBtn').onclick=()=>{if(!S.cards.some(c=>c.id==='sample'))S.cards.unshift(JSON.parse(JSON.stringify(SAMPLE)));save();renderAll()};
-let focusId=null;
-function cardHTML(c,i,tools){
-  const v=S.votes[c.id]||{};
-  return '<article class="tcard '+esc(c.uc)+(c.id===focusId?' focus':'')+'" data-id="'+esc(c.id)+'">'+
-   '<span class="order">'+(i+1)+'</span><h3>'+esc(c.team)+'</h3><div class="uc">'+esc(UC[c.uc]||'')+(c.members?' · '+esc(c.members):'')+'</div>'+
+/* ---------- self-check ---------- */
+function renderCheck(){
+  $('ckList').innerHTML=CHECK.map(([t,h],i)=>'<div class="ck '+CK.s[i]+'"><div class="n">'+(i+1)+'</div><div><b>'+t+'</b><br><span class="legend">'+h+'</span>'+
+    '<div class="opts"><label><input type="radio" name="ck'+i+'" value="ok"'+(CK.s[i]==='ok'?' checked':'')+'> ✅ ผ่าน</label>'+
+    '<label><input type="radio" name="ck'+i+'" value="fix"'+(CK.s[i]==='fix'?' checked':'')+'> ⚠️ ต้องแก้</label></div>'+
+    '<label class="f">ถ้า ⚠️ จะแก้อะไร (แล้วบันทึกเป็น v2)<textarea data-i="'+i+'" placeholder="เช่น ใส่ที่มาทุกบรรทัด · ตัดชื่อคนออก">'+esc(CK.fix[i])+'</textarea></label></div></div>').join('');
+  $('ckList').querySelectorAll('input[type=radio]').forEach(x=>x.onchange=()=>{CK.s[Number(x.name.slice(2))]=x.value;renderCheck();updateFill()});
+  $('ckList').querySelectorAll('textarea').forEach(x=>x.oninput=()=>{CK.fix[Number(x.dataset.i)]=x.value;updateFill()});
+  const ok=CK.s.filter(x=>x==='ok').length;$('ckScore').textContent=ok;$('nCheck').textContent='('+ok+'/4)';
+}
+function checkLine(c){const k=normCheck(c.check);return k.s.map((x,i)=>(i+1)+(x==='ok'?' ✅':x==='fix'?' ⚠️':' ▫️')).join(' · ')}
+
+/* ---------- cards + gallery ---------- */
+function cardHTML(c,opts){
+  opts=opts||{};
+  return '<article class="tcard '+esc(c.uc)+(opts.mine?' mine':'')+'" data-id="'+esc(c.id||'')+'">'+
+   (opts.mine?'<span class="tag">การ์ดของฉัน</span>':'')+'<h3>'+esc(c.name)+'</h3><div class="uc">'+esc(UC[c.uc]||'')+'</div>'+
    '<dl><dt>ปัญหา</dt><dd>'+esc(c.problem)+'</dd><dt>🟩 Data</dt><dd>'+esc(c.light)+' '+esc(c.data)+'</dd>'+
    '<dt>🟩 Connector</dt><dd>'+esc((c.conn||[]).join(' · '))+'</dd><dt>🟦 Output</dt><dd>'+esc(c.output)+'</dd>'+
    '<dt>🟧 HITL</dt><dd>'+esc(c.hitl)+'</dd><dt>Trade-off</dt><dd>🛡️ '+esc(c.sec)+'\n⚠️ '+esc(c.lim)+'\n🔋 '+esc(c.use)+'</dd>'+
    (c.measure?'<dt>ผลที่วัดได้</dt><dd>'+esc(c.measure)+'</dd>':'')+(c.demo?'<dt>Demo</dt><dd>'+linkify(c.demo)+'</dd>':'')+
    '<dt>30 วัน</dt><dd>'+esc(c.next)+'</dd></dl><div class="flow">'+flowHTML(c.dg)+'</div>'+
-   '<div class="votes">'+VC.map(([k,l])=>l+' <b>'+(v[k]||0)+'</b>').join(' · ')+'</div>'+
-   (tools?'<div class="tools no-print"><button class="btn sm" data-a="up">◀</button><button class="btn sm" data-a="down">▶</button>'+
-   '<button class="btn sm" data-a="focus">🎤 นำเสนอ</button><button class="btn sm" data-a="edit">แก้ไข</button><button class="btn sm" data-a="del">ลบ</button></div>':'')+'</article>';
+   '<div class="ckline">เช็กลิสต์: '+checkLine(c)+'</div>'+
+   (opts.tools?'<div class="tools no-print"><button class="btn sm" data-a="del">ลบออกจากแกลเลอรี</button></div>':'')+'</article>';
 }
 function flowHTML(nodes){return (nodes||[]).map((n,i)=>(i?'<span class="arrow">→</span>':'')+'<span class="node '+esc(n[0])+'">'+esc(n[1])+'</span>').join('')}
 function linkify(t){return /^https:\/\/[^\s"<>]+$/.test(t)?'<a href="'+esc(t)+'" target="_blank" rel="noopener">'+esc(t)+'</a>':esc(t)}
-function renderBoard(){
-  const el=$('cards');$('nCards').textContent=S.cards.length?'('+S.cards.length+')':'';
-  el.innerHTML=S.cards.length?S.cards.map((c,i)=>cardHTML(c,i,true)).join(''):'<div class="empty">ยังไม่มีการ์ด · ทีมกรอกในแท็บ ① แล้วกดบันทึก หรือวางรหัสการ์ดด้านบน</div>';
+function addGallery(c){c=normCard(c);c.id=c.id||('g'+Date.now().toString(36)+Math.random().toString(36).slice(2,5));
+  const i=S.gallery.findIndex(x=>x.name===c.name&&x.uc===c.uc);if(i>=0){c.id=S.gallery[i].id;S.gallery[i]=c}else S.gallery.push(c);}
+$('importBtn').onclick=()=>{let ok=0,bad=0;
+  $('codeIn').value.split(/\s+/).filter(Boolean).forEach(t=>{try{const c=dec(t);if(!c||!(c.name||c.team))throw 0;delete c.id;addGallery(c);ok++}catch(e){bad++}});
+  save();$('codeIn').value='';renderAll();msg('galMsg','เพิ่ม '+ok+' การ์ด'+(bad?' · อ่านไม่ได้ '+bad+' รหัส':''))};
+$('sampleBtn').onclick=()=>{if(!S.gallery.some(c=>c.id==='sample'))S.gallery.unshift(normCard(JSON.parse(JSON.stringify(SAMPLE))));save();renderAll()};
+$('gFilter').onchange=()=>renderGallery();
+function renderGallery(){
+  const el=$('cards'),f=$('gFilter').value,me=S.draft&&S.draft.name?S.draft:null;
+  $('nCards').textContent=S.gallery.length?'('+S.gallery.length+')':'';
+  const list=S.gallery.filter(c=>!f||c.uc===f);
+  const mine=me&&(!f||me.uc===f)?cardHTML(me,{mine:true}):'';
+  el.innerHTML=(mine+list.map(c=>cardHTML(c,{tools:true})).join(''))||'<div class="empty">ยังไม่มีการ์ด · กรอกการ์ดของคุณในแท็บ ① หรือวางรหัสการ์ดของเพื่อนด้านบน · กด "+ การ์ดตัวอย่าง" เพื่อดูตัวอย่าง</div>';
   el.querySelectorAll('.tools button').forEach(b=>b.onclick=()=>{
-    const id=b.closest('.tcard').dataset.id,i=S.cards.findIndex(c=>c.id===id),a=b.dataset.a;
-    if(a==='up'&&i>0)[S.cards[i-1],S.cards[i]]=[S.cards[i],S.cards[i-1]];
-    if(a==='down'&&i<S.cards.length-1)[S.cards[i+1],S.cards[i]]=[S.cards[i],S.cards[i+1]];
-    if(a==='del'){if(b.dataset.sure){S.cards.splice(i,1);delete S.votes[id];delete S.rub[id]}else{b.dataset.sure=1;b.textContent='ยืนยันลบ?';return}}
-    if(a==='edit'){writeForm(S.cards[i]);document.querySelector('[data-tab=form]').click();return}
-    if(a==='focus'){focusId=id;$('tTeam').value=id;document.querySelector('[data-tab=timer]').click();save();return}
-    save();renderAll()});
+    const id=b.closest('.tcard').dataset.id,i=S.gallery.findIndex(c=>c.id===id);
+    if(i<0)return;
+    if(!b.dataset.sure){b.dataset.sure=1;b.textContent='กดอีกครั้งเพื่อลบ';return}
+    S.gallery.splice(i,1);save();renderAll()});
 }
 
-/* ---------- votes ---------- */
-function leaders(){const w={};VC.forEach(([k])=>{let best=0,ids=[];S.cards.forEach(c=>{const n=(S.votes[c.id]||{})[k]||0;
-  if(n>best){best=n;ids=[c.id]}else if(n===best&&n>0)ids.push(c.id)});w[k]=ids});return w}
-function renderVotes(){
-  if(!S.cards.length){$('voteTable').innerHTML='<div class="empty">ยังไม่มีการ์ดบนบอร์ด</div>';return}
-  const w=leaders();
-  $('voteTable').innerHTML='<table class="v"><tr><th>ทีม</th>'+VC.map(([,l])=>'<th>'+l+'</th>').join('')+'</tr>'+
-    S.cards.map(c=>{const v=S.votes[c.id]||{};return '<tr><td>'+esc(c.team)+'</td>'+VC.map(([k])=>
-      '<td class="'+(w[k].includes(c.id)?'winner':'')+'"><span class="cnt"><button class="btn sm no-print" data-id="'+esc(c.id)+'" data-k="'+k+'" data-d="-1">−</button><b>'+(v[k]||0)+'</b>'+
-      '<button class="btn sm no-print" data-id="'+esc(c.id)+'" data-k="'+k+'" data-d="1">+1</button>'+(w[k].includes(c.id)?' 👑':'')+'</span></td>').join('')+'</tr>'}).join('')+'</table>';
-  $('voteTable').querySelectorAll('button').forEach(b=>b.onclick=()=>{const v=S.votes[b.dataset.id]=S.votes[b.dataset.id]||{};
-    v[b.dataset.k]=Math.max(0,(v[b.dataset.k]||0)+Number(b.dataset.d));save();renderVotes()});
-}
-$('resetVotes').onclick=function(){if(this.dataset.sure){S.votes={};save();renderVotes();this.textContent='รีเซ็ตโหวต';delete this.dataset.sure}
-  else{this.dataset.sure=1;this.textContent='กดอีกครั้งเพื่อยืนยัน'}};
-
-/* ---------- rubric ---------- */
-function teamOptions(sel){const cur=sel.value;sel.innerHTML=S.cards.length?S.cards.map(c=>'<option value="'+esc(c.id)+'">'+esc(c.team)+'</option>').join(''):'<option value="">— ยังไม่มีทีม —</option>';
-  if(S.cards.some(c=>c.id===cur))sel.value=cur;else if(focusId&&S.cards.some(c=>c.id===focusId))sel.value=focusId}
-function renderRubric(){
-  teamOptions($('rubTeam'));const id=$('rubTeam').value;const r=S.rub[id]||{s:[],note:''};
-  $('rubGrid').innerHTML='<div class="h"></div>'+[1,2,3,4].map(n=>'<div class="h">'+n+'</div>').join('')+
-    RUB.map(([t,d],i)=>'<div><b>'+t+'</b><br><small class="legend">'+d+'</small></div>'+[1,2,3,4].map(n=>
-      '<input type="radio" name="r'+i+'" value="'+n+'"'+(r.s[i]==n?' checked':'')+(id?'':' disabled')+' aria-label="'+t+' '+n+'">').join('')).join('');
-  $('rubNote').value=r.note||'';$('rubNote').disabled=!id;
-  const sc=r.s.filter(Boolean);$('rubScore').textContent=sc.length?sc.reduce((a,b)=>a+Number(b),0):'–';
-  $('rubGrid').querySelectorAll('input').forEach(x=>x.onchange=()=>{const rr=S.rub[id]=S.rub[id]||{s:[],note:''};
-    rr.s[Number(x.name.slice(1))]=Number(x.value);save();renderRubric()});
-}
-$('rubTeam').onchange=renderRubric;
-$('rubNote').oninput=()=>{const id=$('rubTeam').value;if(!id)return;(S.rub[id]=S.rub[id]||{s:[],note:''}).note=$('rubNote').value;save()};
-
-/* ---------- timer ---------- */
-let tLen=180,tLeft=180,tInt=null;
-function tDraw(){const m=Math.floor(Math.abs(tLeft)/60),s=Math.abs(tLeft)%60;
-  $('tDisp').textContent=(tLeft<0?'+':'')+m+':'+String(s).padStart(2,'0');
-  $('tDisp').className='timer'+(tLeft<=0?' over':tLeft<=30?' warn':'');}
-function tStop(){clearInterval(tInt);tInt=null;$('tStart').textContent='▶ เริ่ม'}
-document.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>{tStop();tLen=tLeft=Number(b.dataset.t);tDraw()});
-$('tStart').onclick=()=>{if(tInt){tStop();return}$('tStart').textContent='⏸ หยุด';tInt=setInterval(()=>{tLeft--;tDraw()},1000)};
-$('tReset').onclick=()=>{tStop();tLeft=tLen;tDraw()};
-$('tTeam').onchange=()=>{focusId=$('tTeam').value;renderNow()};
-function renderNow(){const c=S.cards.find(x=>x.id===$('tTeam').value);
-  $('tNow').innerHTML=c?'🎤 <b>'+esc(c.team)+'</b> · '+esc(UC[c.uc]||'')+'<div class="flow" style="justify-content:center">'+flowHTML(c.dg)+'</div>':'เหลือง = เหลือ 30 วินาที · แดง = หมดเวลา'}
-
-/* ---------- print report ---------- */
+/* ---------- print report (my card + self-check) ---------- */
 function renderReport(){
-  const cards=S.cards.length?S.cards:(S.draft&&S.draft.team?[Object.assign({id:'draft'},S.draft)]:[]);
-  const w=leaders();const d=new Date().toLocaleDateString('th-TH',{day:'numeric',month:'short',year:'numeric'});
-  $('report').innerHTML='<h2>สรุป Show & Share · '+esc(S.klass||'M7 Capstone')+' · '+d+'</h2>'+
+  const c=S.draft&&(S.draft.name||S.draft.uc)?normCard(Object.assign({},S.draft)):null;
+  const d=new Date().toLocaleDateString('th-TH',{day:'numeric',month:'short',year:'numeric'});
+  const k=normCheck(c&&c.check);
+  $('report').innerHTML='<h2>Capstone · ผลงานของฉัน · '+esc(c&&c.name||'M7 Capstone')+' · '+d+'</h2>'+
     '<p class="legend">ข้อมูลสมมติเพื่อการอบรม · 🟧 คน (HITL) · 🟦 AI · 🟩 Data/Connector</p>'+
-    (S.cards.length?'<h2>ผลโหวต</h2><p>'+VC.map(([k,l])=>l+': <b>'+(w[k].map(id=>esc((S.cards.find(c=>c.id===id)||{}).team)).join(', ')||'–')+'</b>').join(' · ')+'</p>':'')+
-    '<h2>การ์ดทีม</h2><div class="cards">'+(cards.map((c,i)=>cardHTML(c,i,false)).join('')||'<p>ยังไม่มีการ์ด</p>')+'</div>'+
-    (Object.keys(S.rub).length?'<h2>Rubric วิทยากร</h2><table class="v"><tr><th>ทีม</th>'+RUB.map(r=>'<th>'+r[0]+'</th>').join('')+'<th>รวม</th><th>Feedback</th></tr>'+
-      S.cards.filter(c=>S.rub[c.id]).map(c=>{const r=S.rub[c.id];return '<tr><td>'+esc(c.team)+'</td>'+[0,1,2,3].map(i=>'<td>'+(r.s[i]||'–')+'</td>').join('')+
-      '<td><b>'+r.s.filter(Boolean).reduce((a,b)=>a+Number(b),0)+'</b></td><td style="text-align:left">'+esc(r.note)+'</td></tr>'}).join('')+'</table>':'');
+    '<h2>การ์ดงานของฉัน</h2><div class="cards">'+(c?cardHTML(c,{}):'<p>ยังไม่มีการ์ด</p>')+'</div>'+
+    '<h2>เช็กลิสต์ตรวจงานตัวเอง</h2><table class="v"><tr><th>ข้อ</th><th>ตรวจอะไร</th><th>ผล</th><th>จะแก้อะไร</th></tr>'+
+    CHECK.map(([t],i)=>'<tr><td>'+(i+1)+'</td><td>'+t+'</td><td>'+(k.s[i]==='ok'?'✅ ผ่าน':k.s[i]==='fix'?'⚠️ ต้องแก้':'ยังไม่ตรวจ')+'</td><td>'+esc(k.fix[i])+'</td></tr>').join('')+'</table>'+
+    '<h2>ก้าวต่อไปใน 30 วัน (→ M8)</h2><p style="white-space:pre-wrap">'+esc(c&&c.next||'–')+'</p>';
 }
 
 /* ---------- init ---------- */
-function renderAll(){renderBoard();renderVotes();renderRubric();teamOptions($('tTeam'));renderNow();renderReport()}
-window.addEventListener('beforeprint',()=>{if(S.cards.length===0)S.draft=readForm();renderReport()});
-$('exportPdfBtn').addEventListener('click',()=>{if(S.cards.length===0)S.draft=readForm();renderReport()});
+function renderAll(){renderGallery();renderCheck();renderReport()}
+window.addEventListener('beforeprint',()=>{S.draft=readForm();renderReport()});
+$('exportPdfBtn').addEventListener('click',()=>{S.draft=readForm();save();renderReport()});
 load();
-$('klass').value=S.klass||'';$('klass').oninput=()=>{S.klass=$('klass').value;save();renderReport()};
-writeForm(S.draft);tDraw();renderAll();
+if(S.draft)S.draft=normCard(S.draft);S.gallery=S.gallery.map(normCard);
+writeForm(S.draft);renderAll();
 </script>
-<script>document.documentElement.lang='th';document.body.setAttribute('data-pdf-name','M7-Show-Share-Board');</script>
+<script>document.documentElement.lang='th';document.body.setAttribute('data-pdf-name','M7-Capstone-Board');</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <script>
 (function () {

@@ -1,10 +1,10 @@
 flowchart LR
-    TM["ทีมกรอกการ์ดบนบอร์ด<br/>use case · diagram · demo"]:::human --> BD[("Show & Share board<br/>Artifact")]:::data
-    BD --> PR["นำเสนอ 3 นาที<br/>ปัญหา → Demo → Trade-off"]:::human
-    PR --> FB["วิทยากรให้ feedback<br/>rubric 4 ข้อ · 1 นาที"]:::human
-    PR --> VT["ทุกคนโหวต<br/>🏆 ใช้ได้จริง · 🛡️ ปลอดภัย · 💡 ไอเดีย"]:::human
-    FB --> PDF["Export PDF<br/>แผนต่อยอด → M8 แผน 30 วัน"]:::ai
-    VT --> PDF
+    V1[("ต้นแบบ v1<br/>ใน output/")]:::data --> AI["Claude รายงานตัวเอง<br/>M7-P09 · ห้ามแก้ผลลัพธ์"]:::ai
+    AI --> CK{"ฉันตรวจเช็กลิสต์ 4 ข้อ<br/>เปิดไฟล์ต้นฉบับเทียบเอง"}:::human
+    CK -- "⚠️ มีข้อต้องแก้" --> FX["Claude แก้เฉพาะจุด<br/>บันทึกเป็น v2"]:::ai
+    FX --> CK
+    CK -- "✅ ครบ 4 ข้อ" --> BD[("การ์ดงานของฉัน + เช็กลิสต์<br/>Capstone Board")]:::data
+    BD --> PDF["Export PDF<br/>ก้าวต่อไป 30 วัน → M8"]:::ai
     classDef human fill:#E4572E,color:#fff,stroke:#1F2933;
     classDef ai fill:#2E86AB,color:#fff,stroke:#1F2933;
     classDef data fill:#3BA55C,color:#fff,stroke:#1F2933;
