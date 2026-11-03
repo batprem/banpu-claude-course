@@ -29,14 +29,12 @@ main{max-width:1180px;margin:0 auto;padding:16px}
 .detail ul{margin:4px 0 0 14px;padding:0}
 .neg{color:var(--human);font-weight:700}
 .pros{font-size:14px}
-.vote{border:0;background:var(--human);color:#fff;border-radius:8px;padding:8px;font:700 15px 'Sarabun';cursor:pointer}
-.bar{height:12px;border-radius:6px;background:#eee;overflow:hidden}.bar i{display:block;height:100%;background:var(--accent);width:0;transition:width .4s}
-.count{font-size:14px}
+.pick{border:0;background:var(--human);color:#fff;border-radius:8px;padding:8px;font:700 15px 'Sarabun';cursor:pointer}
+.opt.mine .pick{background:var(--accent)}
+.picked{font-size:14px;font-weight:700;color:var(--accent);min-height:1.4em}
 .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-top:16px}
 textarea{width:100%;min-height:60px;font:15px 'Sarabun';border:1px solid var(--line);border-radius:8px;padding:8px}
-.reasons{list-style:none;padding:0;margin:8px 0 0;font-size:14px}
-.reasons li{border-left:4px solid var(--accent);padding:2px 8px;margin:4px 0;background:#E2F1FA}
-.mode{font-size:13px;opacity:.85}
+.mychoice{border-left:4px solid var(--accent);padding:6px 10px;margin:8px 0 0;background:#E2F1FA;font-size:15px}
 footer{font-size:13px;opacity:.7;text-align:center;padding:16px}
 @media (max-width:860px){.grid{grid-template-columns:1fr}}
 </style>
@@ -55,23 +53,21 @@ footer{font-size:13px;opacity:.7;text-align:center;padding:16px}
     section,.card{break-inside:avoid}
   }
 </style>
-<style>@media print{header{background:#fff;color:var(--ink)}.grid{grid-template-columns:repeat(3,1fr)}textarea{display:none}}</style>
+<style>@media print{header{background:#fff;color:var(--ink)}.grid{grid-template-columns:repeat(3,1fr)}textarea{display:none}}.pdf-export textarea{display:none}</style>
 </head>
 <body data-pdf-name="M2-Prototype-Gallery">
 <header><div class="in">
-  <h1>🎨 Prototype Gallery · เลือก 1 สไตล์ก่อนสร้างทั้ง deck</h1>
-  <span class="mode" id="mode"></span>
+  <h1>🎨 Prototype Gallery · เลือก 1 สไตล์ของคุณเองก่อนสร้างทั้ง deck</h1>
   <button class="export-pdf-btn no-print" id="exportPdfBtn" type="button" title="ดาวน์โหลดเป็น PDF">⬇ Export PDF</button>
 </div></header>
 <main>
-  <p>สไลด์เดียวกัน (<b>ภาพรวม Budget vs Actual ปี 2568</b>, ข้อมูลจำลอง) 3 สไตล์ · ผู้ฟังสมมติ: คณะผู้บริหารสายปฏิบัติการ มีเวลา 10 นาที · โหวต 1 แบบ แล้วเขียนเหตุผล 1 บรรทัด</p>
+  <p>สไลด์เดียวกัน (<b>ภาพรวม Budget vs Actual ปี 2568</b>, ข้อมูลจำลอง) 3 สไตล์ · ผู้ฟังสมมติ: คณะผู้บริหารสายปฏิบัติการ มีเวลา 10 นาที · ทำคนเดียว: เลือก 1 แบบที่เหมาะกับผู้ฟังของคุณ แล้วเขียนเหตุผล 1 บรรทัด (บันทึกเฉพาะในเครื่องคุณ ไม่มีการรวมผลหรือนำเสนอ)</p>
   <div class="grid" id="grid"></div>
   <section class="card">
-    <b>เหตุผลของคุณ (1 บรรทัด)</b>
+    <b>สไตล์ที่ฉันเลือก + เหตุผล (1 บรรทัด)</b>
     <textarea id="why" placeholder="เช่น ผู้บริหารมีเวลาน้อย ต้องเห็นตัวเลขที่ต้องตัดสินใจทันที"></textarea>
-    <p class="no-print"><button class="vote" id="send" style="background:var(--accent)">บันทึกเหตุผล</button></p>
-    <b>เหตุผลล่าสุดจากห้อง</b>
-    <ul class="reasons" id="reasons"></ul>
+    <p class="no-print"><button class="pick" id="send" style="background:var(--accent)">บันทึกเหตุผล</button></p>
+    <div class="mychoice" id="mychoice"></div>
   </section>
   <section class="card">
     <b>💡 Prototype first</b> — เลือกจาก 1 หน้าแล้วค่อย build ทั้ง deck ถูกกว่าแก้ 15 หน้า · ผสมได้ เช่น "ใช้หัวข้อแบบ Executive + กราฟแบบ Visual" แล้วสั่ง Claude ด้วย prompt M2-P14
@@ -102,28 +98,22 @@ const STYLES=[
 const grid=document.getElementById("grid");
 STYLES.forEach(s=>{const d=document.createElement("section");d.className="opt";d.id="o-"+s.id;
   d.innerHTML=`<h2>${s.name}</h2>${s.html}<div class="pros">${s.pros}</div>
-  <button class="vote no-print" data-v="${s.id}">โหวตแบบนี้</button><div class="bar"><i id="b-${s.id}"></i></div><div class="count" id="c-${s.id}">0 โหวต</div>`;grid.appendChild(d)});
+  <button class="pick no-print" data-v="${s.id}">เลือกแบบนี้</button><div class="picked" id="c-${s.id}"></div>`;grid.appendChild(d)});
 
-// Storage: shared Artifact storage if the host provides it (claude.ai window.storage), otherwise this browser only.
-const shared=typeof window.storage==="object"&&window.storage&&typeof window.storage.set==="function";
-document.getElementById("mode").textContent=shared?"🔗 ผลโหวตรวมทั้งห้อง":"💻 ผลโหวตเฉพาะเครื่องนี้";
-let me; try{me=localStorage.getItem("m2-gallery-id")}catch(e){} if(!me){me=Math.random().toString(36).slice(2,10);try{localStorage.setItem("m2-gallery-id",me)}catch(e){}}
-const local={get(){try{return JSON.parse(localStorage.getItem("m2-gallery")||"{}")}catch(e){return {}}},set(o){try{localStorage.setItem("m2-gallery",JSON.stringify(o))}catch(e){}}};
-async function put(field,val){
-  if(shared){try{const r=await window.storage.get("v:"+me,true).catch(()=>null);const o=r&&r.value?JSON.parse(r.value):{};o[field]=val;await window.storage.set("v:"+me,JSON.stringify(o),true);return}catch(e){}}
-  const all=local.get();all[me]=Object.assign(all[me]||{},{[field]:val});local.set(all)}
-async function readAll(){
-  if(shared){try{const l=await window.storage.list("v:",true);const keys=(l&&l.keys)||[];const out=[];
-    for(const k of keys){const r=await window.storage.get(typeof k==="string"?k:k.key,true).catch(()=>null);if(r&&r.value)out.push(JSON.parse(r.value))}return out}catch(e){}}
-  return Object.values(local.get())}
+// My choice stays in this browser only (no shared tally, no class results).
+const KEY="m2-gallery-mine";
+const load=()=>{try{return JSON.parse(localStorage.getItem(KEY)||"{}")||{}}catch(e){return {}}};
+let mine=load();
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(mine))}catch(e){}};
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-async function draw(){const all=await readAll();const n=Math.max(1,all.filter(x=>x.vote).length);
-  STYLES.forEach(s=>{const c=all.filter(x=>x.vote===s.id).length;document.getElementById("b-"+s.id).style.width=(100*c/n)+"%";document.getElementById("c-"+s.id).textContent=c+" โหวต"});
-  const mine=(all.find(x=>x.id===me)||{}).vote; document.querySelectorAll(".opt").forEach(o=>o.classList.toggle("mine",o.id==="o-"+mine));
-  document.getElementById("reasons").innerHTML=all.filter(x=>x.why).slice(-8).reverse().map(x=>`<li><b>${esc((STYLES.find(s=>s.id===x.vote)||{name:"—"}).name)}</b> · ${esc(x.why)}</li>`).join("")||"<li>ยังไม่มี</li>"}
-grid.addEventListener("click",async e=>{const b=e.target.closest("button[data-v]");if(!b)return;await put("id",me);await put("vote",b.dataset.v);draw()});
-document.getElementById("send").onclick=async()=>{const t=document.getElementById("why").value.trim().slice(0,140);if(!t)return;await put("id",me);await put("why",t);draw()};
-draw(); if(shared) setInterval(draw,5000);
+const why=document.getElementById("why"); if(mine.why) why.value=mine.why;
+function draw(){
+  STYLES.forEach(s=>{const on=mine.pick===s.id;document.getElementById("o-"+s.id).classList.toggle("mine",on);document.getElementById("c-"+s.id).textContent=on?"✓ แบบที่ฉันเลือก":""});
+  const s=STYLES.find(x=>x.id===mine.pick);
+  document.getElementById("mychoice").innerHTML=s?`ฉันเลือก <b>${esc(s.name)}</b>${mine.why?" · เหตุผล: "+esc(mine.why):" · (ยังไม่ได้เขียนเหตุผล)"}`:"ยังไม่ได้เลือกสไตล์ · กด \"เลือกแบบนี้\" ใต้แบบที่เหมาะกับผู้ฟังของคุณ"}
+grid.addEventListener("click",e=>{const b=e.target.closest("button[data-v]");if(!b)return;mine.pick=b.dataset.v;save();draw()});
+document.getElementById("send").onclick=()=>{mine.why=why.value.trim().slice(0,140);save();draw()};
+draw();
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <script>

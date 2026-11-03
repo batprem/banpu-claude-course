@@ -220,7 +220,7 @@ flowchart LR
 - ถูกกว่าแก้ deck 15 หน้าทีหลัง ทั้งเวลาและ usage
 
 ???
-(10:15–11:00) ใน Workshop A เราจะใช้ Prototype Gallery Artifact โหวตสไตล์กันทั้งห้อง
+(10:15–11:00) ใน Workshop A เราจะใช้ Prototype Gallery Artifact ให้แต่ละคนเลือกสไตล์ของตัวเอง
 สามสไตล์ตัวอย่าง: (1) Executive — ตัวเลขใหญ่ ข้อความน้อย (2) Visual — กราฟเป็นหลัก (3) Detailed — ตาราง + bullet สำหรับทีมทำงาน
 ใช้ได้กับทุกงาน ไม่ใช่แค่สไลด์: รูปแบบรายงาน, layout dashboard, โทนอีเมล
 

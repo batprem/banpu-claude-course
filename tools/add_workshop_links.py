@@ -16,7 +16,7 @@ ARTIFACTS = {
     "m2": [("Workshop Companion", "https://claude.ai/artifact/Vyp7t1u44Ga5W4YbpuMYdP", "checklist และปุ่ม copy prompt ตลอด workshop"),
            ("Excel Detective", "https://claude.ai/artifact/1ytRQDkazJW4Xw24zZwkLu", "Workshop B: ตรวจว่า Claude จับกับดักไฟล์ Excel ครบไหม"),
            ("Prompt Playground", "https://claude.ai/artifact/LQ7Mh4vNj4syXPARm6ucV8", "ดูตัวอย่าง prompt before/after"),
-           ("Prototype Gallery", "https://claude.ai/artifact/3s1YpuHwGK7QvSn7ogm2Aq", "Workshop A: โหวต 1 สไตล์ก่อนสร้างทั้ง deck")],
+           ("Prototype Gallery", "https://claude.ai/artifact/3s1YpuHwGK7QvSn7ogm2Aq", "Workshop A: เลือก 1 สไตล์ของคุณเองก่อนสร้างทั้ง deck")],
     "m3": [("Connector Mission", "https://claude.ai/artifact/F4gquxgXQwnB8cSTo3hsBq", "ภารกิจ Connector SharePoint/Outlook ทีละด่าน")],
     "m4": [("Monthly Ops Dashboard", "https://claude.ai/artifact/5wEyprUmbagfBfBXXe4SJP", "dashboard ตัวอย่าง ไว้เทียบกับของเรา"),
            ("Output Picker", "https://claude.ai/artifact/S47Pyq2mMTUk85nZ2HQL67", "เกม 10 ข้อ: งานนี้ควรออกมาเป็นอะไร")],

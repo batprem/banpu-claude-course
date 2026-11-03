@@ -101,7 +101,7 @@ flowchart LR
 
 **ขั้น 6 · Prototype ×3 (2 นาที)**: copy **M2-P13** → ได้ `output/prototype_styles.pptx` 3 หน้า (Executive · Visual · Detailed)
 
-✅ **Checkpoint:** เปิดไฟล์ดูทั้ง 3 แบบ → ไปที่ **Prototype Gallery** โหวตแบบที่คิดว่าเหมาะกับผู้ฟังที่สุด และเขียนเหตุผล 1 บรรทัด
+✅ **Checkpoint:** เปิดไฟล์ดูทั้ง 3 แบบ → ไปที่ **Prototype Gallery** เลือกเองคนเดียว 1 แบบที่เหมาะกับผู้ฟังที่สุด และเขียนเหตุผล 1 บรรทัด
 
 **ขั้น 7 · Review (1 นาที)**: copy **M2-P14** (ใส่เลขสไตล์ที่เลือก)
 

@@ -110,7 +110,7 @@ Republish after an edit: decks with the Artifact tool (`url` + `root: materials/
 **Claude Artifacts (new, 31 Oct)**
 15. Sharing: all 29 Artifacts report "Anyone with the link" (2 Nov 2026). Before the training day, open one deck, one workshop sheet and one interactive page in an incognito window to confirm the Banpu organisation setting does not block public links.
 16. Live check still to do in the browser: click Export PDF on each page once (the in-page PDF path was not clicked through in this session) and download one deck as PDF from Share › Export, checking Thai rendering and that the 3-colour diagrams survive.
-17. Prototype Gallery (M2) shared voting expects a shared store that claude.ai does not provide, so votes stay per browser. Switch it to the Artifact `db` capability for a room-wide tally?
+17. ~~Prototype Gallery (M2) shared voting~~ — resolved: voting removed; each learner picks their own style (stored in their browser only).
 18. While the decks were being written, a second writer re-saved near-identical copies of some slides (every deck; most likely the Slides page in an open browser tab normalising files). All versions were read and kept/merged and the repo equals what is published; worth confirming no other session was editing.
 
 ## Next steps (build order 7)
